@@ -140,6 +140,15 @@ async fn ingest(app: &axum::Router, case_id: Uuid, path: &str) -> (StatusCode, V
     (status, body_json(response).await)
 }
 
+/// The API reports the resolved path; on macOS the temp dir is a symlink from `/var` to `/private/var`.
+fn canonical(path: &std::path::Path) -> String {
+    std::fs::canonicalize(path)
+        .unwrap()
+        .to_str()
+        .unwrap()
+        .to_string()
+}
+
 async fn acquisitions(app: &axum::Router, case_id: Uuid) -> Value {
     let (status, body) = get(app, format!("/api/v1/cases/{}/acquisitions", case_id)).await;
     assert_eq!(status, StatusCode::OK, "{body}");
@@ -247,7 +256,7 @@ async fn a_running_acquisition_is_reported_to_any_reader() {
     let entries = running["in_flight"].as_array().unwrap();
     assert_eq!(entries.len(), 1, "{running}");
     assert_eq!(entries[0]["artifact_id"], artifact_id);
-    assert_eq!(entries[0]["source_path"], path.to_str().unwrap());
+    assert_eq!(entries[0]["source_path"], canonical(&path));
     assert_eq!(
         entries[0]["live"], true,
         "this server is carrying the ingest, and must say so"
@@ -308,7 +317,7 @@ async fn a_failed_ingest_is_reported_after_the_submitting_tab_is_gone() {
     let failed = reported["failed"].as_array().unwrap();
     assert_eq!(failed.len(), 1, "{reported}");
     assert_eq!(failed[0]["artifact_id"], artifact_id);
-    assert_eq!(failed[0]["source_path"], path.to_str().unwrap());
+    assert_eq!(failed[0]["source_path"], canonical(&path));
     assert_eq!(failed[0]["requested_by"], "local");
     let detail = failed[0]["detail"].as_str().unwrap();
     assert!(
