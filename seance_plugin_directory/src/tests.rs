@@ -236,7 +236,8 @@ fn a_large_tree_carries_every_file_and_content_survives() {
 /// A substituted name is a name an examiner cannot search for. The same class
 /// as the ANSI shortcut paths in `seance_plugin_lnk`, which say which code
 /// page they were read under.
-#[cfg(unix)]
+// APFS refuses a name that is not valid UTF-8, so the file cannot be created on macOS.
+#[cfg(all(unix, not(target_os = "macos")))]
 #[test]
 fn a_name_that_is_not_utf8_is_flagged_on_its_entry_and_counted_on_the_status() {
     use std::ffi::OsStr;

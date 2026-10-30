@@ -103,7 +103,7 @@ jobs:
         key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
 
     - name: Run tests
-      run: cargo test --workspace --all-features
+      run: cargo test --workspace --all-features --no-fail-fast
 
     - name: Run doc tests
       run: cargo test --workspace --doc
@@ -330,6 +330,10 @@ jobs:
     continue-on-error: true
     steps:
     - uses: actions/checkout@v4
+
+    # The instrumented build of the whole workspace fills the runner disk.
+    - name: Free disk space
+      run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
 
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
