@@ -1,0 +1,18 @@
+[package]
+name = "seance_plugin_iso9660"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+uuid = { version = "1.11", features = ["v4", "serde"] }
+tracing = "0.1"
+byteorder = "1.5"
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+
+[dev-dependencies]
+# Inflates the committed xorriso-made Rock Ridge discs in tests/fixtures/.
+flate2 = "1.0"

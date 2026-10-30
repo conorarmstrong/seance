@@ -1,0 +1,36 @@
+[package]
+name = "seance_plugin_ios_backup"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[features]
+# Exposes `test_support` (a synthetic encrypted backup builder) to other
+# crates' integration tests. Never enabled in a release build.
+test-support = []
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+plist = "1.6"
+chrono = "0.4"
+# For encryption support
+pbkdf2 = { version = "0.12", features = ["simple"] }
+aes = "0.8"
+aes-kw = { version = "0.2", features = ["alloc"] }
+cbc = "0.1"
+cipher = "0.4"
+hex = "0.4"
+# Unwrapped class keys held for re-reading after ingest are zeroed on drop (BUG-026).
+zeroize = "1"
+hmac = "0.12"
+sha1 = "0.10"
+sha2 = "0.10"
+# For binary parsing
+byteorder = "1.5"
+tempfile = "3"

@@ -1,0 +1,423 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  # Kept in step with `release.yml`: `libheif-rs` is pinned to the v1_19 API.
+  LIBHEIF_VERSION: 1.19.8
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        rust: [stable]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: ${{ matrix.rust }}
+
+    # `cargo test --all-features` below turns on `e01`, `esedb`, `heic` and
+    # `video-thumbs`, so the job has to be able to link libewf, libesedb and
+    # libheif. It could not: only libewf was installed, and every run of this
+    # workflow since at least 2026-08-17 failed at
+    # `libheif-sys ... The system library libheif was not found` (GATE-009).
+    - name: Install native libraries (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libewf-dev libesedb-dev pkg-config clang \
+          libclang-dev libde265-dev cmake
+
+    # Ubuntu 24.04 ships libheif 1.17 and `libheif-rs` is pinned to the v1_19
+    # API, so this is built from source exactly as the release workflow builds
+    # it. Cached on the version, so it costs one build per runner image rather
+    # than one per push.
+    - name: Cache libheif (Linux)
+      if: runner.os == 'Linux'
+      id: libheif-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/libheif-install
+        key: ${{ runner.os }}-libheif-${{ env.LIBHEIF_VERSION }}
+
+    - name: Build libheif ${{ env.LIBHEIF_VERSION }} (Linux)
+      if: runner.os == 'Linux' && steps.libheif-cache.outputs.cache-hit != 'true'
+      run: |
+        set -euo pipefail
+        curl -fsSL -o libheif.tar.gz \
+          "https://github.com/strukturag/libheif/releases/download/v${LIBHEIF_VERSION}/libheif-${LIBHEIF_VERSION}.tar.gz"
+        tar xzf libheif.tar.gz
+        cmake -S "libheif-${LIBHEIF_VERSION}" -B libheif-build \
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$HOME/libheif-install" \
+          -DCMAKE_INSTALL_LIBDIR=lib -DWITH_LIBDE265=ON \
+          -DWITH_X265=OFF -DWITH_AOM_DECODER=OFF -DWITH_AOM_ENCODER=OFF \
+          -DWITH_DAV1D=OFF -DWITH_RAV1E=OFF -DWITH_SvtEnc=OFF \
+          -DWITH_JPEG_DECODER=OFF -DWITH_JPEG_ENCODER=OFF \
+          -DWITH_OpenJPEG_DECODER=OFF -DWITH_OpenJPEG_ENCODER=OFF \
+          -DWITH_GDK_PIXBUF=OFF -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+          -DWITH_LIBSHARPYUV=OFF
+        cmake --build libheif-build -j"$(nproc)"
+        cmake --install libheif-build
+
+    - name: Put libheif on the library path (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        echo "PKG_CONFIG_PATH=$HOME/libheif-install/lib/pkgconfig" >> "$GITHUB_ENV"
+        echo "LD_LIBRARY_PATH=$HOME/libheif-install/lib" >> "$GITHUB_ENV"
+
+    # Homebrew's libheif is well past the v1_19 pin, and it carries libewf and
+    # libesedb too, so macOS needs no source build.
+    - name: Install native libraries (macOS)
+      if: runner.os == 'macOS'
+      run: brew install libewf libesedb libheif
+
+    - name: Cache cargo registry
+      uses: actions/cache@v4
+      with:
+        path: ~/.cargo/registry
+        key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: Cache cargo index
+      uses: actions/cache@v4
+      with:
+        path: ~/.cargo/git
+        key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: Cache cargo build
+      uses: actions/cache@v4
+      with:
+        path: target
+        key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: Run tests
+      run: cargo test --workspace --all-features
+
+    - name: Run doc tests
+      run: cargo test --workspace --doc
+
+  # Golden-image regression: build a synthetic multi-partition E01 from the
+  # checked-in generator, then assert Séance recovers exactly what was written.
+  # Unlike the third-party corpus job (corpus-gates in selfhosted-linux-ci.yml),
+  # the image is generated here, so this runs on a normal hosted runner and the
+  # image is cached keyed on the generator — rebuilt only when the script changes.
+  golden-images:
+    name: Golden-image regression
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install libewf (build) + image-building tools
+      run: |
+        sudo apt-get update
+        # libewf-dev: build the e01 feature. ewf-tools: ewfacquire/ewfverify.
+        # gdisk: sgdisk. ntfs-3g: mkntfs/ntfscp. dosfstools+mtools: FAT.
+        # e2fsprogs (mke2fs/debugfs) is present by default. git+build-essential:
+        # the generator builds mkapfs (apfsprogs) from source for the APFS slice.
+        sudo apt-get install -y \
+          libewf-dev pkg-config clang libclang-dev \
+          ewf-tools gdisk ntfs-3g dosfstools mtools e2fsprogs \
+          git build-essential
+
+    - name: Cache the generated golden image
+      id: golden-cache
+      uses: actions/cache@v4
+      with:
+        path: golden_images
+        key: golden-images-${{ hashFiles('scripts/build_golden_images.sh') }}
+
+    - name: Build the golden image (on cache miss)
+      if: steps.golden-cache.outputs.cache-hit != 'true'
+      run: ./scripts/build_golden_images.sh golden_images
+
+    - name: Cache cargo build
+      uses: actions/cache@v4
+      with:
+        path: target
+        key: ${{ runner.os }}-cargo-build-golden-${{ hashFiles('**/Cargo.lock') }}
+
+    # SEANCE_REQUIRE_CORPUS=1 turns a missing/failed image into a hard failure
+    # instead of a silent skip — the whole point of the corpus gate.
+    - name: Run golden-image regression tests
+      env:
+        SEANCE_GOLDEN_IMAGES: ${{ github.workspace }}/golden_images
+        SEANCE_REQUIRE_CORPUS: "1"
+      run: cargo test -p seance_tests --features e01 golden_multipart_tests
+
+  # App-parser schema drift (ROADMAP §1.4a), the plaso-derived half. Each
+  # §1.4a corpus-diff test reads a real store and skips, passing, when the
+  # store is absent, so until this job none of them ran in CI. plaso is public,
+  # so its stores can be fetched here; the CTF-derived halves of the same tests
+  # cannot, and run in `corpus-gates` in selfhosted-linux-ci.yml.
+  #
+  # Neither SEANCE_REQUIRE_CORPUS nor SEANCE_APP_SCHEMA_CORPUS_REQUIRED is set,
+  # on purpose: the same tests also read CTF stores, and either switch would
+  # fail this job on that half by design. What stops this job reporting a pass
+  # over nothing is instead (a) the guard step, because the group C tests read
+  # plaso at `reference/plaso/test_data` with a bare `exists()`, and (b) the
+  # corpus gate's named-but-missing panic for the two variables set below.
+  # The static pin is seance_tests/tests/ci_corpus_wiring_test.rs.
+  app-schema-corpus:
+    name: App-parser schema drift (plaso stores)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Fetch plaso's test data
+      # Pinned: upstream plaso moved test_data/ after this commit.
+      run: git init -q reference/plaso && git -C reference/plaso fetch -q --depth 1 https://github.com/log2timeline/plaso e3401d1558f322a69ea35ae5c2b308fcbb0f7870 && git -C reference/plaso checkout -q FETCH_HEAD
+
+    - name: Confirm the plaso stores the gates read
+      run: |
+        set -euo pipefail
+        test -f "reference/plaso/test_data/mmssms.db"
+        test -f "reference/plaso/test_data/imessage_chat.db"
+        test -f "reference/plaso/test_data/twitter_android.db"
+        test -f "reference/plaso/test_data/contacts2.db"
+        test -f "reference/plaso/test_data/skype_main.db"
+        test -f "reference/plaso/test_data/chrome_history/History"
+
+    - name: Cache cargo build
+      uses: actions/cache@v4
+      with:
+        path: target
+        key: ${{ runner.os }}-cargo-build-app-schema-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: Run the plaso halves of the app-schema corpus gates
+      env:
+        SEANCE_PLASO_TEST_DATA: ${{ github.workspace }}/reference/plaso/test_data
+        SEANCE_SKYPE_SAMPLES: ${{ github.workspace }}/reference/plaso/test_data
+      run: |
+        set -euo pipefail
+        cargo test -p seance_plugin_browser_history --test corpus
+        cargo test -p seance_plugin_skype --lib the_real_skype_store
+        cargo test -p seance_plugin_android_sms --lib real_telephony_stores
+        cargo test -p seance_plugin_imessage --lib real_message_stores
+        cargo test -p seance_plugin_twitter --lib real_
+        cargo test -p seance_plugin_call_history --lib real_call_logs
+
+  frontend:
+    name: Frontend (typecheck, lint, tests)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+        cache-dependency-path: frontend/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Typecheck
+      run: npm run typecheck
+
+    - name: Lint
+      run: npm run lint
+
+    # Includes the help-sync coverage matrix (help-coverage.test.ts), which
+    # fails if a plugin/container/carving-signature-count drifts out of sync
+    # with the online help. See frontend/src/pages/help/HELP_SYNC.md.
+    - name: Tests
+      run: npm test
+
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        components: rustfmt
+
+    - name: Check formatting
+      run: cargo fmt --all -- --check
+
+    # Each native-C feature must really opt out: the release matrix builds
+    # x86_64 Windows without `esedb`, and for two releases a plain dependency
+    # edge pulled libesedb in anyway and failed the job on every tag (REL-003).
+    # `cargo tree` needs no native library, so it runs here beside fmt.
+    - name: Check feature edges
+      run: ./scripts/check-feature-edges.sh
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        components: clippy
+
+    - name: Install native libraries
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libewf-dev libesedb-dev pkg-config clang \
+          libclang-dev libde265-dev cmake
+
+    # `--all-features` needs libesedb and libheif as well as libewf, and Ubuntu
+    # 24.04's libheif (1.17) is older than the v1_19 API `libheif-rs` is pinned
+    # to (GATE-009). Same source build as the test job and the release workflow,
+    # cached on the version.
+    - name: Cache libheif
+      id: libheif-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/libheif-install
+        key: ${{ runner.os }}-libheif-${{ env.LIBHEIF_VERSION }}
+
+    - name: Build libheif ${{ env.LIBHEIF_VERSION }}
+      if: steps.libheif-cache.outputs.cache-hit != 'true'
+      run: |
+        set -euo pipefail
+        curl -fsSL -o libheif.tar.gz \
+          "https://github.com/strukturag/libheif/releases/download/v${LIBHEIF_VERSION}/libheif-${LIBHEIF_VERSION}.tar.gz"
+        tar xzf libheif.tar.gz
+        cmake -S "libheif-${LIBHEIF_VERSION}" -B libheif-build \
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$HOME/libheif-install" \
+          -DCMAKE_INSTALL_LIBDIR=lib -DWITH_LIBDE265=ON \
+          -DWITH_X265=OFF -DWITH_AOM_DECODER=OFF -DWITH_AOM_ENCODER=OFF \
+          -DWITH_DAV1D=OFF -DWITH_RAV1E=OFF -DWITH_SvtEnc=OFF \
+          -DWITH_JPEG_DECODER=OFF -DWITH_JPEG_ENCODER=OFF \
+          -DWITH_OpenJPEG_DECODER=OFF -DWITH_OpenJPEG_ENCODER=OFF \
+          -DWITH_GDK_PIXBUF=OFF -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+          -DWITH_LIBSHARPYUV=OFF
+        cmake --build libheif-build -j"$(nproc)"
+        cmake --install libheif-build
+
+    - name: Put libheif on the library path
+      run: |
+        echo "PKG_CONFIG_PATH=$HOME/libheif-install/lib/pkgconfig" >> "$GITHUB_ENV"
+        echo "LD_LIBRARY_PATH=$HOME/libheif-install/lib" >> "$GITHUB_ENV"
+
+    - name: Run clippy
+      run: cargo clippy --workspace --all-features -- -D warnings
+
+  coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    # Informational, not a correctness gate. tarpaulin instruments every test
+    # binary; linking the tantivy-heavy ones under instrumentation can crash the
+    # hosted runner's linker (rust-lld, SIGBUS). Don't let that block the build.
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install native libraries
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libewf-dev libesedb-dev pkg-config clang \
+          libclang-dev libde265-dev cmake
+
+    # `--all-features` needs libesedb and libheif as well as libewf, and Ubuntu
+    # 24.04's libheif (1.17) is older than the v1_19 API `libheif-rs` is pinned
+    # to (GATE-009). Same source build as the test job and the release workflow,
+    # cached on the version.
+    - name: Cache libheif
+      id: libheif-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/libheif-install
+        key: ${{ runner.os }}-libheif-${{ env.LIBHEIF_VERSION }}
+
+    - name: Build libheif ${{ env.LIBHEIF_VERSION }}
+      if: steps.libheif-cache.outputs.cache-hit != 'true'
+      run: |
+        set -euo pipefail
+        curl -fsSL -o libheif.tar.gz \
+          "https://github.com/strukturag/libheif/releases/download/v${LIBHEIF_VERSION}/libheif-${LIBHEIF_VERSION}.tar.gz"
+        tar xzf libheif.tar.gz
+        cmake -S "libheif-${LIBHEIF_VERSION}" -B libheif-build \
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$HOME/libheif-install" \
+          -DCMAKE_INSTALL_LIBDIR=lib -DWITH_LIBDE265=ON \
+          -DWITH_X265=OFF -DWITH_AOM_DECODER=OFF -DWITH_AOM_ENCODER=OFF \
+          -DWITH_DAV1D=OFF -DWITH_RAV1E=OFF -DWITH_SvtEnc=OFF \
+          -DWITH_JPEG_DECODER=OFF -DWITH_JPEG_ENCODER=OFF \
+          -DWITH_OpenJPEG_DECODER=OFF -DWITH_OpenJPEG_ENCODER=OFF \
+          -DWITH_GDK_PIXBUF=OFF -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+          -DWITH_LIBSHARPYUV=OFF
+        cmake --build libheif-build -j"$(nproc)"
+        cmake --install libheif-build
+
+    - name: Put libheif on the library path
+      run: |
+        echo "PKG_CONFIG_PATH=$HOME/libheif-install/lib/pkgconfig" >> "$GITHUB_ENV"
+        echo "LD_LIBRARY_PATH=$HOME/libheif-install/lib" >> "$GITHUB_ENV"
+
+    - name: Install cargo-tarpaulin
+      run: command -v cargo-tarpaulin >/dev/null 2>&1 || cargo install cargo-tarpaulin
+
+    - name: Generate coverage
+      env:
+        CARGO_BUILD_JOBS: "1"
+      run: cargo tarpaulin --workspace --timeout 300 --out Xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./cobertura.xml
+        fail_ci_if_error: false
+
+  # Licence compatibility, not just vulnerabilities. Séance is MIT, so the
+  # question is what a dependency demands of what ships with it: the vendored
+  # GPL-2.0-or-later `nt-hive` makes a binary that links it GPL rather than MIT,
+  # which is a decision the project has taken knowingly and written down.
+  # deny.toml states that reasoning and LICENSING.md states the consequence;
+  # this runs the gate.
+  licence-and-advisories:
+    name: Licences and advisories (cargo-deny)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install cargo-deny
+      run: command -v cargo-deny >/dev/null 2>&1 || cargo install cargo-deny --locked
+
+    # No libewf needed: this reads manifests and the lockfile, not compiled code.
+    - name: cargo deny check
+      run: cargo deny check
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run cargo audit
+      uses: rustsec/audit-check@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}

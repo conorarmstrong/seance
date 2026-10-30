@@ -1,0 +1,27 @@
+[package]
+name = "seance_plugin_mft"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1.40"
+byteorder = "1.5.0"
+base64 = "0.22"
+chrono = { version = "0.4.38", features = ["serde"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+# CR-047: the unreadable-header double (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }
+seance_plugin_findings = { path = "../seance_plugin_findings" }
+# HUNT-124: the slack-carved-executable finding, end to end from an
+# enumerator-produced record (parser -> carver -> PE -> findings).
+seance_plugin_carver = { path = "../seance_plugin_carver" }
+seance_plugin_pe = { path = "../seance_plugin_pe" }
+# HUNT-124: the real-volume slack grade ingests through the partition layer.
+seance_plugin_partition = { path = "../seance_plugin_partition" }
+tokio = { version = "1.38.0", features = ["sync"] }
+flate2 = "1.0"

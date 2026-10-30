@@ -1,0 +1,144 @@
+{
+  "source": "handset contacts2.db (+ write-ahead log) read with TSK icat and sqlite3, independent of Seance",
+  "image": "HTC_Desire_S_JTAG.bin",
+  "image_sha256": "9bba24c280d13658754b0dfc841a49ebf1379cf26490f73f5836f06a96f3239d",
+  "image_length": 2256535552,
+  "population_pdf": "Mobile_Device_Data_Population_HTC_Desire_S.pdf",
+  "population_pdf_sha256": "fca6daad5efaf5bf9152b351eb379cd5099c9194150ec9f26011dc4bf74b4957",
+  "volume_offset_sectors": 1343488,
+  "contacts2_inode": 30484,
+  "contacts": [
+    {
+      "raw_id": 1,
+      "display_name": "cfttmobile1@gmail.com",
+      "deleted": false,
+      "numbers": [],
+      "emails": [
+        "cfttmobile1@gmail.com"
+      ],
+      "pdf_label": null,
+      "pdf_agrees": null,
+      "note": "on the handset, not itemised in the population PDF",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 11,
+      "display_name": "*",
+      "deleted": false,
+      "numbers": [
+        "8887771212"
+      ],
+      "emails": [],
+      "pdf_label": "Special Character Name, Home Number",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 12,
+      "display_name": "8785551111",
+      "deleted": false,
+      "numbers": [
+        "8785551111"
+      ],
+      "emails": [],
+      "pdf_label": "Blank Name, Work Number",
+      "pdf_agrees": false,
+      "note": "handset and PDF differ: handset name '8785551111', PDF name ''",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 13,
+      "display_name": "阿恶哈拉",
+      "deleted": false,
+      "numbers": [
+        "+86 35 8 763 30 07"
+      ],
+      "emails": [],
+      "pdf_label": "Non-ASCII Entry, Mobile Number",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 14,
+      "display_name": "John Jacob Jingle Heimer Schmidt That’s My Name Too Whenever I GoOut The People Always Shout John Jacob Jingle Heimer Schmidt",
+      "deleted": false,
+      "numbers": [
+        "8988675309"
+      ],
+      "emails": [],
+      "pdf_label": "Long Name (50 chars), Mobile Number",
+      "pdf_agrees": false,
+      "note": "handset and PDF differ: handset name 'John Jacob Jingle Heimer Schmidt That’s My Name Too Whenever I GoOut The People Always Shout John Jacob Jingle Heimer Schmidt', PDF name 'John Jacob Jingle Heimer Schmidt That’s My Name Too Whenever I Go Out The People Always Shout John Jacob Jingle Heimer Schmidt'",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 15,
+      "display_name": "Jimi Hendrix",
+      "deleted": false,
+      "numbers": [
+        "7691234560"
+      ],
+      "emails": [
+        "hendrix@experienced.com"
+      ],
+      "pdf_label": "Regular Name, Mobile Number, email, website, picture",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 16,
+      "display_name": "Aurélien",
+      "deleted": false,
+      "numbers": [
+        "+33 22 6 555 20 20"
+      ],
+      "emails": [],
+      "pdf_label": "Non-ASCII Entry, Number",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 17,
+      "display_name": "Stevie Ray Vaughn",
+      "deleted": false,
+      "numbers": [
+        "1234567890"
+      ],
+      "emails": [
+        "stevie@srv.com"
+      ],
+      "pdf_label": "Regular Name, Mobile Number, email, deleted picture, address, birthday",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 18,
+      "display_name": "John Bonham",
+      "deleted": true,
+      "numbers": [
+        "(987) 876-7654"
+      ],
+      "emails": [],
+      "pdf_label": "Deleted Entry, Home Number",
+      "pdf_agrees": true,
+      "note": "",
+      "source": "handset contacts2.db via icat+sqlite3"
+    },
+    {
+      "raw_id": 19,
+      "display_name": "Jane Smith",
+      "deleted": false,
+      "numbers": [],
+      "emails": [],
+      "pdf_label": null,
+      "pdf_agrees": null,
+      "note": "on the handset, not itemised in the population PDF",
+      "source": "handset contacts2.db via icat+sqlite3"
+    }
+  ]
+}

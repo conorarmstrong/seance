@@ -1,0 +1,170 @@
+.flt-lead {
+  color: var(--text-2);
+  font-size: 13px;
+  margin: 0 0 16px;
+  max-width: 60ch;
+}
+
+.flt-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.flt-list-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.flt-list-head h2 {
+  font-size: 14px;
+  margin: 0;
+  margin-right: auto;
+}
+
+.flt-file {
+  display: none;
+}
+
+.flt-items {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flt-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 11px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+}
+
+.flt-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.flt-item-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.flt-item-desc {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.flt-item-cond {
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  color: var(--accent);
+  word-break: break-word;
+}
+
+.flt-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  font-size: 11.5px;
+  padding: 3px 8px;
+}
+
+.flt-new {
+  border-top: 1px solid var(--border-0);
+  padding-top: 12px;
+}
+
+.flt-new h3 {
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.flt-new-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.flt-new-row .input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.flt-results-meta {
+  font-size: 12px;
+  color: var(--text-2);
+  margin: 0 0 10px;
+}
+
+/* ---- Compound condition builder ---- */
+
+/* The connective governs every row below it, so it is drawn once, above them
+   all, rather than repeated between rows where it would invite the reading
+   that different pairs are joined differently. */
+.flt-join {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  margin-bottom: 8px;
+}
+
+.flt-join .select {
+  width: auto;
+}
+
+.flt-cond-row {
+  align-items: center;
+}
+
+/* NOT sits inside the row it inverts and is visually bound to it, because the
+   one thing this control must never look like is a negation of the group. */
+.flt-negate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.flt-new-actions {
+  justify-content: space-between;
+}
+
+/* The sentence the examiner checks before the filter becomes a population. */
+.flt-preview-line {
+  font-size: 12px;
+  color: var(--text-1);
+  margin: 4px 0 0;
+}
+
+.flt-preview-line code {
+  color: var(--accent);
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .flt-layout {
+    grid-template-columns: 1fr;
+  }
+}

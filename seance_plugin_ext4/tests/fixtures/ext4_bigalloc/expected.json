@@ -1,0 +1,89 @@
+{
+  "block_size": 1024,
+  "cluster_size": 4096,
+  "e2fsck_clean": true,
+  "files": {
+    "big.bin": {
+      "sha256": "2cbaefeab01b41df78276603ee0a90538476dddebb2c3ee578bae461b378d0d8",
+      "size": 70000
+    },
+    "dir/inner.txt": {
+      "sha256": "51f27f1897613e82c0bf673fd6bedaf347bde9ec77bf344982fc5a1046385536",
+      "size": 3000
+    },
+    "five.bin": {
+      "sha256": "451383ff1edbc2686526c196ccc23d9a3fc1df34fc6063f2b52eb081a9dacfe2",
+      "size": 5000
+    },
+    "one.bin": {
+      "sha256": "043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89",
+      "size": 1
+    }
+  },
+  "grades": "the parser against debugfs/dumpe2fs on a volume mke2fs wrote; never a real-world claim",
+  "groups": [
+    {
+      "first": 0,
+      "flags": [
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          8312,
+          32767
+        ]
+      ],
+      "group": 0,
+      "last": 32767
+    },
+    {
+      "first": 32768,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          32772,
+          65535
+        ]
+      ],
+      "group": 1,
+      "last": 65535
+    },
+    {
+      "first": 65536,
+      "flags": [
+        "INODE_UNINIT",
+        "BLOCK_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          65536,
+          98303
+        ]
+      ],
+      "group": 2,
+      "last": 98303
+    },
+    {
+      "first": 98304,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          98308,
+          131071
+        ]
+      ],
+      "group": 3,
+      "last": 131071
+    }
+  ],
+  "image": "ext4_bigalloc.img",
+  "image_sha256": "f1f52cd886909d758d64d8548edd919a0e2597c2fdf914f67fed44bd4e358467",
+  "synthetic": true
+}

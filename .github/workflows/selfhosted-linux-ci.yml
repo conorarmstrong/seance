@@ -1,0 +1,242 @@
+name: Self-Hosted Linux CI
+
+# Runs the CI gates on a self-hosted Linux runner. Self-hosted runners do NOT
+# consume the account's GitHub-hosted Actions minutes, so this confirms libewf
+# links on Linux and the gates pass on a real GitHub Actions run even while the
+# hosted-runner quota is exhausted. Manual trigger only (no push/PR), so it never
+# runs unless a self-hosted runner is online.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux-gates:
+    runs-on: [self-hosted, linux]
+    env:
+      CARGO_TERM_COLOR: never
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Environment (native libraries + toolchain)
+        run: |
+          set -euo pipefail
+          # Assigned rather than interpolated inside `echo`: under `set -e` a
+          # command substitution that fails inside an `echo` argument does NOT
+          # fail the step — `echo` succeeds and prints an empty value — so a
+          # runner missing libesedb, or carrying a libheif older than the v1_19
+          # API, sailed through this check and failed much later as a link
+          # error inside `cargo test --all-features`. An assignment is what
+          # `set -e` actually catches.
+          libewf=$(pkg-config --modversion libewf)
+          libesedb=$(pkg-config --modversion libesedb)
+          libheif=$(pkg-config --modversion libheif)
+          echo "libewf   $libewf"
+          echo "libesedb $libesedb"
+          echo "libheif  $libheif"
+          rustc --version
+          cargo --version
+          node --version
+
+      - name: Build seance (E01/libewf linked)
+        run: cargo build --release -p seance_cli
+
+      - name: Rustfmt gate
+        run: cargo fmt --all --check
+
+      - name: Clippy gate (-D warnings)
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      # The gate `test.yml` runs on a hosted runner, run here as well, because
+      # a self-hosted runner consumes no minutes and the hosted ones are the
+      # thing that goes away (REL-001). `--all-features` needs libewf, libesedb
+      # and a libheif at or past the v1_19 API; the runner's own environment is
+      # checked above and the job fails here if any of them is missing rather
+      # than quietly testing less.
+      - name: Test suite (all features)
+        run: cargo test --workspace --all-features
+
+      - name: Doc tests
+        run: cargo test --workspace --doc
+
+      - name: Web UI (typecheck, lint, tests)
+        run: |
+          npm --prefix frontend ci
+          npm --prefix frontend run typecheck
+          npm --prefix frontend run lint
+          npm --prefix frontend test
+
+      - name: Dependency audit
+        run: |
+          command -v cargo-audit >/dev/null 2>&1 || cargo install cargo-audit --locked
+          cargo audit
+
+  # The corpus gates. Separate job because these need evidence images that no
+  # GitHub-hosted runner can hold — the Lone Wolf memory capture alone is 17 GB
+  # — and because their failure means something different from a unit-test
+  # failure: not "the code changed" but "the tool now disagrees with a
+  # third party about a disk that has not changed since 2004".
+  corpus-gates:
+    name: Corpus gates (published ground truth + Volatility parity)
+    runs-on: [self-hosted, linux]
+    env:
+      CARGO_TERM_COLOR: never
+      # The point of this job. With it set, a corpus that was named and cannot
+      # be opened fails, and so does one that was never named at all — so a
+      # green tick here cannot mean "compared nothing". Without it these tests
+      # skip and report `ok`, which is the state this job exists to end.
+      SEANCE_REQUIRE_CORPUS: "1"
+      # Where the runner keeps the images. Override with a repository variable
+      # if the runner stores them elsewhere. Layout is the one recorded under
+      # "Evidence held" in ROADMAP.md.
+      CORPUS_ROOT: ${{ vars.SEANCE_CORPUS_ROOT || '/srv/seance-corpora' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Confirm the corpora are where the gate will look
+        run: |
+          set -euo pipefail
+          missing=0
+          for d in cfreds_hacking alihadi_ntfs lonewolf oberon_linux_swap win11_bitlocker symbols/extracted/windows/ntkrnlmp.pdb \
+                   app_schema_corpus android2022/data chromebook/decrypted macos2021/tree ios2022ffs/tree snapchat_samples; do
+            if [ ! -d "$CORPUS_ROOT/$d" ]; then
+              echo "missing: $CORPUS_ROOT/$d"
+              missing=1
+            fi
+          done
+          # One corpus entry is a file, not a directory: the SQLCipher store.
+          for f in signal_ios/signal.sqlite; do
+            if [ ! -f "$CORPUS_ROOT/$f" ]; then
+              echo "missing: $CORPUS_ROOT/$f"
+              missing=1
+            fi
+          done
+          if [ "$missing" = 1 ]; then
+            echo
+            echo "This job was dispatched with SEANCE_REQUIRE_CORPUS on, so it fails"
+            echo "rather than skipping. Provision the runner or dispatch the other job."
+            exit 1
+          fi
+
+      - name: Build (E01/libewf linked)
+        run: cargo build --workspace --all-features
+
+      # NIST publishes TestAnswers.pdf beside this image. A failure here says
+      # Séance no longer reaches an answer a third party wrote down in 2004.
+      - name: CFReDS Hacking Case — NIST's published answers
+        run: |
+          export SEANCE_CFREDS_HACKING="$CORPUS_ROOT/cfreds_hacking"
+          cargo test -p seance_tests --all-features cfreds_hacking_case_tests
+
+      # The acquisition log beside this image publishes MD5 and SHA-1 of the
+      # bytes FTK Imager acquired in 2023. A failure here says the E01 decoder
+      # no longer returns the stream that was acquired — which is a different
+      # and worse claim than any parser being wrong. 474 KB, so it is cheap.
+      - name: Ali Hadi NTFS case — acquisition digests
+        run: |
+          export SEANCE_ALIHADI_NTFS="$CORPUS_ROOT/alihadi_ntfs"
+          cargo test -p seance_tests --all-features alihadi_ntfs_tests
+
+      # Filtered to win10, and the filter is load-bearing. Lone Wolf has its own
+      # corpus variable, so the XP and Win11 tests would ordinarily just skip —
+      # but SEANCE_REQUIRE_CORPUS is on for this job, which turns "SEANCE_MEM_IMAGES
+      # was never set" into a failure. That is the right default for a job whose
+      # purpose is to prove a comparison happened; it means each corpus is opted
+      # into by running the tests that use it. Widen the filter and add
+      # SEANCE_MEM_IMAGES together, never one without the other.
+      - name: Volatility 3 parity — Windows 10, smeared live capture
+        run: |
+          export SEANCE_LONEWOLF="$CORPUS_ROOT/lonewolf"
+          export SEANCE_SYMBOL_DIRS="$CORPUS_ROOT/symbols/extracted/windows/ntkrnlmp.pdb"
+          cargo test -p seance_plugin_memory_windows --all-features --test parity_test win10
+
+      # The Linux memory tier. Until this job set SEANCE_LINUX_MEM, none of it
+      # ran anywhere but a developer's machine — AVML, BTF, kallsyms and
+      # image-derived discovery are the newest code in the tree, and the
+      # compressed-capture defect that broke every Linux discovery hid in
+      # exactly that gap. Release build: a debug sweep of a 15 GiB capture takes
+      # long enough to look hung.
+      - name: Linux memory — capture, BTF, kallsyms, image-derived discovery
+        run: |
+          export SEANCE_LINUX_MEM="$CORPUS_ROOT/oberon_linux_swap"
+          cargo test -p seance_memory --release --all-features \
+            --test avml_real_capture_test \
+            --test btf_real_capture_test \
+            --test btf_symboltable_test \
+            --test kallsyms_real_capture_test \
+            --test linux_swap_real_test
+          cargo test -p seance_plugin_memory_linux --release --all-features \
+            --test image_derived_discovery_test
+
+      # App-parser schema drift (ROADMAP §1.4a), the CTF-derived half. The
+      # plaso half runs on a hosted runner (`app-schema-corpus` in test.yml);
+      # these stores come from CTF archives the project cannot redistribute,
+      # so they are kept under $CORPUS_ROOT (layout: documentation/TESTING.md,
+      # "Corpus variables"). Two switches, because two gates are in play: the
+      # job-level SEANCE_REQUIRE_CORPUS covers the tests that go through
+      # `seance_core::test_support::corpus`, and SEANCE_APP_SCHEMA_CORPUS_REQUIRED
+      # covers the four crates that test each store with a bare `exists()`.
+      # Each test is filtered by name so the job-level switch demands only the
+      # variables exported here. plaso is fetched too, because the browser
+      # corpus test reads it beside the CTF trees and fails, under the switch,
+      # if SEANCE_PLASO_TEST_DATA is unset.
+      - name: App-parser schema drift — CTF-derived stores
+        run: |
+          set -euo pipefail
+          [ -d reference/plaso/test_data ] || { git init -q reference/plaso && git -C reference/plaso fetch -q --depth 1 https://github.com/log2timeline/plaso e3401d1558f322a69ea35ae5c2b308fcbb0f7870 && git -C reference/plaso checkout -q FETCH_HEAD; }
+          export SEANCE_APP_SCHEMA_CORPUS_REQUIRED=1
+          export SEANCE_PLASO_TEST_DATA="$PWD/reference/plaso/test_data"
+          export SEANCE_APP_SCHEMA_CORPUS="$CORPUS_ROOT/app_schema_corpus"
+          export SEANCE_ANDROID2022_TREE="$CORPUS_ROOT/android2022/data"
+          export SEANCE_CHROMEBOOK_TREE="$CORPUS_ROOT/chromebook/decrypted"
+          export SEANCE_MACOS2021_TREE="$CORPUS_ROOT/macos2021/tree"
+          export SEANCE_IOS2022_TREE="$CORPUS_ROOT/ios2022ffs/tree"
+          export SEANCE_SNAPCHAT_SAMPLES="$CORPUS_ROOT/snapchat_samples"
+          export SEANCE_SIGNAL_IOS_SQLITE="$CORPUS_ROOT/signal_ios/signal.sqlite"
+          export SEANCE_ANDROID14_WHATSAPP="$CORPUS_ROOT/hickman_android14/whatsapp"
+          cargo test -p seance_plugin_browser_history --test corpus
+          cargo test -p seance_plugin_contacts --test corpus
+          cargo test -p seance_plugin_installed_apps --test corpus
+          cargo test -p seance_plugin_android_apps --test corpus
+          cargo test -p seance_plugin_mobile_device --test android2022_corpus
+          cargo test -p seance_plugin_snapchat --lib the_real_snapchat_stores
+          cargo test -p seance_plugin_signal --lib the_real_ios_signal_store
+          cargo test -p seance_plugin_whatsapp --lib the_real_android14_msgstore
+          cargo test -p seance_plugin_android_sms --lib real_telephony_stores
+          cargo test -p seance_plugin_imessage --lib real_message_stores
+          cargo test -p seance_plugin_twitter --lib real_
+          cargo test -p seance_plugin_call_history --lib real_call_logs
+
+      # `ROADMAP` §5.8. BL-1 and MEM-2 (BitLocker XTS-AES-256 recovery-password
+      # unlock, and Windows memory discovery checked against Microsoft's own
+      # published kernel PDB) have run — see `documentation/VALIDATION.md` —
+      # but only ever on the one machine that has the corpus, which proves the
+      # result is real but not that it reproduces. This step is that second
+      # machine: it runs the same `seance-validate` binary a maintainer runs
+      # by hand, against this runner's own copy of the corpus, and fails the
+      # job if either case is anything but `pass` — a case this job does not
+      # name is not one it can silently start failing on, so `jq` looks for
+      # BL-1 and MEM-2 specifically rather than asserting the whole report is
+      # clean (`cargo test -p seance_tests` above already runs every image this
+      # binary would also touch that has its own `#[test]`; this step's job is
+      # the two cases that do not, yet).
+      - name: BitLocker XTS-AES-256 + Windows 11 memory discovery — BL-1, MEM-2
+        run: |
+          set -euo pipefail
+          cargo build --release -p seance_validate
+          ./target/release/seance-validate --corpus "$CORPUS_ROOT" --out validation-report-ci
+          for id in BL-1 MEM-2; do
+            status=$(jq -r --arg id "$id" '.results[] | select(.id == $id) | .status' validation-report-ci.json)
+            echo "$id: ${status:-MISSING}"
+            if [ "$status" != "pass" ]; then
+              echo "$id did not pass (or was not in the report) — see validation-report-ci.json"
+              exit 1
+            fi
+          done
+
+      - name: Upload BL-1/MEM-2 validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report-ci
+          path: validation-report-ci.*
+          retention-days: 30

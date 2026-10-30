@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Seance Test//Folded//EN
+BEGIN:VEVENT
+UID:folded-001@example.com
+DTSTART:20210812T140000Z
+DTEND:20210812T150000Z
+SUMMARY:Project Kickoff\, Phase 1
+DESCRIPTION:First line of notes.\nSecond line after newline.\nBring laptop
+ s and chargers for everyone attending the session.
+LOCATION:Building 5\; Room 200
+ORGANIZER;CN=Alice Manager:mailto:alice@example.com
+ATTENDEE;CN=Bob Attendee:mailto:bob@example.com
+ATTENDEE;CN=Carol Guest:mailto:carol@example.com
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

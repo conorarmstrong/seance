@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_browser_history"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+# Firefox session-restore files (sessionstore.jsonlz4) are LZ4 block-compressed.
+lz4_flex = "0.11"
+[dev-dependencies]
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

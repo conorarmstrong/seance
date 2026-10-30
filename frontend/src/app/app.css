@@ -1,0 +1,657 @@
+.shell {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---- Sidebar ---- */
+
+/* The rail scrolls its PARTS, never itself. Scrolling the whole column pushed
+   the evidence navigator and the footer below the fold on any viewport under
+   ~900px tall — a standard laptop — because .side-nav could not shrink below
+   its content and .tree-section sat pinned at its own min-height. The Workbench
+   page's only instruction ("pick an item from the navigator on the left") was
+   then impossible to follow without scrolling the sidebar first (LIVE-020). */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--bg-1);
+  border-right: 1px solid var(--border-0);
+  display: flex;
+  flex-direction: column;
+  /* `auto`, not `hidden`: the parts scroll themselves (see .side-nav and
+     .tree-section), so this almost never engages — but at large browser zoom or
+     large OS text the fixed-height head, case card and footer can together
+     exceed the viewport, and `hidden` would clip them with no way to reach
+     them at all. This is the last escape, not the primary mechanism. */
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.sidebar-head {
+  padding: 14px 16px 10px;
+}
+
+.wordmark {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+}
+
+.all-cases-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 16px 8px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.all-cases-link:hover {
+  color: var(--accent);
+}
+
+.case-card {
+  margin: 0 12px 10px;
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.case-card-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.case-card-ref {
+  color: var(--text-2);
+  margin-top: 2px;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+  gap: 10px;
+  /* Shrinkable and self-scrolling: on a short viewport the nav gives way so the
+     navigator keeps a usable share, instead of forcing the column to overflow. */
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.side-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.side-nav-label {
+  padding: 0 10px 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  color: var(--text-1);
+  font-size: 13px;
+}
+
+.side-link-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Count of RAM captures, shown on Memory only when a case holds more than one.
+   A quiet pill — it reports a fact, it is not a call to action. */
+.side-link-badge {
+  flex: none;
+  min-width: 18px;
+  padding: 0 6px;
+  border-radius: 9px;
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 17px;
+  text-align: center;
+}
+
+.side-link.active .side-link-badge {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.side-link-icon {
+  color: var(--text-2);
+  flex: none;
+}
+
+.side-link.active .side-link-icon {
+  color: var(--accent);
+}
+
+.side-link:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+.side-link.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tree-section {
+  /* Takes the leftover height rather than sitting at a floor the nav's fixed
+     height never leaves room for. min-height:0 is what lets it actually
+     shrink-to-fit inside the column instead of overflowing it. */
+  flex: 1 1 40%;
+  min-height: 0;
+  padding: 12px 8px;
+  border-top: 1px solid var(--border-0);
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.tree-heading {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  padding: 0 8px 6px;
+}
+
+.sidebar-foot {
+  /* Holds its height rather than being squeezed to nothing. It can still be
+     reached at extreme zoom because .sidebar keeps a scrollbar of last resort;
+     `flex: none` plus a clipping parent would have made it unreachable. */
+  flex: none;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border-0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+}
+
+.link-button:hover {
+  color: var(--accent-hover);
+}
+
+/* ---- Main column ---- */
+
+.main-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.main-content {
+  flex: 1;
+  overflow: auto;
+  padding: 20px 24px;
+}
+
+/* ---- Custody strip ---- */
+
+.custody-strip {
+  flex-shrink: 0;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 5px 16px;
+  background: var(--bg-1);
+  border-top: 1px solid var(--border-0);
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.custody-cell strong {
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+.custody-clock {
+  margin-left: auto;
+  color: var(--text-1);
+}
+
+.custody-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-2);
+  vertical-align: 1px;
+  margin-right: 2px;
+}
+
+.custody-active .custody-dot {
+  background: var(--accent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.custody-done .custody-dot {
+  background: var(--ok);
+}
+
+.custody-cancelled .custody-dot {
+  background: var(--warn, var(--text-2));
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---- Shared page primitives ---- */
+
+.page-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.page-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--bg-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  padding: 6px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+/* Square icon-only button (contains a single Lucide icon). */
+.btn-icon {
+  padding: 6px 8px;
+}
+
+/* Any button whose content is just an icon: center it, inherit color. */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lucide icons inherit text color and never shrink in flex rows. */
+.btn svg,
+.icon-btn svg {
+  flex: none;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  /* The ink for an accent fill is a token, not a literal. It was #1a1204 — a
+     near-black chosen for the amber accent — which is correct for a dark skin
+     and unreadable on a light one, where the accent itself is dark. A literal
+     `color:` is also invisible to the contrast guard, which measures only
+     token-valued declarations, so this pairing was unmeasured as well as
+     wrong. */
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.btn-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.input,
+.select {
+  background: var(--bg-0);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  padding: 6px 10px;
+  font-size: 12.5px;
+}
+
+/* ---- Data tables ---- */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: var(--text-2);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-1);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border-0);
+  vertical-align: top;
+}
+
+.data-table tbody tr:hover {
+  background: var(--bg-2);
+}
+
+/* Numeric columns: sizes, counts, scores, offsets.
+ *
+ * Right alignment lines the magnitudes up on their last digit, so the one
+ * multi-gigabyte file in a directory of hundreds is visible at the edge of the
+ * column rather than something every row has to be read for; `tabular-nums`
+ * stops proportional digits making "9.8 MiB" look wider than "1.2 GiB". A
+ * misread magnitude is also the kind of thing that ends up quoted in a
+ * statement, so this is more than a fatigue fix. Several pages had already
+ * reached for `tabular-nums` locally, which is the drift this rule absorbs. */
+.data-table td.num,
+.data-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  /* A magnitude broken over two lines ("250.1" above "KiB") defeats the edge
+     alignment it is here for, so a narrow column widens rather than wraps. */
+  white-space: nowrap;
+}
+
+.data-table tbody tr.selected {
+  background: var(--accent-bg);
+}
+
+/* ---- Badges ---- */
+
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: var(--bg-3);
+  color: var(--text-1);
+  border: 1px solid var(--border-1);
+  white-space: nowrap;
+}
+
+.badge-accent {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+.badge-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.badge-ok {
+  /* A token, not a frozen copy of the default palette's --ok. This was
+     rgba(85, 179, 116, 0.12) — the 2026 dark theme's green, at 12% — so under
+     any other skin the badge drew that skin's --ok over the default skin's
+     tint. */
+  background: var(--ok-bg);
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+/* "We could not determine this" — must not read as either a pass or a failure. */
+.badge-warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+/* ---- States ---- */
+
+.empty-state {
+  text-align: center;
+  color: var(--text-2);
+  padding: 40px 20px;
+}
+
+.empty-state h3 {
+  color: var(--text-1);
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.loading {
+  color: var(--text-2);
+  padding: 20px;
+  font-size: 12.5px;
+}
+
+.error-note {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+.warn-note {
+  color: var(--warn);
+  /* As above: was rgba(217, 161, 59, 0.12), the default palette's amber. */
+  background: var(--warn-bg);
+  border: 1px solid var(--warn);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+/* ---- Incompleteness (content_incomplete / inventory_incomplete /
+       directory_parse_incomplete) ---- */
+
+.incomplete-note {
+  margin: 0 0 8px;
+}
+
+/* A record whose shortfall a later run answered. Neutral by design: it is not a
+   warning any more, and it is not a pass either — it is history the case keeps
+   (HUNT-090). */
+.superseded-note {
+  color: var(--text-1);
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  margin: 0 0 8px;
+}
+.superseded-line {
+  color: var(--text-1);
+  margin-top: 6px;
+}
+.incomplete-lede {
+  margin: 0;
+}
+.incomplete-reasons {
+  margin: 6px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.incomplete-reasons li {
+  color: var(--text-1);
+}
+.incomplete-count {
+  color: var(--text-2);
+}
+.incomplete-badge {
+  cursor: help;
+}
+
+/* Measured scope: how much of a thing the figure beside it covers, printed
+   under that figure so a screenshot or a printout carries it too. */
+.scope-note {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-2);
+  margin-top: 3px;
+}
+
+/* ---- Modal ---- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+
+.modal {
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  min-width: 420px;
+  max-width: 680px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.modal-head h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.modal-body {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.modal-foot {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-0);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ---- Pagination ---- */
+
+.pager {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* Dead-end shown when a case fails to load (deleted / workspace reset). */
+.case-missing {
+  max-width: 460px;
+  margin: 12vh auto 0;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.case-missing h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.case-missing p {
+  color: var(--text-2);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.case-missing-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,13 @@
+[package]
+name = "seance_plugin_media"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+chrono = "0.4"
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }

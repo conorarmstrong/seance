@@ -1,0 +1,364 @@
+/* Capture and review marks. Both controls live inside table cells, so the
+   wrapper is inline and establishes the positioning context the popover is
+   anchored to. */
+
+.bmk {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bmk-star {
+  background: none;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.bmk-star:hover:not(:disabled) {
+  color: var(--text-0);
+  background: var(--bg-2);
+}
+
+.bmk-star.marked {
+  color: var(--accent);
+}
+
+.bmk-star:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.bmk-pop {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 280px;
+  padding: 10px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 35%);
+  text-align: left;
+}
+
+.bmk-pop-subject {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.bmk-pop-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.bmk-pop-row label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+.bmk-pop-note {
+  resize: vertical;
+  font: inherit;
+}
+
+.bmk-pop-hint {
+  font-size: 11px;
+  color: var(--text-2);
+  margin: 0 0 8px;
+}
+
+.bmk-pop-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* ---- Review marks ---------------------------------------------------- */
+
+.rvw {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.rvw-toggle {
+  background: none;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+}
+
+.rvw-toggle:hover:not(:disabled) {
+  color: var(--text-0);
+  background: var(--bg-2);
+}
+
+.rvw-toggle.reviewed {
+  color: var(--ok, var(--accent));
+  border-color: currentcolor;
+}
+
+.rvw-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rvw-opened {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.rvw-panel {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.rvw-panel h2 {
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.rvw-figures {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.rvw-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rvw-figure-value {
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-0);
+}
+
+.rvw-figure-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+.rvw-note {
+  font-size: 12px;
+  color: var(--text-2);
+  margin: 0 0 6px;
+  max-width: 78ch;
+}
+
+/* The compact line, for screens where the ledger is secondary to the evidence
+   on them. The qualifications are one disclosure away rather than five
+   paragraphs above the page title. */
+
+.rvw-compact {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.rvw-line strong {
+  color: var(--text-0);
+}
+
+.rvw-details {
+  display: inline;
+}
+
+.rvw-details > summary {
+  display: inline;
+  cursor: pointer;
+  color: var(--text-2);
+  text-decoration: underline dotted;
+}
+
+.rvw-details[open] > summary {
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* A refusal that belongs to one row rather than to the screen.
+
+   The ledger is shared now, so a mark can fail for reasons that are about this
+   row and nobody else's — an artifact the case does not hold, or a review that
+   turned out to be a colleague's and could not be withdrawn. Those sentences
+   have to be readable beside the control that produced them, not summarised in
+   a panel three hundred rows away. */
+
+.rvw-row-error {
+  display: block;
+  font-size: 11px;
+  color: var(--danger, #d05656);
+  max-width: 44ch;
+  margin-top: 2px;
+}
+
+/* Who did what. The handover table: one row per examiner, never summed into
+   the case figures above it. */
+
+.rvw-examiners {
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+
+.rvw-examiners caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--text-2);
+  font-size: 11px;
+  margin-bottom: 4px;
+  max-width: 78ch;
+}
+
+.rvw-examiners th,
+.rvw-examiners td {
+  text-align: left;
+  padding: 2px 12px 2px 0;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.rvw-examiners thead th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+/* Who reviewed THIS row, and the re-read of a ledger that could not be read.
+
+   Both are affordances that spend a request, so both look like something an
+   examiner presses rather than something the screen is already telling them.
+   The row's is deliberately quiet — it sits in a table cell beside the mark and
+   must not compete with the control that records a review. */
+
+.rvw-who {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  color: var(--text-2);
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+}
+
+.rvw-who:hover,
+.rvw-who:focus-visible {
+  color: var(--text-0);
+}
+
+.rvw-who[aria-busy='true'] {
+  cursor: progress;
+  text-decoration: none;
+}
+
+.rvw-retry {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+
+.rvw-retry-button {
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 5px 8px;
+}
+
+.rvw-retry-button:hover {
+  border-color: var(--accent);
+}
+
+.rvw-retry-button[aria-busy='true'] {
+  cursor: progress;
+  color: var(--text-2);
+}
+
+.rvw-retry .rvw-note {
+  margin: 0;
+  flex: 1 1 32ch;
+}
+
+/* The date on a name.
+
+   The row's attribution is a reading taken at a moment, not a live fact, so the
+   moment is on the row beside the name — visible text rather than a tooltip,
+   because a tooltip cannot be quoted in a report or read aloud in a witness
+   box. It is also the control that takes another reading, which is the only
+   thing that ever replaces one. Quieter than the name it qualifies: it must be
+   there to be read, not there to be noticed. */
+
+.rvw-who-again {
+  font-size: 10px;
+  white-space: normal;
+  text-align: left;
+}
+
+/* What was read, and when.
+
+   Shown only where its absence could mislead — a part of the ledger unread, or
+   a re-read that covered part of it — so it is allowed to be wordy. It sits in
+   the always-visible region even on the compact panel, because a mixture of
+   fresh and older figures presented as one reading is exactly what a reader
+   cannot recover from on their own. */
+
+.rvw-readings {
+  border-left: 2px solid var(--border-0);
+  padding-left: 10px;
+  margin: 0 0 8px;
+}
+
+.rvw-readings .rvw-note {
+  margin-bottom: 4px;
+}
+
+.rvw-readings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text-2);
+  max-width: 78ch;
+}
+
+.rvw-readings-list > li {
+  margin: 0 0 3px;
+}
+
+.rvw-readings-part {
+  color: var(--text-1);
+}

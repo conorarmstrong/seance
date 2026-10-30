@@ -1,0 +1,17 @@
+[package]
+name = "seance_plugin_recyclebin"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+byteorder = "1.5"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }

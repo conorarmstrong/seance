@@ -1,0 +1,19 @@
+[package]
+name = "seance_plugin_fsevents"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# macOS FSEvents (/.fseventsd/ DLS log) parser: gunzips the log and decodes the
+# per-page DLS1/DLS2 records (full path + event id + flags [+ node id]).
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+flate2 = "1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

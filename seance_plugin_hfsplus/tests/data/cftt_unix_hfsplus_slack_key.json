@@ -1,0 +1,1324 @@
+{
+ "block_size": 4096,
+ "files": {},
+ "image_basename": "ss-unix-07-25-18.dd",
+ "no_tail": 29,
+ "sector_offset": 2048,
+ "zero_files": {
+  "/.DS_Store": {
+   "cnid": 187,
+   "length": 4092,
+   "offset": 98914308,
+   "size": 8196
+  },
+  "/.Spotlight-V100/Store-V1/VolumeConfig.plist": {
+   "cnid": 23,
+   "length": 3748,
+   "offset": 98148700,
+   "size": 348
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.directoryStoreFile.shadow": {
+   "cnid": 179,
+   "length": 3008,
+   "offset": 16241728,
+   "size": 1088
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexArrays": {
+   "cnid": 174,
+   "length": 3456,
+   "offset": 402690688,
+   "size": 66176
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexBigDates": {
+   "cnid": 166,
+   "length": 4088,
+   "offset": 268693512,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexCompactDirectory": {
+   "cnid": 173,
+   "length": 4088,
+   "offset": 268750856,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexDirectory": {
+   "cnid": 172,
+   "length": 2040,
+   "offset": 268740616,
+   "size": 2056
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexGroups": {
+   "cnid": 167,
+   "length": 4094,
+   "offset": 268709890,
+   "size": 2
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexIds": {
+   "cnid": 165,
+   "length": 4080,
+   "offset": 268660752,
+   "size": 16
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexPositions": {
+   "cnid": 170,
+   "length": 4088,
+   "offset": 268726280,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexPostings": {
+   "cnid": 168,
+   "length": 4006,
+   "offset": 268714074,
+   "size": 90
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.indexUpdates": {
+   "cnid": 177,
+   "length": 4084,
+   "offset": 16232460,
+   "size": 12
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/0.shadowIndexGroups": {
+   "cnid": 180,
+   "length": 4094,
+   "offset": 16244738,
+   "size": 2
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/indexState": {
+   "cnid": 34,
+   "length": 4068,
+   "offset": 98164764,
+   "size": 28
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.directoryStoreFile.shadow": {
+   "cnid": 147,
+   "length": 2880,
+   "offset": 134227136,
+   "size": 1216
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.indexCompactDirectory": {
+   "cnid": 136,
+   "length": 3072,
+   "offset": 98313216,
+   "size": 1024
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.indexDirectory": {
+   "cnid": 135,
+   "length": 4064,
+   "offset": 98308128,
+   "size": 8224
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.indexGroups": {
+   "cnid": 130,
+   "length": 819,
+   "offset": 98274509,
+   "size": 3277
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.indexUpdates": {
+   "cnid": 567,
+   "length": 4066,
+   "offset": 101273630,
+   "size": 30
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.shadowIndexCompactDirectory": {
+   "cnid": 145,
+   "length": 4088,
+   "offset": 101240840,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.shadowIndexDirectory": {
+   "cnid": 146,
+   "length": 2040,
+   "offset": 101246984,
+   "size": 2056
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.shadowIndexGroups": {
+   "cnid": 148,
+   "length": 3800,
+   "offset": 134234408,
+   "size": 296
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.shadowIndexPositionTable": {
+   "cnid": 143,
+   "length": 344,
+   "offset": 101240488,
+   "size": 32424
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/live.0.shadowIndexTermIds": {
+   "cnid": 142,
+   "length": 344,
+   "offset": 101207720,
+   "size": 32424
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/permStore": {
+   "cnid": 558,
+   "length": 3535,
+   "offset": 101360177,
+   "size": 66097
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/reverseDirectoryStore.shadow": {
+   "cnid": 82,
+   "length": 896,
+   "offset": 98962560,
+   "size": 3200
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/reverseStore.updates": {
+   "cnid": 100,
+   "length": 4094,
+   "offset": 101285890,
+   "size": 2
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/shutdown_time": {
+   "cnid": 81,
+   "length": 4092,
+   "offset": 101376004,
+   "size": 4
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/store.updates": {
+   "cnid": 568,
+   "length": 4088,
+   "offset": 101281800,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/store_generation": {
+   "cnid": 65,
+   "length": 4092,
+   "offset": 98893828,
+   "size": 4
+  },
+  "/.Spotlight-V100/Store-V2/D1A5F961-E234-4E49-9A5E-6F51393FA4FE/tmp.spotlight.loc": {
+   "cnid": 107,
+   "length": 2383,
+   "offset": 100927153,
+   "size": 9905
+  },
+  "/.Spotlight-V100/VolumeConfiguration.plist": {
+   "cnid": 24,
+   "length": 4081,
+   "offset": 98902031,
+   "size": 4111
+  },
+  "/.fseventsd/fc00755ed2f55591": {
+   "cnid": 556,
+   "length": 825,
+   "offset": 100940999,
+   "size": 3271
+  },
+  "/.fseventsd/fc00755ed2f55592": {
+   "cnid": 557,
+   "length": 4020,
+   "offset": 100941900,
+   "size": 76
+  },
+  "/.fseventsd/fc00755ed2f56101": {
+   "cnid": 569,
+   "length": 2352,
+   "offset": 101365456,
+   "size": 1744
+  },
+  "/.fseventsd/fc00755ed2f56102": {
+   "cnid": 570,
+   "length": 4021,
+   "offset": 101371979,
+   "size": 75
+  },
+  "/.fseventsd/fseventsd-uuid": {
+   "cnid": 28,
+   "length": 4060,
+   "offset": 98160676,
+   "size": 36
+  },
+  "/osxj/LIVE-AllCap-Lupus-osxj-ascii.txt": {
+   "cnid": 372,
+   "length": 2876,
+   "offset": 99841220,
+   "size": 1220
+  },
+  "/osxj/LIVE-America-osxj-utf-16-be.txt": {
+   "cnid": 373,
+   "length": 1636,
+   "offset": 99846556,
+   "size": 2460
+  },
+  "/osxj/LIVE-America-osxj-utf-16-le.txt": {
+   "cnid": 374,
+   "length": 1722,
+   "offset": 99850566,
+   "size": 2374
+  },
+  "/osxj/LIVE-America-osxj-utf-8.txt": {
+   "cnid": 375,
+   "length": 2922,
+   "offset": 99853462,
+   "size": 1174
+  },
+  "/osxj/LIVE-AndBeyond-osxj-ascii.txt": {
+   "cnid": 376,
+   "length": 2913,
+   "offset": 99857567,
+   "size": 1183
+  },
+  "/osxj/LIVE-AndBeyond-osxj-utf-16-be.txt": {
+   "cnid": 377,
+   "length": 1644,
+   "offset": 99862932,
+   "size": 2452
+  },
+  "/osxj/LIVE-AndBeyond-osxj-utf-16-le.txt": {
+   "cnid": 378,
+   "length": 1646,
+   "offset": 99867026,
+   "size": 2450
+  },
+  "/osxj/LIVE-AndBeyond-osxj-utf-8.txt": {
+   "cnid": 379,
+   "length": 2852,
+   "offset": 99869916,
+   "size": 1244
+  },
+  "/osxj/LIVE-Baklava-osxj-utf-16-be.txt": {
+   "cnid": 380,
+   "length": 1692,
+   "offset": 99875172,
+   "size": 2404
+  },
+  "/osxj/LIVE-Baklava-osxj-utf-16-le.txt": {
+   "cnid": 381,
+   "length": 1738,
+   "offset": 99879222,
+   "size": 2358
+  },
+  "/osxj/LIVE-Baklava-osxj-utf-8.txt": {
+   "cnid": 382,
+   "length": 2875,
+   "offset": 99882181,
+   "size": 1221
+  },
+  "/osxj/LIVE-Bastila-osxj-utf-16-be.txt": {
+   "cnid": 383,
+   "length": 1708,
+   "offset": 99887444,
+   "size": 2388
+  },
+  "/osxj/LIVE-Bastila-osxj-utf-16-le.txt": {
+   "cnid": 384,
+   "length": 1644,
+   "offset": 99891604,
+   "size": 2452
+  },
+  "/osxj/LIVE-Bastila-osxj-utf-8.txt": {
+   "cnid": 385,
+   "length": 2877,
+   "offset": 99894467,
+   "size": 1219
+  },
+  "/osxj/LIVE-Beauty-osxj-utf-16-be.txt": {
+   "cnid": 386,
+   "length": 1690,
+   "offset": 99899750,
+   "size": 2406
+  },
+  "/osxj/LIVE-Beauty-osxj-utf-16-le.txt": {
+   "cnid": 387,
+   "length": 1538,
+   "offset": 99903998,
+   "size": 2558
+  },
+  "/osxj/LIVE-Beauty-osxj-utf-8.txt": {
+   "cnid": 388,
+   "length": 2894,
+   "offset": 99906738,
+   "size": 1202
+  },
+  "/osxj/LIVE-BeiJing-osxj-utf-16-be.txt": {
+   "cnid": 389,
+   "length": 1696,
+   "offset": 99912032,
+   "size": 2400
+  },
+  "/osxj/LIVE-BeiJing-osxj-utf-16-le.txt": {
+   "cnid": 390,
+   "length": 1662,
+   "offset": 99916162,
+   "size": 2434
+  },
+  "/osxj/LIVE-BeiJing-osxj-utf-8.txt": {
+   "cnid": 391,
+   "length": 2899,
+   "offset": 99919021,
+   "size": 1197
+  },
+  "/osxj/LIVE-Boy-osxj-utf-16-be.txt": {
+   "cnid": 394,
+   "length": 1720,
+   "offset": 99932488,
+   "size": 2376
+  },
+  "/osxj/LIVE-Boy-osxj-utf-16-le.txt": {
+   "cnid": 395,
+   "length": 1698,
+   "offset": 99936606,
+   "size": 2398
+  },
+  "/osxj/LIVE-Boy-osxj-utf-8.txt": {
+   "cnid": 396,
+   "length": 2866,
+   "offset": 99939534,
+   "size": 1230
+  },
+  "/osxj/LIVE-Cap-Lupus-osxj-ascii.txt": {
+   "cnid": 400,
+   "length": 2894,
+   "offset": 99955890,
+   "size": 1202
+  },
+  "/osxj/LIVE-China-osxj-utf-16-be.txt": {
+   "cnid": 401,
+   "length": 1652,
+   "offset": 99961228,
+   "size": 2444
+  },
+  "/osxj/LIVE-China-osxj-utf-16-le.txt": {
+   "cnid": 402,
+   "length": 1696,
+   "offset": 99965280,
+   "size": 2400
+  },
+  "/osxj/LIVE-China-osxj-utf-8.txt": {
+   "cnid": 403,
+   "length": 2894,
+   "offset": 99968178,
+   "size": 1202
+  },
+  "/osxj/LIVE-Coke-osxj-utf-16-be.txt": {
+   "cnid": 404,
+   "length": 1708,
+   "offset": 99973460,
+   "size": 2388
+  },
+  "/osxj/LIVE-Coke-osxj-utf-16-le.txt": {
+   "cnid": 405,
+   "length": 1690,
+   "offset": 99977574,
+   "size": 2406
+  },
+  "/osxj/LIVE-Coke-osxj-utf-8.txt": {
+   "cnid": 406,
+   "length": 2865,
+   "offset": 99980495,
+   "size": 1231
+  },
+  "/osxj/LIVE-Couscous-osxj-utf-16-be.txt": {
+   "cnid": 407,
+   "length": 1630,
+   "offset": 99985826,
+   "size": 2466
+  },
+  "/osxj/LIVE-Couscous-osxj-utf-16-le.txt": {
+   "cnid": 408,
+   "length": 1654,
+   "offset": 99989898,
+   "size": 2442
+  },
+  "/osxj/LIVE-Couscous-osxj-utf-8.txt": {
+   "cnid": 409,
+   "length": 2910,
+   "offset": 99992738,
+   "size": 1186
+  },
+  "/osxj/LIVE-Equine-osxj-ascii.txt": {
+   "cnid": 417,
+   "length": 2908,
+   "offset": 100025508,
+   "size": 1188
+  },
+  "/osxj/LIVE-Equine-osxj-utf-16-be.txt": {
+   "cnid": 418,
+   "length": 1654,
+   "offset": 100030858,
+   "size": 2442
+  },
+  "/osxj/LIVE-Equine-osxj-utf-16-le.txt": {
+   "cnid": 419,
+   "length": 1514,
+   "offset": 100035094,
+   "size": 2582
+  },
+  "/osxj/LIVE-Equine-osxj-utf-8.txt": {
+   "cnid": 420,
+   "length": 2895,
+   "offset": 100037809,
+   "size": 1201
+  },
+  "/osxj/LIVE-Extinct-Lupus-osxj-ascii.txt": {
+   "cnid": 421,
+   "length": 2852,
+   "offset": 100041948,
+   "size": 1244
+  },
+  "/osxj/LIVE-Falafel-osxj-utf-16-be.txt": {
+   "cnid": 422,
+   "length": 1666,
+   "offset": 100047230,
+   "size": 2430
+  },
+  "/osxj/LIVE-Falafel-osxj-utf-16-le.txt": {
+   "cnid": 423,
+   "length": 1696,
+   "offset": 100051296,
+   "size": 2400
+  },
+  "/osxj/LIVE-Falafel-osxj-utf-8.txt": {
+   "cnid": 424,
+   "length": 2870,
+   "offset": 100054218,
+   "size": 1226
+  },
+  "/osxj/LIVE-Japan-osxj-utf-16-be.txt": {
+   "cnid": 432,
+   "length": 1712,
+   "offset": 100088144,
+   "size": 2384
+  },
+  "/osxj/LIVE-Japan-osxj-utf-16-le.txt": {
+   "cnid": 433,
+   "length": 1748,
+   "offset": 100092204,
+   "size": 2348
+  },
+  "/osxj/LIVE-Japan-osxj-utf-8.txt": {
+   "cnid": 434,
+   "length": 2896,
+   "offset": 100095152,
+   "size": 1200
+  },
+  "/osxj/LIVE-Kebab-osxj-utf-16-be.txt": {
+   "cnid": 435,
+   "length": 1712,
+   "offset": 100100432,
+   "size": 2384
+  },
+  "/osxj/LIVE-Kebab-osxj-utf-16-le.txt": {
+   "cnid": 436,
+   "length": 1614,
+   "offset": 100104626,
+   "size": 2482
+  },
+  "/osxj/LIVE-Kebab-osxj-utf-8.txt": {
+   "cnid": 437,
+   "length": 2909,
+   "offset": 100107427,
+   "size": 1187
+  },
+  "/osxj/LIVE-Korea-osxj-utf-16-be.txt": {
+   "cnid": 438,
+   "length": 1696,
+   "offset": 100112736,
+   "size": 2400
+  },
+  "/osxj/LIVE-Korea-osxj-utf-16-le.txt": {
+   "cnid": 439,
+   "length": 1664,
+   "offset": 100116864,
+   "size": 2432
+  },
+  "/osxj/LIVE-Korea-osxj-utf-8.txt": {
+   "cnid": 440,
+   "length": 2892,
+   "offset": 100119732,
+   "size": 1204
+  },
+  "/osxj/LIVE-LigatureAndBeyond-osxj-utf-16-be.txt": {
+   "cnid": 441,
+   "length": 1570,
+   "offset": 100125150,
+   "size": 2526
+  },
+  "/osxj/LIVE-LigatureAndBeyond-osxj-utf-16-le.txt": {
+   "cnid": 442,
+   "length": 1638,
+   "offset": 100129178,
+   "size": 2458
+  },
+  "/osxj/LIVE-LigatureAndBeyond-osxj-utf-8.txt": {
+   "cnid": 443,
+   "length": 2874,
+   "offset": 100132038,
+   "size": 1222
+  },
+  "/osxj/LIVE-Lupus-osxj-ascii.txt": {
+   "cnid": 444,
+   "length": 2901,
+   "offset": 100136107,
+   "size": 1195
+  },
+  "/osxj/LIVE-Lycan-osxj-ascii.txt": {
+   "cnid": 445,
+   "length": 2899,
+   "offset": 100140205,
+   "size": 1197
+  },
+  "/osxj/LIVE-MitsubishiH-osxj-utf-16-be.txt": {
+   "cnid": 446,
+   "length": 1632,
+   "offset": 100145568,
+   "size": 2464
+  },
+  "/osxj/LIVE-MitsubishiH-osxj-utf-16-le.txt": {
+   "cnid": 447,
+   "length": 1674,
+   "offset": 100149622,
+   "size": 2422
+  },
+  "/osxj/LIVE-MitsubishiH-osxj-utf-8.txt": {
+   "cnid": 448,
+   "length": 2869,
+   "offset": 100152523,
+   "size": 1227
+  },
+  "/osxj/LIVE-MitsubishiK-osxj-utf-16-be.txt": {
+   "cnid": 449,
+   "length": 1620,
+   "offset": 100157868,
+   "size": 2476
+  },
+  "/osxj/LIVE-MitsubishiK-osxj-utf-16-le.txt": {
+   "cnid": 450,
+   "length": 1650,
+   "offset": 100161934,
+   "size": 2446
+  },
+  "/osxj/LIVE-MitsubishiK-osxj-utf-8.txt": {
+   "cnid": 451,
+   "length": 2882,
+   "offset": 100164798,
+   "size": 1214
+  },
+  "/osxj/LIVE-Moscow-osxj-utf-16-be.txt": {
+   "cnid": 453,
+   "length": 1660,
+   "offset": 100174212,
+   "size": 2436
+  },
+  "/osxj/LIVE-Moscow-osxj-utf-16-le.txt": {
+   "cnid": 454,
+   "length": 1618,
+   "offset": 100178350,
+   "size": 2478
+  },
+  "/osxj/LIVE-Moscow-osxj-utf-8.txt": {
+   "cnid": 455,
+   "length": 2869,
+   "offset": 100181195,
+   "size": 1227
+  },
+  "/osxj/LIVE-NFC-freedom-osxj-utf-16-be.txt": {
+   "cnid": 459,
+   "length": 1678,
+   "offset": 100198770,
+   "size": 2418
+  },
+  "/osxj/LIVE-NFC-freedom-osxj-utf-16-le.txt": {
+   "cnid": 460,
+   "length": 1700,
+   "offset": 100202844,
+   "size": 2396
+  },
+  "/osxj/LIVE-NFC-freedom-osxj-utf-8.txt": {
+   "cnid": 461,
+   "length": 2904,
+   "offset": 100205736,
+   "size": 1192
+  },
+  "/osxj/LIVE-NFC-mice-osxj-utf-16-be.txt": {
+   "cnid": 462,
+   "length": 1694,
+   "offset": 100211042,
+   "size": 2402
+  },
+  "/osxj/LIVE-NFC-mice-osxj-utf-16-le.txt": {
+   "cnid": 463,
+   "length": 1760,
+   "offset": 100215072,
+   "size": 2336
+  },
+  "/osxj/LIVE-NFC-mice-osxj-utf-8.txt": {
+   "cnid": 464,
+   "length": 2880,
+   "offset": 100218048,
+   "size": 1216
+  },
+  "/osxj/LIVE-NFC-tomorrow-osxj-utf-16-be.txt": {
+   "cnid": 465,
+   "length": 1634,
+   "offset": 100223390,
+   "size": 2462
+  },
+  "/osxj/LIVE-NFC-tomorrow-osxj-utf-16-le.txt": {
+   "cnid": 466,
+   "length": 1698,
+   "offset": 100227422,
+   "size": 2398
+  },
+  "/osxj/LIVE-NFC-tomorrow-osxj-utf-8.txt": {
+   "cnid": 467,
+   "length": 2902,
+   "offset": 100230314,
+   "size": 1194
+  },
+  "/osxj/LIVE-NFD-freedom-osxj-utf-16-be.txt": {
+   "cnid": 468,
+   "length": 1598,
+   "offset": 100235714,
+   "size": 2498
+  },
+  "/osxj/LIVE-NFD-freedom-osxj-utf-16-le.txt": {
+   "cnid": 469,
+   "length": 1628,
+   "offset": 100239780,
+   "size": 2468
+  },
+  "/osxj/LIVE-NFD-freedom-osxj-utf-8.txt": {
+   "cnid": 470,
+   "length": 2876,
+   "offset": 100242628,
+   "size": 1220
+  },
+  "/osxj/LIVE-NFD-mice-osxj-utf-16-be.txt": {
+   "cnid": 471,
+   "length": 1546,
+   "offset": 100248054,
+   "size": 2550
+  },
+  "/osxj/LIVE-NFD-mice-osxj-utf-16-le.txt": {
+   "cnid": 472,
+   "length": 1608,
+   "offset": 100252088,
+   "size": 2488
+  },
+  "/osxj/LIVE-NFD-mice-osxj-utf-8.txt": {
+   "cnid": 473,
+   "length": 2886,
+   "offset": 100254906,
+   "size": 1210
+  },
+  "/osxj/LIVE-NFD-tomorrow-osxj-utf-16-be.txt": {
+   "cnid": 474,
+   "length": 1584,
+   "offset": 100260304,
+   "size": 2512
+  },
+  "/osxj/LIVE-NFD-tomorrow-osxj-utf-16-le.txt": {
+   "cnid": 475,
+   "length": 1676,
+   "offset": 100264308,
+   "size": 2420
+  },
+  "/osxj/LIVE-NFD-tomorrow-osxj-utf-8.txt": {
+   "cnid": 476,
+   "length": 2883,
+   "offset": 100267197,
+   "size": 1213
+  },
+  "/osxj/LIVE-NewChina-osxj-utf-16-be.txt": {
+   "cnid": 456,
+   "length": 1656,
+   "offset": 100186504,
+   "size": 2440
+  },
+  "/osxj/LIVE-NewChina-osxj-utf-16-le.txt": {
+   "cnid": 457,
+   "length": 1628,
+   "offset": 100190628,
+   "size": 2468
+  },
+  "/osxj/LIVE-NewChina-osxj-utf-8.txt": {
+   "cnid": 458,
+   "length": 2880,
+   "offset": 100193472,
+   "size": 1216
+  },
+  "/osxj/LIVE-Russia-osxj-utf-16-be.txt": {
+   "cnid": 491,
+   "length": 1644,
+   "offset": 100329876,
+   "size": 2452
+  },
+  "/osxj/LIVE-Russia-osxj-utf-16-le.txt": {
+   "cnid": 492,
+   "length": 1602,
+   "offset": 100334014,
+   "size": 2494
+  },
+  "/osxj/LIVE-Russia-osxj-utf-8.txt": {
+   "cnid": 493,
+   "length": 2864,
+   "offset": 100336848,
+   "size": 1232
+  },
+  "/osxj/LIVE-SaberTooth-osxj-ascii.txt": {
+   "cnid": 494,
+   "length": 2878,
+   "offset": 100340930,
+   "size": 1218
+  },
+  "/osxj/LIVE-SaberTooth-osxj-utf-16-be.txt": {
+   "cnid": 495,
+   "length": 1672,
+   "offset": 100346232,
+   "size": 2424
+  },
+  "/osxj/LIVE-SaberTooth-osxj-utf-16-le.txt": {
+   "cnid": 496,
+   "length": 1610,
+   "offset": 100350390,
+   "size": 2486
+  },
+  "/osxj/LIVE-SaberTooth-osxj-utf-8.txt": {
+   "cnid": 497,
+   "length": 2866,
+   "offset": 100353230,
+   "size": 1230
+  },
+  "/osxj/LIVE-Seoul-osxj-utf-16-be.txt": {
+   "cnid": 498,
+   "length": 1644,
+   "offset": 100358548,
+   "size": 2452
+  },
+  "/osxj/LIVE-Seoul-osxj-utf-16-le.txt": {
+   "cnid": 499,
+   "length": 1732,
+   "offset": 100362556,
+   "size": 2364
+  },
+  "/osxj/LIVE-Seoul-osxj-utf-8.txt": {
+   "cnid": 500,
+   "length": 2885,
+   "offset": 100365499,
+   "size": 1211
+  },
+  "/osxj/LIVE-Siberia-osxj-utf-16-be.txt": {
+   "cnid": 501,
+   "length": 1666,
+   "offset": 100370814,
+   "size": 2430
+  },
+  "/osxj/LIVE-Siberia-osxj-utf-16-le.txt": {
+   "cnid": 502,
+   "length": 1642,
+   "offset": 100374934,
+   "size": 2454
+  },
+  "/osxj/LIVE-Siberia-osxj-utf-8.txt": {
+   "cnid": 503,
+   "length": 2858,
+   "offset": 100377814,
+   "size": 1238
+  },
+  "/osxj/LIVE-Snow-osxj-utf-16-be.txt": {
+   "cnid": 504,
+   "length": 1672,
+   "offset": 100383096,
+   "size": 2424
+  },
+  "/osxj/LIVE-Snow-osxj-utf-16-le.txt": {
+   "cnid": 505,
+   "length": 1686,
+   "offset": 100387178,
+   "size": 2410
+  },
+  "/osxj/LIVE-Snow-osxj-utf-8.txt": {
+   "cnid": 506,
+   "length": 2875,
+   "offset": 100390085,
+   "size": 1221
+  },
+  "/osxj/LIVE-SubaruH-osxj-utf-16-be.txt": {
+   "cnid": 518,
+   "length": 1678,
+   "offset": 100440434,
+   "size": 2418
+  },
+  "/osxj/LIVE-SubaruH-osxj-utf-16-le.txt": {
+   "cnid": 519,
+   "length": 1684,
+   "offset": 100444524,
+   "size": 2412
+  },
+  "/osxj/LIVE-SubaruH-osxj-utf-8.txt": {
+   "cnid": 520,
+   "length": 2909,
+   "offset": 100447395,
+   "size": 1187
+  },
+  "/osxj/LIVE-SubaruK-osxj-utf-16-be.txt": {
+   "cnid": 521,
+   "length": 1748,
+   "offset": 100452652,
+   "size": 2348
+  },
+  "/osxj/LIVE-SubaruK-osxj-utf-16-le.txt": {
+   "cnid": 522,
+   "length": 1736,
+   "offset": 100456760,
+   "size": 2360
+  },
+  "/osxj/LIVE-SubaruK-osxj-utf-8.txt": {
+   "cnid": 523,
+   "length": 2911,
+   "offset": 100459681,
+   "size": 1185
+  },
+  "/osxj/LIVE-Tagine-osxj-utf-16-be.txt": {
+   "cnid": 524,
+   "length": 1728,
+   "offset": 100464960,
+   "size": 2368
+  },
+  "/osxj/LIVE-Tagine-osxj-utf-16-le.txt": {
+   "cnid": 525,
+   "length": 1704,
+   "offset": 100469080,
+   "size": 2392
+  },
+  "/osxj/LIVE-Tagine-osxj-utf-8.txt": {
+   "cnid": 526,
+   "length": 2926,
+   "offset": 100471954,
+   "size": 1170
+  },
+  "/osxj/LIVE-Tokyo-osxj-utf-16-be.txt": {
+   "cnid": 535,
+   "length": 1720,
+   "offset": 100510024,
+   "size": 2376
+  },
+  "/osxj/LIVE-Tokyo-osxj-utf-16-le.txt": {
+   "cnid": 536,
+   "length": 1672,
+   "offset": 100514168,
+   "size": 2424
+  },
+  "/osxj/LIVE-Tokyo-osxj-utf-8.txt": {
+   "cnid": 537,
+   "length": 2910,
+   "offset": 100517026,
+   "size": 1186
+  },
+  "/osxj/LIVE-Vulpus-osxj-ascii.txt": {
+   "cnid": 545,
+   "length": 2935,
+   "offset": 100549769,
+   "size": 1161
+  },
+  "/osxj/LIVE-Vulpus-osxj-utf-16-be.txt": {
+   "cnid": 546,
+   "length": 1716,
+   "offset": 100555084,
+   "size": 2380
+  },
+  "/osxj/LIVE-Vulpus-osxj-utf-16-le.txt": {
+   "cnid": 547,
+   "length": 1664,
+   "offset": 100559232,
+   "size": 2432
+  },
+  "/osxj/LIVE-Vulpus-osxj-utf-8.txt": {
+   "cnid": 548,
+   "length": 2897,
+   "offset": 100562095,
+   "size": 1199
+  },
+  "/osxj/LIVE-blade-osxj-ascii.txt": {
+   "cnid": 392,
+   "length": 2884,
+   "offset": 99923132,
+   "size": 1212
+  },
+  "/osxj/LIVE-blades-osxj-ascii.txt": {
+   "cnid": 393,
+   "length": 2868,
+   "offset": 99927244,
+   "size": 1228
+  },
+  "/osxj/LIVE-burglar-osxj-ascii.txt": {
+   "cnid": 397,
+   "length": 2892,
+   "offset": 99943604,
+   "size": 1204
+  },
+  "/osxj/LIVE-burglars-osxj-ascii.txt": {
+   "cnid": 398,
+   "length": 2885,
+   "offset": 99947707,
+   "size": 1211
+  },
+  "/osxj/LIVE-can\u0303o\u0301n-osxj-utf-8.txt": {
+   "cnid": 399,
+   "length": 2918,
+   "offset": 99951770,
+   "size": 1178
+  },
+  "/osxj/LIVE-email-berlin-osxj-ascii.txt": {
+   "cnid": 410,
+   "length": 2887,
+   "offset": 99996857,
+   "size": 1209
+  },
+  "/osxj/LIVE-email-capitol-osxj-ascii.txt": {
+   "cnid": 411,
+   "length": 2875,
+   "offset": 100000965,
+   "size": 1221
+  },
+  "/osxj/LIVE-email-iron-osxj-ascii.txt": {
+   "cnid": 412,
+   "length": 2863,
+   "offset": 100005073,
+   "size": 1233
+  },
+  "/osxj/LIVE-email-iron-osxj-utf-16-be.txt": {
+   "cnid": 413,
+   "length": 1664,
+   "offset": 100010368,
+   "size": 2432
+  },
+  "/osxj/LIVE-email-iron-osxj-utf-16-le.txt": {
+   "cnid": 414,
+   "length": 1612,
+   "offset": 100014516,
+   "size": 2484
+  },
+  "/osxj/LIVE-email-iron-osxj-utf-8.txt": {
+   "cnid": 415,
+   "length": 2898,
+   "offset": 100017326,
+   "size": 1198
+  },
+  "/osxj/LIVE-email-kgb-osxj-ascii.txt": {
+   "cnid": 416,
+   "length": 2836,
+   "offset": 100021484,
+   "size": 1260
+  },
+  "/osxj/LIVE-go-osxj-ascii.txt": {
+   "cnid": 425,
+   "length": 2910,
+   "offset": 100058274,
+   "size": 1186
+  },
+  "/osxj/LIVE-goer-osxj-ascii.txt": {
+   "cnid": 426,
+   "length": 2919,
+   "offset": 100062361,
+   "size": 1177
+  },
+  "/osxj/LIVE-goes-osxj-ascii.txt": {
+   "cnid": 427,
+   "length": 2896,
+   "offset": 100066480,
+   "size": 1200
+  },
+  "/osxj/LIVE-going-osxj-ascii.txt": {
+   "cnid": 428,
+   "length": 2900,
+   "offset": 100070572,
+   "size": 1196
+  },
+  "/osxj/LIVE-hadsoaked-osxj-ascii.txt": {
+   "cnid": 429,
+   "length": 2888,
+   "offset": 100074680,
+   "size": 1208
+  },
+  "/osxj/LIVE-hat-osxj-ascii.txt": {
+   "cnid": 430,
+   "length": 2927,
+   "offset": 100078737,
+   "size": 1169
+  },
+  "/osxj/LIVE-hats-osxj-ascii.txt": {
+   "cnid": 431,
+   "length": 2905,
+   "offset": 100082855,
+   "size": 1191
+  },
+  "/osxj/LIVE-morethorns-osxj-ascii.txt": {
+   "cnid": 452,
+   "length": 2895,
+   "offset": 100168881,
+   "size": 1201
+  },
+  "/osxj/LIVE-phone-1111-osxj-ascii.txt": {
+   "cnid": 477,
+   "length": 2861,
+   "offset": 100271315,
+   "size": 1235
+  },
+  "/osxj/LIVE-phone-1122-osxj-ascii.txt": {
+   "cnid": 478,
+   "length": 2882,
+   "offset": 100275390,
+   "size": 1214
+  },
+  "/osxj/LIVE-phone-3270-osxj-ascii.txt": {
+   "cnid": 479,
+   "length": 2868,
+   "offset": 100279500,
+   "size": 1228
+  },
+  "/osxj/LIVE-phone-9009-osxj-ascii.txt": {
+   "cnid": 480,
+   "length": 2889,
+   "offset": 100283575,
+   "size": 1207
+  },
+  "/osxj/LIVE-phone-9009-osxj-utf-16-be.txt": {
+   "cnid": 481,
+   "length": 1672,
+   "offset": 100288888,
+   "size": 2424
+  },
+  "/osxj/LIVE-phone-9009-osxj-utf-16-le.txt": {
+   "cnid": 482,
+   "length": 1662,
+   "offset": 100292994,
+   "size": 2434
+  },
+  "/osxj/LIVE-phone-9009-osxj-utf-8.txt": {
+   "cnid": 483,
+   "length": 2888,
+   "offset": 100295864,
+   "size": 1208
+  },
+  "/osxj/LIVE-plot-osxj-ascii.txt": {
+   "cnid": 484,
+   "length": 2886,
+   "offset": 100299962,
+   "size": 1210
+  },
+  "/osxj/LIVE-plots-osxj-ascii.txt": {
+   "cnid": 485,
+   "length": 2889,
+   "offset": 100304055,
+   "size": 1207
+  },
+  "/osxj/LIVE-plotted-osxj-ascii.txt": {
+   "cnid": 486,
+   "length": 2932,
+   "offset": 100308108,
+   "size": 1164
+  },
+  "/osxj/LIVE-plotter-osxj-ascii.txt": {
+   "cnid": 487,
+   "length": 2919,
+   "offset": 100312217,
+   "size": 1177
+  },
+  "/osxj/LIVE-plotting-osxj-ascii.txt": {
+   "cnid": 488,
+   "length": 2905,
+   "offset": 100316327,
+   "size": 1191
+  },
+  "/osxj/LIVE-pomodori-osxj-ascii.txt": {
+   "cnid": 489,
+   "length": 2904,
+   "offset": 100320424,
+   "size": 1192
+  },
+  "/osxj/LIVE-pomodoro-osxj-ascii.txt": {
+   "cnid": 490,
+   "length": 2857,
+   "offset": 100324567,
+   "size": 1239
+  },
+  "/osxj/LIVE-soak-osxj-ascii.txt": {
+   "cnid": 507,
+   "length": 2909,
+   "offset": 100394147,
+   "size": 1187
+  },
+  "/osxj/LIVE-soaked-osxj-ascii.txt": {
+   "cnid": 508,
+   "length": 2895,
+   "offset": 100398257,
+   "size": 1201
+  },
+  "/osxj/LIVE-soaker-osxj-ascii.txt": {
+   "cnid": 509,
+   "length": 2899,
+   "offset": 100402349,
+   "size": 1197
+  },
+  "/osxj/LIVE-soaking-osxj-ascii.txt": {
+   "cnid": 510,
+   "length": 2897,
+   "offset": 100406447,
+   "size": 1199
+  },
+  "/osxj/LIVE-soaking-osxj-utf-16-be.txt": {
+   "cnid": 511,
+   "length": 1696,
+   "offset": 100411744,
+   "size": 2400
+  },
+  "/osxj/LIVE-soaking-osxj-utf-16-le.txt": {
+   "cnid": 512,
+   "length": 1662,
+   "offset": 100415874,
+   "size": 2434
+  },
+  "/osxj/LIVE-soaking-osxj-utf-8.txt": {
+   "cnid": 513,
+   "length": 2867,
+   "offset": 100418765,
+   "size": 1229
+  },
+  "/osxj/LIVE-soaks-osxj-ascii.txt": {
+   "cnid": 514,
+   "length": 2900,
+   "offset": 100422828,
+   "size": 1196
+  },
+  "/osxj/LIVE-ss-123-osxj-ascii.txt": {
+   "cnid": 515,
+   "length": 2893,
+   "offset": 100426931,
+   "size": 1203
+  },
+  "/osxj/LIVE-ss-987-osxj-ascii.txt": {
+   "cnid": 516,
+   "length": 2889,
+   "offset": 100431031,
+   "size": 1207
+  },
+  "/osxj/LIVE-ss-999-osxj-ascii.txt": {
+   "cnid": 517,
+   "length": 2904,
+   "offset": 100435112,
+   "size": 1192
+  },
+  "/osxj/LIVE-take-osxj-ascii.txt": {
+   "cnid": 527,
+   "length": 2879,
+   "offset": 100476097,
+   "size": 1217
+  },
+  "/osxj/LIVE-takeing-osxj-ascii.txt": {
+   "cnid": 528,
+   "length": 2886,
+   "offset": 100480186,
+   "size": 1210
+  },
+  "/osxj/LIVE-taken-osxj-ascii.txt": {
+   "cnid": 529,
+   "length": 2857,
+   "offset": 100484311,
+   "size": 1239
+  },
+  "/osxj/LIVE-taker-osxj-ascii.txt": {
+   "cnid": 530,
+   "length": 2916,
+   "offset": 100488348,
+   "size": 1180
+  },
+  "/osxj/LIVE-takes-osxj-ascii.txt": {
+   "cnid": 531,
+   "length": 2913,
+   "offset": 100492447,
+   "size": 1183
+  },
+  "/osxj/LIVE-thorn-osxj-ascii.txt": {
+   "cnid": 532,
+   "length": 2912,
+   "offset": 100496544,
+   "size": 1184
+  },
+  "/osxj/LIVE-thorns-osxj-ascii.txt": {
+   "cnid": 533,
+   "length": 2915,
+   "offset": 100500637,
+   "size": 1181
+  },
+  "/osxj/LIVE-thunderbird-osxj-ascii.txt": {
+   "cnid": 534,
+   "length": 2889,
+   "offset": 100504759,
+   "size": 1207
+  },
+  "/osxj/LIVE-took-osxj-ascii.txt": {
+   "cnid": 538,
+   "length": 2899,
+   "offset": 100521133,
+   "size": 1197
+  },
+  "/osxj/LIVE-town-osxj-ascii.txt": {
+   "cnid": 539,
+   "length": 2864,
+   "offset": 100525264,
+   "size": 1232
+  },
+  "/osxj/LIVE-towns-osxj-ascii.txt": {
+   "cnid": 540,
+   "length": 2899,
+   "offset": 100529325,
+   "size": 1197
+  },
+  "/osxj/LIVE-towns-osxj-utf-16-be.txt": {
+   "cnid": 541,
+   "length": 1704,
+   "offset": 100534616,
+   "size": 2392
+  },
+  "/osxj/LIVE-towns-osxj-utf-16-le.txt": {
+   "cnid": 542,
+   "length": 1664,
+   "offset": 100538752,
+   "size": 2432
+  },
+  "/osxj/LIVE-towns-osxj-utf-8.txt": {
+   "cnid": 543,
+   "length": 2890,
+   "offset": 100541622,
+   "size": 1206
+  },
+  "/osxj/LIVE-triple-osxj-ascii.txt": {
+   "cnid": 544,
+   "length": 2888,
+   "offset": 100545720,
+   "size": 1208
+  },
+  "/osxj/LIVE-went-osxj-ascii.txt": {
+   "cnid": 549,
+   "length": 2900,
+   "offset": 100566188,
+   "size": 1196
+  },
+  "/osxj/LIVE-world-osxj-ascii.txt": {
+   "cnid": 550,
+   "length": 2913,
+   "offset": 100570271,
+   "size": 1183
+  },
+  "/osxj/LIVE-world-osxj-utf-16-be.txt": {
+   "cnid": 551,
+   "length": 1644,
+   "offset": 100575636,
+   "size": 2452
+  },
+  "/osxj/LIVE-world-osxj-utf-16-le.txt": {
+   "cnid": 552,
+   "length": 1670,
+   "offset": 100579706,
+   "size": 2426
+  },
+  "/osxj/LIVE-world-osxj-utf-8.txt": {
+   "cnid": 553,
+   "length": 2904,
+   "offset": 100582568,
+   "size": 1192
+  }
+ },
+ "zero_tail": 219
+}

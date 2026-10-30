@@ -1,0 +1,19 @@
+[package]
+name = "seance_plugin_winsearch_edb"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# The Windows Search index, Windows.edb (ESE): the indexer's record of files,
+# mail and other items with their properties.
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_ese_util = { path = "../seance_ese_util" }
+libesedb = "0.2"
+serde_json = { workspace = true }
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+tracing = "0.1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

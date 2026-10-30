@@ -1,0 +1,17 @@
+[package]
+name = "seance_plugin_android_backup"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde_json = { workspace = true }
+flate2 = "1.0"
+tar = "0.4"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }
+uuid = { version = "1.10.0", features = ["v4"] }

@@ -1,0 +1,26 @@
+[package]
+name = "seance_plugin_installed_apps"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+plist = "1.6"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+chrono = "0.4"
+quick-xml = "0.31"
+seance_xml_util = { path = "../seance_xml_util" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+
+[dev-dependencies]
+# The ABX fixture writer, for building binary packages.xml documents in tests.
+seance_xml_util = { path = "../seance_xml_util", features = ["test-support"] }
+# The corpus gate, so a test whose evidence corpus is named but absent fails
+# instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

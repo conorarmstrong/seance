@@ -1,0 +1,22 @@
+[package]
+name = "seance_plugin_registry"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_shell_item = { path = "../seance_shell_item" }
+seance_core = { path = "../seance_core" }
+seance_hive_util = { path = "../seance_hive_util" }
+anyhow = "1.0"
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.0", features = ["v4"] }
+seance_hive = { workspace = true }
+chrono = "0.4"
+zerocopy = { version = "0.8", features = ["derive"] }
+base64 = "0.22"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }

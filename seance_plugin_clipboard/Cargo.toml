@@ -1,0 +1,18 @@
+[package]
+name = "seance_plugin_clipboard"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Windows clipboard history: the on-disk pinned items under
+# %LOCALAPPDATA%\Microsoft\Windows\Clipboard.
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+base64 = "0.22"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+tracing = "0.1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

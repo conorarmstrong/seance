@@ -1,0 +1,222 @@
+[package]
+name = "seance_api"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+regex = "1"
+memchr = "2"
+axum = { version = "0.7.5", features = ["multipart"] }
+axum-extra = { version = "0.9", features = ["cookie", "typed-header"] }
+tower = { version = "0.4.13", features = ["util"] }
+tower-http = { version = "0.5.2", features = ["fs", "cors", "timeout", "limit", "catch-panic", "compression-gzip", "compression-br"] }
+tokio = { version = "1.38.0", features = ["full"] } # Use full features for convenience in API server
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { workspace = true }
+anyhow = "1.0.89"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+# Examiner-supplied credentials are zeroed when dropped (HUNT-120).
+zeroize = "1"
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+tokio-util = { version = "0.7", features = ["io"] }
+futures = "0.3"
+mime_guess = "2.0"
+async-stream = "0.3"
+chrono = "0.4"
+
+# Authentication
+jsonwebtoken = "9"
+bcrypt = "0.15"
+time = "0.3"
+
+# OpenAPI Documentation
+utoipa = { version = "6", features = ["axum_extras", "uuid", "chrono"] }
+utoipa-swagger-ui = { version = "10", features = ["axum"] }
+
+seance_container_zip = { path = "../seance_container_zip" }
+seance_container_e01 = { path = "../seance_container_e01", optional = true }
+seance_container_aff4 = { path = "../seance_container_aff4" }
+seance_container_archive = { path = "../seance_container_archive" }
+seance_container_vdisk = { path = "../seance_container_vdisk" }
+seance_container_sparseimage = { path = "../seance_container_sparseimage" }
+seance_plugin_ext4 = { path = "../seance_plugin_ext4" }
+# Memory captures. Without these the API server accepts a memory image, stores
+# it, and runs no analysis over it at all — no profile, no stages, and no error,
+# because nothing subscribes. The CLI server has always registered them.
+#
+# All three operating-system tiers are here. The macOS one has never been run
+# against a real Mac capture and says so on every record it emits; leaving it out
+# did not make that fact safer, it only made a Mac capture silent — see
+# `src/modules.rs`.
+seance_memory = { path = "../seance_memory" }
+seance_plugin_yara = { path = "../seance_plugin_yara" }
+seance_plugin_memory_windows = { path = "../seance_plugin_memory_windows" }
+seance_plugin_memory_linux = { path = "../seance_plugin_memory_linux" }
+seance_plugin_memory_macos = { path = "../seance_plugin_memory_macos" }
+
+seance_core = { path = "../seance_core" }
+
+seance_db = { path = "../seance_db" }
+
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+seance_plugin_logfile = { path = "../seance_plugin_logfile" }
+seance_plugin_i30 = { path = "../seance_plugin_i30" }
+seance_plugin_usnjrnl = { path = "../seance_plugin_usnjrnl" }
+seance_plugin_badclus = { path = "../seance_plugin_badclus" }
+seance_plugin_sdb = { path = "../seance_plugin_sdb" }
+seance_plugin_setupapi = { path = "../seance_plugin_setupapi" }
+seance_plugin_stickynotes = { path = "../seance_plugin_stickynotes" }
+seance_plugin_pcap = { path = "../seance_plugin_pcap" }
+seance_plugin_shellbags = { path = "../seance_plugin_shellbags" }
+seance_plugin_lnk = { path = "../seance_plugin_lnk" }
+seance_plugin_vss = { path = "../seance_plugin_vss" }
+seance_plugin_jumplists = { path = "../seance_plugin_jumplists" }
+seance_plugin_srum = { path = "../seance_plugin_srum", optional = true }
+seance_plugin_sum = { path = "../seance_plugin_sum", optional = true }
+seance_plugin_browser_history = { path = "../seance_plugin_browser_history" }
+seance_plugin_registry = { path = "../seance_plugin_registry" }
+seance_plugin_evtx = { path = "../seance_plugin_evtx" }
+seance_plugin_prefetch = { path = "../seance_plugin_prefetch" }
+seance_plugin_partition = { path = "../seance_plugin_partition" }
+seance_plugin_carver = { path = "../seance_plugin_carver" }
+seance_plugin_amcache = { path = "../seance_plugin_amcache" }
+seance_plugin_shimcache = { path = "../seance_plugin_shimcache" }
+seance_plugin_recyclebin = { path = "../seance_plugin_recyclebin" }
+seance_plugin_file_analysis = { path = "../seance_plugin_file_analysis" }
+seance_plugin_email = { path = "../seance_plugin_email" }
+
+seance_plugin_hash = { path = "../seance_plugin_hash" }
+seance_plugin_exif = { path = "../seance_plugin_exif" }
+seance_plugin_bulk = { path = "../seance_plugin_bulk" }
+seance_plugin_ical = { path = "../seance_plugin_ical" }
+seance_plugin_android_sms = { path = "../seance_plugin_android_sms" }
+seance_plugin_android_backup = { path = "../seance_plugin_android_backup" }
+seance_plugin_imessage = { path = "../seance_plugin_imessage" }
+seance_plugin_whatsapp = { path = "../seance_plugin_whatsapp" }
+seance_plugin_sqlite = { path = "../seance_plugin_sqlite" }
+seance_plugin_plist = { path = "../seance_plugin_plist" }
+seance_plugin_ios_backup = { path = "../seance_plugin_ios_backup" }
+seance_plugin_call_history = { path = "../seance_plugin_call_history" }
+seance_plugin_contacts = { path = "../seance_plugin_contacts" }
+seance_plugin_macos_artifacts = { path = "../seance_plugin_macos_artifacts" }
+seance_vics = { path = "../seance_vics" }
+seance_search = { path = "../seance_search" }
+seance_reporting = { path = "../seance_reporting" }
+
+# The rest of the forensic module set. These are here because `src/modules.rs`
+# is the ONE place the pipeline is registered and both binaries call it; this
+# server used to keep a second hand-written list that had lost every one of
+# them, so an image with an APFS/FAT/XFS/btrfs/HFS+/ISO9660/F2FS volume yielded
+# a partition and no files, an encrypted volume was never even tried, and none
+# of the messaging or OS-artifact readers ran (LIVE-005).
+seance_plugin_apfs = { path = "../seance_plugin_apfs" }
+seance_plugin_fat = { path = "../seance_plugin_fat" }
+seance_plugin_xfs = { path = "../seance_plugin_xfs" }
+seance_plugin_btrfs = { path = "../seance_plugin_btrfs" }
+seance_plugin_hfsplus = { path = "../seance_plugin_hfsplus" }
+seance_plugin_iso9660 = { path = "../seance_plugin_iso9660" }
+seance_plugin_udf = { path = "../seance_plugin_udf" }
+seance_plugin_f2fs = { path = "../seance_plugin_f2fs" }
+seance_plugin_squashfs = { path = "../seance_plugin_squashfs" }
+seance_plugin_perceptual = { path = "../seance_plugin_perceptual" }
+seance_plugin_luks = { path = "../seance_plugin_luks" }
+seance_plugin_bitlocker = { path = "../seance_plugin_bitlocker" }
+seance_plugin_utmp = { path = "../seance_plugin_utmp" }
+seance_plugin_secure_sds = { path = "../seance_plugin_secure_sds" }
+seance_plugin_asep = { path = "../seance_plugin_asep" }
+seance_plugin_installed_apps = { path = "../seance_plugin_installed_apps" }
+seance_plugin_android_apps = { path = "../seance_plugin_android_apps" }
+seance_plugin_mobile_device = { path = "../seance_plugin_mobile_device" }
+seance_plugin_host_identity = { path = "../seance_plugin_host_identity" }
+seance_plugin_directory = { path = "../seance_plugin_directory" }
+seance_plugin_media = { path = "../seance_plugin_media" }
+seance_plugin_ocr = { path = "../seance_plugin_ocr" }
+seance_plugin_office = { path = "../seance_plugin_office" }
+seance_plugin_signal = { path = "../seance_plugin_signal" }
+seance_plugin_viber = { path = "../seance_plugin_viber" }
+seance_plugin_kik = { path = "../seance_plugin_kik" }
+seance_plugin_skype = { path = "../seance_plugin_skype" }
+seance_plugin_chrome_cache = { path = "../seance_plugin_chrome_cache" }
+seance_plugin_leveldb = { path = "../seance_plugin_leveldb" }
+seance_plugin_webcache = { path = "../seance_plugin_webcache", optional = true }
+seance_plugin_wechat = { path = "../seance_plugin_wechat" }
+seance_plugin_line = { path = "../seance_plugin_line" }
+seance_plugin_fbmessenger = { path = "../seance_plugin_fbmessenger" }
+seance_plugin_telegram = { path = "../seance_plugin_telegram" }
+seance_plugin_instagram = { path = "../seance_plugin_instagram" }
+seance_plugin_snapchat = { path = "../seance_plugin_snapchat" }
+seance_plugin_twitter = { path = "../seance_plugin_twitter" }
+seance_plugin_pe = { path = "../seance_plugin_pe" }
+seance_plugin_ios_artifacts = { path = "../seance_plugin_ios_artifacts" }
+seance_plugin_clipboard = { path = "../seance_plugin_clipboard" }
+seance_plugin_bits = { path = "../seance_plugin_bits", default-features = false }
+seance_plugin_rdp_cache = { path = "../seance_plugin_rdp_cache" }
+seance_plugin_winsearch_edb = { path = "../seance_plugin_winsearch_edb", optional = true }
+seance_plugin_wlan = { path = "../seance_plugin_wlan" }
+seance_plugin_win_timeline = { path = "../seance_plugin_win_timeline" }
+seance_plugin_desktop_artifacts = { path = "../seance_plugin_desktop_artifacts" }
+seance_plugin_thumbcache = { path = "../seance_plugin_thumbcache" }
+seance_plugin_fsevents = { path = "../seance_plugin_fsevents" }
+seance_plugin_dsstore = { path = "../seance_plugin_dsstore" }
+seance_plugin_findings = { path = "../seance_plugin_findings" }
+
+# Content resolution for derived artifacts
+lru = "0.18.2"
+base64 = "0.22"
+zip = { version = "9", default-features = false, features = ["aes-crypto", "bzip2", "deflate", "time", "zstd"] }
+
+# Bulk-export manifest hashing (single-pass alongside ZIP streaming)
+md-5 = "0.10"
+sha1 = "0.10"
+sha2 = "0.10"
+digest = "0.10"
+# Bulk-export archive staged to an auto-deleted temp file
+tempfile = "3"
+# §3.7: the timeline SQLite export builds a real on-disk database rather than
+# holding the whole case in memory.
+rusqlite = { version = "0.32", features = ["bundled", "hooks"] }
+# §1.3: the read-only SQL editor stages the database artifact the way every
+# SQLite parser in the tree does (`TempDb::spill`, with its `-wal` sibling and
+# its incompleteness reasons).
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+
+# Thumbnail generation (decode common raster formats, encode PNG)
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "bmp", "webp"] }
+# HEIC/HEIF decoding for thumbnails (iPhone photos). Native C (libheif), so
+# optional in the same way as e01/esedb.
+# Pinned to the v1_19 API rather than the crate's default "latest" (v1_20):
+# no Debian release ships libheif >= 1.20 (bookworm 1.15.1, trixie 1.19.8), so
+# the default made the container unbuildable from distro packages.
+libheif-rs = { version = "2.5.2", optional = true, default-features = false, features = ["v1_19"] }
+# Video keyframe thumbnails. `mp4` demuxes (pure Rust); openh264's `source`
+# feature builds Cisco's decoder from vendored C into our binary, so there is no
+# system library or external process to install.
+mp4 = { version = "0.14", optional = true }
+openh264 = { version = "0.9", default-features = false, features = ["source"], optional = true }
+
+[features]
+# Native-C-backed features, optional so targets whose C libs don't build can
+# opt out; on by default. e01 -> libewf (E01/EWF); esedb -> libesedb (ESE/SRUM,
+# doesn't build under MSYS2 gcc, so disabled on Windows); heic -> libheif
+# (iPhone HEIC photos are HEVC-coded, so they need a real decoder).
+default = ["e01", "esedb", "heic", "video-thumbs"]
+e01 = ["dep:seance_container_e01"]
+# Every ESE reader (SRUM, SUM, WebCache, the Search index and the BITS `qmgr.db` reader) rides the same feature: they share `seance_ese_util` and
+# the same libesedb backend, so a build with one and not the others would be a
+# distinction without a difference. `webcache` was left unconditional until
+# 2026-09-14 and dragged `libesedb-sys` into every e01-only build, which is why
+# no x86_64 Windows release asset had ever been built (REL-003).
+esedb = ["dep:seance_plugin_srum", "dep:seance_plugin_sum", "dep:seance_plugin_webcache", "dep:seance_plugin_winsearch_edb", "seance_plugin_bits/esedb"]
+# heic -> libheif (+libde265): HEIC/HEIF thumbnails.
+heic = ["dep:libheif-rs"]
+# video-thumbs -> vendored OpenH264 + a pure-Rust MP4 demuxer (no system deps).
+video-thumbs = ["dep:mp4", "dep:openh264"]
+
+[dev-dependencies]
+tempfile = "3"
+# The synthetic encrypted iOS backup builder, for the credential route's
+# end-to-end leak test (SEC-204).
+seance_plugin_ios_backup = { path = "../seance_plugin_ios_backup", features = ["test-support"] }
+flate2 = "1.0"

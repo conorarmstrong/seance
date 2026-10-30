@@ -1,0 +1,188 @@
+.sysinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 4px 2px;
+}
+
+.sysinfo-head h1 {
+  margin: 0 0 4px;
+}
+.sysinfo-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sysinfo-sub {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+/* Scope System Info to one acquisition in a multi-machine case. */
+.sysinfo-source-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sysinfo-source-filter label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.sysinfo-source-filter select {
+  padding: 4px 8px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+  color: var(--text-0);
+  font-size: 13px;
+}
+
+.sysinfo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.sysinfo-panel {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: var(--bg-1);
+}
+.sysinfo-panel h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.sysinfo-facts {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: 6px 14px;
+  margin: 0;
+}
+.sysinfo-fact {
+  display: contents;
+}
+.sysinfo-fact dt {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+.sysinfo-fact dd {
+  margin: 0;
+  font-size: 12.5px;
+  word-break: break-word;
+}
+/* The tone for what the evidence did not say: a dash in place of a fact, "No
+   USBSTOR device history in the evidence", and the notice that the USB list is
+   a capped subset. These are absence statements, so they are read as carefully
+   as any value on the page and belong in the quiet tier rather than below it.
+
+   This asked for --text-3 and then dimmed the result to 60%. There is no
+   --text-3 in the palette -- the ladder stops at --text-2, deliberately, because
+   --text-2 is already sitting on the 4.5:1 AA floor (4.83 on --bg-3) and a
+   fourth tier under it could not clear it. So the rule was really --text-2 at
+   0.6 opacity, which composites to between 2.66:1 and 2.96:1 depending on the
+   surface: a third of the way under the floor, on the sentences that say a
+   thing was NOT found. The contrast guard could not see it, because it reads
+   `color` and not `opacity`.
+
+   --text-2 flat, then, with no opacity. The distinction the dimming was for
+   survives without it: a present value in a <dd> is --text-0 and a missing one
+   is --text-2, which is the same two-tier difference the <dt> labels already
+   use. */
+.sysinfo-missing {
+  color: var(--text-2);
+}
+
+.sysinfo-table-wrap {
+  overflow-x: auto;
+}
+
+/* A field the hives contradict each other on: every answer, and who gave it.
+   One block per disputed registry value name, below the value (if any) that
+   the evidence did settle. */
+.sysinfo-conflict {
+  margin-top: 6px;
+}
+.sysinfo-conflict-values {
+  margin: 4px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sysinfo-conflict-hive {
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+.sysinfo-conflict-detail {
+  margin: 4px 0 0;
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+/* A qualification beneath a value — most often the reason a value is absent.
+   Quieter than the value it qualifies, and never so quiet that it reads as
+   decoration: an absence with a reason is the thing an examiner has to quote. */
+/* A case holding more than one acquisition renders one compiled section each
+   (ROADMAP §2.6). The sections are visually separated because they are
+   statements about DIFFERENT machines, and a reader who loses the boundary
+   reads two machines as one. */
+.sysinfo-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.sysinfo-section {
+  border: 1px solid var(--border-1, #d8d8d8);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.sysinfo-section-heading {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sysinfo-fact-note {
+  margin: 3px 0 0;
+  color: var(--text-2);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+/* The hives that would not parse, listed under the warning that names them.
+   Kept quiet: the sentence above it carries the meaning, and this is the
+   evidence for it. */
+.sysinfo-unparsed {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11.5px;
+}
+
+/* The mobile device-facts panel (HUNT-079). It sits above the Windows compile
+   because on a phone exhibit it is the whole answer, and on a mixed case it is
+   the first thing an examiner is looking for. */
+.sysinfo-device {
+  margin-bottom: 14px;
+}
+/* Where a fact was read: the file, and the key inside it. Quiet, because the
+   value is what is being read — but never absent, because a fact an examiner
+   cannot source is a fact they cannot testify to. */
+.sysinfo-source {
+  color: var(--text-2);
+  font-size: 11.5px;
+  margin-top: 2px;
+  word-break: break-all;
+}

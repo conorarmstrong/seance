@@ -1,0 +1,72 @@
+/* The persistent case-wide time window (ROADMAP §1.1).
+ *
+ * It sits in the case shell above the routed content, so it is on screen
+ * wherever the examiner goes. The sentence beside it is a paragraph and not a
+ * chip on purpose: what is narrowing the view was set on another screen and
+ * followed the reader here, so it has to be readable without hovering — and it
+ * is read, quoted and screenshotted along with whatever it narrowed. */
+.twb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px 16px;
+  padding: 8px 14px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-0);
+}
+
+.twb-chart {
+  flex: 1 1 260px;
+  min-width: 0;
+  /* Shorter than the dashboard's: this is a control in a shell, not the
+     dashboard's own panel. */
+  --mtl-height: 40px;
+}
+
+.twb-chart .mtl-bars {
+  height: 40px;
+}
+
+.twb-state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.twb-note {
+  margin: 0;
+  flex: 1 1 260px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* A window in force is a state the reader has to notice, so it is drawn with
+   the warning ink the rest of the product uses for "this is a subset". */
+.twb-active {
+  color: var(--text-1);
+  padding: 6px 9px;
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+}
+
+.twb-clear {
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 11px;
+  color: var(--text-1);
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.twb-clear:hover {
+  background: var(--bg-2);
+  border-color: var(--accent-dim);
+}

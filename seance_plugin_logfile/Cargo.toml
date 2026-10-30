@@ -1,0 +1,15 @@
+[package]
+name = "seance_plugin_logfile"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1"
+byteorder = "1.5"
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1.0"
+uuid = { version = "1.0", features = ["serde", "v4"] }
+tracing-subscriber = "0.3"

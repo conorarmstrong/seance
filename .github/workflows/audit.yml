@@ -1,0 +1,47 @@
+name: Dependency Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  cargo-audit:
+    name: cargo audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo-audit binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/cargo-audit
+          key: ${{ runner.os }}-cargo-audit
+
+      - name: Install cargo-audit
+        # The binary is cached across runs; a plain `cargo install` errors with
+        # "binary already exists" on a cache hit. Skip when it's already present.
+        run: command -v cargo-audit >/dev/null 2>&1 || cargo install cargo-audit --locked
+
+      - name: Run cargo audit
+        run: cargo audit
+
+  unsafe-guard:
+    name: forbid unsafe
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # No toolchain needed: the #![forbid(unsafe_code)] attributes are enforced
+      # by the normal build/test jobs. This only checks every crate carries the
+      # attribute (or is on the documented FFI allow-list), so a new crate can't
+      # ship unsafe unreviewed.
+      - name: Check unsafe-code guard
+        run: ./scripts/check-unsafe.sh

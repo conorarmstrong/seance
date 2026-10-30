@@ -1,0 +1,72 @@
+.version-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 8px 14px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: 8px;
+  font-size: 13px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.version-banner-text {
+  font-weight: 500;
+}
+
+.version-banner-reload {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  /* The banner's own inversion: the ink of the accent fill becomes the fill,
+     and the accent becomes the ink. Both were literals (#0a0a0a), which put a
+     near-black chip behind a dark accent under every light skin. */
+  background: var(--on-accent);
+  color: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.version-banner-reload:hover {
+  opacity: 0.9;
+}
+
+.version-banner-dismiss {
+  display: inline-flex;
+  align-items: center;
+  /* The ground is RESTATED rather than left to the banner, and that is the
+     point of writing it out: the contrast guard measures the ground a rule
+     paints for its own text, and a rule painting none answers to the four page
+     surfaces instead — which this glyph never sits on. `background: none` had it
+     measured against the wrong thing, and against the wrong thing it looked
+     fine. The banner behind it is `var(--accent)`, so this is the same pixel
+     either way. (The technique is the one `files.css` uses for
+     `.ft-row.selected`.) */
+  background: var(--accent);
+  border: none;
+  /* The dismiss glyph sits on the banner, which is an accent fill, so it takes
+     the accent's own ink. It was a third literal #0a0a0a in this file. */
+  color: var(--on-accent);
+  cursor: pointer;
+  padding: 2px;
+  /* 0.85, not 0.7. Restating the ground above let the guard measure this rule
+     for the first time, and it found the fade putting the glyph at 3.7:1 on
+     several palettes — the same shape as the `.processing-conn` fade, hidden
+     here by a literal `color:` the guard could not read at all. The dismiss
+     control on a banner that covers the page must be findable; 0.85 keeps it a
+     shade quieter than the text beside it and clears the floor everywhere. */
+  opacity: 0.85;
+}
+
+.version-banner-dismiss:hover {
+  opacity: 1;
+}

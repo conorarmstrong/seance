@@ -1,0 +1,76 @@
+/*
+ * Offline equirectangular world map. No external tiles or CDN: the country
+ * borders (pre-projected Natural Earth outlines, public domain) and graticule
+ * are inline SVG, so the map renders on an air-gapped workstation. Palette
+ * follows the workbench accent.
+ */
+
+.wm-viewport {
+  position: relative;
+}
+
+.wm {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  touch-action: none;
+}
+
+.wm-frame {
+  fill: var(--bg-0);
+}
+
+.wm-land {
+  fill: var(--bg-2);
+  stroke: var(--border-1);
+  stroke-width: 0.75; /* screen px: rendered with vector-effect non-scaling-stroke */
+}
+
+.wm-graticule {
+  stroke: var(--border-0);
+  stroke-width: 0.5;
+}
+
+.wm-reset {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--text-1);
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.wm-reset:hover {
+  color: var(--text-0);
+  border-color: var(--accent);
+}
+
+.wm-dot {
+  fill: var(--accent);
+  stroke: var(--bg-0);
+  stroke-width: 0.6;
+  cursor: pointer;
+}
+
+.wm-dot:hover {
+  fill: var(--accent-hover);
+}
+
+.wm-dot-active {
+  fill: var(--accent-hover);
+  stroke: var(--text-0);
+  stroke-width: 0.8;
+}
+
+/* Invisible hover/click target around a plotted point. */
+.wm-dot-hit {
+  fill: transparent;
+  cursor: pointer;
+}

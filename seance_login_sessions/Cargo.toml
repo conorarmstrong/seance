@@ -1,0 +1,8 @@
+[package]
+name = "seance_login_sessions"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "The login-session pairing rules shared by every reader of utmp-shaped records (binary wtmp, Apple System Log utmpx)."
+
+[dependencies]

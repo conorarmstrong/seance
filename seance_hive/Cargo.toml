@@ -1,0 +1,10 @@
+[package]
+name = "seance_hive"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "Read-only parser for Windows registry hive (regf) files"
+
+[dependencies]
+
+[dev-dependencies]

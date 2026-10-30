@@ -1,0 +1,22 @@
+[package]
+name = "seance_plugin_findings"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# The findings / triage layer (ROADMAP §2.2): detection modules that subscribe
+# to already-parsed artifacts and raise a `Finding` when an invariant breaks.
+# They compute nothing the parsers have not already established — the signals
+# live in the parsers, and this crate's job is to turn them into ranked leads
+# that carry their own grade and qualification.
+[dependencies]
+chrono = "0.4"
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

@@ -1,0 +1,454 @@
+name: Release
+
+# Builds cross-platform binaries for Windows, macOS and Linux on both Intel/x86_64
+# and ARM64, the Web UI bundle, and (when present) the validation report. Tag
+# pushes (v*) publish a GitHub release; workflow_dispatch builds the same set and
+# uploads each asset as a downloadable Actions artifact for testing.
+#
+# Nothing is built until `scripts/check-version.sh` has agreed that seance_cli,
+# seance_api and frontend/package.json all carry the version the tag names. A
+# tag that disagrees with the manifests fails in the first job, before any asset
+# exists that could be attached under the wrong number.
+#
+# The feature set is stated PER TARGET in the matrix (`features`) rather than
+# taken from seance_cli's defaults, so what an asset can do is readable from
+# this file, and the asset's name says when a capability is missing:
+#
+#   Target           e01  esedb  heic  video-thumbs  asset
+#   linux-x86_64     yes  yes    yes   yes           seance-linux-x86_64.tar.gz
+#   linux-aarch64    yes  yes    yes   yes           seance-linux-aarch64.tar.gz
+#   macos-x86_64     yes  yes    yes   yes           seance-macos-x86_64.tar.gz
+#   macos-aarch64    yes  yes    yes   yes           seance-macos-aarch64.tar.gz
+#   windows-aarch64  no   no     no    no            seance-windows-aarch64-no-native.zip
+#
+# x86_64 Windows is NOT in this matrix — it has its own MSYS2 job further down,
+# `build-windows-x86_64`. That job is built with `--features e01` alone. The
+# `esedb` feature is off there because the vendored `libesedb-sys` sources do
+# not compile under MSYS2 gcc: `common/config.h` is not generated on that path.
+# `scripts/check-feature-edges.sh` fails CI if a native crate leaks past its
+# feature, which would pull `libesedb-sys` into that build.
+#
+# Native C libraries and how each target gets them:
+#   - libewf (E01/EWF): Linux/macOS from the OS package manager (apt / brew).
+#     Windows x86_64 builds it from libyal source under MSYS2 and bundles the
+#     DLLs — in a job that does not currently reach that step (above). Windows
+#     ARM64 has no libewf, so E01 is off there.
+#   - libheif (HEIC thumbnails): libheif-rs is pinned to the v1_19 API and
+#     Ubuntu 24.04 ships 1.17, so Linux builds libheif 1.19 from source against
+#     the distro's libde265 and bundles both shared objects beside the binary
+#     (rpath $ORIGIN), the same way the Dockerfile moves to trixie for it.
+#     Homebrew ships >= 1.19, so macOS takes it from brew. Neither Windows
+#     toolchain here has been shown to build it, so heic is off on Windows.
+#   - libesedb (ESE/SRUM): not written for mingw gcc, so esedb is off on
+#     Windows x86_64; Windows ARM64 has no native-C feature at all.
+#   - video-thumbs is vendored OpenH264 + a pure-Rust MP4 demuxer (no system
+#     library) but is only enabled where the rest of the default set is, so a
+#     Windows zip is described by one honest suffix rather than a list.
+#
+# Every e01-enabled asset also carries `seance-ewf-helper`, the isolated E01
+# reader the binary spawns when it finds it beside itself; without it E01
+# images are parsed in-process and a malformed one can take the process down.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  LIBHEIF_VERSION: 1.19.8
+
+permissions:
+  contents: write
+
+jobs:
+  # Gate: the tag, the Rust manifests and the frontend package must name one
+  # version. Runs first so a disagreement fails fast, and exports the agreed
+  # version for the assets that carry it in their name.
+  check-version:
+    name: version agreement
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check that every version source agrees (and matches the tag)
+        id: check
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            out=$(scripts/check-version.sh "${GITHUB_REF_NAME}")
+          else
+            out=$(scripts/check-version.sh)
+          fi
+          echo "$out"
+          echo "version=${out##*OK: }" >> "$GITHUB_OUTPUT"
+
+  # Standard targets that get their native libraries from a package manager
+  # (or, for libheif on Linux, from source), plus Windows ARM64 which builds
+  # with no native-C feature. One matrix, per-OS conditional steps.
+  build:
+    name: ${{ matrix.asset_name }}
+    needs: check-version
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+            asset_name: seance-linux-x86_64
+            features: 'e01,esedb,heic,video-thumbs'
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            asset_name: seance-linux-aarch64
+            features: 'e01,esedb,heic,video-thumbs'
+          - os: macos-15-intel
+            target: x86_64-apple-darwin
+            asset_name: seance-macos-x86_64
+            features: 'e01,esedb,heic,video-thumbs'
+          - os: macos-15
+            target: aarch64-apple-darwin
+            asset_name: seance-macos-aarch64
+            features: 'e01,esedb,heic,video-thumbs'
+          - os: windows-11-arm
+            target: aarch64-pc-windows-msvc
+            # No libewf, libesedb or libheif toolchain on Windows/ARM64: every
+            # native-C feature is off, and the asset name says so.
+            asset_name: seance-windows-aarch64-no-native
+            features: ''
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history and tags so seance_cli/build.rs's `git describe` can
+          # stamp the binary with the release tag rather than a bare hash.
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Cache cargo build
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}-${{ matrix.features }}
+
+      - name: Install native build dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          # libewf-dev: E01. clang/libclang: bindgen for the libewf and libheif
+          # FFI. libssl-dev: report signing (openssl-sys). libde265-dev + cmake:
+          # inputs to the libheif build below.
+          sudo apt-get install -y libewf-dev pkg-config clang libclang-dev \
+            libssl-dev libde265-dev cmake
+
+      - name: Build libheif ${{ env.LIBHEIF_VERSION }} from source (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          set -euo pipefail
+          curl -fsSL -o libheif.tar.gz \
+            "https://github.com/strukturag/libheif/releases/download/v${LIBHEIF_VERSION}/libheif-${LIBHEIF_VERSION}.tar.gz"
+          tar xzf libheif.tar.gz
+          cmake -S "libheif-${LIBHEIF_VERSION}" -B libheif-build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=/usr/local \
+            -DCMAKE_INSTALL_LIBDIR=lib \
+            -DWITH_LIBDE265=ON \
+            -DWITH_X265=OFF -DWITH_AOM_DECODER=OFF -DWITH_AOM_ENCODER=OFF \
+            -DWITH_DAV1D=OFF -DWITH_RAV1E=OFF -DWITH_SvtEnc=OFF \
+            -DWITH_JPEG_DECODER=OFF -DWITH_JPEG_ENCODER=OFF \
+            -DWITH_OpenJPEG_DECODER=OFF -DWITH_OpenJPEG_ENCODER=OFF \
+            -DWITH_GDK_PIXBUF=OFF -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+            -DCMAKE_INSTALL_RPATH='$ORIGIN' -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
+          cmake --build libheif-build -j"$(nproc)"
+          sudo cmake --install libheif-build
+          sudo ldconfig
+          pkg-config --modversion libheif
+
+      - name: Install native build dependencies (macOS)
+        if: runner.os == 'macOS'
+        # Homebrew's libheif is >= 1.19, which is what libheif-rs's v1_19 pin
+        # needs; libde265 comes with it.
+        run: brew install libewf libheif pkg-config
+
+      - name: Build seance (${{ matrix.features || 'no native-C features' }})
+        env:
+          PKG_CONFIG_PATH: /usr/local/lib/pkgconfig
+          # Linux only: look beside the binary first, so the bundled libheif /
+          # libde265 are found without touching the host's library path.
+          RUSTFLAGS: ${{ runner.os == 'Linux' && '-C link-arg=-Wl,-rpath,$ORIGIN' || '' }}
+        run: >-
+          cargo build --release -p seance_cli --target ${{ matrix.target }}
+          --no-default-features
+          ${{ matrix.features != '' && format('--features {0}', matrix.features) || '' }}
+
+      - name: Build the isolated E01 helper
+        if: contains(matrix.features, 'e01')
+        env:
+          PKG_CONFIG_PATH: /usr/local/lib/pkgconfig
+        run: cargo build --release --target ${{ matrix.target }} --bin seance-ewf-helper
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          set -euo pipefail
+          dir="target/${{ matrix.target }}/release"
+          mkdir -p dist
+          cp "$dir/seance" "$dir/seance-ewf-helper" dist/
+          strip dist/seance dist/seance-ewf-helper || true
+          # Bundle the two shared objects the host is unlikely to carry at the
+          # version this binary was linked against. libewf stays a system
+          # dependency, as it always has been for this asset.
+          cp /usr/local/lib/libheif.so.1 dist/
+          cp "$(ldd dist/seance | awk '/libde265/ {print $3}')" dist/
+          # libde265 is NOT a direct dependency of `seance`: it arrives through
+          # libheif. The binary's own `-rpath,$ORIGIN` becomes a DT_RUNPATH,
+          # and a DT_RUNPATH is not consulted when the loader resolves a
+          # DEPENDENCY's dependencies -- so libheif was found beside the binary
+          # and libde265 was then not found at all, on any host without it
+          # (REL-002, reproduced on a stock Ubuntu 24.04 image: `libde265.so.0:
+          # cannot open shared object file`). libheif is therefore built with
+          # its own `$ORIGIN` runpath above, which is what makes the pair
+          # self-contained. Assert it here rather than trusting the build:
+          # a missing runpath produces an asset that cannot start.
+          if ! readelf -d dist/libheif.so.1 | grep -Eq '(RUNPATH|RPATH).*\$ORIGIN'; then
+            echo "libheif.so.1 has no \$ORIGIN runpath: it will not find libde265 beside it" >&2
+            readelf -d dist/libheif.so.1 | head -20 >&2
+            exit 1
+          fi
+          tar -C dist -czf "${{ matrix.asset_name }}.tar.gz" .
+          shasum -a 256 "${{ matrix.asset_name }}.tar.gz" > "${{ matrix.asset_name }}.tar.gz.sha256"
+
+      - name: Verify the Linux asset on a clean image
+        if: runner.os == 'Linux'
+        # The only thing that settles whether a bundled library can actually be
+        # loaded is loading it somewhere that has nothing (REL-002). The build
+        # host has libde265 and libheif installed as build inputs, so `ldd` here
+        # would resolve them from the system and pass while the asset was
+        # broken. This runs the packaged binary in a stock ubuntu:24.04
+        # container that carries neither.
+        #
+        # libewf IS a system dependency of this asset by design, so the
+        # container installs it -- and only it -- before running. If anything
+        # else is missing, `seance --version` fails and so does the release.
+        run: |
+          set -euo pipefail
+          docker run --rm -v "$PWD/dist:/dist:ro" ubuntu:24.04 bash -c '
+            set -eux
+            apt-get update -qq
+            apt-get install -y -qq libewf2 >/dev/null
+            cp -r /dist /asset && chmod +x /asset/seance /asset/seance-ewf-helper
+            ldd /asset/seance
+            ldd /asset/seance | grep "not found" && exit 1
+            /asset/seance --version
+            /asset/seance-ewf-helper --help >/dev/null 2>&1 || true
+          '
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          set -euo pipefail
+          dir="target/${{ matrix.target }}/release"
+          mkdir -p dist
+          cp "$dir/seance" "$dir/seance-ewf-helper" dist/
+          strip dist/seance dist/seance-ewf-helper || true
+          tar -C dist -czf "${{ matrix.asset_name }}.tar.gz" .
+          shasum -a 256 "${{ matrix.asset_name }}.tar.gz" > "${{ matrix.asset_name }}.tar.gz.sha256"
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $bin = "target/${{ matrix.target }}/release/seance.exe"
+          Compress-Archive -Path $bin -DestinationPath "${{ matrix.asset_name }}.zip"
+          (Get-FileHash "${{ matrix.asset_name }}.zip" -Algorithm SHA256).Hash |
+            Out-File -Encoding ascii "${{ matrix.asset_name }}.zip.sha256"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset_name }}
+          path: ${{ matrix.asset_name }}.*
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.asset_name }}.*
+
+  # Windows x86_64 with E01 support and nothing else native. libewf ships no
+  # Windows package, so it is built from libyal source under MSYS2 (autotools,
+  # the upstream-supported build) and its runtime DLLs are bundled next to the
+  # binary. Features: e01 only — esedb (libesedb-sys is not written for mingw
+  # gcc), heic and video-thumbs are off, and the asset name carries the suffix.
+  build-windows-x86_64:
+    name: seance-windows-x86_64-e01-only
+    needs: check-version
+    runs-on: windows-latest
+    env:
+      ASSET_NAME: seance-windows-x86_64-e01-only
+      FEATURES: e01
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Set up MSYS2 (MINGW64)
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          # Rust, the C toolchain, libclang (for bindgen), pkgconf and libewf's
+          # own build deps (zlib/bzip2/openssl) all from the MINGW64 repo so the
+          # whole build is ABI-consistent.
+          install: >-
+            base-devel
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-rust
+            mingw-w64-x86_64-pkgconf
+            mingw-w64-x86_64-clang
+            mingw-w64-x86_64-zlib
+            mingw-w64-x86_64-bzip2
+            mingw-w64-x86_64-openssl
+            autoconf
+            automake
+            libtool
+            make
+            zip
+            wget
+
+      - name: Build and install libewf
+        run: |
+          set -euo pipefail
+          wget -q https://github.com/libyal/libewf/releases/download/20240506/libewf-experimental-20240506.tar.gz
+          tar xzf libewf-experimental-20240506.tar.gz
+          cd libewf-*/
+          ./configure --prefix=/mingw64
+          make -j"$(nproc)"
+          make install
+
+      - name: Build seance (features = ${{ env.FEATURES }})
+        env:
+          PKG_CONFIG_PATH: /mingw64/lib/pkgconfig
+        run: |
+          set -euo pipefail
+          # MSYS2's rust builds for its native host triple; no --target.
+          cargo build --release -p seance_cli --no-default-features --features "$FEATURES"
+          cargo build --release --bin seance-ewf-helper
+
+      - name: Package with bundled DLLs
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          cp target/release/seance.exe target/release/seance-ewf-helper.exe dist/
+          # Bundle every MINGW64 DLL the binaries actually load (libewf + zlib +
+          # the mingw runtime), so the zip runs on a machine without MSYS2.
+          for exe in dist/seance.exe dist/seance-ewf-helper.exe; do
+            for dll in $(ldd "$exe" | awk '/mingw64/ {print $3}'); do
+              cp -n "$dll" dist/ || true
+            done
+          done
+          cd dist
+          zip -r "../${ASSET_NAME}.zip" .
+          cd ..
+          sha256sum "${ASSET_NAME}.zip" > "${ASSET_NAME}.zip.sha256"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ASSET_NAME }}
+          path: ${{ env.ASSET_NAME }}.*
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ASSET_NAME }}.*
+
+  # The Web UI. The binary serves a built frontend from --web-root (default
+  # frontend/dist); without this bundle a release is an API and a CLI with no
+  # screen. Unpack it and point --web-root at the directory.
+  build-web-ui:
+    name: seance-web-ui
+    needs: check-version
+    runs-on: ubuntu-latest
+    env:
+      ASSET_NAME: seance-web-ui-${{ needs.check-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Build the frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+      - name: Package
+        run: |
+          set -euo pipefail
+          tar -C frontend -czf "${ASSET_NAME}.tar.gz" dist
+          shasum -a 256 "${ASSET_NAME}.tar.gz" > "${ASSET_NAME}.tar.gz.sha256"
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ASSET_NAME }}
+          path: ${{ env.ASSET_NAME }}.*
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ASSET_NAME }}.*
+
+  # The known-answer validation report, if the tagged tree carries one at the
+  # repository root (validation-report.json / validation-report.md, produced by
+  # seance_validate; see documentation/VALIDATION.md). Skipped cleanly when
+  # absent — a release without a report attached is one that did not carry
+  # one, not a failed build.
+  attach-validation-report:
+    name: validation report
+    needs: check-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect the report if present
+        id: collect
+        run: |
+          set -euo pipefail
+          found=0
+          for f in validation-report.json validation-report.md; do
+            if [ -f "$f" ]; then
+              shasum -a 256 "$f" > "$f.sha256"
+              found=1
+            fi
+          done
+          echo "found=$found" >> "$GITHUB_OUTPUT"
+          if [ "$found" = 0 ]; then
+            echo "no validation-report.{json,md} at the repository root; nothing to attach"
+          fi
+      - name: Upload build artifact
+        if: steps.collect.outputs.found == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report
+          path: validation-report.*
+      - name: Attach to release
+        if: steps.collect.outputs.found == '1' && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: validation-report.*

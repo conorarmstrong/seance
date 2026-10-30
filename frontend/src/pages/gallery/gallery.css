@@ -1,0 +1,575 @@
+/* Media gallery. Class prefix `gl-` to avoid collisions. */
+
+.gl-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.gl-count {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+/* How much of the population is in the browser. Sits beside the headline count,
+   quieter than it: the population is the number that gets quoted, and this is
+   the reach of the keys and the lightbox. */
+.gl-loaded {
+  color: var(--text-2);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.gl-filter {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.gl-filter label {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+/* Grid + properties sidebar sit side by side; the sidebar appears only when an
+   image is highlighted, so the grid takes the full width until then. */
+.gl-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.gl-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.gl-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+}
+
+/* Which cell the pointer is on, and which one the keyboard is on.
+ *
+ * This was `--accent-dim` alone, which against `--border-0` is a change of
+ * about one shade: on a dense grid of thumbnails it is not findable, and it was
+ * doing no work at all while Safe view was on, because the blur lifting was the
+ * real hover cue. With Safe view off by default the blur is no longer there to
+ * say "this one", so the border has to. `:focus-within` rather than
+ * `:focus-visible` so the cue follows keyboard navigation into the cell's own
+ * controls, not just the cell itself.
+ *
+ * One shade below `.is-highlighted`, deliberately: highlighted is a selection
+ * the examiner made and must still win against a hover that follows the mouse
+ * anywhere. */
+.gl-cell:hover,
+.gl-cell:focus-visible,
+.gl-cell:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.gl-cell.is-highlighted {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.gl-cell-thumb {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-0);
+  overflow: hidden;
+  /* Anchors the "not from this file" badge over the preview it qualifies. */
+  position: relative;
+}
+
+/* A preview the server did not decode from the artifact's own bytes. Sits ON
+   the image, because the whole point is that it must not be read without it. */
+.gl-derived-badge {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  font-size: 9px;
+  line-height: 1.2;
+  padding: 1px 4px;
+  max-width: calc(100% - 6px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gl-cell-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gl-cell-ph {
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.gl-cell-name {
+  padding: 5px 7px;
+  font-size: 11px;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-top: 1px solid var(--border-0);
+}
+
+/* ---- Properties sidebar ---- */
+
+.gl-sidebar {
+  flex: 0 0 300px;
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.gl-sb-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gl-sb-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.gl-sb-preview:hover {
+  border-color: var(--accent-dim);
+}
+
+.gl-sb-name {
+  font-size: 13px;
+  margin: 10px 0 8px;
+  word-break: break-all;
+}
+
+.gl-sb-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.gl-sb-hint {
+  color: var(--text-2);
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+/* ---- Lightbox (image only; properties live in the sidebar) ---- */
+
+.gl-lightbox-image {
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gl-lightbox-image img {
+  max-width: 100%;
+  max-height: 70vh;
+  display: block;
+}
+
+.gl-lightbox-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.gl-lb-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.gl-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.gl-meta-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border-0);
+  vertical-align: top;
+  word-break: break-all;
+}
+
+.gl-meta-table td:first-child {
+  color: var(--text-2);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.gl-exif-head {
+  margin: 14px 0 6px;
+  font-size: 12px;
+  color: var(--text-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gl-copy {
+  background: none;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  font-size: 10.5px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.gl-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+/* On narrow viewports the properties panel drops below the grid rather than
+   squeezing it. */
+@media (max-width: 900px) {
+  .gl-layout {
+    flex-direction: column;
+  }
+
+  .gl-sidebar {
+    position: static;
+    flex: none;
+    width: 100%;
+    max-height: none;
+  }
+}
+
+/* --- Hash-hit overlay badges on gallery thumbnails. --- */
+.gl-cell-thumb {
+  position: relative;
+}
+
+.gl-flag {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.gl-flag-notable {
+  background: var(--danger);
+  color: var(--on-danger);
+}
+
+.gl-flag-known {
+  background: var(--bg-2);
+  color: var(--text-1);
+  border: 1px solid var(--border-1);
+}
+
+/* The standard incompleteness badge, pinned to the bottom-right of a thumbnail
+   so it clears the hash-hit flag and the bookmark star in the top-left. Marks
+   WHICH pictures the toolbar's "N incomplete" chip counted. */
+.gl-incomplete {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+.gl-incomplete .incomplete-badge {
+  font-size: 9px;
+}
+
+/* End-of-grid sentinel: pulls the next page into view as the grid is scrolled. */
+.gl-sentinel {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+  min-height: 8px;
+}
+
+/* Bookmark marker on a gallery cell, mirroring the hash-hit flags. */
+.gl-bookmark {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 2;
+  font-size: 14px;
+  line-height: 1;
+  color: #f6c344;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* Video playback in the lightbox. Codecs the browser cannot play surface their
+   own error; the original bytes remain downloadable from the artifact page. */
+.gl-video {
+  max-width: 100%;
+  max-height: 70vh;
+  background: #000;
+}
+
+/* ---- List view: same items as the tile grid, with size and date visible ---- */
+.gl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.gl-list-head,
+.gl-row {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 90px 190px;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+}
+
+.gl-list-head {
+  padding: 4px 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border-0);
+}
+
+.gl-row {
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* The list layout gets the same border cue as the tiles, so the two modes say
+ * "this one" the same way. The row already had a background lift; the border is
+ * what carries across from the grid, and the row reserves a transparent 1px
+ * border already, so nothing shifts when it appears. */
+.gl-row:hover,
+.gl-row:focus-within {
+  background: var(--bg-1);
+  border-color: var(--accent);
+}
+
+.gl-row.is-highlighted {
+  background: var(--bg-2);
+  border-color: var(--accent);
+}
+
+.gl-row-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 36px;
+  overflow: hidden;
+  background: var(--bg-0);
+  border-radius: 2px;
+}
+
+.gl-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gl-row-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gl-row-star {
+  /* The starred marker in a LIST row sits on a theme surface, so it takes the
+     theme's amber rather than a fixed #f6c344 that only suited the dark skin.
+     The star drawn over a THUMBNAIL keeps its literal: it sits on the image,
+     not on a surface, and carries its own shadow. */
+  color: var(--warn);
+}
+
+.gl-row-size,
+.gl-row-date {
+  font-size: 12px;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Segmented tiles/list switch. */
+.gl-seg {
+  display: inline-flex;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.gl-seg button {
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-1);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.gl-seg button.is-active {
+  color: var(--text-0);
+  background: var(--bg-2);
+}
+
+.gl-order {
+  padding: 4px 10px;
+}
+
+/* Sortable list column headers. */
+.gl-th {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.gl-th:hover {
+  color: var(--text-0);
+}
+
+.gl-th.is-sorted {
+  color: var(--accent);
+}
+
+/* Reserve the arrow's width so the label does not shift when sorting changes. */
+.gl-th-arrow {
+  display: inline-block;
+  min-width: 8px;
+}
+
+/* "Not in evidence" note under a media cell whose file was not located. */
+.gl-cell-missing {
+  display: block;
+  font-size: 10px;
+  color: var(--danger, #d66);
+  text-align: center;
+}
+
+/* Audio player in the lightbox. */
+.gl-audio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 32px;
+}
+
+.gl-audio-name {
+  font-size: 13px;
+  color: var(--text-1);
+  word-break: break-all;
+  text-align: center;
+}
+
+.gl-audio audio {
+  width: min(480px, 80vw);
+}
+
+/* Tamper signal: EXIF-declared size disagrees with the decoded pixel size. */
+.gl-warn {
+  /* `--warning` was never a token this app defines; the rule only ever painted
+     its own fallback. The amber it fell back to is --warn to within a shade,
+     which is the semantic token for exactly this — a caution, not a failure —
+     and it is what .gl-warn-strong's sibling --danger is the escalation of. */
+  color: var(--warn);
+  font-style: italic;
+  font-size: 0.85em;
+}
+.gl-warn-strong {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* Examiner-wellbeing "safe view": blur and desaturate every preview until the
+ * examiner deliberately reveals it (hover or focus). On by default. This is an
+ * occupational-safety control for CSAM and other distressing material, not a
+ * security boundary — the bytes are still fetched; only the display is guarded. */
+.gl-safe-view .gl-cell-thumb img,
+.gl-safe-view .gl-row-thumb img,
+.gl-safe-view .gl-sb-preview img {
+  filter: blur(14px) grayscale(1);
+  transition: filter 0.12s ease;
+}
+.gl-safe-view .gl-cell-thumb:hover img,
+.gl-safe-view .gl-cell:focus-within .gl-cell-thumb img,
+.gl-safe-view .gl-row-thumb:hover img,
+.gl-safe-view .gl-row:focus-within .gl-row-thumb img,
+.gl-safe-view .gl-sb-preview:hover img {
+  filter: none;
+}
+.gl-safe-toggle.is-active {
+  background: var(--accent-dim, #8a6224);
+  color: #fff;
+}

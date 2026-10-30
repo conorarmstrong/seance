@@ -1,0 +1,29 @@
+[package]
+name = "seance_plugin_ocr"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+# Pure-Rust OCR: `ocrs` runs on the `rten` inference engine (no native library,
+# no external binary). The detection/recognition models are embedded in the
+# binary via include_bytes!, so OCR is fully self-contained for the end user.
+ocrs = "0.12"
+rten = "0.24"
+image = { version = "0.25", default-features = false, features = [
+    "png",
+    "jpeg",
+    "gif",
+    "bmp",
+    "webp",
+    "tiff",
+] }
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

@@ -1,0 +1,17 @@
+[package]
+name = "seance_plugin_exif"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+kamadak-exif = "0.6"
+# Decodes the TRUE pixel dimensions from the image bitstream so EXIF's
+# self-declared PixelXDimension/PixelYDimension can be verified, not trusted.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "bmp", "webp"] }
+serde_json = { workspace = true }
+tracing = "0.1"
+
+[dev-dependencies]
+uuid = { version = "1.10.0", features = ["v4"] }

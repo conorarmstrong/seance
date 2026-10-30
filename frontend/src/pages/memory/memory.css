@@ -1,0 +1,491 @@
+/*
+ * Memory-analysis section. All classes are prefixed `mem-`.
+ *
+ * The visual rules here carry evidential meaning and are not decoration:
+ *  - "not checked" is the loudest of the three presence marks, because a
+ *    strategy that did not run is a gap in the evidence, not a negative result;
+ *  - a row the analysis could not fully read gets a border as well as a badge;
+ *  - every colour is paired with a word or a shape, so the grade of a row
+ *    survives greyscale printing and colour-blind vision.
+ */
+
+.mem-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mem-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mem-head .page-title {
+  margin: 0;
+}
+
+.mem-image-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.mem-image-single {
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.mem-image-facts {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.mem-lenses {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-0);
+  padding-bottom: 6px;
+}
+
+.mem-lens {
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  color: var(--text-1);
+  text-decoration: none;
+  font-size: 12.5px;
+}
+
+.mem-lens:hover {
+  color: var(--accent);
+}
+
+.mem-lens.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+/* ---- Key/value blocks ---- */
+
+.mem-kv {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.mem-kv-row {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.mem-kv-row dt {
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mem-kv-row dd {
+  margin: 0;
+}
+
+.mem-note {
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+
+.mem-subhead {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.mem-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Confidence chip and its popover ---- */
+
+.mem-conf {
+  position: relative;
+  display: inline-block;
+}
+
+.mem-conf-summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.mem-conf-summary::-webkit-details-marker {
+  display: none;
+}
+
+.mem-conf-pop {
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  left: 0;
+  width: 420px;
+  max-width: 80vw;
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.mem-conf-title {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+}
+
+.mem-conf-lede {
+  margin: 0 0 8px;
+  color: var(--text-1);
+  font-size: 12px;
+}
+
+.mem-conf-axes {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.mem-conf-axis {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px;
+}
+
+.mem-conf-axis dt {
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.mem-conf-axis dd {
+  margin: 0;
+}
+
+.mem-conf-value {
+  display: block;
+  color: var(--text-0);
+}
+
+.mem-conf-detail {
+  display: block;
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+
+.mem-symbol-banner {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* ---- Presence glyph ---- */
+
+.mem-glyph {
+  display: inline-flex;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.mem-glyph-seen {
+  color: var(--ok);
+}
+
+.mem-glyph-not_seen {
+  color: var(--text-2);
+}
+
+/* "Not checked" is deliberately the loudest of the three: a strategy that did
+   not run is a gap in the evidence, not a negative result. */
+.mem-glyph-unknown {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+/* ---- Tiles ---- */
+
+.mem-tiles {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mem-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text-0);
+}
+
+.mem-tile:hover {
+  border-color: var(--accent-dim);
+}
+
+.mem-tile-value {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mem-tile-label {
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Signals and lists ---- */
+
+.mem-signals,
+.mem-available,
+.mem-steps,
+.mem-chain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.mem-signal {
+  border-left: 3px solid var(--border-1);
+  padding-left: 8px;
+  display: grid;
+  gap: 2px;
+}
+
+.mem-signal-warning {
+  border-left-color: var(--warn);
+}
+
+.mem-signal-summary {
+  font-size: 12.5px;
+}
+
+/* ---- Degraded mode ---- */
+
+.mem-degraded {
+  display: grid;
+  gap: 12px;
+}
+
+.mem-degraded-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.mem-command {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.mem-command code {
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 4px 8px;
+  font-size: 11.5px;
+  overflow-x: auto;
+}
+
+.mem-step-title {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-0);
+}
+
+.mem-available li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---- Process table ---- */
+
+.mem-process-layout {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.mem-process-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.mem-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Row above a per-process handle table: the count and its confidence chip. */
+.mem-handles-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* Unlinked from the active process list: the single most important state in
+   memory forensics, so it gets a border as well as a badge. */
+.mem-row-hidden td:first-child {
+  border-left: 3px solid var(--danger);
+}
+
+.mem-row-flagged td:first-child {
+  border-left: 3px solid var(--warn);
+}
+
+.mem-col-conf {
+  width: 100px;
+}
+
+/* ---- Inspector rail ---- */
+
+.mem-inspector {
+  flex: 0 0 460px;
+  max-width: 46vw;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+}
+
+@media (max-width: 1400px) {
+  .mem-process-layout {
+    flex-direction: column;
+  }
+
+  .mem-inspector {
+    flex: 1 1 auto;
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.mem-inspector-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.mem-inspector-title {
+  margin: 0;
+  font-size: 13.5px;
+  flex: 1 1 auto;
+}
+
+.mem-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border-0);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.mem-tab {
+  background: none;
+  border: none;
+  color: var(--text-1);
+  font-size: 12px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.mem-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---- Findings ---- */
+
+.mem-finding-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mem-finding {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  background: var(--bg-1);
+}
+
+.mem-finding-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.mem-finding-title {
+  margin: 0;
+  font-size: 13px;
+  flex: 1 1 auto;
+}
+
+.mem-finding-body {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.mem-finding-refs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* A detector that gave no benign explanation. Rendered loudly on purpose: it
+   is a defect in the detector, and the examiner must see it. */
+.mem-missing-rebuttal {
+  color: var(--warn);
+}
+
+/* ---- Credentials ---- */
+
+.mem-revealed {
+  color: var(--danger);
+}
+
+.mem-chain li {
+  font-size: 11.5px;
+}
+
+.mem-floor {
+  margin-bottom: 10px;
+}
+

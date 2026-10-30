@@ -1,0 +1,10 @@
+root\subscription	ActiveScriptEventConsumer	SeanceMarkerConsumer
+root\subscription	CommandLineEventConsumer	SeanceSecondConsumer
+root\subscription	NTEventLogEventConsumer	SCM Event Log Consumer
+root\subscription	__EventFilter	SCM Event Log Filter
+root\subscription	__EventFilter	SeanceMarkerFilter
+root\subscription	__EventFilter	SeanceSecondFilter
+root\subscription	__EventFilter	SeanceThirdFilter
+root\subscription	__FilterToConsumerBinding	__EventFilter.Name="SCM Event Log Filter" -> NTEventLogEventConsumer.Name="SCM Event Log Consumer"
+root\subscription	__FilterToConsumerBinding	__EventFilter.Name="SeanceMarkerFilter" -> ActiveScriptEventConsumer.Name="SeanceMarkerConsumer"
+root\subscription	__FilterToConsumerBinding	__EventFilter.Name="SeanceSecondFilter" -> CommandLineEventConsumer.Name="SeanceSecondConsumer"

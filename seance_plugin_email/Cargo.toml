@@ -1,0 +1,24 @@
+[package]
+name = "seance_plugin_email"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+encoding_rs = "0.8"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+chrono = "0.4"
+mail-parser = "0.9"
+cfb = "0.10"
+outlook-pst = "1.1.0"
+flate2 = "1.0"
+plist = "1.6"
+
+[dev-dependencies]
+base64 = "0.22"
+seance_core = { path = "../seance_core", features = ["test-support"] }

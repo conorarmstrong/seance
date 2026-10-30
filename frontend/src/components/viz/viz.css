@@ -1,0 +1,234 @@
+/*
+ * Visualization tokens and component styles.
+ *
+ * Palette is derived from the workbench accent: one muted amber for
+ * data marks, neutral ink-blue fills for structure. Saturation stays
+ * low — this is an instrument, not a marketing dashboard.
+ */
+
+:root {
+  /* Single-series mark colour: the accent pulled toward the surface, which is
+     what the frozen #c99a4a was — the dark palette's amber, mixed once by hand
+     and then unable to follow anything. */
+  --viz-series: color-mix(in srgb, var(--accent) 80%, var(--bg-0));
+  /* Structural fills for the disk map: a step above the surface, and a step
+     above that on hover. Were #222836 and #2a3140. */
+  --viz-part-fill: var(--bg-3);
+  --viz-part-fill-hover: color-mix(in srgb, var(--bg-3) 70%, var(--accent));
+  /* Derived from the theme's accent rather than frozen to the palette that
+     was current when these were written. */
+  --viz-fs-fill: color-mix(in srgb, var(--accent) 10%, transparent);
+  --viz-fs-fill-hover: color-mix(in srgb, var(--accent) 18%, transparent);
+  /* The unallocated ground and its hatch: a shade under the page's own
+     quietest surface, derived rather than frozen to the palette these were
+     written against. */
+  --viz-unalloc-base: color-mix(in srgb, var(--bg-0) 80%, var(--bg-1));
+  --viz-hatch: var(--border-1);
+  /* The allocation ramp's ends. They ARE `--bg-3` and `--accent` — the ramp
+     `lib/themeRamp.ts` runs between — and are aliased here so the legend
+     swatch and the heatmap's zero-cell reach them by name.
+
+     They were `#202630` and `#e5a13c`: the 2026 dark palette's, frozen. That
+     survived the literal-colour lint because the lint read only `color`,
+     `background`, `fill` and friends, and a literal hiding behind a custom
+     property name is not one of those. The lint reads custom properties now.
+
+     The consequence was worse than a wrong shade. The heatmap's zero-count
+     cell returned `--viz-alloc-lo` while its non-zero cells ramped from
+     `--bg-3`, so under a light skin an EMPTY hour drew near-black and a
+     one-event hour drew near-white: the chart read inverted, and the legend
+     matched neither end of it. */
+  --viz-alloc-lo: var(--bg-3);
+  --viz-alloc-hi: var(--accent);
+}
+
+/* ---- Shared SVG text/grid classes ---- */
+
+.viz-axis-text {
+  fill: var(--text-2);
+  font-size: 9.5px;
+  font-family: var(--font-mono);
+}
+
+.viz-bar-label {
+  fill: var(--text-1);
+  font-size: 11px;
+  font-family: var(--font-ui);
+}
+
+.viz-bar-value {
+  fill: var(--text-0);
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+}
+
+.viz-gridline {
+  stroke: var(--border-0);
+  stroke-width: 1;
+}
+
+/* ---- Tooltip ---- */
+
+.viz-tip {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  background: var(--bg-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 6px 9px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-1);
+  max-width: 280px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.viz-tip-title {
+  color: var(--text-0);
+  font-weight: 600;
+}
+
+.viz-tip-mono {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+
+/* ---- Disk map ---- */
+
+.viz-diskmap {
+  position: relative;
+}
+
+.viz-dm-region {
+  cursor: pointer;
+  outline-offset: -2px;
+}
+
+.viz-dm-part {
+  fill: var(--viz-part-fill);
+}
+
+.viz-dm-region:hover .viz-dm-part,
+.viz-dm-region:focus-visible .viz-dm-part {
+  fill: var(--viz-part-fill-hover);
+}
+
+.viz-dm-fs {
+  fill: var(--viz-fs-fill);
+}
+
+.viz-dm-region:hover .viz-dm-fs,
+.viz-dm-region:focus-visible .viz-dm-fs {
+  fill: var(--viz-fs-fill-hover);
+}
+
+.viz-dm-region-label {
+  fill: var(--text-1);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* ---- Allocation map ---- */
+
+.viz-alloc {
+  position: relative;
+}
+
+.viz-alloc canvas {
+  display: block;
+  width: 100%;
+}
+
+.viz-alloc-legend {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.viz-alloc-ramp {
+  width: 64px;
+  height: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--viz-alloc-lo), var(--viz-alloc-hi));
+}
+
+.viz-alloc-note {
+  margin-left: auto;
+  font-family: var(--font-mono);
+}
+
+.viz-empty {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+/* --- Size treemap (Treemap.tsx): drill-down directory/file size map. --- */
+.viz-treemap {
+  width: 100%;
+}
+
+.viz-tm-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.viz-tm-crumb {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 1px 3px;
+  font-size: 12px;
+}
+
+.viz-tm-crumb:disabled {
+  color: var(--text-1);
+  cursor: default;
+}
+
+.viz-tm-crumb:not(:disabled):hover {
+  text-decoration: underline;
+}
+
+.viz-tm-sep {
+  color: var(--text-2);
+}
+
+.viz-tm-tile.drillable {
+  cursor: pointer;
+}
+
+.viz-tm-dir {
+  fill: var(--viz-part-fill);
+  stroke: var(--border-0);
+  stroke-width: 1;
+}
+
+.viz-tm-file {
+  fill: var(--viz-fs-fill);
+  stroke: var(--border-0);
+  stroke-width: 1;
+}
+
+.viz-tm-tile.drillable:hover .viz-tm-dir,
+.viz-tm-tile.drillable:focus-visible .viz-tm-dir {
+  fill: var(--viz-part-fill-hover);
+}
+
+.viz-tm-label {
+  fill: var(--text-1);
+  font-size: 11px;
+  pointer-events: none;
+  font-family: var(--font-mono, monospace);
+}

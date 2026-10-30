@@ -1,0 +1,71 @@
+[package]
+name = "seance_plugin_memory_windows"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_memory = { path = "../seance_memory" }
+seance_symbols = { path = "../seance_symbols" }
+aho-corasick = "1.1"
+memchr = "2.7"
+# Instruction decoding for the syscall-stub detectors. The detection walks the
+# decoded instruction stream against invalid/termination opcode sets, so it
+# needs to know where each instruction ends — x86-64 encodings are 1 to 15 bytes
+# and a byte-pattern match cannot tell you that.
+#
+# Decoder and formatter only: the default features also build the encoder, the
+# block encoder, the code assembler and three more formatter syntaxes, none of
+# which this crate needs. Evidence is attacker-controlled, so the less of it we
+# link, the better.
+iced-x86 = { version = "1.21", default-features = false, features = ["std", "decoder", "instr_info", "intel"] }
+serde_json = { workspace = true }
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }
+# Credential decryption (MEM-008): the SAM boot key + hashed-boot-key + NT-hash
+# path is AES-128-CBC (Windows 10 1607+) over a DES layer keyed by the account
+# RID. Decode-only use over evidence bytes.
+aes = "0.8"
+cbc = "0.1"
+des = "0.8"
+# LSA secrets and cached domain logons: the Win10+ scheme derives an AES-256 key
+# by SHA-256(bootkey/LSA-key + salt, 1000 rounds), then AES-256 over the secret.
+sha2 = "0.10"
+# The AES key-schedule verifier, for the TrueCrypt/VeraCrypt stage's sweep of
+# the non-paged pool: a schedule is proved by re-expanding its leading key,
+# which is the one check that cannot be fooled by structure that merely looks
+# like one. No cycle: `seance_bulk` depends on nothing in the memory tier.
+seance_bulk = { path = "../seance_bulk" }
+
+[dev-dependencies]
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+# The real YARA engine, for the corpus test that grades the pattern-scan stage
+# against `vadyarascan`'s own answer on the same image. A fixed-string scanner
+# would produce the same addresses and would not prove the composition that
+# actually ships: rules compiled by the product's own loader, driven through
+# `seance_memory::scan` over a process's assembled address space.
+#
+# Dev-only on purpose. The library takes a `Scanner` and does not depend on the
+# YARA crate at all, so wasmtime stays out of this crate's product build and
+# the registration site supplies the engine.
+seance_plugin_yara = { path = "../seance_plugin_yara" }
+# The §2.1 feature selectors, for the corpus test that proves they run over a
+# RECONSTRUCTED hibernation image rather than over the compressed file (§3.8).
+# No cycle: this crate is not in that one's dependency tree.
+seance_plugin_bulk = { path = "../seance_plugin_bulk" }
+tempfile = "3"
+
+# Ground truth for the in-memory TaskCache `Triggers` decode: the same
+# machine's disk, unlocked and walked, and each task's XML parsed by the
+# product's own task parser. No cycle: none of these depends on this crate.
+seance_plugin_bitlocker = { path = "../seance_plugin_bitlocker" }
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+seance_plugin_asep = { path = "../seance_plugin_asep" }
+
+# MD4 of a known UTF-16LE password, to validate a recovered NT hash against
+# ground truth in the credential-decryption integration test.
+md4 = "0.10"

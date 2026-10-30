@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_pcap"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+# HTTP bodies cross the wire gzip'd or deflated far more often than not, and
+# the object an examiner needs is the page or the executable, not the coding.
+flate2 = "1.0"
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+# The Case 001 known-answer test (`tests/case001_capture.rs`) finds its capture
+# through the shared corpus gate and hashes the payload it carves off the wire.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+md-5 = "0.10"
+sha2 = "0.10"

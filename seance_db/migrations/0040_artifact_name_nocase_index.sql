@@ -1,0 +1,24 @@
+-- A case-insensitive index on a file entry's name.
+--
+-- The cross-view findings (ROADMAP §2.2 items 3 and 6) ask "is there a file
+-- entry for this name anywhere in the case" for every program prefetch and
+-- Amcache record that it ran. Windows compares file names case-insensitively,
+-- and the sources disagree about case as a matter of course: a prefetch file
+-- names CMD.EXE, Amcache names c:\windows\system32\cmd.exe, and the MFT holds
+-- whatever case the file was created with. An exact-case comparison would
+-- answer "that program's file is not on this volume" for most of a healthy
+-- system directory, which is the false-absence class this project treats as a
+-- HIGH defect.
+--
+-- `idx_artifacts_browse_type_name` (migration 0018) is a BINARY-collation
+-- index, so `name COLLATE NOCASE IN (...)` cannot use it and would table-scan
+-- the artifacts table once per triage view. This index is declared with the
+-- collation the query uses.
+--
+-- NOCASE in SQLite folds ASCII only. That is the correct scope here: these
+-- names come from Windows execution artifacts, where the stored form is ASCII
+-- for effectively every system and application binary, and a non-ASCII name
+-- that does not fold simply falls through to "not matched" — which the
+-- findings treat as an unanswered question, never as an absence.
+CREATE INDEX IF NOT EXISTS idx_artifacts_type_name_nocase
+    ON artifacts(case_id, artifact_type, name COLLATE NOCASE);

@@ -1,0 +1,16 @@
+[package]
+name = "seance_container_vdisk"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1"
+uuid = { version = "1.10.0", features = ["v4"] }
+byteorder = "1.5"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }

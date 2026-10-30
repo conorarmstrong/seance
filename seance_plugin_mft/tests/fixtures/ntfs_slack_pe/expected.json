@@ -1,0 +1,22 @@
+{
+  "image": "ntfs_slack_pe.img",
+  "synthetic": true,
+  "image_sha256": "42c1361c4f4006836f007809b54f27d6a33a42fa3a685d9f20b7ed4cd93786d6",
+  "partition_start_bytes": 1048576,
+  "cluster_size": 4096,
+  "lcn": {
+    "host.bin": 297,
+    "zero.bin": 298,
+    "exact.bin": 299
+  },
+  "pe_disk_offset": 2266112,
+  "pe_host": "host.bin",
+  "pe_len": 1024,
+  "regions_expected": [
+    "host.bin"
+  ],
+  "no_region_expected": [
+    "zero.bin",
+    "exact.bin"
+  ]
+}

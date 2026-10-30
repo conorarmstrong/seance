@@ -1,0 +1,22 @@
+{
+  "//": "User-defined carving signatures. Pass with: seance --carver-defs this-file.json",
+  "//header": "Hex string; whitespace, ':' and ',' are ignored. header_offset defaults to 0.",
+  "//footer": "Optional hex end-marker; recovery stops just after its first match past the header.",
+  "//sizes": "max_size defaults to 16 MiB; min_size defaults to the header length.",
+  "signatures": [
+    {
+      "name": "AcmeLog",
+      "extension": "acmelog",
+      "header": "AC 4D 45 4C 4F 47",
+      "footer": "0A 45 4F 46",
+      "max_size": 1048576
+    },
+    {
+      "name": "CustomRecord",
+      "extension": "crec",
+      "header": "43 52 45 43 00 01",
+      "max_size": 262144,
+      "min_size": 64
+    }
+  ]
+}

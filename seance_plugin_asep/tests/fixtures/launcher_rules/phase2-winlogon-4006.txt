@@ -1,0 +1,13 @@
+
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uips1.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uijs.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uivbs.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uicmd.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uibat.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uicom.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uips1.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uijs.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uivbs.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uicmd.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uibat.
+Microsoft-Windows-Winlogon 4006: The Windows logon process has failed to spawn a user application. Application name: . Command line parameters: h249uicom.

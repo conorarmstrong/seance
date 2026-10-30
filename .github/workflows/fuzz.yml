@@ -1,0 +1,84 @@
+name: Fuzz
+
+# Continuous adversarial fuzzing of the parsers that ingest untrusted evidence.
+# Runs nightly and on manual dispatch. A crash fails the job and uploads the
+# reproducer so it can be triaged and fixed. Bounded per-target time keeps the
+# job within CI limits; the seeds (fuzz/gen_seeds.py) get each target past its
+# magic gate so the run exercises real parser code, not just the signature check.
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # nightly 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      seconds_per_target:
+        description: 'Seconds to fuzz each target'
+        default: '120'
+
+concurrency:
+  group: fuzz-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install nightly + cargo-fuzz
+        uses: dtolnay/rust-toolchain@nightly
+      - run: cargo install cargo-fuzz --locked
+
+      - name: Install libewf (E01-linked crates)
+        run: sudo apt-get update && sudo apt-get install -y libewf-dev pkg-config clang
+
+      - name: Generate seed corpus
+        run: python3 fuzz/gen_seeds.py
+
+      - name: Build all fuzz targets
+        run: cargo +nightly fuzz build
+
+      - name: Run each target (bounded)
+        env:
+          SECS: ${{ github.event.inputs.seconds_per_target || '120' }}
+        run: |
+          set -o pipefail
+          status=0
+          for t in $(cargo +nightly fuzz list); do
+            echo "::group::fuzz $t"
+            corpus="fuzz/corpus/$t"
+            mkdir -p "$corpus"
+            if cargo +nightly fuzz run "$t" "$corpus" -- \
+                 -max_total_time="$SECS" -max_len=2097152 -rss_limit_mb=4096; then
+              echo "$t: clean"
+            else
+              echo "::error::fuzz target $t crashed"
+              status=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $status
+
+      # The whole point of failing the job is to come back with the input that
+      # caused it. `upload-artifact` globs through @actions/glob, which supports
+      # `*`, `**`, `?`, `[]` and `!` but NOT brace expansion — so the single-line
+      # `{crash,oom,timeout}-*` matched a directory literally named that, i.e.
+      # nothing, and `if-no-files-found: ignore` then swallowed the miss. A real
+      # crash would have failed the run and discarded the one artifact needed to
+      # reproduce it. Newline-separated patterns are the supported form.
+      #
+      # `warn` rather than `ignore`, because reaching this step means a target
+      # crashed: finding no reproducer at that point is itself worth a line in
+      # the log, not silence.
+      - name: Upload crash reproducers
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-crashes
+          path: |
+            fuzz/artifacts/**/crash-*
+            fuzz/artifacts/**/oom-*
+            fuzz/artifacts/**/timeout-*
+            fuzz/artifacts/**/leak-*
+          if-no-files-found: warn

@@ -1,0 +1,13 @@
+[package]
+name = "seance_plugin_utmp"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_login_sessions = { path = "../seance_login_sessions" }
+serde_json = { workspace = true }
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }

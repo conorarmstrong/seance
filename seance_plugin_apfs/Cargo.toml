@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_apfs"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+# The decmpfs attribute is persisted on the artifact so a compressed file's
+# content location survives ingest (LIVE-001).
+base64 = "0.22"
+uuid = { version = "1.11", features = ["v4", "serde"] }
+tracing = "0.1"
+byteorder = "1.5"
+chrono = "0.4"
+# decmpfs (transparent APFS compression) zlib streams; LZVN is decoded in-tree.
+flate2 = "1.0"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

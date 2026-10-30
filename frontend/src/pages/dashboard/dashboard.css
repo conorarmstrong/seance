@@ -1,0 +1,288 @@
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dash-stat-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+}
+
+.dash-stat-value {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.dash-stat-label {
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.dash-stat-total .dash-stat-value {
+  color: var(--accent);
+}
+
+.dash-completed-toggle {
+  margin-top: 10px;
+}
+
+.dash-error-cell {
+  color: var(--danger);
+  overflow-wrap: anywhere;
+}
+
+.dash-muted {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+/* ---- Charts row ---- */
+
+.dash-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.dash-chart-panel {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ---- Evidence sources ---- */
+
+.dash-source-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.dash-source-card:last-child {
+  margin-bottom: 0;
+}
+
+.dash-source-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.dash-source-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-source-count {
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+
+.dash-source-link {
+  margin-left: auto;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.dash-fs-usage {
+  margin-top: 10px;
+  border-top: 1px solid var(--border-0);
+  padding-top: 8px;
+}
+
+.dash-fs-toggle {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+/* ---- Loading skeleton ---- */
+
+.dash-skel {
+  border-radius: var(--radius);
+  background: linear-gradient(
+    90deg,
+    var(--bg-2) 25%,
+    var(--bg-3) 50%,
+    var(--bg-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: dash-shimmer 1.4s linear infinite;
+}
+
+@keyframes dash-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.dash-timeline-panel {
+  margin-bottom: 16px;
+}
+
+.dash-timeline-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dash-jobs-subhead {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  margin: 12px 0 4px;
+}
+
+/* The true event count beside the activity panel's title. */
+.dash-panel-count {
+  font-weight: 400;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+/* The queue of recoverable problems (ROADMAP §2.11). */
+.at .panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.at-total {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.at-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.at-item {
+  padding: 10px 12px;
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+}
+
+.at-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.at-problem {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.at-count {
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+.at-guidance,
+.at-startup,
+.at-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-1);
+}
+
+.at-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.at-label {
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.at-input {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 6px 9px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-0);
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.at-input:focus {
+  outline: none;
+  border-color: var(--accent-dim);
+}
+
+.at-run {
+  padding: 6px 11px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--on-accent);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.at-run:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.at-run:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.at-form .at-note,
+.at-form .error-note {
+  flex: 1 1 100%;
+}
+
+.at-examples {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 11px;
+}
+
+.at-examples li {
+  overflow-wrap: anywhere;
+}
+
+.at-more {
+  color: var(--text-2);
+}
+
+.at-scope {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-2);
+}

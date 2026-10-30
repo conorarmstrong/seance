@@ -1,0 +1,17 @@
+[package]
+name = "seance_plugin_leveldb"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+snap = "1.1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

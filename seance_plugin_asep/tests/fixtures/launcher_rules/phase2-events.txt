@@ -1,0 +1,33 @@
+22:27:36 parent=C:\Windows\System32\winlogon.exe new=C:\Windows\System32\h249uiall.exe cmd=[h249uiall]
+22:27:36 parent=C:\Windows\System32\winlogon.exe new=C:\Windows\System32\h249uiexe.exe cmd=[h249uiexe]
+22:27:38 parent=C:\Windows\System32\runonce.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249roncebat.bat" "]
+22:27:38 parent=C:\Windows\System32\runonce.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249roncecmd.cmd" "]
+22:27:38 parent=C:\Windows\System32\runonce.exe new=C:\Windows\System32\h249ronceall.com cmd=["C:\Windows\System32\h249ronceall.com" ]
+22:27:38 parent=C:\Windows\System32\runonce.exe new=C:\Windows\System32\h249roncecom.com cmd=["C:\Windows\System32\h249roncecom.com" ]
+22:27:38 parent=C:\Windows\System32\runonce.exe new=C:\Windows\System32\h249ronceexe.exe cmd=["C:\Windows\System32\h249ronceexe.exe" ]
+22:28:09 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runcom.com cmd=["C:\Windows\System32\h249runcom.com" ]
+22:28:11 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runexe.exe cmd=["C:\Windows\System32\h249runexe.exe" ]
+22:28:42 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249runbat.bat" "]
+22:28:44 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249runcmd.cmd" "]
+22:28:46 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runall.com cmd=["C:\Windows\System32\h249runall.com" ]
+22:28:48 parent=C:\Windows\explorer.exe new=C:\h249\apmarker.exe cmd=["C:\h249\apmarker.exe" ]
+22:29:28 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249hkcucom.com cmd=["C:\Windows\System32\h249hkcucom.com" ]
+22:29:34 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249hkcuexe.exe cmd=["C:\Windows\System32\h249hkcuexe.exe" ]
+22:29:36 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249hkcubat.bat" "]
+22:29:39 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249hkcucmd.cmd" "]
+22:29:40 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249hkcuall.com cmd=["C:\Windows\System32\h249hkcuall.com" ]
+22:29:51 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\WINDOWS\system32\h249lnkbat.bat" "]
+22:29:53 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\WINDOWS\system32\h249lnkcmd.cmd" "]
+22:29:56 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249lnkexe.exe cmd=["C:\WINDOWS\system32\h249lnkexe.exe" ]
+C:\Windows\System32\h249tskbat.bat  
+C:\Windows\System32\h249tskcmd.cmd  
+C:\WINDOWS\system32\h249tskvbs.VBS
+C:\WINDOWS\system32\h249tskjs.JS
+C:\Windows\System32\h249roncebat.bat  
+C:\Windows\System32\h249roncecmd.cmd  
+C:\Windows\System32\h249runbat.bat  
+C:\Windows\System32\h249runcmd.cmd  
+C:\Windows\System32\h249hkcubat.bat  
+C:\Windows\System32\h249hkcucmd.cmd  
+C:\Windows\System32\h249lnkbat.bat  
+C:\Windows\System32\h249lnkcmd.cmd  

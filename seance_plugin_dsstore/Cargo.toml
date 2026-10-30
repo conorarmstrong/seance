@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_dsstore"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Record-level parser for macOS .DS_Store (Finder metadata, Apple "Buddy"
+# allocator). Walks the buddy allocator + B-tree and emits one summary record
+# per filename describing which Finder metadata existed for it.
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

@@ -1,0 +1,205 @@
+[
+  null,
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaOutsideValidated",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_seen": 4,
+      "schema_version_recorded": true,
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "message": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+      "schema_support": "golden-app: golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "detail": "golden-app: golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "name": "GoldenIncomplete: schema support — SchemaOutsideValidated"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaOutsideValidated",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_seen": 2,
+      "schema_version_recorded": true,
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "message": "golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records",
+      "schema_support": "golden-app: golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records; the store records schema version 2 (PRAGMA user_version)",
+      "detail": "golden-app: golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records; the store records schema version 2 (PRAGMA user_version)",
+      "name": "GoldenIncomplete: schema support — SchemaOutsideValidated"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_recorded": false,
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "schema_support": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "detail": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "name": "GoldenIncomplete: schema support — SchemaVersionNotRecorded"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "coredata_model",
+      "schema_version_detail": "not read here",
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "schema_support": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store's schema version was not read: not read here",
+      "detail": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store's schema version was not read: not read here",
+      "name": "GoldenIncomplete: schema support — SchemaVersionNotRecorded"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionUndetermined",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_detail": "io",
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "schema_support": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store's schema version could not be read (io), so it was not compared to anything",
+      "detail": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store's schema version could not be read (io), so it was not compared to anything",
+      "name": "GoldenIncomplete: schema support — SchemaVersionUndetermined"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaOptionalFieldsUnresolved",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_seen": 3,
+      "schema_version_recorded": true,
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "schema_unresolved_optional_fields": [
+        "extra"
+      ],
+      "schema_support": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store records schema version 3 (PRAGMA user_version)",
+      "detail": "golden-app: this parser was validated against schema version(s) 3..=3 (golden.db); the store records schema version 3 (PRAGMA user_version)",
+      "name": "GoldenIncomplete: schema support — SchemaOptionalFieldsUnresolved"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaFieldsUnresolved",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_seen": 4,
+      "schema_version_recorded": true,
+      "schema_version_supported": "3..=3",
+      "schema_version_evidence": "golden.db",
+      "message": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+      "schema_unresolved_optional_fields": [
+        "extra"
+      ],
+      "schema_unresolved_fields": [
+        "text"
+      ],
+      "content_incomplete": true,
+      "content_incomplete_reason": "unvalidated",
+      "content_incomplete_detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "inventory_incomplete": true,
+      "inventory_incomplete_reason": "unvalidated",
+      "inventory_incomplete_detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "schema_support": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version; the store records schema version 4 (PRAGMA user_version)",
+      "name": "GoldenIncomplete: schema support — SchemaFieldsUnresolved"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaNotRanged",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_seen": 9,
+      "schema_version_recorded": true,
+      "schema_support": "golden-app: this parser has not been validated against a real golden-app database: no store held; the store records schema version 9 (PRAGMA user_version)",
+      "detail": "golden-app: this parser has not been validated against a real golden-app database: no store held; the store records schema version 9 (PRAGMA user_version)",
+      "name": "GoldenIncomplete: schema support — SchemaNotRanged"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "GoldenIncomplete",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaFieldsUnresolved",
+      "app": "golden-app",
+      "source_table": "message",
+      "records_recovered": 7,
+      "schema_version_locator": "user_version",
+      "schema_version_recorded": false,
+      "schema_unresolved_optional_fields": [
+        "extra"
+      ],
+      "schema_unresolved_fields": [
+        "text"
+      ],
+      "content_incomplete": true,
+      "content_incomplete_reason": "unvalidated",
+      "content_incomplete_detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; this parser has not been validated against a real golden-app database: no store held; the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "inventory_incomplete": true,
+      "inventory_incomplete_reason": "unvalidated",
+      "inventory_incomplete_detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; this parser has not been validated against a real golden-app database: no store held; the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "schema_support": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; this parser has not been validated against a real golden-app database: no store held; the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "detail": "golden-app: `message` has no column this parser recognises for text, so the 7 record(s) recovered from it are missing that field and the schema has moved beyond what this parser was written to; this parser has not been validated against a real golden-app database: no store held; the store records no schema version (PRAGMA user_version is 0, SQLite's unset default)",
+      "name": "GoldenIncomplete: schema support — SchemaFieldsUnresolved"
+    }
+  }
+]

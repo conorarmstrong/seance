@@ -1,0 +1,297 @@
+{
+  "description": "The shared corpus for the one timestamp decision procedure: given a metadata object and an ordered list of keys, produce an instant or a stated reason no instant could be produced. Every expression of the rule (frontend/src/lib/epoch.ts, seance_core::timestamp, and the histogram SQL) is pinned by THIS file, so a divergence between them is a failing test rather than a silent disagreement about when something happened. Each expectation below was measured against the shipping browser reader before it was written down; where the browser's answer is wrong, the row says so in its name rather than hiding it.",
+  "schema": {
+    "name": "what the row pins, in a sentence",
+    "keys": "the ordered key list the procedure is given; the FIRST key that yields an instant wins",
+    "input": "the metadata object, as a parser would have written it",
+    "expect": "exactly one of { placed_secs, confidence: as_written | by_rescue } | { unplaceable: \"value\" } | { unplaceable: \"absent\" }"
+  },
+  "confidence": {
+    "as_written": "read in the unit the record's contract states (whole Unix seconds), or parsed from a written date-time that carries its own UTC offset",
+    "by_rescue": "placed only by assuming which unit the parser used - milliseconds, microseconds or Windows FILETIME ticks. A weaker fact than as_written, and it must be reported as one."
+  },
+  "rows": [
+    {
+      "name": "whole Unix seconds, the documented contract for `date`",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1709640000 },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "a genuine pre-1973 instant is BELOW the seconds band and cannot be placed at all",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 68256000 },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "1e8 exactly is outside the band (the comparison is strictly greater)",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 100000000 },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "one second past the band floor is placed: 1973-03-03",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 100000001 },
+      "expect": { "placed_secs": 100000001, "confidence": "as_written" }
+    },
+    {
+      "name": "0 is a present value with no admissible reading, never 1970-01-01",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 0 },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a negative whole-seconds value is not placed",
+      "keys": ["date", "timestamp"],
+      "input": { "date": -1700000000 },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "millisecond magnitude is placed only by assuming the unit",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1709640000000 },
+      "expect": { "placed_secs": 1709640000, "confidence": "by_rescue" }
+    },
+    {
+      "name": "millisecond magnitude as an integer-literal string, same rescue",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "1709640000000" },
+      "expect": { "placed_secs": 1709640000, "confidence": "by_rescue" }
+    },
+    {
+      "name": "microsecond magnitude falls into the FILETIME band and lands in 1606 - the wrong answer the reader gives today, and why wave 1C fixes the unit at the source",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1709640000000000 },
+      "expect": { "placed_secs": -11473509600, "confidence": "by_rescue" }
+    },
+    {
+      "name": "Windows FILETIME ticks are placed by rescue: 2024-01-17",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 133500000000000000 },
+      "expect": { "placed_secs": 1705526400, "confidence": "by_rescue" }
+    },
+    {
+      "name": "a FILETIME string is converted exactly, one tick below a second boundary",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "133699999999999999" },
+      "expect": { "placed_secs": 1725526399, "confidence": "by_rescue" }
+    },
+    {
+      "name": "an integer literal too large for any epoch is not placed",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "1234567890123456789012345678901234567890" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "CallLog writes `timestamp` and no `date`; the second key is read",
+      "keys": ["date", "timestamp"],
+      "input": { "timestamp": 1600000000 },
+      "expect": { "placed_secs": 1600000000, "confidence": "as_written" }
+    },
+    {
+      "name": "KEY PRECEDENCE: `date` is present but unreadable (0), so `timestamp` decides - first key that YIELDS A VALUE wins, not first key that is non-null",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 0, "timestamp": 1600000000 },
+      "expect": { "placed_secs": 1600000000, "confidence": "as_written" }
+    },
+    {
+      "name": "a null first key is skipped and the second key decides",
+      "keys": ["date", "timestamp"],
+      "input": { "date": null, "timestamp": 1600000000 },
+      "expect": { "placed_secs": 1600000000, "confidence": "as_written" }
+    },
+    {
+      "name": "an earlier key that places wins over a later key that would also place",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1709640000, "timestamp": 1600000000 },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "a present-but-unreadable key outranks an absent one in the stated reason",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "nope", "timestamp": null },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a key list other than the comms one behaves the same way",
+      "keys": ["target_modified", "target_created", "target_accessed"],
+      "input": { "target_modified": null, "target_created": 133500000000000000 },
+      "expect": { "placed_secs": 1705526400, "confidence": "by_rescue" }
+    },
+    {
+      "name": "RFC-3339 with an explicit +00:00 offset",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2024-03-05T12:00:00+00:00" },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "RFC-3339 with Z",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2024-03-05T12:00:00Z" },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "RFC-3339 with a sub-second fraction, truncated to the second",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2024-03-05T12:00:00.1234567Z" },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "RFC-3339 with a non-UTC offset is placed at the instant, not the local clock",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2024-03-05T12:00:00+05:30" },
+      "expect": { "placed_secs": 1709620200, "confidence": "as_written" }
+    },
+    {
+      "name": "a date with no time of day is read as UTC midnight",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2024-03-05" },
+      "expect": { "placed_secs": 1709596800, "confidence": "as_written" }
+    },
+    {
+      "name": "the Unix epoch itself is an instant, not a falsy nothing",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "1970-01-01T00:00:00Z" },
+      "expect": { "placed_secs": 0, "confidence": "as_written" }
+    },
+    {
+      "name": "RFC-2822, the shape an email or MMS header arrives in",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "Mon, 3 Jun 2024 14:22:01 +0100" },
+      "expect": { "placed_secs": 1717420921, "confidence": "as_written" }
+    },
+    {
+      "name": "year 0100 is placed, far below the Unix epoch",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "0100-01-01T00:00:00Z" },
+      "expect": { "placed_secs": -59011459200, "confidence": "as_written" }
+    },
+    {
+      "name": "year 2999 is placed - the reader has no ceiling, and adding one would reclassify four unrelated views' records as unusable",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "2999-01-01T00:00:00Z" },
+      "expect": { "placed_secs": 32472144000, "confidence": "as_written" }
+    },
+    {
+      "name": "the empty string is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a whitespace-only string is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": " " },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "SQLite's magic word `now` must never mean the time of the query",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "now" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a time of day with no date is not an instant",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "10:00:00" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a bare numeric string is read as seconds, never as a Julian day",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "1709640000" },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "a signed integer literal is read in the same bands",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "+1709640000" },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "surrounding whitespace does not stop a numeric string being read",
+      "keys": ["date", "timestamp"],
+      "input": { "date": " 1709640000 " },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "a negative numeric string is not placed",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "-1709640000" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "exponent notation is read as the number it denotes",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "1e9" },
+      "expect": { "placed_secs": 1000000000, "confidence": "as_written" }
+    },
+    {
+      "name": "a hexadecimal literal is numeric but far below the band",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "0x1000" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "the word Infinity is numeric to JavaScript and must still be refused",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "Infinity" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "unparseable text is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": "nope" },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a JSON real in the seconds band is placed and its fraction truncated",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1709640000.5 },
+      "expect": { "placed_secs": 1709640000, "confidence": "as_written" }
+    },
+    {
+      "name": "a JSON real written in exponent form is placed",
+      "keys": ["date", "timestamp"],
+      "input": { "date": 1.7e9 },
+      "expect": { "placed_secs": 1700000000, "confidence": "as_written" }
+    },
+    {
+      "name": "a JSON bool is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": true },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a JSON object is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": {} },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "a JSON array is a present value with no reading",
+      "keys": ["date", "timestamp"],
+      "input": { "date": [1709640000] },
+      "expect": { "unplaceable": "value" }
+    },
+    {
+      "name": "JSON null is ABSENT, not a value that failed to read",
+      "keys": ["date", "timestamp"],
+      "input": { "date": null },
+      "expect": { "unplaceable": "absent" }
+    },
+    {
+      "name": "every key absent is ABSENT",
+      "keys": ["date", "timestamp"],
+      "input": { "body": "hello" },
+      "expect": { "unplaceable": "absent" }
+    },
+    {
+      "name": "an empty metadata object is ABSENT",
+      "keys": ["date", "timestamp"],
+      "input": {},
+      "expect": { "unplaceable": "absent" }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+/* The message cell.
+   The row shows the text the record holds rather than sending the examiner to
+   a raw-JSON record page, but a chat message can be a paragraph long and the
+   table has seven other columns to fit. One line, clipped with an ellipsis,
+   with the whole text in the cell's title — clipped text is visibly clipped,
+   which an examiner reads correctly; a wrapped cell that silently swallows the
+   rest of a long message would not be. */
+
+.cm-content-cell {
+  max-width: 32ch;
+}
+
+.cm-content {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cm-content.muted {
+  color: var(--text-2);
+  font-style: italic;
+}

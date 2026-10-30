@@ -1,0 +1,111 @@
+{
+  "dirs": {
+    "d1": {
+      "inline": true,
+      "names": []
+    },
+    "many": {
+      "inline": false,
+      "names": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ]
+    },
+    "sub": {
+      "inline": true,
+      "names": [
+        "x.txt",
+        "y.txt",
+        "zz.txt"
+      ]
+    }
+  },
+  "e2fsck_clean": true,
+  "files": {
+    "exact60.bin": {
+      "hex": "810cb502b8e2177a57a5195c4ae08b71e9cc7b48f1641fa83d649aa1013cff4eb979683277a1b7d6654519e8eeb272f2b2b32b72744f8bad333b7879",
+      "inline": true,
+      "sha256": "0382c5992891fa921b4139b9d92760322c2ccb6ff5c590aca70e0126d0020dcf",
+      "size": 60
+    },
+    "h100.txt": {
+      "hex": "a07a0128e78b3fb0528cd7c0334b3781703d984e9b81741e54e4d17e02cb32f06baef0c2e841b443e9b05defa7e2a0ad3d2bffa017edfdff1b73e7d74a20aba503f5cb35635eef141b032f300f2d8b85d3e9308d6261930b56434285abbda47e0752f447",
+      "inline": true,
+      "sha256": "d479c2ca97079a6c41e2e7c6041a0d5f61a792b4bd110fbcbcd854b19b7dc393",
+      "size": 100
+    },
+    "many/a": {
+      "hex": "61",
+      "inline": true,
+      "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+      "size": 1
+    },
+    "many/b": {
+      "hex": "62",
+      "inline": true,
+      "sha256": "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+      "size": 1
+    },
+    "many/c": {
+      "hex": "63",
+      "inline": true,
+      "sha256": "2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6",
+      "size": 1
+    },
+    "many/d": {
+      "hex": "64",
+      "inline": true,
+      "sha256": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+      "size": 1
+    },
+    "many/e": {
+      "hex": "65",
+      "inline": true,
+      "sha256": "3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea",
+      "size": 1
+    },
+    "mid.txt": {
+      "hex": "39abf5436b0549b6176ca827b5651e3eec11e359267f7c71dbc8fcff3d9620b50e3aa9897e938ea1fc3a448065c4e1fd5c3bf78d8ba763ba6af06c48c41f3561fe316cbbb545867e104d1ecbf1f927bfabf74048a9a1d3f5d6a87eb3010d0e6088b3054d2970d5a4a84396dc2f137b50e8003392f5b0ffbd1ba53bbdb4fc7a8f097955041bec39bc",
+      "inline": false,
+      "sha256": "f49ecb2543015b6d5d041f9ea82e644a94b17e6450fed8f9df5f6f22170d3b7e",
+      "size": 136
+    },
+    "split61.bin": {
+      "hex": "4acbc6b1015b82fda85eadb78451e75ee1bd668c19500632bf05e1d042e353b05620d4d53655f2dd5b928248e8bdadb826812e6ac2849493231ae98c23",
+      "inline": true,
+      "sha256": "249940ef4f9e241c3b326050b473e786745e993469321c5ed94bc753b0723409",
+      "size": 61
+    },
+    "sub/x.txt": {
+      "hex": "78",
+      "inline": true,
+      "sha256": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "size": 1
+    },
+    "sub/y.txt": {
+      "hex": "7979",
+      "inline": true,
+      "sha256": "ef90d9c1ec76b1edc9edfaf2c0c05359c10ccc49ae8ecf7b7fd25ce9c02e86a4",
+      "size": 2
+    },
+    "sub/zz.txt": {
+      "hex": "636f6e74696e75656420696e2073797374656d2e64617461",
+      "inline": true,
+      "sha256": "fc995d1425735cd5ccc43868d25a43d0fabb5913f7386bda025fb1068b98ea67",
+      "size": 24
+    },
+    "tiny.txt": {
+      "hex": "696e6c696e652066696c652c203236206279746573206c6f6e67",
+      "inline": true,
+      "sha256": "6d163092daac8d8f1289762bd1a983bc88e94867cc99667086ac8f202d864f49",
+      "size": 26
+    }
+  },
+  "grades": "the parser against debugfs/dumpe2fs on a volume mke2fs wrote; never a real-world claim",
+  "image": "ext4_inline.img",
+  "image_sha256": "df7cd90fa8623cbc61dc75f7e0327704b89e2f53977ada6604378e74b0549478",
+  "synthetic": true
+}

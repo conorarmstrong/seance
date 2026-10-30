@@ -1,0 +1,14 @@
+[package]
+name = "seance_plugin_memory_macos"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_memory = { path = "../seance_memory" }
+seance_symbols = { path = "../seance_symbols" }
+serde_json = { workspace = true }
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }

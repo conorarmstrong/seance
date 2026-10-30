@@ -1,0 +1,710 @@
+/* Timeline page (.tl- prefix) */
+
+.tl-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.tl-toolbar-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tl-search-wrap {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.tl-search {
+  width: 260px;
+}
+
+.tl-help-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 300;
+  width: 300px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.tl-help-pop h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--text-0);
+}
+
+.tl-help-pop dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+}
+
+.tl-help-pop dt {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.tl-help-pop dd {
+  margin: 0;
+}
+
+.tl-field-label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--text-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tl-modules-wrap {
+  position: relative;
+}
+
+.tl-modules-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 300;
+  min-width: 240px;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.tl-module-option {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 3px 4px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.tl-module-option:hover {
+  background: var(--bg-3);
+}
+
+.tl-module-count {
+  margin-left: auto;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+}
+
+.tl-check-label {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tl-count {
+  margin-left: auto;
+  color: var(--text-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tl-spacer {
+  flex: 1;
+}
+
+/* ---- Activity histogram ---- */
+
+.tl-hist {
+  margin-bottom: 14px;
+}
+
+.tl-hist-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  min-height: 20px;
+}
+
+.tl-hist-title {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.tl-hist-chip {
+  border: 1px solid var(--accent-dim);
+  border-radius: 10px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 11px;
+  padding: 1px 9px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.tl-hist-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+/* Screen-reader-only summary of the chart. */
+.tl-vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tl-hist-plot {
+  position: relative;
+  height: 80px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  cursor: crosshair;
+  user-select: none;
+  overflow: hidden;
+}
+
+.tl-hist-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tl-hist-grid {
+  stroke: var(--border-0);
+  stroke-width: 1;
+}
+
+.tl-hist-baseline {
+  stroke: var(--border-1);
+  stroke-width: 1;
+}
+
+.tl-hist-hit {
+  fill: transparent;
+}
+
+.tl-hist-bar {
+  fill: var(--accent-dim);
+  pointer-events: none;
+}
+
+.tl-hist-bucket:hover .tl-hist-bar {
+  fill: var(--accent);
+}
+
+/* In-progress drag selection: a highlighted evidence interval. */
+.tl-hist-brush {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--accent-bg);
+  border-left: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+  pointer-events: none;
+}
+
+.tl-hist-axis {
+  position: relative;
+  height: 16px;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.tl-hist-axis span {
+  position: absolute;
+  top: 1px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tl-hist-axis .tl-hist-axis-start {
+  left: 0;
+  transform: none;
+}
+
+.tl-hist-axis .tl-hist-axis-end {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+/* ---- Bulk actions bar ---- */
+
+.tl-bulk-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius);
+  font-size: 12.5px;
+}
+
+.tl-bulk-count {
+  color: var(--text-0);
+}
+
+.tl-bulk-progress {
+  color: var(--accent);
+}
+
+/* ---- Events table ---- */
+
+.tl-table-wrap {
+  overflow-x: auto;
+}
+
+.tl-table tbody tr {
+  cursor: pointer;
+}
+
+.tl-table tbody tr:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.tl-check-col {
+  width: 30px;
+}
+
+.tl-sort {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.tl-sort:hover {
+  color: var(--accent);
+}
+
+.tl-star-col {
+  width: 28px;
+}
+
+.tl-star {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-2);
+}
+
+.tl-star:hover {
+  color: var(--accent);
+}
+
+.tl-star.tagged {
+  color: var(--accent);
+}
+
+.tl-ts {
+  white-space: nowrap;
+}
+
+.tl-desc {
+  word-break: break-word;
+}
+
+.tl-note {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 11px;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.tl-note-btn {
+  margin-left: 6px;
+}
+
+.tl-detail-row td {
+  background: var(--bg-2);
+  cursor: default;
+}
+
+.tl-table tbody tr.tl-detail-row:hover {
+  background: none;
+}
+
+.tl-details {
+  margin: 0 0 8px;
+  padding: 10px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---- Timestamp-source analysis (SI / FN / timestomp) ---- */
+
+.tl-event-type {
+  white-space: nowrap;
+}
+
+.tl-fn-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-dim);
+  vertical-align: middle;
+}
+
+.tl-timestomp {
+  margin-left: 6px;
+  vertical-align: middle;
+  cursor: help;
+}
+
+.tl-loaded-note {
+  margin-bottom: 8px;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.tl-timestomp-reasons {
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 12px;
+}
+
+.tl-timestomp-reasons ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+.tl-sifn {
+  margin: 0 0 8px;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.tl-sifn caption {
+  margin-bottom: 4px;
+  text-align: left;
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.tl-sifn th,
+.tl-sifn td {
+  padding: 3px 14px 3px 0;
+  text-align: left;
+  color: var(--text-1);
+}
+
+.tl-sifn thead th {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ---- Column settings modal ---- */
+
+.tl-col-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.tl-col-row:last-child {
+  border-bottom: none;
+}
+
+.tl-col-name {
+  font-weight: 500;
+}
+
+.tl-col-desc {
+  color: var(--text-2);
+  font-size: 11.5px;
+}
+
+.tl-col-delete {
+  margin-left: auto;
+}
+
+.tl-col-form {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-0);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tl-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.tl-form-error {
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* ---- Tag note modal ---- */
+
+.tl-note-input {
+  width: 100%;
+  resize: vertical;
+  font-family: var(--font-ui);
+}
+
+/* ---- chart view toggle (Activity / Swimlanes) ---- */
+.tl-chart-toggle {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+.tl-chart-toggle button {
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 11px;
+  padding: 3px 11px;
+  cursor: pointer;
+}
+.tl-chart-toggle button:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.tl-chart-toggle button:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+  border-left: none;
+}
+.tl-chart-toggle button.active {
+  color: var(--accent);
+  border-color: var(--border-1);
+  background: var(--bg-3);
+}
+.tl-chart-toggle button:hover {
+  color: var(--text-0);
+}
+
+/* ---- swimlanes ---- */
+.tl-sw {
+  --sw-label: 172px;
+}
+.tl-sw-lanes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 2px 0;
+}
+.tl-sw-lane {
+  display: grid;
+  grid-template-columns: var(--sw-label) minmax(0, 1fr);
+  align-items: center;
+  height: 22px;
+}
+.tl-sw-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-right: 12px;
+  overflow: hidden;
+  font-size: 11.5px;
+}
+.tl-sw-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}
+.tl-sw-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-1);
+}
+.tl-sw-total {
+  color: var(--text-2);
+  font-size: 10.5px;
+  flex: none;
+}
+.tl-sw-strip {
+  height: 20px;
+}
+.tl-sw-strip svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tl-sw-capture {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--sw-label);
+  right: 0;
+  cursor: crosshair;
+}
+.tl-sw-gridline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-0);
+  pointer-events: none;
+}
+.tl-sw-axis {
+  position: relative;
+  height: 16px;
+  margin-top: 4px;
+  margin-left: var(--sw-label);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-2);
+}
+.tl-sw-axis span {
+  position: absolute;
+  top: 1px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.tl-sw-axis .tl-hist-axis-start {
+  left: 0;
+  transform: none;
+}
+.tl-sw-axis .tl-hist-axis-end {
+  right: 0;
+  left: auto;
+  transform: none;
+}
+.tl-sw-trunc {
+  color: var(--text-2);
+  font-size: 10.5px;
+  margin: 6px 0 0;
+}
+
+/* The note that says a lane's colour is a property of the view (UI-015).
+   Quiet, like the truncation note above it: it is a standing fact about the
+   chart rather than a finding about the case. */
+.tl-sw-legend-note {
+  color: var(--text-2);
+  font-size: 10.5px;
+  margin: 4px 0 0;
+}
+
+.tl-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+/* --- Activity heatmap (ActivityHeatmap.tsx): 7x24 pattern-of-life grid. --- */
+.tl-heatmap {
+  width: 100%;
+  padding: 4px 0;
+}
+
+.tl-heatmap-cell {
+  stroke: var(--bg-0);
+  stroke-width: 0.5;
+  cursor: default;
+}
+
+.tl-heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.tl-heatmap-ramp {
+  width: 88px;
+  height: 10px;
+  border-radius: 2px;
+  /* The heatmap legend: the ramp runs from the quietest surface to the accent,
+     which is what the cells themselves are drawn between. Both ends were
+     literals from the 2026 dark palette, so under a light skin the legend ran
+     from a dark slate to an amber while the cells ran from near-white to a
+     violet — a key that described a different chart. */
+  background: linear-gradient(90deg, var(--bg-3), var(--accent));
+}
+
+.tl-heatmap-note {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* UI-007: the axis is focused on where the events are, and this says so and
+   says how many events that left out. It sits directly under the axis, because
+   a disclosure an examiner has to scroll for is one they will quote the chart
+   without. Same weight as the other notes on this page — it is a statement
+   about what is drawn, not a warning. */
+.tl-hist-focus {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 2px 0 0;
+}

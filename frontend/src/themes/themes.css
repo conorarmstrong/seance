@@ -1,0 +1,136 @@
+/* The theme picker. Every colour here is a token, so the picker is itself
+   themed; the only literal values are the ones read out of a palette's own data
+   to draw its swatch, which are set inline in ThemePicker.tsx. */
+
+.tp-group {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin: 0;
+}
+
+.tp-legend {
+  padding: 0 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.tp-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.tp-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  padding: 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  cursor: pointer;
+  font: inherit;
+}
+
+.tp-option:hover {
+  border-color: var(--border-1);
+  background: var(--bg-3);
+}
+
+/* The selected option is marked by a border AND by aria-pressed, never by
+   colour alone: which theme is active has to be answerable without seeing it. */
+.tp-option[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.tp-swatch {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  align-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 34px;
+  padding: 4px;
+  border: 1px solid var(--border-1);
+  border-radius: 3px;
+}
+
+.tp-swatch-default {
+  background: var(--bg-1);
+}
+
+.tp-bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--text-0);
+}
+
+.tp-bar-mid {
+  width: 78%;
+  background: var(--text-1);
+}
+
+.tp-bar-low {
+  width: 55%;
+  background: var(--text-2);
+}
+
+.tp-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tp-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.tp-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.tp-mode {
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.tp-desc {
+  font-size: 12px;
+  color: var(--text-1);
+  line-height: 1.4;
+}
+
+.tp-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--text-2);
+  max-width: 70ch;
+}
+
+/* The compact control in the Cases header. Themed like every other control:
+   its own popup follows the theme through `color-scheme`, which is set by
+   `applyTheme` and is why that property is set at all. */
+.tsel-select {
+  background: var(--bg-2);
+  color: var(--text-0);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 5px 8px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.tsel-select:hover {
+  border-color: var(--accent);
+}

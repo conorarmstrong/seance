@@ -1,0 +1,2201 @@
+/* Analysis surface — prefix all classes with `an-`. */
+
+.an-intro {
+  color: var(--text-1);
+  margin: 0 0 16px;
+  max-width: 60ch;
+}
+
+/* ---- Index grid of record-type cards ---- */
+
+/* Record types grouped by what they are about (UI-033). The heading carries
+   the group's population so the section can be judged before it is opened. */
+.an-group {
+  margin-bottom: 26px;
+}
+.an-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-0);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+.an-group-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-0);
+  margin: 0;
+}
+.an-group-count {
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.an-group-blurb {
+  font-size: 12.5px;
+  color: var(--text-2);
+  margin: 0 0 10px;
+  max-width: 72ch;
+}
+
+.an-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.an-card {
+  display: block;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  color: var(--text-0);
+  position: relative;
+}
+
+/* An app card is a statement, not a destination: there is no per-app view to
+   open, so it must not offer the hover affordance of the type cards beside it
+   (§2.12). */
+.an-card-static:hover {
+  border-color: var(--border-0);
+  background: var(--bg-1);
+  cursor: default;
+}
+
+.an-card:hover {
+  border-color: var(--accent-dim);
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+/* Title and badge share a row: the title takes the room the badge leaves and
+   truncates with an ellipsis rather than running underneath it. The badge is a
+   fixed-width label, so it never yields; the title is what gives way. */
+.an-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.an-card-name {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-card-count {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.an-card-count-unit {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.an-card-type {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.an-card-generic {
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+/* ---- Viewer header ---- */
+
+.an-viewer-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.an-viewer-count {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.an-back {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+/* ---- Dense record tables ---- */
+
+.an-table {
+  table-layout: auto;
+}
+
+.an-table td {
+  vertical-align: top;
+  max-width: 420px;
+}
+
+/* Truncating mono cells (URLs, paths) */
+.an-trunc {
+  display: block;
+  max-width: 360px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Sortable column header button (calls table). */
+.an-sort {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.an-sort:hover {
+  color: var(--accent);
+}
+
+/* ---- Summary count strip (calls / contacts) ---- */
+
+.an-summary {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.an-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.an-stat-num {
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.an-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+}
+
+.an-summary-tag {
+  margin-left: auto;
+}
+
+/* Direction badge: icon + label inline. */
+.an-dir {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Contacts search box. */
+.an-contact-search {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 12px;
+}
+
+.an-kv {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 12px;
+  font-size: 12px;
+}
+
+.an-kv dt {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.an-kv dd {
+  margin: 0;
+  color: var(--text-0);
+  overflow-wrap: anywhere;
+}
+
+/* Deleted / recovered SQLite rows — danger accent. */
+.an-row-deleted {
+  background: var(--danger-bg);
+}
+
+.an-row-deleted:hover {
+  background: var(--danger-bg);
+}
+
+.an-row-deleted td:first-child {
+  box-shadow: inset 3px 0 0 var(--danger);
+}
+
+/* ---- EXIF GPS map ---- */
+
+.an-map-wrap {
+  margin-bottom: 16px;
+}
+
+.an-map {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  display: block;
+}
+
+.an-map-graticule {
+  stroke: var(--border-1);
+  stroke-width: 0.5;
+  fill: none;
+}
+
+.an-map-land {
+  fill: var(--bg-3);
+  stroke: var(--border-1);
+  stroke-width: 0.5;
+}
+
+.an-map-dot {
+  fill: var(--accent);
+  /* The outline of an accent-filled dot, so it is the accent's own ink. It was
+     the literal #1a1204 — the dark theme's — which on a light skin outlined a
+     dark dot in dark. */
+  stroke: var(--on-accent);
+  stroke-width: 0.5;
+  cursor: pointer;
+}
+
+.an-map-dot.an-map-dot-active {
+  fill: var(--accent-hover);
+  stroke: var(--text-0);
+  stroke-width: 1;
+}
+
+.an-gps-cell {
+  white-space: nowrap;
+}
+
+.an-gps-row.selected {
+  background: var(--accent-bg);
+}
+
+/* The shared record table's copy column. Narrow, and it does not stretch: the
+   button is an affordance beside a value, not a column of its own weight. */
+.an-copy-cell {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.an-copy-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0 0 0 6px;
+  font-size: 11px;
+}
+
+.an-copy-btn:hover {
+  color: var(--accent-hover);
+}
+
+/* ---- Threaded messaging (iMessage / WhatsApp) ---- */
+
+.an-viewer-fill {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.an-chat {
+  display: grid;
+  /* Threads · conversation · a properties inspector for the selected message.
+     The inspector collapses away on narrow viewports. */
+  grid-template-columns: 260px minmax(0, 1fr) 300px;
+  gap: 12px;
+  /* A definite height is essential: the page shell above this is block layout,
+     so `flex: 1` would collapse to content height and the conversation would
+     never clip — its "load older" sentinel would stay in view and load the
+     whole thread on a loop. Bound it to the viewport (the chat sits ~88px down)
+     so each pane scrolls inside instead. */
+  height: calc(100dvh - 96px);
+  min-height: 360px;
+  align-items: stretch;
+}
+
+/* Every pane is a grid item, and a grid item defaults to min-height:auto —
+   it refuses to shrink below its content, so an inner overflow container never
+   engages and the row grows past the chat's height. Each pane therefore sets
+   min-height: 0 and owns its own scrolling. */
+.an-chat > * {
+  min-height: 0;
+}
+
+.an-thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  border-right: 1px solid var(--border-0);
+}
+
+/* Header stays put; the conversation below it is what scrolls. */
+.an-chat-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.an-att-panel {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.an-chat-note {
+  font-size: 11px;
+  color: var(--text-2);
+  padding: 4px 6px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+}
+
+.an-chat-note .link-button {
+  margin-left: 6px;
+}
+
+/* Banner above a conversation warning that some carved bodies have no date. */
+.an-undated-note {
+  font-size: 12px;
+  color: var(--text-1);
+  /* `--accent-danger` was never a token this app defines, so this rule and
+     .an-window-note below only ever painted the amber they fell back to. Amber
+     was the right choice — both banners qualify what is on screen rather than
+     reporting a failure — and --warn is the token that means it, so name it
+     instead of leaning on a fallback for a name that does not resolve. */
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+  border-bottom: 1px solid var(--border-0);
+  flex: 0 0 auto;
+}
+
+/* The scrollback window has evicted the newest messages: the bottom of the
+   pane is no longer the end of the conversation, and only this banner says so.
+   Styled like the undated warning because it carries the same weight. */
+.an-window-note {
+  font-size: 12px;
+  color: var(--text-1);
+  padding: 8px 12px;
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+  border-bottom: 1px solid var(--border-0);
+  flex: 0 0 auto;
+}
+
+/* Per-message note when sent/received couldn't be recovered. */
+.an-msg-nodir {
+  margin-top: 4px;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-2);
+}
+
+.an-thread {
+  text-align: left;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-0);
+  display: block;
+  width: 100%;
+}
+
+.an-thread:hover {
+  background: var(--bg-2);
+}
+
+.an-thread.selected {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+.an-thread-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.an-thread-name {
+  font-weight: 600;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-thread-count {
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.an-thread-preview {
+  font-size: 12px;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-thread-sub {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.an-thread-tag,
+.an-thread-time {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.an-thread-time {
+  margin-left: auto;
+}
+
+.an-chat-head {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-0);
+  /* Pinned: only the conversation beneath it scrolls. */
+  flex: 0 0 auto;
+}
+
+.an-chat-title {
+  font-weight: 600;
+}
+
+.an-chat-key {
+  font-size: 11px;
+  color: var(--text-2);
+  margin-left: auto;
+}
+
+/* Attachment side panel */
+.an-att-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.an-att-head {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.an-att-scope,
+.an-att-empty {
+  font-size: 11px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.an-att-chip {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+}
+
+.an-att-icon {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-2);
+  border: 1px solid var(--border-1);
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+.an-att-icon-img {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+.an-att-body {
+  min-width: 0;
+}
+
+.an-att-name {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-att-meta {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+/* ---- Conversation bubbles ---- */
+
+.an-convo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 720px;
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding-right: 8px;
+}
+
+.an-msg {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.an-msg-me {
+  justify-content: flex-end;
+}
+
+.an-msg-bubble {
+  max-width: 78%;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  /* Square off the corner on the sender's side, the way a phone draws the
+     tail: received squares top-left, sent squares top-right. */
+  border-radius: 2px var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* The selected message drives the properties inspector. */
+.an-msg-bubble.is-selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.an-msg-me .an-msg-bubble {
+  border-radius: var(--radius-lg) 2px var(--radius-lg) var(--radius-lg);
+  background: var(--accent-bg);
+  border-color: var(--accent-dim);
+}
+
+.an-msg-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.an-msg-who {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.an-msg-tag {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.an-msg-time {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+/* A message reconstructed from deleted space (freelist/freeblock/slack). */
+.an-msg-recovered {
+  margin-left: 6px;
+  padding: 0 5px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 3px;
+  color: var(--danger, #e5534b);
+  border: 1px solid var(--danger, #e5534b);
+  cursor: help;
+}
+
+.an-msg-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.an-msg-foot {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+/* Day divider: absolute date between calendar days, as a phone shows it. */
+.an-day-sep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 2px;
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.an-day-sep::before,
+.an-day-sep::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--border-0);
+}
+
+.an-convo-top {
+  height: 1px;
+}
+
+.an-load-older {
+  align-self: center;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-1);
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.an-load-older:hover {
+  color: var(--text-0);
+  border-color: var(--accent);
+}
+
+/* Attachments shown inline against their own message. */
+.an-msg-atts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.an-att-thumb {
+  width: 120px;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--bg-0);
+  display: block;
+}
+
+/* Marks a preview the server did not decode from the attachment's own bytes. */
+.an-att-derived {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 10px;
+  white-space: normal;
+}
+
+.an-att-chip-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.an-att-chip-link:hover {
+  border-color: var(--accent);
+}
+
+/* Inline chips sit on the coloured sent bubble, so keep their own surface. */
+.an-msg-atts .an-att-chip {
+  background: var(--bg-0);
+  align-items: flex-start;
+}
+
+.an-msg-atts .an-att-name {
+  color: var(--text-0);
+}
+
+.an-msg-atts .an-att-meta {
+  color: var(--text-2);
+}
+
+/* ---- Per-app bubble palettes ----
+ * Each app's own convention so a thread reads the way it did on the device:
+ * iMessage/Signal blue, SMS and WhatsApp green. Received bubbles stay neutral.
+ * Sent bubbles carry white text on a saturated fill in both themes, so the
+ * contrast does not depend on the workbench light/dark setting. */
+.an-theme-imessage .an-msg-me .an-msg-bubble {
+  background: #0b93f6;
+  border-color: #0b93f6;
+  color: #fff;
+}
+
+.an-theme-signal .an-msg-me .an-msg-bubble {
+  background: #2c6bed;
+  border-color: #2c6bed;
+  color: #fff;
+}
+
+.an-theme-sms .an-msg-me .an-msg-bubble {
+  background: #65c466;
+  border-color: #65c466;
+  color: #fff;
+}
+
+.an-theme-whatsapp .an-msg-me .an-msg-bubble {
+  background: #25d366;
+  border-color: #25d366;
+  color: #fff;
+}
+
+/* Keep the metadata line legible against the coloured fill. */
+.an-msg-me .an-msg-bubble .an-msg-who,
+.an-msg-me .an-msg-bubble .an-msg-time,
+.an-msg-me .an-msg-bubble .an-msg-tag {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---- SQLite database browser ---- */
+
+.an-db {
+  display: grid;
+  /* Databases -> tables -> rows, so a recovered row is always attributable to
+     the database it came from. */
+  grid-template-columns: 200px 200px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+/* Collapsed rails shrink to a thin toggle so the rows grid reclaims the space. */
+.an-db.db-collapsed {
+  grid-template-columns: 30px 200px 1fr;
+}
+.an-db.tables-collapsed {
+  grid-template-columns: 200px 30px 1fr;
+}
+.an-db.db-collapsed.tables-collapsed {
+  grid-template-columns: 30px 30px 1fr;
+}
+
+/* Header row carries the collapse (<) button. */
+.an-db-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.an-db-collapse {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  padding: 0;
+}
+.an-db-collapse:hover {
+  color: var(--text-0);
+}
+
+/* Collapsed rail: a thin vertical bar with a > toggle and rotated label. */
+.an-db-rail-collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 2px;
+  max-height: 70vh;
+  background: none;
+  border: 1px solid var(--border-0);
+  border-radius: 4px;
+  color: var(--text-2);
+  cursor: pointer;
+}
+.an-db-rail-collapsed:hover {
+  color: var(--text-0);
+  border-color: var(--border-1, var(--border-0));
+}
+.an-db-rail-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.an-db-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.an-db-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-db-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.an-db-item:hover {
+  background: var(--bg-1);
+}
+
+.an-db-item.selected {
+  background: var(--bg-2);
+  border-color: var(--accent);
+}
+
+.an-db-item-name {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-db-item-meta {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.an-db-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.an-db-table {
+  text-align: left;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-0);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.an-db-table:hover {
+  background: var(--bg-2);
+}
+
+.an-db-table.selected {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+.an-db-table-name {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-db-table-counts {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* The rows section sits in the grid's 1fr track. `min-width: 0` lets that track
+   shrink below the table's intrinsic width, so a wide table scrolls inside the
+   grid box below instead of stretching the whole page and pushing the database /
+   table rails off-screen. */
+.an-db-grid-wrap {
+  min-width: 0;
+}
+
+/* The data grid scrolls in both axes within its own box, bounded to the same
+   height as the rails so panning right or down never moves the rails. */
+.an-db-grid-scroll {
+  overflow: auto;
+  max-height: 70vh;
+}
+
+/* Bottom-of-grid "loading more" indicator while the next lazy page streams in. */
+.an-db-grid-more {
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--text-2);
+  position: sticky;
+  left: 0;
+}
+
+/* Keep the column headers (names + interpret-as controls) visible while
+   scrolling the rows vertically. Only the label row pins; the filter row tucks
+   behind it on scroll, which avoids depending on the header's exact height. */
+.an-db-grid thead tr:first-child th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-1);
+}
+
+.an-db-grid td {
+  max-width: 280px;
+}
+
+.an-db-grid .mono {
+  white-space: nowrap;
+}
+
+/* ---- iCal agenda ---- */
+
+.an-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.an-agenda-date {
+  font-size: 12px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border-0);
+  padding-bottom: 4px;
+  margin: 0 0 6px;
+}
+
+.an-agenda-events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.an-event {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 10px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+}
+
+.an-event-time {
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+.an-event-summary {
+  font-weight: 600;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.an-event-status {
+  font-size: 10px;
+}
+
+.an-event-meta {
+  margin-top: 4px;
+}
+
+/* ---- Email reader ---- */
+
+.an-mail {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.an-mail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.an-mail-item {
+  text-align: left;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-0);
+  display: block;
+}
+
+.an-mail-item:hover {
+  background: var(--bg-2);
+}
+
+.an-mail-item.selected {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+.an-mail-from {
+  font-weight: 600;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-mail-subject {
+  font-size: 12px;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-mail-date {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+/* The exchange pane (ROADMAP §5.14): the messages in one thread above the one
+   being read. Oldest first, because that is how email is read. */
+.an-mail-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.an-mail-thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 34vh;
+  overflow-y: auto;
+}
+
+.an-mail-msg {
+  display: grid;
+  grid-template-columns: minmax(120px, 22%) 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  text-align: left;
+  padding: 5px 8px;
+  font: inherit;
+  color: var(--text-0);
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.an-mail-msg:hover {
+  background: var(--bg-2);
+}
+
+.an-mail-msg.selected {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+@media (max-width: 720px) {
+  .an-mail-msg {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+}
+
+.an-mail-read {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.an-mail-read-subject {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.an-mail-headers {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 12px;
+  font-size: 12px;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.an-mail-hrow {
+  display: contents;
+}
+
+.an-mail-hrow dt {
+  color: var(--text-2);
+}
+
+.an-mail-hrow dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.an-mail-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-0);
+  margin: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.an-mail-body-html {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.an-mail-html-note {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.an-mail-frame {
+  width: 100%;
+  height: 52vh;
+  min-height: 260px;
+  border: 1px solid var(--border-0);
+  border-radius: 6px;
+  background: #fff;
+  display: block;
+}
+
+.an-mail-nobody {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+/* The index's own one-line preview, shown where there is no body to show.
+   Set apart from `.an-mail-body` so a snippet is never mistaken on screen for
+   the message it previews. */
+.an-mail-snippet {
+  margin-top: 10px;
+}
+
+/* ---- Plist tree ---- */
+
+.an-plist {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.an-plist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.an-plist-item {
+  text-align: left;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-0);
+  display: block;
+}
+
+.an-plist-item:hover {
+  background: var(--bg-2);
+}
+
+.an-plist-item.selected {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+.an-plist-name {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-plist-type {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.an-plist-tree {
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  font-size: 12px;
+  overflow-x: auto;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.an-tree-toggle {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  background: none;
+  border: none;
+  color: var(--text-0);
+  cursor: pointer;
+  padding: 1px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.an-tree-caret {
+  color: var(--text-2);
+  width: 10px;
+}
+
+.an-tree-kind {
+  color: var(--text-2);
+  font-size: 10px;
+}
+
+.an-tree-leaf {
+  display: flex;
+  gap: 10px;
+  padding: 1px 0;
+}
+
+.an-tree-key {
+  color: var(--accent);
+}
+
+.an-tree-val {
+  color: var(--text-0);
+  overflow-wrap: anywhere;
+}
+
+/* ---- Browser-history top-domains chart ---- */
+
+.an-domains {
+  margin-bottom: 16px;
+  max-width: 620px;
+}
+
+.an-domains-title {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.an-domain-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 40px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+
+.an-domain-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.an-domain-bar-wrap {
+  background: var(--bg-2);
+  border-radius: 2px;
+  height: 12px;
+}
+
+.an-domain-bar {
+  display: block;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.an-domain-count {
+  text-align: right;
+  color: var(--text-2);
+}
+
+/* --- Rich analytics viewers (RichRecordViewer): stat tiles, histogram,
+   frequency bars, filterable table. Shared across event logs, prefetch, LNK,
+   registry, recycle bin, shellbags, amcache, shimcache, browser artifacts,
+   and file-signature analysis. --- */
+.rv {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rv-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rv-search {
+  max-width: 260px;
+}
+
+.rv-count {
+  color: var(--text-2);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 96px;
+  padding: 8px 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-left: 3px solid var(--border-1);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+}
+
+.rv-stat:hover {
+  background: var(--bg-2);
+}
+
+.rv-stat.active {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.rv-stat-count {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-0);
+}
+
+.rv-stat-label {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.rv-tone-critical {
+  border-left-color: var(--danger);
+}
+.rv-tone-critical .rv-stat-count {
+  color: var(--danger);
+}
+.rv-tone-error {
+  border-left-color: var(--danger);
+}
+.rv-tone-warning {
+  border-left-color: var(--accent);
+}
+.rv-tone-warning .rv-stat-count {
+  color: var(--accent);
+}
+.rv-tone-ok {
+  border-left-color: var(--ok);
+}
+.rv-tone-accent {
+  border-left-color: var(--accent);
+}
+.rv-tone-neutral {
+  border-left-color: var(--border-1);
+}
+
+.rv-histo {
+  width: 100%;
+}
+.rv-histo-bar {
+  fill: var(--accent);
+  opacity: 0.82;
+}
+.rv-histo-bar:hover {
+  opacity: 1;
+}
+.rv-axis {
+  stroke: var(--border-0);
+}
+.rv-axis-text {
+  fill: var(--text-2);
+  font-size: 10px;
+}
+
+.rv-dims {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.rv-top-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+
+.rv-top-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rv-top-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.rv-top-row:hover {
+  background: var(--bg-2);
+}
+.rv-top-row.active {
+  outline: 1px solid var(--accent);
+}
+.rv-top-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--accent-bg);
+  z-index: 0;
+}
+.rv-top-label {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--text-1);
+  font-family: var(--font-mono, monospace);
+}
+.rv-top-count {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The count, restated for the ground the hovered row puts under the bar.
+ *
+ * `.rv-top-bar` is a sibling of this label, not an ancestor of it — absolutely
+ * positioned at z-index 0 with the labels over it at 1 — so the contrast
+ * guard's ancestor climb walks straight past it and reports the row's own
+ * ground. That makes this one of the few pairings in the product no automatic
+ * walk can see, and the arithmetic is therefore written down: the bar is
+ * --accent-bg, 12% #e5a13c, and the top row's bar spans the full width of the
+ * row, so the count at its right-hand end is OVER it rather than beside it.
+ * At rest the row paints nothing and the bar composites over the container —
+ * --bg-1 in a records viewer's panel (4.72:1) or --bg-0 at page level on the
+ * correlation pages (5.13:1), both clear. Hovered, `.rv-top-row` paints --bg-2
+ * and the same tint over it is #322e29, where --text-2 is 4.35:1: under the
+ * floor, on the number the ranking exists to report.
+ *
+ * Declaring the ground on this rule — the usual fix — cannot be right here.
+ * The count's ground is a bar whose width is the row's share of the peak, so
+ * it is over the tint on a busy row and over the bare row on a quiet one, and
+ * no single declared fill is true for both. The tone moves instead, to the one
+ * that clears every combination: --text-1 is 6.04:1 over the bar on the
+ * hovered row, 7.49:1 beside it, and 6.55 / 7.12 over the bar at rest.
+ *
+ * Scoped to :hover so the resting ranking keeps its two tiers — the label at
+ * --text-1 and the count quieter under it — rather than flattening them for
+ * every reader to fix a state only a pointer reaches. app/contrast.test.ts
+ * pins both grounds and both ratios. */
+.rv-top-row:hover .rv-top-count {
+  color: var(--text-1);
+}
+
+.rv-table {
+  width: 100%;
+}
+.rv-notable {
+  background: var(--danger-bg);
+}
+.rv-flag {
+  width: 24px;
+  text-align: center;
+}
+.rv-note {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+/* The provenance sentence under the frequency bars. It sits directly beneath
+   the bar list because it is the only thing on screen that says whether those
+   bars are the whole case or the slice this page loaded, and a caveat that has
+   drifted away from what it qualifies has stopped being a caveat. */
+.rv-rank-note {
+  margin: 6px 0 0;
+  max-width: 90ch;
+  line-height: 1.5;
+}
+
+/* Signature-mismatch cell: badge + the detected-vs-claimed detail beneath it. */
+.an-sig {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.an-sig-detail {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* ---- SQLite viewer: per-column interpret-as / hide / filter ---- */
+.an-db-gridbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 2px 8px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.an-db-col-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.an-db-col-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+}
+
+/* The per-column hide control: the "×" at the end of each column head.
+ *
+ * It asked for a tone quieter than the column name beside it and got there
+ * with `opacity: 0.6` over --text-2. There is no quieter tone to reach for —
+ * the ladder stops at --text-2 deliberately, because --text-2 already sits on
+ * the AA floor (4.83:1 on --bg-3) and nothing under it could clear it — so
+ * the dimming was really a fifth tier improvised out of alpha, and it drew at
+ * 2.96 / 2.88 / 2.80 / 2.66 on --bg-0..--bg-3: a third of the way under the
+ * floor, on a control whose whole job is to say which column is about to
+ * disappear from a grid an examiner is reading. app/contrast.test.ts could not
+ * see it, because it read `color` and not `opacity`; it does now, and this is
+ * the rule that pass found.
+ *
+ * --text-2 flat, then, at 6.15 / 5.80 / 5.39 / 4.83. That makes the glyph the
+ * same tone as the column name it sits beside, which is the cost: quieter than
+ * the name is not available at this floor, and legible outranks quiet. The
+ * hover state is what still separates the two — it was `opacity: 1` on top of
+ * the 0.6, which is now a no-op and gone, leaving the amber that was always
+ * doing the real work of the affordance: --text-2 grey to --accent at 8.61:1
+ * on --bg-0, a change of hue and of weight rather than of alpha. */
+.an-db-col-hide {
+  border: none;
+  background: none;
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.an-db-col-hide:hover {
+  color: var(--accent);
+}
+
+.an-db-col-fmt {
+  margin-top: 3px;
+  width: 100%;
+  max-width: 200px;
+  font-size: 10.5px;
+  font-family: inherit;
+  background: var(--bg-0);
+  color: var(--text-2);
+  border: 1px solid var(--border-0);
+  border-radius: 3px;
+  padding: 1px 2px;
+}
+
+.an-db-filter-row th {
+  padding: 2px 4px 6px;
+}
+
+.an-db-filter {
+  width: 100%;
+  min-width: 60px;
+  font-size: 11px;
+  font-family: inherit;
+  background: var(--bg-0);
+  color: var(--text-1);
+  border: 1px solid var(--border-0);
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+.an-db-filter:focus {
+  outline: none;
+  border-color: var(--accent-dim);
+}
+
+/* A cell showing a decoded timestamp rather than the raw value. */
+.an-db-ts {
+  color: var(--accent);
+}
+
+/* End-of-table sentinel that pulls the next page of records into view. */
+.rv-sentinel {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  min-height: 8px;
+}
+
+/* Raw handle under a thread whose name came from the address book, so the
+   inferred name never hides the identifier the chat actually recorded. */
+.an-thread-handle {
+  font-size: 10px;
+  color: var(--text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Message properties inspector (third column) ---- */
+.an-props {
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--border-0);
+  padding-left: 12px;
+}
+
+.an-props-empty {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+  padding-top: 4px;
+}
+
+.an-props-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.an-props-title {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.an-props-sub {
+  margin: 0 0 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.an-props-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.an-props-table td {
+  padding: 3px 0;
+  vertical-align: top;
+}
+
+.an-props-table td:first-child {
+  color: var(--text-2);
+  width: 64px;
+  padding-right: 8px;
+}
+
+.an-props-table td:last-child {
+  color: var(--text-0);
+  word-break: break-word;
+}
+
+.an-props-text {
+  font-size: 13px;
+  color: var(--text-0);
+  line-height: 1.5;
+  padding: 8px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.an-props-att {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-0);
+}
+
+.an-props-att-name {
+  font-size: 12px;
+  color: var(--text-0);
+  word-break: break-all;
+}
+
+.an-props-att-meta {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.an-props-open {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
+.an-props-actions {
+  margin-top: 4px;
+}
+
+.an-props-actions .btn {
+  width: 100%;
+}
+
+/* Media preview inside the message inspector. */
+.an-props-media-preview {
+  position: relative;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.an-props-media-preview img {
+  display: block;
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.an-props-media-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border-radius: 3px;
+}
+
+.an-props-audio {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.an-props-raw-toggle {
+  align-self: flex-start;
+  font-size: 12px;
+}
+
+/* Instagram Direct: sent bubble in Instagram's magenta/purple. */
+.an-theme-instagram .an-msg-me .an-msg-bubble {
+  background: #c13584;
+  border-color: #c13584;
+  color: #fff;
+}
+
+/* Snapchat: sent bubble in Snapchat yellow (dark text for contrast). */
+.an-theme-snapchat .an-msg-me .an-msg-bubble {
+  background: #fffc00;
+  border-color: #e6e300;
+  color: #111;
+}
+.an-theme-snapchat .an-msg-me .an-msg-bubble .an-msg-who,
+.an-theme-snapchat .an-msg-me .an-msg-bubble .an-msg-time {
+  color: #333;
+}
+
+/* Twitter/X DMs: sent bubble in Twitter blue. */
+.an-theme-twitter .an-msg-me .an-msg-bubble {
+  background: #1d9bf0;
+  border-color: #1d9bf0;
+  color: #fff;
+}
+
+/* Remaining messenger themes — brand accent on the sent ("me") bubble. */
+.an-theme-viber .an-msg-me .an-msg-bubble {
+  background: #7360f2;
+  border-color: #7360f2;
+  color: #fff;
+}
+.an-theme-kik .an-msg-me .an-msg-bubble {
+  background: #82bc23;
+  border-color: #82bc23;
+  color: #fff;
+}
+.an-theme-skype .an-msg-me .an-msg-bubble {
+  background: #00aff0;
+  border-color: #00aff0;
+  color: #fff;
+}
+.an-theme-line .an-msg-me .an-msg-bubble {
+  background: #06c755;
+  border-color: #06c755;
+  color: #fff;
+}
+.an-theme-telegram .an-msg-me .an-msg-bubble {
+  background: #229ed9;
+  border-color: #229ed9;
+  color: #fff;
+}
+.an-theme-messenger .an-msg-me .an-msg-bubble {
+  background: #0084ff;
+  border-color: #0084ff;
+  color: #fff;
+}
+.an-theme-wechat .an-msg-me .an-msg-bubble {
+  background: #07c160;
+  border-color: #07c160;
+  color: #fff;
+}
+
+/* ---- Chat search ---- */
+.an-search {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.an-search-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 22px 5px 8px;
+}
+
+.an-search-clear {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.an-search-clear:hover {
+  color: var(--text-0);
+}
+
+.an-results {
+  gap: 4px;
+}
+
+.an-result {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  color: var(--text-0);
+  cursor: pointer;
+}
+
+.an-result:hover {
+  background: var(--bg-2);
+  border-color: var(--accent-dim);
+}
+
+.an-result-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.an-result-who {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.an-result-time {
+  font-size: 10px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.an-result-text {
+  font-size: 12px;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ---- Windows Timeline (ActivitiesCache.db) viewer ---- */
+.an-wt-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.an-wt-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.an-wt-table-wrap {
+  overflow-x: auto;
+}
+
+.an-wt-row {
+  cursor: pointer;
+}
+
+/* A notable activity, marked with a left bar rather than the shared table's
+   tinted row. On a device that syncs its timeline a large share of activities
+   are notable, and a table that is mostly red says nothing at all; the bar
+   still picks out a clipboard capture at a glance, and the flag column beside
+   it carries the reason in words. */
+.an-wt-row.rv-notable {
+  background: transparent;
+  box-shadow: inset 2px 0 0 var(--danger);
+}
+
+/* After the rule above, and at the same specificity, so that the row an
+   examiner has actually selected still reads as selected when it is also
+   notable. */
+.an-wt-row.selected {
+  background: var(--accent-bg);
+}
+
+.an-wt-cloud {
+  margin-left: 6px;
+}
+
+.an-wt-detail {
+  flex: 0 0 340px;
+  max-width: 340px;
+  align-self: stretch;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 12px;
+  position: sticky;
+  top: 12px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+}
+
+.an-wt-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.an-wt-detail-app {
+  font-weight: 600;
+  color: var(--text-0);
+  overflow-wrap: anywhere;
+}
+
+.an-wt-detail-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.an-wt-detail-range {
+  margin-top: 6px;
+  color: var(--text-1);
+}
+
+.an-wt-detail-src {
+  margin-top: 4px;
+  color: var(--text-2);
+}
+
+.an-wt-section {
+  margin-top: 14px;
+  border-top: 1px solid var(--border-0);
+  padding-top: 10px;
+}
+
+.an-wt-section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.an-wt-uri {
+  overflow-wrap: anywhere;
+}
+
+.an-wt-clip-meta {
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.an-wt-clip-text {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  padding: 6px 8px;
+  overflow-wrap: anywhere;
+  color: var(--text-0);
+}
+
+.an-wt-tz {
+  margin-top: 6px;
+  color: var(--text-2);
+}
+
+.an-wt-raw {
+  margin-top: 8px;
+  max-height: 240px;
+  overflow: auto;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.an-wt-detail-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* A table value that is also a pivot trigger: reads as the value, invites a
+   click. Inherits the mono/truncation of a normal cell. */
+.an-pivot-cell {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  max-width: 100%;
+  text-align: left;
+}
+.an-pivot-cell:hover {
+  text-decoration: underline;
+}
+
+
+/* Several identifiers in one cell (DNS answers), each its own trigger. */
+.an-pivot-list {
+  display: inline;
+}

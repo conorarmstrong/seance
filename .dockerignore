@@ -1,0 +1,34 @@
+# Build artifacts — rebuilt inside the image.
+target/
+**/target/
+frontend/node_modules/
+frontend/dist/
+
+# Runtime data / evidence — never belongs in the build context.
+workspace/
+test_workspace_*/
+test_data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+search_index/
+*.log
+
+# Large reference material not needed to build the server.
+reference/
+
+# VCS and local tooling.
+.git/
+.gitignore
+.github/
+.claude/
+
+# Editor / OS cruft.
+.vscode/
+.idea/
+.DS_Store
+
+# The deployment files themselves don't need to enter the build context.
+Dockerfile
+.dockerignore
+docker-compose.yml

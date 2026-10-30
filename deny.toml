@@ -1,0 +1,175 @@
+# cargo-deny: dependency licence and advisory policy.
+#
+# Séance is MIT. A permissive licence imposes nothing on what the project may
+# *depend* on; the question this gate answers runs the other way — what a
+# dependency's terms demand of anything distributed with it. A permissive
+# dependency asks for attribution and nothing more. A copyleft one asks that the
+# combined work be distributed under its terms, which is allowed and is a
+# decision rather than an accident, so each such entry below is argued.
+#
+# Run:  cargo deny check
+#
+# This file exists because the licence was declared before anyone had checked
+# what the tree actually pulls in. The answer, as of 2026-08-03, is that nothing
+# conflicts — but "nothing conflicts today" is a fact with a shelf life, which
+# is why it is a CI gate rather than a note in a document.
+
+[licenses]
+# Anything not listed is a build failure, deliberately. A new dependency under
+# unfamiliar terms should stop a build and be read, not be waved through by a
+# permissive default.
+allow = [
+    # ── Séance's own terms since 2026-09-13: MIT. Listed because cargo-deny
+    # checks workspace members against this list too, and a project that did not
+    # allow its own licence would be a gate nobody could ever make pass. It was
+    # AGPL-3.0-or-later before that date; that entry is gone because no crate in
+    # the workspace declares it any more.
+    "MIT",
+
+    # ── Permissive. No obligation beyond attribution, and nothing that reaches
+    # the work that links them.
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "0BSD",
+    "BSL-1.0",
+    "Zlib",
+    "zlib-acknowledgement",
+    "CC0-1.0",
+    "Unlicense",
+    "Unicode-3.0",
+    "CDLA-Permissive-2.0",
+    # `bzip2-1.0.6` is Julian Seward's BSD-style licence for bzip2/libbzip2,
+    # carried by `libbz2-rs-sys` (the Rust translation) and reached through
+    # `sevenz-rust2`. It is a four-clause BSD variant — attribution, do not
+    # misrepresent the origin, mark altered versions, no endorsement — with no
+    # obligation that touches the combined work, and the FSF lists it as a free,
+    # GPL-compatible licence. It arrived with the 7z expander's move off the
+    # unmaintained `sevenz-rust` and was not on this list, so the licence gate
+    # was failing at HEAD.
+    "bzip2-1.0.6",
+
+    # ── Weak copyleft, file-scoped. Obligations attach to the dependency's own
+    # source, not to the work that links it.
+    "MPL-2.0",
+    "LGPL-2.1-or-later",
+    "LGPL-3.0-or-later",
+
+    # ── Strong copyleft is NOT allowed, and that is the point.
+    #
+    # Séance is MIT, and as of 2026-09-13 every line that ships with it can be
+    # taken under MIT: the last copyleft dependency, the GPL-2.0-or-later
+    # `nt-hive`, was replaced by this project's own `seance_hive`. A GPL
+    # dependency would make a binary built from this tree distributable only
+    # under the GPL — which is permitted, and would quietly falsify the
+    # licence this product states. So the allow-list ends here, and this gate
+    # is what keeps that true.
+]
+
+[bans]
+# Duplicate versions are a size and audit cost, not a correctness one, and this
+# tree legitimately carries several. Warn so the count stays visible; do not
+# fail a forensic build over it.
+multiple-versions = "warn"
+# Warn, not deny, and the reason is specific rather than a shrug. A wildcard on
+# a *crates.io* dependency means an unreviewed upgrade can arrive silently and
+# is worth failing over; there are currently zero of those. Every wildcard this
+# check reports is an intra-workspace `path` dependency, which has no version by
+# design. `allow-wildcard-paths` does not exempt them, because it assumes
+# publishable crates and crates.io forbids path deps — so denying here would
+# mean either 96 manifests carrying versions nobody bumps, or a gate that is
+# permanently red and therefore ignored.
+#
+# If a genuine `= "*"` on an external crate ever appears, the warning names it.
+wildcards = "warn"
+
+[advisories]
+# `yanked` stays a hard failure: a yanked crate is always actionable, and the
+# one this found (`spin 0.9.8`) was fixed by a single `cargo update`.
+yanked = "deny"
+
+# Advisories themselves are a warning, and that is a compromise rather than a
+# judgement that they do not matter — several matter a great deal here, because
+# this tool's input is chosen by the person under investigation. They are warned
+# on because **the ones that count have no fixed release to move to**:
+#
+#   RUSTSEC-2026-0194  quick-xml, quadratic runtime on duplicate attribute names
+#     MITIGATED 2026-08-03 by `seance_xml_util`. Every published version is
+#     affected (0.31, 0.36 and 0.38.4 are all in this tree), so there was
+#     nothing to upgrade to and the bound had to go in front of the parser.
+#     Measured before: one element with 200,000 attributes, in a 2.2 MB
+#     document, cost 29 s. After: 2.7 ms. All three reading sites — EVTX,
+#     Office worksheets, Android `packages.xml` — now go through `XmlGuard`,
+#     with regressions in each asserting the time bound.
+#
+#   RUSTSEC-2026-0195  quick-xml, unbounded namespace allocation in NsReader
+#     NOT REACHABLE. The advisory is specific to `NsReader`, and no crate in
+#     this tree constructs one — every site uses `Reader`. Kept ignored rather
+#     than removed because the dependency is still flagged and a future
+#     namespace-aware parser would reintroduce the exposure.
+#
+#   RUSTSEC-2026-0187  lopdf, stack overflow via deeply nested PDF objects
+#     NOT REACHABLE, and previously mis-stated here as "hostile PDFs are
+#     ordinary evidence". They are not, for this crate: `lopdf` appears at
+#     exactly one site, `seance_reporting::pdf_signing`, which calls
+#     `Document::load_mem` on a PDF Séance itself has just rendered, in order
+#     to add a signature. No evidence PDF reaches it — the carver matches
+#     `%PDF` magic and never parses object structure. A depth limit here would
+#     have been a guard against our own renderer.
+#
+#   RUSTSEC-2023-0071  `rsa`, Marvin timing sidechannel
+#     Key recovery through timing. Séance verifies rather than signs with this
+#     path, and report signing goes through openssl, so the exposure is narrow —
+#     but "narrow" is not "none" and it is written down rather than assumed.
+#
+#   wasmtime, stores can mix up type indices between engines — via yara-x.
+#   Plus four unmaintained crates and two unsoundness advisories.
+#
+# Turning these into build failures with no upgrade available would make the
+# gate permanently red, and a permanently red gate is one nobody reads. They are
+# tracked in ROADMAP.md under security debt, where the mitigation work belongs.
+# Anything that gains a fixed release should be upgraded and this list shortened.
+#
+# Each is listed individually rather than suppressed by severity, so adding one
+# is a deliberate act with a reason beside it and a NEW advisory still fails the
+# build. Reviewed 2026-08-03.
+ignore = [
+    # ── Hostile-input DoS: mitigated in front of the parser ───────────────────
+    # quick-xml quadratic attribute check. No fixed release exists in any
+    # published version, so the bound lives in `seance_xml_util::XmlGuard`,
+    # through which all three reading sites now go. 29 s -> 2.7 ms on the
+    # measured worst case; each site carries a regression asserting it.
+    "RUSTSEC-2026-0194",
+    # quick-xml NsReader namespace allocation. Not reachable: nothing in this
+    # tree constructs an `NsReader`. Kept listed so the day one appears, this
+    # line is what gets re-read.
+    "RUSTSEC-2026-0195",
+    # lopdf nested-object stack overflow. Not reachable: the only `lopdf` call
+    # site signs a PDF Séance just rendered. Evidence PDFs are carved by magic
+    # and never parsed as object graphs.
+    "RUSTSEC-2026-0187",
+
+    # ── Narrow exposure ───────────────────────────────────────────────────────
+    # rsa: Marvin timing sidechannel, key recovery. Report signing goes through
+    # openssl, not this path. Narrow is not none, which is why it is written
+    # down rather than left implicit.
+    "RUSTSEC-2023-0071",
+
+
+    # ── Unmaintained, transitive, no replacement chosen yet ───────────────────
+    "RUSTSEC-2021-0153", # encoding
+    "RUSTSEC-2024-0384", # instant
+    "RUSTSEC-2025-0141", # bincode
+    "RUSTSEC-2026-0192", # ttf-parser
+
+    # ── Unsoundness in code paths this tree does not take ─────────────────────
+    "RUSTSEC-2026-0097", # rand, only with a custom logger calling rand::rng()
+]
+
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]

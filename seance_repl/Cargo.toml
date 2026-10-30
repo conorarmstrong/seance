@@ -1,0 +1,37 @@
+[package]
+name = "seance_repl"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+ratatui = "0.30"
+unicode-width = "0.2"
+crossterm = "0.28.1"
+tokio = { version = "1.38.0", features = ["full"] }
+reqwest = { version = "0.12.5", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { workspace = true }
+anyhow = "1.0.89"
+tracing = "0.1.40"
+uuid = { version = "1.11.0", features = ["serde", "v4"] }
+urlencoding = "2.1"
+chrono = "0.4"
+# default-features = false is load-bearing, not tidiness: Cargo unifies features
+# across the whole graph, so a plain edge here re-enables seance_api's e01/esedb/
+# heic for every crate that reaches this one — including seance_cli, which is
+# careful to opt out. That silently defeated `--no-default-features`. Dependents
+# opt back in through the propagating features below.
+seance_api = { path = "../seance_api", default-features = false }
+
+[features]
+default = []
+e01 = ["seance_api/e01"]
+esedb = ["seance_api/esedb"]
+heic = ["seance_api/heic"]
+video-thumbs = ["seance_api/video-thumbs"]
+
+[dev-dependencies]
+# The /unlock kind list is checked against the credential kinds the route
+# takes (SEC-204). Test-only.
+seance_core = { path = "../seance_core" }

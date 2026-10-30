@@ -1,0 +1,16 @@
+/* The workbench content canvas. The navigator lives in the sidebar, so this is
+   just the selected content (viewer + inspector, a records table, or a category
+   view like the gallery/map). */
+
+.wb-content {
+  min-width: 0;
+}
+
+.wb-empty {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

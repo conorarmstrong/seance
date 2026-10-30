@@ -1,0 +1,383 @@
+[package]
+name = "seance-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+# Explicit, not `workspace = true`: this crate is excluded from the workspace
+# (see the root manifest), so it is its own root and has no
+# `[workspace.dependencies]` to inherit from — the inherited form made every
+# `cargo fuzz` invocation fail at manifest parse (GATE-007).
+serde_json = "1.0"
+uuid = { version = "1.10", features = ["v4"] }
+
+[dependencies.seance_core]
+path = "../seance_core"
+
+[dependencies.seance_plugin_mft]
+path = "../seance_plugin_mft"
+
+[dependencies.seance_plugin_usnjrnl]
+path = "../seance_plugin_usnjrnl"
+
+[dependencies.seance_plugin_logfile]
+path = "../seance_plugin_logfile"
+
+[dependencies.seance_plugin_ext4]
+path = "../seance_plugin_ext4"
+
+[dependencies.seance_plugin_registry]
+path = "../seance_plugin_registry"
+
+[dependencies.seance_hive]
+path = "../seance_hive"
+
+[dependencies.seance_memory]
+path = "../seance_memory"
+
+[dependencies.seance_plugin_evtx]
+path = "../seance_plugin_evtx"
+
+[dependencies.seance_plugin_prefetch]
+path = "../seance_plugin_prefetch"
+
+[dependencies.seance_plugin_macos_artifacts]
+path = "../seance_plugin_macos_artifacts"
+
+[dependencies.seance_plugin_lnk]
+path = "../seance_plugin_lnk"
+
+[dependencies.seance_plugin_partition]
+path = "../seance_plugin_partition"
+
+[dependencies.seance_plugin_btrfs]
+path = "../seance_plugin_btrfs"
+
+[dependencies.seance_plugin_xfs]
+path = "../seance_plugin_xfs"
+
+[dependencies.seance_plugin_apfs]
+path = "../seance_plugin_apfs"
+
+[dependencies.seance_plugin_fat]
+path = "../seance_plugin_fat"
+
+[dependencies.seance_carving]
+path = "../seance_carving"
+
+[dependencies.seance_plugin_email]
+path = "../seance_plugin_email"
+
+[dependencies.seance_plugin_iso9660]
+path = "../seance_plugin_iso9660"
+
+[dependencies.seance_plugin_udf]
+path = "../seance_plugin_udf"
+
+[dependencies.seance_plugin_hfsplus]
+path = "../seance_plugin_hfsplus"
+
+[dependencies.seance_container_zip]
+path = "../seance_container_zip"
+
+[dependencies.seance_container_e01]
+path = "../seance_container_e01"
+
+[dependencies.seance_container_vdisk]
+path = "../seance_container_vdisk"
+
+[dependencies.seance_container_aff4]
+path = "../seance_container_aff4"
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[dependencies.seance_plugin_jumplists]
+path = "../seance_plugin_jumplists"
+
+[dependencies.seance_plugin_shellbags]
+path = "../seance_plugin_shellbags"
+
+[dependencies.seance_plugin_thumbcache]
+path = "../seance_plugin_thumbcache"
+
+[dependencies.seance_plugin_recyclebin]
+path = "../seance_plugin_recyclebin"
+
+[dependencies.seance_plugin_amcache]
+path = "../seance_plugin_amcache"
+
+[dependencies.seance_plugin_shimcache]
+path = "../seance_plugin_shimcache"
+
+[dependencies.seance_plugin_srum]
+path = "../seance_plugin_srum"
+
+[dependencies.seance_plugin_webcache]
+path = "../seance_plugin_webcache"
+
+[dependencies.seance_plugin_bits]
+path = "../seance_plugin_bits"
+
+[dependencies.seance_plugin_rdp_cache]
+path = "../seance_plugin_rdp_cache"
+
+[dependencies.seance_plugin_winsearch_edb]
+path = "../seance_plugin_winsearch_edb"
+
+[[bin]]
+name = "mft_parser"
+path = "fuzz_targets/mft_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ext4_parser"
+path = "fuzz_targets/ext4_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "registry_parser"
+path = "fuzz_targets/registry_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "hive_parser"
+path = "fuzz_targets/hive_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "evtx_parser"
+path = "fuzz_targets/evtx_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "prefetch_parser"
+path = "fuzz_targets/prefetch_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "lnk_parser"
+path = "fuzz_targets/lnk_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "partition_parser"
+path = "fuzz_targets/partition_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "btrfs_parser"
+path = "fuzz_targets/btrfs_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "xfs_parser"
+path = "fuzz_targets/xfs_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "apfs_parser"
+path = "fuzz_targets/apfs_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fat_parser"
+path = "fuzz_targets/fat_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "carving_engine"
+path = "fuzz_targets/carving_engine.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "email_parser"
+path = "fuzz_targets/email_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ost4k_parser"
+path = "fuzz_targets/ost4k_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "pst512_parser"
+path = "fuzz_targets/pst512_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "iso9660"
+path = "fuzz_targets/iso9660.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "udf"
+path = "fuzz_targets/udf.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "hfsplus"
+path = "fuzz_targets/hfsplus.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "zip_container"
+path = "fuzz_targets/zip_container.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "qcow2"
+path = "fuzz_targets/qcow2.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "vhd"
+path = "fuzz_targets/vhd.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "vmdk"
+path = "fuzz_targets/vmdk.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "vhdx"
+path = "fuzz_targets/vhdx.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "aff4"
+path = "fuzz_targets/aff4.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "usnjrnl_parser"
+path = "fuzz_targets/usnjrnl_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "logfile_parser"
+path = "fuzz_targets/logfile_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "e01_isolated_protocol"
+path = "fuzz_targets/e01_isolated_protocol.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "jumplists_parser"
+path = "fuzz_targets/jumplists_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "shellbags_parser"
+path = "fuzz_targets/shellbags_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "thumbcache_parser"
+path = "fuzz_targets/thumbcache_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "recyclebin_parser"
+path = "fuzz_targets/recyclebin_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "amcache_parser"
+path = "fuzz_targets/amcache_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "shimcache_parser"
+path = "fuzz_targets/shimcache_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "srum_parser"
+path = "fuzz_targets/srum_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "webcache_parser"
+path = "fuzz_targets/webcache_parser.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "hibernation"
+path = "fuzz_targets/hibernation.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "unifiedlog_tracev3"
+path = "fuzz_targets/unifiedlog_tracev3.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "bits_qmgr"
+path = "fuzz_targets/bits_qmgr.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "rdp_cache"
+path = "fuzz_targets/rdp_cache.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "winsearch_edb"
+path = "fuzz_targets/winsearch_edb.rs"
+test = false
+doc = false
+
+# The fuzz crate is its own workspace, so the root manifest's patches do not
+# reach it; the same vendored parsers, so the targets exercise what ships.
+[patch.crates-io]
+evtx = { path = "../vendor/evtx-0.8.5" }

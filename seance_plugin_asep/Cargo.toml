@@ -1,0 +1,24 @@
+[package]
+name = "seance_plugin_asep"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }
+chrono = "0.4"
+
+# Class-name hashes in the WMI repository: MD5 (observed on Windows XP) and
+# SHA-256 (observed on Windows 10) — both are tried on every file; XP record
+# descriptors carry a CRC-32.
+md-5 = "0.10"
+sha2 = "0.10"
+crc32fast = "1"
+
+[dev-dependencies]
+# The corpus gate (seance_core::test_support::corpus) for the real-repository test.
+seance_core = { path = "../seance_core", features = ["test-support"] }

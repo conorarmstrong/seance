@@ -1,0 +1,37 @@
+[package]
+name = "seance_plugin_macos_artifacts"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# macOS behavioural / provenance artifacts that the filesystem and generic
+# SQLite/plist parsers do not decode semantically: download quarantine, TCC
+# privacy grants, launchd persistence, Wi-Fi history, install history, the
+# knowledgeC activity timeline, and notifications. Each is a ForensicsModule that
+# self-selects by filename and emits typed records into the pipeline.
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+seance_login_sessions = { path = "../seance_login_sessions" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+plist = "1.6"
+serde_json = { workspace = true }
+chrono = "0.4"
+anyhow = "1.0"
+flate2 = "1.0"
+lz4_flex = "0.11"
+tracing = "0.1"
+uuid = { version = "1.10.0", features = ["v4"] }
+# keychain_unlock.rs: the legacy keychain's PBKDF2-HMAC-SHA1 master-key derivation and 3DES-CBC unwrap
+cbc = "0.1"
+des = "0.8"
+sha1 = "0.10"
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+zeroize = "1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }
+tempfile = "3.8"
+sha2 = "0.10"
+rsa = "0.9"

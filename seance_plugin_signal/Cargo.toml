@@ -1,0 +1,31 @@
+[package]
+name = "seance_plugin_signal"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+chrono = "0.4"
+# Signal for iOS: SQLCipher 4 raw-key decryption of grdb/signal.sqlite (HUNT-227).
+seance_sqlcipher = { path = "../seance_sqlcipher" }
+
+# Signal Android backup (.backup) decryption. Versions match the workspace lock.
+aes = "0.8"
+ctr = "0.9"
+hmac = "0.12"
+sha2 = "0.10"
+hkdf = "0.12"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }
+# The real Signal-iOS store's key spec is read from its keychain export.
+plist = "1.6"

@@ -1,0 +1,219 @@
+.login-screen {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(
+      ellipse 60% 40% at 50% 30%,
+      color-mix(in srgb, var(--accent) 6%, transparent),
+      transparent
+    ),
+    var(--bg-0);
+}
+
+.login-card {
+  width: 320px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-wordmark {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  color: var(--accent);
+}
+
+.login-tagline {
+  margin: 0 0 12px;
+  text-align: center;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.login-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.login-card input {
+  background: var(--bg-0);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.login-card button {
+  margin-top: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: 9px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.login-card button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.login-card button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.login-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* Forced password-change screen. Intentionally distinct from the login card
+   above (wider, left-aligned, big title, icon + callout) so a returning user
+   never mistakes it for the login form reappearing after a failed attempt. */
+.pwchange-card {
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pwchange-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.pwchange-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: var(--accent-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--accent);
+}
+
+.pwchange-eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pwchange-title {
+  margin: 2px 0 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text-0);
+}
+
+.pwchange-subtitle {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.pwchange-subtitle strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.pwchange-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  border-radius: var(--radius);
+  padding: 11px 12px;
+  color: var(--text-1);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.pwchange-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent);
+}
+
+.pwchange-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.pwchange-card input {
+  background: var(--bg-0);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-0);
+  padding: 9px 10px;
+  font-size: 13px;
+}
+
+.pwchange-card button[type='submit'] {
+  margin-top: 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pwchange-card button[type='submit']:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.pwchange-card button[type='submit']:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.pwchange-signout {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px;
+  text-align: center;
+}
+
+.pwchange-signout:hover {
+  color: var(--text-1);
+  text-decoration: underline;
+}

@@ -1,0 +1,240 @@
+.bm-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.bm-rail {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+}
+
+.bm-rail-heading {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  padding: 2px 6px 8px;
+}
+
+.bm-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bm-cat-button {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text-1);
+  cursor: pointer;
+  padding: 5px 8px;
+  font-size: 12.5px;
+  text-align: left;
+}
+
+.bm-cat-button:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+.bm-cat-button.selected {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.bm-cat-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bm-cat-count {
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.bm-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid var(--border-1);
+}
+
+.bm-cat-delete {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.bm-cat-delete:hover {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.bm-rail-foot {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-0);
+}
+
+.bm-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.bm-note {
+  display: inline-block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.bm-row-actions {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.bm-category-badge {
+  background: transparent;
+}
+
+.bm-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.bm-form-row label {
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.bm-color-input {
+  width: 48px;
+  height: 28px;
+  padding: 2px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+}
+
+
+/* The ARTIFACT column. A name is evidence and can be any length — a 4 KB
+   single-line value arrives through an ordinary artifact — so the CELL is
+   bounded and the record is not: one line, cut with an ellipsis, whole name in
+   the tooltip. The CSV export prints the full name. */
+.bm-name {
+  display: inline-block;
+  max-width: 48ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+/* Values traced across the evidence and pinned to the case (ROADMAP §5.13). */
+.tv {
+  margin: 12px 0;
+  padding: 12px 14px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.tv-heading {
+  margin: 0;
+  font-size: 14px;
+}
+
+.tv-sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.tv-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.tv-item {
+  padding: 8px 10px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.tv-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.tv-value {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.tv-count {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.tv-note {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+.tv-meta {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.tv-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+.tv-open {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+}

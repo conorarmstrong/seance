@@ -1,0 +1,69 @@
+.mtl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mtl-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 72px;
+  width: 100%;
+}
+
+.mtl-bar {
+  flex: 1 1 0;
+  min-width: 1px;
+  background: var(--accent);
+  opacity: 0.85;
+  border-radius: 1px 1px 0 0;
+}
+
+.mtl-bar:hover {
+  opacity: 1;
+}
+
+.mtl-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.mtl-empty {
+  color: var(--text-2);
+  font-size: 12px;
+  padding: 20px 0;
+  text-align: center;
+}
+.mtl-outliers { margin-top: 4px; font-size: 10px; color: var(--text-2); line-height: 1.3; }
+
+/* A pickable bar: the same bar, as a control (ROADMAP §1.1). No colour of its
+ * own — the shading below is the state, and a second hue here would be a
+ * second legend for one chart. */
+.mtl-bar-pick {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  /* A bucket with no events still has to be clickable, or the only way to
+     widen a window past a quiet week is to clear it. */
+  min-height: 2px;
+}
+
+.mtl-bar-pick:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Inside the window in force. Drawn by opacity rather than by a different
+ * token so the chart keeps one colour and the contrast guard keeps one thing
+ * to measure. Only inside a windowed chart: with no window every bar keeps its
+ * ordinary weight. */
+.mtl-bars-windowed .mtl-bar {
+  opacity: 0.32;
+}
+
+.mtl-bars-windowed .mtl-bar-in {
+  opacity: 1;
+}

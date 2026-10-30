@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_squashfs"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# SquashFS reader: superblock, metadata blocks, inode/directory tree and file
+# extraction. Registered as a ForensicsModule so a SquashFS image (common on
+# Android system partitions, live-CD/appliance images and firmware) enumerates
+# as FileEntry artifacts through the normal pipeline.
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+flate2 = "1"
+lru = "0.18.2"
+thiserror = "1"
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+
+[dev-dependencies]

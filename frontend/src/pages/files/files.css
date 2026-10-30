@@ -1,0 +1,712 @@
+.fg-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.fg-name-input {
+  width: 200px;
+}
+
+.fg-ext-input {
+  width: 100px;
+}
+
+.fg-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.fg-viewtoggle {
+  display: inline-flex;
+}
+
+.fg-view-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.fg-refetch {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ---- Breadcrumb / count bar ---- */
+
+.fg-crumb-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  min-height: 22px;
+}
+
+.fg-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  font-size: 12.5px;
+}
+
+.fg-crumb {
+  background: none;
+  border: none;
+  padding: 1px 3px;
+  cursor: pointer;
+  color: var(--text-1);
+  font: inherit;
+}
+
+.fg-crumb:hover {
+  color: var(--accent);
+}
+
+.fg-crumb[aria-current="page"] {
+  color: var(--text-0);
+  font-weight: 600;
+}
+
+/* The collapsed-middle control. Given a box of its own so that a single
+   ellipsis glyph is still a comfortable click target between two folder
+   names. */
+.fg-crumb-more {
+  padding: 1px 6px;
+  border-radius: var(--radius);
+  color: var(--text-2);
+}
+
+.fg-crumb-more:hover {
+  background: var(--bg-2);
+  color: var(--accent);
+}
+
+.fg-crumb-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.fg-crumb-sep {
+  color: var(--text-2);
+}
+
+.fg-crumb-static {
+  color: var(--text-2);
+  padding: 1px 3px;
+}
+
+.fg-count {
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* ---- Folder-mode layout: tree + contents ---- */
+
+.fg-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.fg-tree {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+  padding: 8px 6px;
+  max-height: 70vh;
+  overflow: auto;
+  font-size: 12.5px;
+}
+
+.fg-tree-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fg-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.fg-tree-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-1);
+  font-size: 18px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius);
+  flex: none;
+}
+
+.fg-tree-caret:hover {
+  background: var(--bg-2);
+  color: var(--accent);
+}
+
+.fg-tree-label {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  cursor: pointer;
+  color: var(--text-1);
+  font: inherit;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.fg-tree-label:hover {
+  color: var(--accent);
+}
+
+.fg-tree-label.current {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.fg-tree-root {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* The sidebar's roving tab stop is the <li role="treeitem">, which contains the
+   whole expanded subtree; the default ring on the <li> itself would box in
+   every descendant folder. Draw it on the node's own row instead, which is the
+   thing the examiner is standing on — the same rule the full file-system tree
+   uses below, because it is the same contract. */
+.fg-tree [role="treeitem"]:focus {
+  outline: none;
+}
+
+.fg-tree [role="treeitem"]:focus-visible > .fg-tree-row {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  border-radius: var(--radius);
+}
+
+.fg-tree-note {
+  color: var(--text-2);
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+/* A level the server holds more folders for than were fetched. Coloured as a
+   warning, not as quiet chrome: it is the only thing telling the examiner the
+   folder list they are reading is short. */
+.fg-tree-truncated {
+  color: var(--warn);
+}
+
+.fg-main {
+  min-width: 0;
+}
+
+/* ---- A saved filter's population, opened in the grid ---- */
+
+/* Deliberately louder than the rest of the toolbar. Everything below it is a
+   narrowed listing, and a narrowed listing that looks like the whole case is
+   how "four files" gets quoted as what the evidence holds. */
+.fg-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--accent);
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  background: var(--accent-bg);
+}
+
+.fg-filter-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fg-filter-name {
+  color: var(--text-0);
+  font-size: 13px;
+}
+
+/* The two counts sit next to the filter's name rather than under it: they are
+   the population the screen is showing, not a footnote about it. */
+.fg-filter-counts {
+  color: var(--text-1);
+  font-size: 12.5px;
+  margin-left: auto;
+}
+
+.fg-filter-note {
+  margin: 0;
+  color: var(--text-1);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---- Full expandable tree view ---- */
+
+.ft-wrap {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+  padding: 6px 4px;
+  max-height: 72vh;
+  overflow: auto;
+}
+
+.ft-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ft-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 8px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.ft-row:hover {
+  background: var(--bg-2);
+}
+
+.ft-row.selected {
+  background: var(--accent-dim, var(--bg-2));
+  outline: 1px solid var(--accent);
+}
+
+/* The tones the selected row carries, restated against the fill it carries
+   them on.
+
+   The fill is painted here, one element up from every piece of text inside it,
+   and the row's quiet tones were chosen for the page surfaces rather than for
+   this: measured on the palette shipped when this was found, --text-1 on
+   --accent-dim was 2.86:1 and --text-2 2.06:1, both under the AA floor, on the
+   one row an examiner is by definition reading. --accent-dim itself is not the
+   thing to move — every palette derives it as the fill that carries --text-0 —
+   so the text moves to --text-0 instead, which measures 4.64:1 on it in the
+   shipped palette and is the pairing index.css already uses wherever it fills
+   with --accent-dim. The figure is asserted, not trusted:
+   pages/files/selectedRowContrast.test.tsx fails if either token moves.
+
+   The fill is repeated here as a `background` rather than left to be inherited
+   because app/contrast.test.ts can only measure the ground a rule paints for
+   its OWN text. Declaring it means these pairings are measured by the shared
+   guard like every other, instead of being measured against four surfaces this
+   text never lands on. (pages/files/selectedRowContrast.test.tsx measures the
+   inherited case for the whole row besides.) */
+.ft-row.selected .ft-name,
+.ft-row.selected .ft-name-deleted,
+.ft-row.selected .ft-size,
+.ft-row.selected .ft-caret,
+.ft-row.selected .ft-glyph {
+  background: var(--accent-dim);
+  color: var(--text-0);
+}
+
+/* The badges keep their own tones, and get back a ground those tones were
+   checked against. Every badge variant paints a 12% tint, which composites over
+   whatever is behind it: over the selection fill that put the Deleted badge's
+   own text at 2.16:1 and the incompleteness badge's at 2.41:1. Lifting the
+   badge onto --bg-1 — the surface `.ft-wrap` draws the whole tree on, and the
+   one every unselected row's badge already sits on — costs the tint on a
+   selected row and keeps the colour that carries the meaning. */
+.ft-row.selected .badge {
+  background-color: var(--bg-1);
+}
+
+/* The tree's roving tab stop is the <li role="treeitem">, which contains the
+   whole expanded subtree; a ring on the <li> itself would therefore box in
+   every descendant. Draw it on the node's own row instead, which is the thing
+   the examiner is actually standing on. */
+.ft [role="treeitem"]:focus {
+  outline: none;
+}
+
+.ft [role="treeitem"]:focus-visible > .ft-row {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.ft-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--text-2);
+}
+
+.ft-caret-empty {
+  visibility: hidden;
+}
+
+.ft-glyph {
+  flex: none;
+}
+
+.ft-glyph-dir {
+  color: var(--accent);
+}
+
+.ft-glyph-file {
+  color: var(--text-2);
+}
+
+.ft-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-1);
+  flex: 1 1 auto;
+}
+
+.ft-name-deleted {
+  text-decoration: line-through;
+  color: var(--danger);
+}
+
+.ft-size {
+  color: var(--text-2);
+  font-size: 11.5px;
+  flex: none;
+}
+
+.ft-badge {
+  flex: none;
+}
+
+.ft-note {
+  color: var(--text-2);
+  font-size: 12px;
+  padding: 3px 4px;
+}
+
+.fg-rows tr {
+  cursor: pointer;
+}
+
+/* The roving tab stop lives on the row, so the focus ring has to be drawn on
+   the row. `outline` on a table row is not painted consistently across
+   engines with border-collapse, so this uses an inset shadow on the cells,
+   which is. The ring is drawn on top of the .selected background because
+   focus and selection are different facts: after a shift-click range the
+   focused row is one of several selected ones. */
+.fg-rows tr:focus {
+  outline: none;
+}
+
+.fg-rows tr:focus-visible td {
+  box-shadow:
+    inset 0 1px 0 var(--accent),
+    inset 0 -1px 0 var(--accent);
+}
+
+.fg-rows tr:focus-visible td:first-child {
+  box-shadow:
+    inset 0 1px 0 var(--accent),
+    inset 0 -1px 0 var(--accent),
+    inset 1px 0 0 var(--accent);
+}
+
+.fg-rows tr:focus-visible td:last-child {
+  box-shadow:
+    inset 0 1px 0 var(--accent),
+    inset 0 -1px 0 var(--accent),
+    inset -1px 0 0 var(--accent);
+}
+
+.fg-icon-cell {
+  width: 24px;
+  padding-right: 0;
+}
+
+.fg-path-cell {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fg-glyph {
+  display: block;
+  margin-top: 2px;
+}
+
+.fg-glyph-dir {
+  color: var(--accent);
+}
+
+.fg-glyph-file {
+  color: var(--text-2);
+}
+
+.fg-sort {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.fg-sort:hover {
+  color: var(--accent);
+}
+
+.fg-sort:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.fg-sort-arrow {
+  color: var(--accent);
+  font-size: 9px;
+}
+
+.fg-name-deleted {
+  text-decoration: line-through;
+  color: var(--danger);
+}
+
+/* ---- Known-file triage badges ---- */
+
+.fg-badges {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fg-badge-notable {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.fg-badge-known {
+  background: var(--bg-2);
+  color: var(--text-2);
+  border-color: var(--border-1);
+}
+
+/* ---- Selection actions bar ---- */
+
+.fg-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+}
+
+.fg-actions-count {
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+/* ---- Bottom detail pane ---- */
+
+.fg-detail {
+  margin-top: 16px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+}
+
+.fg-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.fg-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-0);
+  flex: none;
+}
+
+.fg-detail-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fg-detail-head .btn {
+  margin-left: auto;
+}
+
+.fg-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 14px 0;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.fg-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-2);
+  padding: 4px 8px 6px;
+  cursor: pointer;
+  font-size: 12.5px;
+}
+
+.fg-tab:hover {
+  color: var(--text-0);
+}
+
+.fg-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.fg-detail-body {
+  padding: 10px 14px 14px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.fg-hex-size {
+  font-size: 11.5px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.fg-meta-table {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.fg-meta-table td {
+  padding: 3px 0;
+  vertical-align: top;
+}
+
+.fg-meta-table td:first-child {
+  color: var(--text-2);
+  white-space: nowrap;
+  padding-right: 20px;
+}
+
+/* ---- Detail-pane hashes ---- */
+
+.fg-hashes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.fg-hash-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.fg-hash-label {
+  color: var(--text-2);
+  width: 52px;
+  flex: none;
+}
+
+.fg-hash-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 260px;
+  color: var(--text-1);
+}
+
+.fg-copy {
+  background: none;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 10.5px;
+  padding: 1px 6px;
+  flex: none;
+}
+
+.fg-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+.fg-copy-done {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+/* The whole-case body-file export: case-wide and unfiltered, so it sits above
+   the source's own toolbar with its scope stated beside it. */
+.fg-case-export {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.fg-case-export-note {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.fg-case-export .error-note,
+.fg-case-export-status {
+  flex-basis: 100%;
+}
+
+.fg-case-export-status {
+  font-size: 12px;
+}

@@ -1,0 +1,116 @@
+[
+  null,
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaFieldsUnresolved",
+      "app": "golden-app",
+      "source_table": "sms",
+      "unresolved_fields": [
+        "body"
+      ],
+      "records_recovered": 4,
+      "content_incomplete": true,
+      "content_incomplete_reason": "unresolved_structure",
+      "content_incomplete_detail": "golden-app: the `sms` table has no column this parser recognises for `body` — the schema has moved since the parser was validated, and the 4 record(s) recovered omit those fields rather than substituting a guess",
+      "detail": "golden-app: the `sms` table has no column this parser recognises for `body` — the schema has moved since the parser was validated, and the 4 record(s) recovered omit those fields rather than substituting a guess",
+      "name": "ParserStaleWarning: golden-app: the `sms` table has no column this parser recognises for `body` — the schema has moved since the parser was validated, and the 4 record(s) recovered omit those fields rather than substituting a guess"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "status": "SchemaOutsideValidated",
+      "seen_schema_version": 70,
+      "message": "golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version",
+      "detail": "golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version",
+      "name": "ParserStaleWarning: golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionUndetermined",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "content_incomplete": true,
+      "content_incomplete_reason": "unresolved_structure",
+      "content_incomplete_detail": "golden-app: the schema version could not be read (io), so whether this store is one the parser was validated against is undetermined rather than answered",
+      "detail": "golden-app: the schema version could not be read (io), so whether this store is one the parser was validated against is undetermined rather than answered",
+      "name": "ParserStaleWarning: golden-app: the schema version could not be read (io), so whether this store is one the parser was validated against is undetermined rather than answered"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "message": "golden-app: no schema version is recorded (nowhere), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale",
+      "detail": "golden-app: no schema version is recorded (nowhere), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale",
+      "name": "ParserStaleWarning: golden-app: no schema version is recorded (nowhere), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "message": "golden-app: no schema version is recorded (PRAGMA user_version is 0, SQLite's default for a store that never set one), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale",
+      "detail": "golden-app: no schema version is recorded (PRAGMA user_version is 0, SQLite's default for a store that never set one), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale",
+      "name": "ParserStaleWarning: golden-app: no schema version is recorded (PRAGMA user_version is 0, SQLite's default for a store that never set one), so nothing compares this store to the validated range 57..=67 — the parse is unranked, not stale",
+      "validated_against": "golden.db"
+    }
+  },
+  null,
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "status": "SchemaOutsideValidated",
+      "seen_schema_version": 70,
+      "message": "golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version",
+      "detail": "golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version",
+      "name": "ParserStaleWarning: golden-app: schema version 70 is NEWER than the supported range 57..=67 — records may be incompletely parsed; this parser predates this app version",
+      "validated_against": "golden.db"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "app": "golden-app",
+      "supported_range": "57..=67",
+      "status": "SchemaOutsideValidated",
+      "seen_schema_version": 40,
+      "message": "golden-app: schema version 40 is OLDER than the supported range 57..=67 — this parser targets newer layouts and may miss records",
+      "detail": "golden-app: schema version 40 is OLDER than the supported range 57..=67 — this parser targets newer layouts and may miss records",
+      "name": "ParserStaleWarning: golden-app: schema version 40 is OLDER than the supported range 57..=67 — this parser targets newer layouts and may miss records",
+      "validated_against": "golden.db"
+    }
+  }
+]

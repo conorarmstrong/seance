@@ -1,0 +1,98 @@
+.en-sub {
+  color: var(--text-2);
+  font-size: 13px;
+  margin: 4px 0 16px;
+  max-width: 64ch;
+}
+
+.en-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.en-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: 20px;
+  color: var(--text-1);
+  font: inherit;
+  font-size: 12.5px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.en-chip:hover {
+  border-color: var(--border-1);
+  color: var(--text-0);
+}
+.en-chip.active {
+  border-color: var(--accent);
+  color: var(--text-0);
+  background: var(--accent-dim, var(--bg-2));
+}
+.en-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.en-chip-n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-2);
+}
+.en-chip.active .en-chip-n {
+  color: var(--accent);
+}
+
+.en-meta {
+  font-size: 11.5px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.en-value {
+  max-width: 620px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-0);
+}
+.en-kind {
+  background: var(--bg-2);
+  border-color: var(--border-1);
+  font-weight: 600;
+}
+.en-count-col {
+  text-align: right;
+}
+.en-count {
+  text-align: right;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+.en-actions {
+  text-align: right;
+  white-space: nowrap;
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+/* The value is the pivot trigger — click it to see everything touching it. */
+.en-pivot-value {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  text-align: left;
+  word-break: break-all;
+}
+.en-pivot-value:hover {
+  text-decoration: underline;
+}

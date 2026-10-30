@@ -1,0 +1,333 @@
+.srch-form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.srch-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+}
+
+.srch-q {
+  width: 320px;
+}
+
+.srch-ext {
+  width: 120px;
+}
+
+.srch-q-wrap {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.srch-help-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 300;
+  width: 320px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--text-1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.srch-help-pop h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--text-0);
+}
+
+.srch-help-pop dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+}
+
+.srch-help-pop dt {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.srch-help-pop dd {
+  margin: 0;
+}
+
+.srch-chipset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.srch-chipset legend {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.srch-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 460px;
+}
+
+.srch-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--text-1);
+  background: var(--bg-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.srch-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.srch-chip.selected {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.srch-chip:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.srch-regex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  padding-bottom: 7px;
+}
+
+.srch-export {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.srch-meta {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+/* The statement of what a search could reach (SEARCH-002). */
+.srch-universe {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 0 0 10px;
+  max-width: 72ch;
+}
+
+.srch-universe summary {
+  cursor: pointer;
+}
+
+.srch-snippet mark {
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ---- Keyword lists ---- */
+.srch-kw {
+  margin: 0 0 16px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  background: var(--bg-1);
+}
+
+.srch-kw summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.srch-kw-body {
+  margin-top: 10px;
+}
+
+.srch-kw-text {
+  width: 100%;
+  resize: vertical;
+  font-size: 12px;
+}
+
+.srch-kw-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.srch-kw-file {
+  display: none;
+}
+
+.srch-kw-results {
+  margin-top: 12px;
+  max-width: 480px;
+}
+
+/* ---- Search index repair ---- */
+.srch-repair {
+  margin: 0 0 16px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  background: var(--bg-1);
+}
+
+.srch-repair summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.srch-repair-body {
+  margin-top: 10px;
+  max-width: 640px;
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.srch-repair-body p {
+  margin: 0 0 10px;
+}
+
+.srch-repair-receipt {
+  margin-top: 10px;
+  color: var(--text-2);
+}
+
+.srch-repair-status {
+  margin: 0 0 16px;
+  max-width: 640px;
+}
+
+/* ---- Position in the match set, and the pager under the hits ---- */
+
+/* The row-range line sits directly under the match count and is deliberately
+   quieter than it: the count is the population claim, this is only where in
+   that population the rows below happen to sit. */
+.srch-position {
+  margin: -4px 0 12px;
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.srch-pager {
+  margin-top: 12px;
+}
+
+/* The results table is a roving-tabindex list, so the focused row has to be
+   visible as a row — an outline around a <tr> is not drawn consistently across
+   browsers, which is why the file grid draws the border on the cells instead.
+   Same treatment here so the two tables read identically. */
+.srch-results tr:focus-visible {
+  outline: none;
+}
+
+.srch-results tr:focus-visible td {
+  box-shadow: inset 0 1px 0 var(--accent), inset 0 -1px 0 var(--accent);
+}
+
+.srch-results tr:focus-visible td:first-child {
+  box-shadow:
+    inset 0 1px 0 var(--accent),
+    inset 0 -1px 0 var(--accent),
+    inset 1px 0 0 var(--accent);
+}
+
+.srch-results tr:focus-visible td:last-child {
+  box-shadow:
+    inset 0 1px 0 var(--accent),
+    inset 0 -1px 0 var(--accent),
+    inset -1px 0 0 var(--accent);
+}
+
+/* The case-wide byte sweep (ByteSweepPanel). */
+.srch-sweep {
+  margin: 0 0 12px;
+  border: 1px solid var(--border, #d0d7de);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.srch-sweep summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.srch-sweep-body p {
+  margin: 6px 0;
+}
+.srch-sweep-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: flex-end;
+}
+.srch-sweep-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85em;
+}
+.srch-sweep-form fieldset {
+  display: flex;
+  gap: 8px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.srch-sweep-form .srch-sweep-region {
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+.srch-sweep-answer .warn {
+  font-weight: 600;
+  color: var(--warn);
+}
+.srch-sweep-answer .ok {
+  font-weight: 600;
+}
+.srch-sweep-error {
+  color: var(--danger, #cf222e);
+}
+.srch-sweep-regions th,
+.srch-sweep-regions td {
+  padding: 2px 10px 2px 0;
+  text-align: left;
+}

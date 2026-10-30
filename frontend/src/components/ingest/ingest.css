@@ -1,0 +1,259 @@
+.ingest-options {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.ingest-options label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-1);
+  flex: 1;
+}
+
+.ingest-path {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--text-1);
+  overflow: hidden;
+}
+
+.ingest-path span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The path line is an input, not a label: an examiner usually already holds the
+   path from the acquisition ticket. */
+.ingest-path-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: var(--text-1);
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+.ingest-path-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* What the profile in force does to the run. Sized like the memory declaration
+   because it is the same kind of statement: a scoping decision the examiner
+   owns and may have to describe under oath. */
+.ingest-profile-note {
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.ingest-profile-note p {
+  margin: 0 0 6px;
+}
+.ingest-profile-note p:last-child {
+  margin-bottom: 0;
+}
+.ingest-profile-loading {
+  color: var(--text-2);
+}
+.ingest-profile-absence {
+  color: var(--text-1);
+}
+.ingest-profile-groups-lede {
+  margin-bottom: 2px !important;
+}
+.ingest-profile-groups {
+  margin: 0 0 6px;
+  padding-left: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  list-style: none;
+}
+.ingest-profile-modules {
+  margin: 6px 0 0;
+  padding-left: 16px;
+  max-height: 160px;
+  overflow-y: auto;
+  font-size: 11px;
+  color: var(--text-2);
+  list-style: none;
+}
+
+.ingest-browser {
+  height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+}
+
+.ingest-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12.5px;
+}
+
+.ingest-entry:hover {
+  background: var(--bg-2);
+}
+
+.ingest-entry.selected {
+  background: var(--accent-bg);
+}
+
+.ingest-entry-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  width: 20px;
+  flex: none;
+}
+
+/* The per-row selector. It is a real button so a directory can be chosen as a
+   source without the row click (which descends into it) being consumed. */
+.ingest-entry-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  cursor: pointer;
+}
+.ingest-entry-select:hover {
+  color: var(--text-1);
+}
+.ingest-entry-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+
+.ingest-icon-folder {
+  color: var(--accent);
+}
+
+.ingest-icon-checked {
+  color: var(--accent);
+}
+
+.ingest-entry-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ingest-entry-size {
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.ingest-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ingest-selected .link-button {
+  margin-left: 6px;
+}
+
+/* Evidence-root switcher: pick which allowed root the browser shows. */
+.ingest-root {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.ingest-root > span {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.ingest-root select {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+}
+
+/* Memory-capture declaration. Deliberately set apart from the ordinary ingest
+   options: it is an examiner's assertion about the evidence, not a setting. */
+.ingest-memory {
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+}
+
+.ingest-memory-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.ingest-memory-format {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.ingest-memory-format > span {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.ingest-memory-format select {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+}
+
+.ingest-memory-warning {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-1);
+  border-left: 2px solid var(--warn);
+  padding-left: 8px;
+}
+
+.ingest-memory-note {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+/* The uncommitted-path caveat. It sits between the path line and the listing,
+   because it is a statement about the difference between the two: the line
+   shows what the examiner entered, the listing still shows where the browser
+   is, and until the path is opened both are true at once. */
+.ingest-path-pending {
+  margin: 0 0 8px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

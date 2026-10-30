@@ -1,0 +1,15 @@
+-- Which key each audit row was written under.
+--
+-- The audit chain is tamper-evident only when it is keyed, and a deployment
+-- that turns a key on -- or rotates one -- does so on top of rows already
+-- written. Without a record of which key (if any) each row was hashed under,
+-- the verifier has two bad choices on that boundary: fail the whole history as
+-- a broken chain, or accept whichever digest happens to recompute and thereby
+-- let an attacker replace the keyed tail with an unkeyed one that "verifies".
+--
+-- The fingerprint is the first 16 hex characters of a domain-separated
+-- SHA-256 over the key; it identifies the key without disclosing it, and the
+-- key itself is never written to this database. NULL means the row was written
+-- unkeyed, or before fingerprints existed -- the verifier tells those apart by
+-- trying the configured key before falling back to the unkeyed digest.
+ALTER TABLE audit_log ADD COLUMN key_fingerprint TEXT;

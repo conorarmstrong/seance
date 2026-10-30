@@ -1,0 +1,19 @@
+[package]
+name = "seance_container_sparseimage"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Reads the Apple single-file sparse disk image (.sparseimage) format and
+# presents the disk it contains as one DataSource, so every downstream partition,
+# filesystem and carver works unchanged. This is what FUJI, RECON and ASLA
+# produce when imaging a Mac, so ingesting it is ingesting what examiners
+# actually collect today.
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1"
+
+[dev-dependencies]
+uuid = { version = "1.10.0", features = ["v4"] }

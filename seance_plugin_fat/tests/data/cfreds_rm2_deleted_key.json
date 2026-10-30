@@ -1,0 +1,238 @@
+{
+ "directories": {
+  "/$OrphanFiles/PRICIN~1": {
+   "first_sector": 68632,
+   "inode": 136,
+   "size": 4096
+  },
+  "/$OrphanFiles/TECHNI~1": {
+   "first_sector": 201752,
+   "inode": 141,
+   "size": 4096
+  },
+  "/$OrphanFiles/design": {
+   "first_sector": 8208,
+   "inode": 133,
+   "size": 4096
+  },
+  "/$OrphanFiles/progress": {
+   "first_sector": 111400,
+   "inode": 137,
+   "size": 4096
+  },
+  "/$OrphanFiles/proposal": {
+   "first_sector": 120264,
+   "inode": 138,
+   "size": 4096
+  }
+ },
+ "files": {
+  "/$OrphanFiles/BAMBOO~1.GIF": {
+   "first_sector": 100576,
+   "inode": 5760648,
+   "size": 6717692
+  },
+  "/$OrphanFiles/CUTTY-~1.JPG": {
+   "first_sector": 117864,
+   "inode": 5760656,
+   "size": 1625241
+  },
+  "/$OrphanFiles/FORSYT~1.PNG": {
+   "first_sector": 119784,
+   "inode": 5760659,
+   "size": 8107995
+  },
+  "/$OrphanFiles/JACK-O~1.TIF": {
+   "first_sector": 123768,
+   "inode": 5760663,
+   "size": 7545856
+  },
+  "/$OrphanFiles/PIAZZA~1.JPG": {
+   "first_sector": 133648,
+   "inode": 5760670,
+   "size": 1267394
+  },
+  "/$OrphanFiles/PRICIN~1/my_favorite_cars.db": {
+   "first_sector": 68640,
+   "inode": 967047,
+   "size": 1260544
+  },
+  "/$OrphanFiles/PRICIN~1/my_favorite_movies.7z": {
+   "first_sector": 71104,
+   "inode": 967050,
+   "size": 100078
+  },
+  "/$OrphanFiles/PRICIN~1/new_years_day.jpg": {
+   "first_sector": 71304,
+   "inode": 967053,
+   "size": 10237535
+  },
+  "/$OrphanFiles/PRICIN~1/super_bowl.avi": {
+   "first_sector": 91304,
+   "inode": 967056,
+   "size": 10289152
+  },
+  "/$OrphanFiles/SPQR.JPG": {
+   "first_sector": 134688,
+   "inode": 5760672,
+   "size": 897275
+  },
+  "/$OrphanFiles/STONEH~1.JPG": {
+   "first_sector": 135128,
+   "inode": 5760675,
+   "size": 1236401
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#1d.txt": {
+   "first_sector": 201760,
+   "inode": 3096966,
+   "size": 121441
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#1p.txt": {
+   "first_sector": 202000,
+   "inode": 3096968,
+   "size": 458267
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#2d.txt": {
+   "first_sector": 202896,
+   "inode": 3096970,
+   "size": 658922
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#2p.txt": {
+   "first_sector": 204184,
+   "inode": 3096972,
+   "size": 1154560
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#3d.txt": {
+   "first_sector": 206440,
+   "inode": 3096974,
+   "size": 2360832
+  },
+  "/$OrphanFiles/TECHNI~1/diary_#3p.txt": {
+   "first_sector": 211056,
+   "inode": 3096976,
+   "size": 325120
+  },
+  "/$OrphanFiles/amalfi.bmp": {
+   "first_sector": 100120,
+   "inode": 5760645,
+   "size": 921654
+  },
+  "/$OrphanFiles/barn.gif": {
+   "first_sector": 103864,
+   "inode": 5760649,
+   "size": 3352929
+  },
+  "/$OrphanFiles/blini.gif": {
+   "first_sector": 105504,
+   "inode": 5760650,
+   "size": 2125114
+  },
+  "/$OrphanFiles/boudicca.bmp": {
+   "first_sector": 106544,
+   "inode": 5760651,
+   "size": 8798374
+  },
+  "/$OrphanFiles/cactus.png": {
+   "first_sector": 110848,
+   "inode": 5760652,
+   "size": 6164389
+  },
+  "/$OrphanFiles/cave.png": {
+   "first_sector": 113864,
+   "inode": 5760653,
+   "size": 8182655
+  },
+  "/$OrphanFiles/design/winter_storm.amr": {
+   "first_sector": 8216,
+   "inode": 263,
+   "size": 14547968
+  },
+  "/$OrphanFiles/design/winter_whether_advisory.zip": {
+   "first_sector": 36632,
+   "inode": 267,
+   "size": 16381123
+  },
+  "/$OrphanFiles/desktop.ini": {
+   "first_sector": 211704,
+   "inode": 3256069,
+   "size": 129
+  },
+  "/$OrphanFiles/eggs.gif": {
+   "first_sector": 118664,
+   "inode": 5760657,
+   "size": 2284125
+  },
+  "/$OrphanFiles/injera.gif": {
+   "first_sector": 123744,
+   "inode": 5760660,
+   "size": 34480
+  },
+  "/$OrphanFiles/jump.jpg": {
+   "first_sector": 127456,
+   "inode": 5760664,
+   "size": 2015880
+  },
+  "/$OrphanFiles/leaf.jpg": {
+   "first_sector": 128448,
+   "inode": 5760665,
+   "size": 798064
+  },
+  "/$OrphanFiles/oak-snow.jpg": {
+   "first_sector": 128840,
+   "inode": 5760666,
+   "size": 1370140
+  },
+  "/$OrphanFiles/orchid.png": {
+   "first_sector": 129512,
+   "inode": 5760667,
+   "size": 8455527
+  },
+  "/$OrphanFiles/pisa.JPG": {
+   "first_sector": 134272,
+   "inode": 5760671,
+   "size": 847709
+  },
+  "/$OrphanFiles/progress/my_friends.svg": {
+   "first_sector": 111408,
+   "inode": 1651335,
+   "size": 58368
+  },
+  "/$OrphanFiles/progress/my_smartphone.png": {
+   "first_sector": 111528,
+   "inode": 1651338,
+   "size": 4440235
+  },
+  "/$OrphanFiles/progress/new_year_calendar.one": {
+   "first_sector": 120208,
+   "inode": 1651341,
+   "size": 27414
+  },
+  "/$OrphanFiles/proposal/a_gift_from_you.gif": {
+   "first_sector": 120272,
+   "inode": 1793159,
+   "size": 35226880
+  },
+  "/$OrphanFiles/proposal/landscape.png": {
+   "first_sector": 189080,
+   "inode": 1793161,
+   "size": 6484502
+  },
+  "/$OrphanFiles/tapas.gif": {
+   "first_sector": 135736,
+   "inode": 5760676,
+   "size": 2242264
+  },
+  "/$OrphanFiles/tomatoes.gif": {
+   "first_sector": 136832,
+   "inode": 5760677,
+   "size": 2240548
+  },
+  "/$OrphanFiles/wat.gif": {
+   "first_sector": 137928,
+   "inode": 5760678,
+   "size": 32186
+  }
+ },
+ "image_basename": "rm2.raw",
+ "sector_offset": 128
+}

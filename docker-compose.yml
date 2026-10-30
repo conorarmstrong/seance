@@ -1,0 +1,88 @@
+# Séance — single-service deployment.
+#
+# The `seance` service runs the seance_api server (JSON API). It serves the API
+# only; to serve the React SPA and terminate TLS, put a reverse proxy in front
+# (see documentation/DEPLOYMENT.md → "Serving the web UI" and "TLS").
+#
+# Secrets (SEANCE_ADMIN_PASSWORD, SEANCE_JWT_SECRET, SEANCE_AUDIT_HMAC_KEY) are
+# read from a .env file next to this compose file, or the shell environment.
+# Compose refuses to start if they are unset — there is intentionally no
+# baked-in default password, and no baked-in audit key.
+#
+#   1. echo "SEANCE_ADMIN_PASSWORD=$(openssl rand -base64 24)" >> .env
+#   2. echo "SEANCE_JWT_SECRET=$(openssl rand -hex 32)"        >> .env
+#   3. echo "SEANCE_AUDIT_HMAC_KEY=$(openssl rand -hex 32)"    >> .env
+#   4. put evidence images under ./evidence  (mounted read-only)
+#   5. docker compose up --build
+
+services:
+  seance:
+    build:
+      context: .
+    image: seance:latest
+    # Proper PID 1 / SIGTERM handling and zombie reaping (Docker's built-in tini).
+    init: true
+    restart: unless-stopped
+    ports:
+      # host:container — the API (and, behind a proxy, the UI) is on 8080.
+      - "8080:8080"
+    environment:
+      # --- Bind ------------------------------------------------------------
+      # Bind inside the container. Keep 0.0.0.0 so the published port works;
+      # confine external exposure with the reverse proxy / firewall instead.
+      SEANCE_BIND: "0.0.0.0:8080"
+
+      # --- Authentication --------------------------------------------------
+      # Auth is ON by default. Do NOT disable it on a network-exposed bind —
+      # the server refuses to start with auth off unless bound to loopback.
+      SEANCE_AUTH_ENABLED: "true"
+      SEANCE_ADMIN_USERNAME: "admin"
+      # No default password: supply one via .env (see header). If you omit it,
+      # the server generates a random password and logs it once at startup —
+      # check `docker compose logs seance` to retrieve it.
+      SEANCE_ADMIN_PASSWORD: "${SEANCE_ADMIN_PASSWORD:?set SEANCE_ADMIN_PASSWORD in .env}"
+      # Stable JWT signing secret so sessions survive restarts. If unset, a
+      # random per-run secret is generated and all sessions drop on restart.
+      SEANCE_JWT_SECRET: "${SEANCE_JWT_SECRET:?set SEANCE_JWT_SECRET in .env}"
+      # Set to "true" once the API is served over HTTPS (via the reverse proxy)
+      # so the auth cookie carries the Secure attribute.
+      SEANCE_COOKIE_SECURE: "false"
+
+      # --- Audit chain keying --------------------------------------------
+      # The audit log is the chain of custody. Unkeyed it is a plain SHA-256
+      # chain that anyone with database access can rewrite and recompute, and
+      # the server REFUSES to start unkeyed on a non-loopback bind. Generate
+      # once (see header), keep it stable across restarts, and never store it
+      # beside the database. To rotate: move the old value to
+      # SEANCE_AUDIT_HMAC_KEY_PREVIOUS (colon-separated) so the rows written
+      # under it keep verifying, then put the new value here.
+      SEANCE_AUDIT_HMAC_KEY: "${SEANCE_AUDIT_HMAC_KEY:?set SEANCE_AUDIT_HMAC_KEY in .env}"
+      # SEANCE_AUDIT_HMAC_KEY_PREVIOUS: "${SEANCE_AUDIT_HMAC_KEY_PREVIOUS:-}"
+
+      # --- Evidence confinement -------------------------------------------
+      # Restrict all server-side file access to the mounted evidence root.
+      # Colon-separated for multiple roots, e.g. "/evidence:/more-evidence".
+      SEANCE_EVIDENCE_ROOTS: "/evidence"
+
+      # --- Storage ---------------------------------------------------------
+      # SQLite DB lives on the named volume. The search index (search_index/)
+      # is written relative to the working directory, which is /data.
+      DATABASE_URL: "sqlite:/data/seance.sqlite"
+
+      # --- Report signing (optional) --------------------------------------
+      # Uncomment and mount the cert/key to produce tamper-evident reports.
+      # Without these, reports are served UNSIGNED and marked as such.
+      # SEANCE_SIGNING_CERT: "/secrets/signing.crt"
+      # SEANCE_SIGNING_KEY: "/secrets/signing.key"
+      # SEANCE_SIGNING_NAME: "Acme Forensics Lab"
+    volumes:
+      # Evidence, mounted READ-ONLY so ingestion can never modify originals.
+      # Change the host path (./evidence) to wherever your images live.
+      - ./evidence:/evidence:ro
+      # Persistent SQLite DB (+ WAL/SHM) and Tantivy search index.
+      - seance-data:/data
+      # Report signing material (optional; pair with the env vars above).
+      # - ./secrets:/secrets:ro
+
+volumes:
+  seance-data:

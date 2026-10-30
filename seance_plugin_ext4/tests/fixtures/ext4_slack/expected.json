@@ -1,0 +1,48 @@
+{
+  "image": "ext4_slack.img",
+  "block_size": 1024,
+  "image_sha256": "38fea087f71728348e2abeb563a49877df6fc065582b7288368c9ba1fddce4a7",
+  "regions_expected": [
+    "tail_a.txt",
+    "big.bin"
+  ],
+  "zero_tails_expected": [
+    "tail_zero.txt"
+  ],
+  "hard_links": {
+    "tail_a_link.txt": "tail_a.txt"
+  },
+  "files": {
+    "tail_a.txt": {
+      "size": 1500,
+      "tail": {
+        "offset": 42460,
+        "length": 548,
+        "planted": "leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a deleted file: alpha-7f3a9c leftover of a d"
+      }
+    },
+    "big.bin": {
+      "size": 5000,
+      "tail": {
+        "offset": 38792,
+        "length": 120,
+        "planted": "SLACK-MARK-BIG-5d21 SLACK-MARK-BIG-5d21 SLACK-MARK-BIG-5d21 SLACK-MARK-BIG-5d21 SLACK-MARK-BIG-5d21 SLACK-MARK-BIG-5d21 "
+      }
+    },
+    "tail_zero.txt": {
+      "size": 700,
+      "tail": {
+        "offset": 43708,
+        "length": 324
+      }
+    },
+    "exact.bin": {
+      "size": 2048,
+      "tail": null
+    },
+    "empty.dat": {
+      "size": 0,
+      "tail": null
+    }
+  }
+}

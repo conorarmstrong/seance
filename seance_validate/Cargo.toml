@@ -1,0 +1,56 @@
+[package]
+name = "seance_validate"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# A reproducible known-answer validation runner. It executes documented DFTT /
+# known-answer cases against a local corpus and emits a provenance-stamped,
+# tamper-evident report that can be published as a release/engagement artifact.
+build = "build.rs"
+
+[[bin]]
+name = "seance-validate"
+path = "src/main.rs"
+
+# Grades a CFTT run against a published answer key (ROADMAP §5.2). Separate
+# from the known-answer runner because it grades somebody else's assertions
+# against results a script collected, rather than running cases itself.
+[[bin]]
+name = "cftt-grade"
+path = "src/bin/cftt-grade.rs"
+
+[dependencies]
+seance_plugin_bitlocker = { path = "../seance_plugin_bitlocker" }
+seance_plugin_memory_windows = { path = "../seance_plugin_memory_windows" }
+seance_core = { path = "../seance_core" }
+seance_plugin_partition = { path = "../seance_plugin_partition" }
+seance_plugin_fat = { path = "../seance_plugin_fat" }
+seance_container_e01 = { path = "../seance_container_e01" }
+seance_memory = { path = "../seance_memory" }
+seance_plugin_memory_linux = { path = "../seance_plugin_memory_linux" }
+md-5 = "0.10"
+sha1 = "0.10"
+flate2 = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+uuid = { version = "1", features = ["v4"] }
+serde_json = { workspace = true }
+sha2 = "0.10"
+hmac = "0.12"
+chrono = { version = "0.4", features = ["clock"] }
+anyhow = "1.0"
+# Combining-mark classification, to restate the search indexer's UTF-16 reach
+# (SEARCH-002). MIT OR Apache-2.0; already in the lock file.
+unicode-normalization = "0.1"
+# Reads the CFTT "Expected Results by ID" .docx, which carries the case-to-id
+# table (ROADMAP §5.2). MIT; already in the lock file via seance_api.
+zip = { version = "9", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+# The corpus gate: an unset variable SKIPS and a variable set to a missing
+# path PANICS, so a pass never reports a comparison that did not run.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+tempfile = "3"
+# The indexer itself, so the test of `utf16_index_reaches` compares the
+# grader's prediction with what the UTF-16 passes really take (SEARCH-002).
+seance_search = { path = "../seance_search" }

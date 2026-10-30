@@ -1,0 +1,167 @@
+.cx-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cx-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.cx-sub {
+  color: var(--text-2);
+  font-size: 13px;
+  margin: 4px 0 0;
+  max-width: 60ch;
+}
+
+.cx-stats {
+  display: flex;
+  gap: 18px;
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.cx-stats b {
+  color: var(--text-0);
+  font-size: 15px;
+}
+
+.cx-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+}
+
+.cx-graph {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.cx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-0);
+  font-size: 11.5px;
+  color: var(--text-1);
+}
+.cx-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.cx-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+/* The key's colours, from the same tokens `graphColors` draws the nodes with:
+   the device owner, a messaging peer, an address. */
+.cx-dot-self {
+  background: var(--accent);
+}
+.cx-dot-contact {
+  background: var(--info);
+}
+.cx-dot-email {
+  background: var(--ok);
+}
+.cx-hint {
+  color: var(--text-2);
+  margin-left: auto;
+}
+
+.cx-canvas-wrap {
+  width: 100%;
+  height: 68vh;
+  min-height: 460px;
+}
+.cx-canvas-wrap canvas {
+  display: block;
+}
+
+.cx-trunc {
+  padding: 8px 14px;
+  border-top: 1px solid var(--border-0);
+  font-size: 11.5px;
+  color: var(--text-2);
+}
+
+/* ---- selection detail ---- */
+.cx-detail {
+  width: 268px;
+  padding: 18px 20px;
+  position: relative;
+}
+.cx-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cx-close:hover {
+  color: var(--text-0);
+}
+.cx-detail-kind {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cx-detail-label {
+  font-size: 17px;
+  font-weight: 640;
+  margin: 8px 0 2px;
+  word-break: break-word;
+}
+.cx-detail-id {
+  font-size: 12px;
+  color: var(--text-2);
+  word-break: break-all;
+  margin-bottom: 14px;
+}
+.cx-detail-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-0);
+  border-bottom: 1px solid var(--border-0);
+  margin-bottom: 14px;
+}
+.cx-metric-n {
+  font-size: 24px;
+  color: var(--text-0);
+  font-variant-numeric: tabular-nums;
+}
+.cx-metric-l {
+  font-size: 12px;
+  color: var(--text-2);
+}
+.cx-search {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .cx-body {
+    grid-template-columns: 1fr;
+  }
+  .cx-detail {
+    width: auto;
+  }
+}

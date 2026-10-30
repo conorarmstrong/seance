@@ -1,0 +1,1318 @@
+{
+ "files": {},
+ "image_basename": "ss-unix-07-25-18.dd",
+ "no_extent": 0,
+ "no_tail": 28,
+ "sector_offset": 2932736,
+ "sectors": 1164936,
+ "zero_files": {
+  "/.DS_Store": {
+   "inode": 183,
+   "length": 4092,
+   "offset": 7983108,
+   "size": 8196
+  },
+  "/.Spotlight-V100/Store-V1/VolumeConfig.plist": {
+   "inode": 19,
+   "length": 3748,
+   "offset": 2937180,
+   "size": 348
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.directoryStoreFile.shadow": {
+   "inode": 175,
+   "length": 3008,
+   "offset": 7255104,
+   "size": 1088
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexArrays": {
+   "inode": 170,
+   "length": 4032,
+   "offset": 7016512,
+   "size": 64
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexBigDates": {
+   "inode": 162,
+   "length": 4092,
+   "offset": 6955012,
+   "size": 4
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexCompactDirectory": {
+   "inode": 169,
+   "length": 4088,
+   "offset": 7012360,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexDirectory": {
+   "inode": 168,
+   "length": 2040,
+   "offset": 7002120,
+   "size": 2056
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexGroups": {
+   "inode": 163,
+   "length": 4095,
+   "offset": 6971393,
+   "size": 1
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexIds": {
+   "inode": 161,
+   "length": 4088,
+   "offset": 6922248,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexPositions": {
+   "inode": 166,
+   "length": 4088,
+   "offset": 6987784,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexPostings": {
+   "inode": 164,
+   "length": 4088,
+   "offset": 6975496,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.indexUpdates": {
+   "inode": 173,
+   "length": 4085,
+   "offset": 7204875,
+   "size": 11
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/0.shadowIndexGroups": {
+   "inode": 176,
+   "length": 4095,
+   "offset": 7258113,
+   "size": 1
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/indexState": {
+   "inode": 28,
+   "length": 4068,
+   "offset": 2953244,
+   "size": 28
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/journals.live_user/journal.1": {
+   "inode": 554,
+   "length": 3324,
+   "offset": 10486532,
+   "size": 772
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.directoryStoreFile.shadow": {
+   "inode": 143,
+   "length": 3008,
+   "offset": 6169664,
+   "size": 1088
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.indexCompactDirectory": {
+   "inode": 132,
+   "length": 3072,
+   "offset": 5841920,
+   "size": 1024
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.indexDirectory": {
+   "inode": 131,
+   "length": 4064,
+   "offset": 5836832,
+   "size": 8224
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.indexGroups": {
+   "inode": 126,
+   "length": 819,
+   "offset": 5803213,
+   "size": 3277
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.indexUpdates": {
+   "inode": 557,
+   "length": 1020,
+   "offset": 4574212,
+   "size": 343044
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.shadowIndexCompactDirectory": {
+   "inode": 141,
+   "length": 4088,
+   "offset": 6160392,
+   "size": 8
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.shadowIndexDirectory": {
+   "inode": 142,
+   "length": 2040,
+   "offset": 6166536,
+   "size": 2056
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/live.0.shadowIndexGroups": {
+   "inode": 144,
+   "length": 4095,
+   "offset": 6172673,
+   "size": 1
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/permStore": {
+   "inode": 553,
+   "length": 3535,
+   "offset": 4854321,
+   "size": 66097
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/reverseDirectoryStore.shadow": {
+   "inode": 78,
+   "length": 960,
+   "offset": 4058176,
+   "size": 3136
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/reverseStore.updates": {
+   "inode": 96,
+   "length": 4094,
+   "offset": 4636674,
+   "size": 2
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/shutdown_time": {
+   "inode": 77,
+   "length": 4092,
+   "offset": 4861956,
+   "size": 4
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/store.updates": {
+   "inode": 558,
+   "length": 4084,
+   "offset": 4628492,
+   "size": 12
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/store_generation": {
+   "inode": 61,
+   "length": 4092,
+   "offset": 3727364,
+   "size": 4
+  },
+  "/.Spotlight-V100/Store-V2/FFC16C81-C05B-4B6F-951F-017FABD566D3/tmp.spotlight.loc": {
+   "inode": 103,
+   "length": 2383,
+   "offset": 10262193,
+   "size": 9905
+  },
+  "/.Spotlight-V100/VolumeConfiguration.plist": {
+   "inode": 20,
+   "length": 4080,
+   "offset": 3739664,
+   "size": 4112
+  },
+  "/.fseventsd/fc00755ed2f532a2": {
+   "inode": 551,
+   "length": 448,
+   "offset": 10346048,
+   "size": 3648
+  },
+  "/.fseventsd/fc00755ed2f532a3": {
+   "inode": 552,
+   "length": 4021,
+   "offset": 10346571,
+   "size": 75
+  },
+  "/.fseventsd/fc00755ed2f565b1": {
+   "inode": 559,
+   "length": 2355,
+   "offset": 4769485,
+   "size": 1741
+  },
+  "/.fseventsd/fc00755ed2f565b2": {
+   "inode": 560,
+   "length": 4021,
+   "offset": 4780107,
+   "size": 75
+  },
+  "/.fseventsd/fseventsd-uuid": {
+   "inode": 58,
+   "length": 4060,
+   "offset": 3514404,
+   "size": 36
+  },
+  "/apfs/LIVE-AllCap-Lupus-apfs-ascii.txt": {
+   "inode": 367,
+   "length": 2864,
+   "offset": 8856784,
+   "size": 1232
+  },
+  "/apfs/LIVE-America-apfs-utf-16-be.txt": {
+   "inode": 368,
+   "length": 1618,
+   "offset": 8862126,
+   "size": 2478
+  },
+  "/apfs/LIVE-America-apfs-utf-16-le.txt": {
+   "inode": 369,
+   "length": 1684,
+   "offset": 8866156,
+   "size": 2412
+  },
+  "/apfs/LIVE-America-apfs-utf-8.txt": {
+   "inode": 370,
+   "length": 2899,
+   "offset": 8869037,
+   "size": 1197
+  },
+  "/apfs/LIVE-AndBeyond-apfs-ascii.txt": {
+   "inode": 371,
+   "length": 2883,
+   "offset": 8873149,
+   "size": 1213
+  },
+  "/apfs/LIVE-AndBeyond-apfs-utf-16-be.txt": {
+   "inode": 372,
+   "length": 1584,
+   "offset": 8878544,
+   "size": 2512
+  },
+  "/apfs/LIVE-AndBeyond-apfs-utf-16-le.txt": {
+   "inode": 373,
+   "length": 1706,
+   "offset": 8882518,
+   "size": 2390
+  },
+  "/apfs/LIVE-AndBeyond-apfs-utf-8.txt": {
+   "inode": 374,
+   "length": 2875,
+   "offset": 8885445,
+   "size": 1221
+  },
+  "/apfs/LIVE-Baklava-apfs-utf-16-be.txt": {
+   "inode": 375,
+   "length": 1700,
+   "offset": 8890716,
+   "size": 2396
+  },
+  "/apfs/LIVE-Baklava-apfs-utf-16-le.txt": {
+   "inode": 376,
+   "length": 1664,
+   "offset": 8894848,
+   "size": 2432
+  },
+  "/apfs/LIVE-Baklava-apfs-utf-8.txt": {
+   "inode": 377,
+   "length": 2867,
+   "offset": 8897741,
+   "size": 1229
+  },
+  "/apfs/LIVE-Bastila-apfs-utf-16-be.txt": {
+   "inode": 378,
+   "length": 1702,
+   "offset": 8903002,
+   "size": 2394
+  },
+  "/apfs/LIVE-Bastila-apfs-utf-16-le.txt": {
+   "inode": 379,
+   "length": 1688,
+   "offset": 8907112,
+   "size": 2408
+  },
+  "/apfs/LIVE-Bastila-apfs-utf-8.txt": {
+   "inode": 380,
+   "length": 2859,
+   "offset": 8910037,
+   "size": 1237
+  },
+  "/apfs/LIVE-Beauty-apfs-utf-16-be.txt": {
+   "inode": 381,
+   "length": 1650,
+   "offset": 8915342,
+   "size": 2446
+  },
+  "/apfs/LIVE-Beauty-apfs-utf-16-le.txt": {
+   "inode": 382,
+   "length": 1688,
+   "offset": 8919400,
+   "size": 2408
+  },
+  "/apfs/LIVE-Beauty-apfs-utf-8.txt": {
+   "inode": 383,
+   "length": 2881,
+   "offset": 8922303,
+   "size": 1215
+  },
+  "/apfs/LIVE-BeiJing-apfs-utf-16-be.txt": {
+   "inode": 384,
+   "length": 1634,
+   "offset": 8927646,
+   "size": 2462
+  },
+  "/apfs/LIVE-BeiJing-apfs-utf-16-le.txt": {
+   "inode": 385,
+   "length": 1712,
+   "offset": 8931664,
+   "size": 2384
+  },
+  "/apfs/LIVE-BeiJing-apfs-utf-8.txt": {
+   "inode": 386,
+   "length": 2886,
+   "offset": 8934586,
+   "size": 1210
+  },
+  "/apfs/LIVE-Boy-apfs-utf-16-be.txt": {
+   "inode": 389,
+   "length": 1686,
+   "offset": 8948074,
+   "size": 2410
+  },
+  "/apfs/LIVE-Boy-apfs-utf-16-le.txt": {
+   "inode": 390,
+   "length": 1648,
+   "offset": 8952208,
+   "size": 2448
+  },
+  "/apfs/LIVE-Boy-apfs-utf-8.txt": {
+   "inode": 391,
+   "length": 2871,
+   "offset": 8955081,
+   "size": 1225
+  },
+  "/apfs/LIVE-Cap-Lupus-apfs-ascii.txt": {
+   "inode": 395,
+   "length": 2895,
+   "offset": 8971441,
+   "size": 1201
+  },
+  "/apfs/LIVE-China-apfs-utf-16-be.txt": {
+   "inode": 396,
+   "length": 1704,
+   "offset": 8976728,
+   "size": 2392
+  },
+  "/apfs/LIVE-China-apfs-utf-16-le.txt": {
+   "inode": 397,
+   "length": 1722,
+   "offset": 8980806,
+   "size": 2374
+  },
+  "/apfs/LIVE-China-apfs-utf-8.txt": {
+   "inode": 398,
+   "length": 2909,
+   "offset": 8983715,
+   "size": 1187
+  },
+  "/apfs/LIVE-Coke-apfs-utf-16-be.txt": {
+   "inode": 399,
+   "length": 1678,
+   "offset": 8989042,
+   "size": 2418
+  },
+  "/apfs/LIVE-Coke-apfs-utf-16-le.txt": {
+   "inode": 400,
+   "length": 1694,
+   "offset": 8993122,
+   "size": 2402
+  },
+  "/apfs/LIVE-Coke-apfs-utf-8.txt": {
+   "inode": 401,
+   "length": 2860,
+   "offset": 8996052,
+   "size": 1236
+  },
+  "/apfs/LIVE-Couscous-apfs-utf-16-be.txt": {
+   "inode": 402,
+   "length": 1674,
+   "offset": 9001334,
+   "size": 2422
+  },
+  "/apfs/LIVE-Couscous-apfs-utf-16-le.txt": {
+   "inode": 403,
+   "length": 1594,
+   "offset": 9005510,
+   "size": 2502
+  },
+  "/apfs/LIVE-Couscous-apfs-utf-8.txt": {
+   "inode": 404,
+   "length": 2914,
+   "offset": 9008286,
+   "size": 1182
+  },
+  "/apfs/LIVE-Equine-apfs-ascii.txt": {
+   "inode": 412,
+   "length": 2914,
+   "offset": 9041054,
+   "size": 1182
+  },
+  "/apfs/LIVE-Equine-apfs-utf-16-be.txt": {
+   "inode": 413,
+   "length": 1686,
+   "offset": 9046378,
+   "size": 2410
+  },
+  "/apfs/LIVE-Equine-apfs-utf-16-le.txt": {
+   "inode": 414,
+   "length": 1630,
+   "offset": 9050530,
+   "size": 2466
+  },
+  "/apfs/LIVE-Equine-apfs-utf-8.txt": {
+   "inode": 415,
+   "length": 2866,
+   "offset": 9053390,
+   "size": 1230
+  },
+  "/apfs/LIVE-Extinct-Lupus-apfs-ascii.txt": {
+   "inode": 416,
+   "length": 2856,
+   "offset": 9057496,
+   "size": 1240
+  },
+  "/apfs/LIVE-Falafel-apfs-utf-16-be.txt": {
+   "inode": 417,
+   "length": 1686,
+   "offset": 9062762,
+   "size": 2410
+  },
+  "/apfs/LIVE-Falafel-apfs-utf-16-le.txt": {
+   "inode": 418,
+   "length": 1650,
+   "offset": 9066894,
+   "size": 2446
+  },
+  "/apfs/LIVE-Falafel-apfs-utf-8.txt": {
+   "inode": 419,
+   "length": 2894,
+   "offset": 9069746,
+   "size": 1202
+  },
+  "/apfs/LIVE-Japan-apfs-utf-16-be.txt": {
+   "inode": 427,
+   "length": 1736,
+   "offset": 9103672,
+   "size": 2360
+  },
+  "/apfs/LIVE-Japan-apfs-utf-16-le.txt": {
+   "inode": 428,
+   "length": 1736,
+   "offset": 9107768,
+   "size": 2360
+  },
+  "/apfs/LIVE-Japan-apfs-utf-8.txt": {
+   "inode": 429,
+   "length": 2916,
+   "offset": 9110684,
+   "size": 1180
+  },
+  "/apfs/LIVE-Kebab-apfs-utf-16-be.txt": {
+   "inode": 430,
+   "length": 1688,
+   "offset": 9116008,
+   "size": 2408
+  },
+  "/apfs/LIVE-Kebab-apfs-utf-16-le.txt": {
+   "inode": 431,
+   "length": 1706,
+   "offset": 9120086,
+   "size": 2390
+  },
+  "/apfs/LIVE-Kebab-apfs-utf-8.txt": {
+   "inode": 432,
+   "length": 2863,
+   "offset": 9123025,
+   "size": 1233
+  },
+  "/apfs/LIVE-Korea-apfs-utf-16-be.txt": {
+   "inode": 433,
+   "length": 1622,
+   "offset": 9128362,
+   "size": 2474
+  },
+  "/apfs/LIVE-Korea-apfs-utf-16-le.txt": {
+   "inode": 434,
+   "length": 1692,
+   "offset": 9132388,
+   "size": 2404
+  },
+  "/apfs/LIVE-Korea-apfs-utf-8.txt": {
+   "inode": 435,
+   "length": 2906,
+   "offset": 9135270,
+   "size": 1190
+  },
+  "/apfs/LIVE-LigatureAndBeyond-apfs-utf-16-be.txt": {
+   "inode": 436,
+   "length": 1704,
+   "offset": 9140568,
+   "size": 2392
+  },
+  "/apfs/LIVE-LigatureAndBeyond-apfs-utf-16-le.txt": {
+   "inode": 437,
+   "length": 1626,
+   "offset": 9144742,
+   "size": 2470
+  },
+  "/apfs/LIVE-LigatureAndBeyond-apfs-utf-8.txt": {
+   "inode": 438,
+   "length": 2905,
+   "offset": 9147559,
+   "size": 1191
+  },
+  "/apfs/LIVE-Lupus-apfs-ascii.txt": {
+   "inode": 439,
+   "length": 2894,
+   "offset": 9151666,
+   "size": 1202
+  },
+  "/apfs/LIVE-Lycan-apfs-ascii.txt": {
+   "inode": 440,
+   "length": 2908,
+   "offset": 9155748,
+   "size": 1188
+  },
+  "/apfs/LIVE-MitsubishiH-apfs-utf-16-be.txt": {
+   "inode": 441,
+   "length": 1704,
+   "offset": 9161048,
+   "size": 2392
+  },
+  "/apfs/LIVE-MitsubishiH-apfs-utf-16-le.txt": {
+   "inode": 442,
+   "length": 1672,
+   "offset": 9165176,
+   "size": 2424
+  },
+  "/apfs/LIVE-MitsubishiH-apfs-utf-8.txt": {
+   "inode": 443,
+   "length": 2865,
+   "offset": 9168079,
+   "size": 1231
+  },
+  "/apfs/LIVE-MitsubishiK-apfs-utf-16-be.txt": {
+   "inode": 444,
+   "length": 1650,
+   "offset": 9173390,
+   "size": 2446
+  },
+  "/apfs/LIVE-MitsubishiK-apfs-utf-16-le.txt": {
+   "inode": 445,
+   "length": 1650,
+   "offset": 9177486,
+   "size": 2446
+  },
+  "/apfs/LIVE-MitsubishiK-apfs-utf-8.txt": {
+   "inode": 446,
+   "length": 2887,
+   "offset": 9180345,
+   "size": 1209
+  },
+  "/apfs/LIVE-Moscow-apfs-utf-16-be.txt": {
+   "inode": 448,
+   "length": 1676,
+   "offset": 9189748,
+   "size": 2420
+  },
+  "/apfs/LIVE-Moscow-apfs-utf-16-le.txt": {
+   "inode": 449,
+   "length": 1642,
+   "offset": 9193878,
+   "size": 2454
+  },
+  "/apfs/LIVE-Moscow-apfs-utf-8.txt": {
+   "inode": 450,
+   "length": 2932,
+   "offset": 9196684,
+   "size": 1164
+  },
+  "/apfs/LIVE-NFC-freedom-apfs-utf-16-be.txt": {
+   "inode": 454,
+   "length": 1596,
+   "offset": 9214404,
+   "size": 2500
+  },
+  "/apfs/LIVE-NFC-freedom-apfs-utf-16-le.txt": {
+   "inode": 455,
+   "length": 1648,
+   "offset": 9218448,
+   "size": 2448
+  },
+  "/apfs/LIVE-NFC-freedom-apfs-utf-8.txt": {
+   "inode": 456,
+   "length": 2870,
+   "offset": 9221322,
+   "size": 1226
+  },
+  "/apfs/LIVE-NFC-mice-apfs-utf-16-be.txt": {
+   "inode": 457,
+   "length": 1680,
+   "offset": 9226608,
+   "size": 2416
+  },
+  "/apfs/LIVE-NFC-mice-apfs-utf-16-le.txt": {
+   "inode": 458,
+   "length": 1562,
+   "offset": 9230822,
+   "size": 2534
+  },
+  "/apfs/LIVE-NFC-mice-apfs-utf-8.txt": {
+   "inode": 459,
+   "length": 2879,
+   "offset": 9233601,
+   "size": 1217
+  },
+  "/apfs/LIVE-NFC-tomorrow-apfs-utf-16-be.txt": {
+   "inode": 460,
+   "length": 1614,
+   "offset": 9238962,
+   "size": 2482
+  },
+  "/apfs/LIVE-NFC-tomorrow-apfs-utf-16-le.txt": {
+   "inode": 461,
+   "length": 1590,
+   "offset": 9243082,
+   "size": 2506
+  },
+  "/apfs/LIVE-NFC-tomorrow-apfs-utf-8.txt": {
+   "inode": 462,
+   "length": 2908,
+   "offset": 9245860,
+   "size": 1188
+  },
+  "/apfs/LIVE-NFD-freedom-apfs-utf-16-be.txt": {
+   "inode": 463,
+   "length": 1616,
+   "offset": 9251248,
+   "size": 2480
+  },
+  "/apfs/LIVE-NFD-freedom-apfs-utf-16-le.txt": {
+   "inode": 464,
+   "length": 1716,
+   "offset": 9255244,
+   "size": 2380
+  },
+  "/apfs/LIVE-NFD-freedom-apfs-utf-8.txt": {
+   "inode": 465,
+   "length": 2876,
+   "offset": 9258180,
+   "size": 1220
+  },
+  "/apfs/LIVE-NFD-mice-apfs-utf-16-be.txt": {
+   "inode": 466,
+   "length": 1716,
+   "offset": 9263436,
+   "size": 2380
+  },
+  "/apfs/LIVE-NFD-mice-apfs-utf-16-le.txt": {
+   "inode": 467,
+   "length": 1706,
+   "offset": 9267542,
+   "size": 2390
+  },
+  "/apfs/LIVE-NFD-mice-apfs-utf-8.txt": {
+   "inode": 468,
+   "length": 2885,
+   "offset": 9270459,
+   "size": 1211
+  },
+  "/apfs/LIVE-NFD-tomorrow-apfs-utf-16-be.txt": {
+   "inode": 469,
+   "length": 1682,
+   "offset": 9279854,
+   "size": 2414
+  },
+  "/apfs/LIVE-NFD-tomorrow-apfs-utf-16-le.txt": {
+   "inode": 470,
+   "length": 1590,
+   "offset": 9284042,
+   "size": 2506
+  },
+  "/apfs/LIVE-NFD-tomorrow-apfs-utf-8.txt": {
+   "inode": 471,
+   "length": 2883,
+   "offset": 9286845,
+   "size": 1213
+  },
+  "/apfs/LIVE-NewChina-apfs-utf-16-be.txt": {
+   "inode": 451,
+   "length": 1668,
+   "offset": 9202044,
+   "size": 2428
+  },
+  "/apfs/LIVE-NewChina-apfs-utf-16-le.txt": {
+   "inode": 452,
+   "length": 1694,
+   "offset": 9206114,
+   "size": 2402
+  },
+  "/apfs/LIVE-NewChina-apfs-utf-8.txt": {
+   "inode": 453,
+   "length": 2894,
+   "offset": 9209010,
+   "size": 1202
+  },
+  "/apfs/LIVE-Russia-apfs-utf-16-be.txt": {
+   "inode": 486,
+   "length": 1650,
+   "offset": 9349518,
+   "size": 2446
+  },
+  "/apfs/LIVE-Russia-apfs-utf-16-le.txt": {
+   "inode": 487,
+   "length": 1648,
+   "offset": 9353616,
+   "size": 2448
+  },
+  "/apfs/LIVE-Russia-apfs-utf-8.txt": {
+   "inode": 488,
+   "length": 2892,
+   "offset": 9356468,
+   "size": 1204
+  },
+  "/apfs/LIVE-SaberTooth-apfs-ascii.txt": {
+   "inode": 489,
+   "length": 2876,
+   "offset": 9360580,
+   "size": 1220
+  },
+  "/apfs/LIVE-SaberTooth-apfs-utf-16-be.txt": {
+   "inode": 490,
+   "length": 1712,
+   "offset": 9365840,
+   "size": 2384
+  },
+  "/apfs/LIVE-SaberTooth-apfs-utf-16-le.txt": {
+   "inode": 491,
+   "length": 1644,
+   "offset": 9370004,
+   "size": 2452
+  },
+  "/apfs/LIVE-SaberTooth-apfs-utf-8.txt": {
+   "inode": 492,
+   "length": 2889,
+   "offset": 9372855,
+   "size": 1207
+  },
+  "/apfs/LIVE-Seoul-apfs-utf-16-be.txt": {
+   "inode": 493,
+   "length": 1626,
+   "offset": 9378214,
+   "size": 2470
+  },
+  "/apfs/LIVE-Seoul-apfs-utf-16-le.txt": {
+   "inode": 494,
+   "length": 1644,
+   "offset": 9382292,
+   "size": 2452
+  },
+  "/apfs/LIVE-Seoul-apfs-utf-8.txt": {
+   "inode": 495,
+   "length": 2881,
+   "offset": 9385151,
+   "size": 1215
+  },
+  "/apfs/LIVE-Siberia-apfs-utf-16-be.txt": {
+   "inode": 496,
+   "length": 1676,
+   "offset": 9398644,
+   "size": 2420
+  },
+  "/apfs/LIVE-Siberia-apfs-utf-16-le.txt": {
+   "inode": 497,
+   "length": 1564,
+   "offset": 9402852,
+   "size": 2532
+  },
+  "/apfs/LIVE-Siberia-apfs-utf-8.txt": {
+   "inode": 498,
+   "length": 2859,
+   "offset": 9405653,
+   "size": 1237
+  },
+  "/apfs/LIVE-Snow-apfs-utf-16-be.txt": {
+   "inode": 499,
+   "length": 1694,
+   "offset": 9410914,
+   "size": 2402
+  },
+  "/apfs/LIVE-Snow-apfs-utf-16-le.txt": {
+   "inode": 500,
+   "length": 1630,
+   "offset": 9415074,
+   "size": 2466
+  },
+  "/apfs/LIVE-Snow-apfs-utf-8.txt": {
+   "inode": 501,
+   "length": 2902,
+   "offset": 9417898,
+   "size": 1194
+  },
+  "/apfs/LIVE-SubaruH-apfs-utf-16-be.txt": {
+   "inode": 513,
+   "length": 1648,
+   "offset": 9468304,
+   "size": 2448
+  },
+  "/apfs/LIVE-SubaruH-apfs-utf-16-le.txt": {
+   "inode": 514,
+   "length": 1628,
+   "offset": 9472420,
+   "size": 2468
+  },
+  "/apfs/LIVE-SubaruH-apfs-utf-8.txt": {
+   "inode": 515,
+   "length": 2900,
+   "offset": 9475244,
+   "size": 1196
+  },
+  "/apfs/LIVE-SubaruK-apfs-utf-16-be.txt": {
+   "inode": 516,
+   "length": 1676,
+   "offset": 9480564,
+   "size": 2420
+  },
+  "/apfs/LIVE-SubaruK-apfs-utf-16-le.txt": {
+   "inode": 517,
+   "length": 1672,
+   "offset": 9484664,
+   "size": 2424
+  },
+  "/apfs/LIVE-SubaruK-apfs-utf-8.txt": {
+   "inode": 518,
+   "length": 2890,
+   "offset": 9487542,
+   "size": 1206
+  },
+  "/apfs/LIVE-Tagine-apfs-utf-16-be.txt": {
+   "inode": 519,
+   "length": 1702,
+   "offset": 9492826,
+   "size": 2394
+  },
+  "/apfs/LIVE-Tagine-apfs-utf-16-le.txt": {
+   "inode": 520,
+   "length": 1702,
+   "offset": 9496922,
+   "size": 2394
+  },
+  "/apfs/LIVE-Tagine-apfs-utf-8.txt": {
+   "inode": 521,
+   "length": 2925,
+   "offset": 9499795,
+   "size": 1171
+  },
+  "/apfs/LIVE-Tokyo-apfs-utf-16-be.txt": {
+   "inode": 530,
+   "length": 1690,
+   "offset": 9537894,
+   "size": 2406
+  },
+  "/apfs/LIVE-Tokyo-apfs-utf-16-le.txt": {
+   "inode": 531,
+   "length": 1726,
+   "offset": 9541954,
+   "size": 2370
+  },
+  "/apfs/LIVE-Tokyo-apfs-utf-8.txt": {
+   "inode": 532,
+   "length": 2902,
+   "offset": 9544874,
+   "size": 1194
+  },
+  "/apfs/LIVE-Vulpus-apfs-ascii.txt": {
+   "inode": 540,
+   "length": 2915,
+   "offset": 9577629,
+   "size": 1181
+  },
+  "/apfs/LIVE-Vulpus-apfs-utf-16-be.txt": {
+   "inode": 541,
+   "length": 1662,
+   "offset": 9582978,
+   "size": 2434
+  },
+  "/apfs/LIVE-Vulpus-apfs-utf-16-le.txt": {
+   "inode": 542,
+   "length": 1700,
+   "offset": 9587036,
+   "size": 2396
+  },
+  "/apfs/LIVE-Vulpus-apfs-utf-8.txt": {
+   "inode": 543,
+   "length": 2873,
+   "offset": 9589959,
+   "size": 1223
+  },
+  "/apfs/LIVE-blade-apfs-ascii.txt": {
+   "inode": 387,
+   "length": 2875,
+   "offset": 8938693,
+   "size": 1221
+  },
+  "/apfs/LIVE-blades-apfs-ascii.txt": {
+   "inode": 388,
+   "length": 2918,
+   "offset": 8942746,
+   "size": 1178
+  },
+  "/apfs/LIVE-burglar-apfs-ascii.txt": {
+   "inode": 392,
+   "length": 2900,
+   "offset": 8959148,
+   "size": 1196
+  },
+  "/apfs/LIVE-burglars-apfs-ascii.txt": {
+   "inode": 393,
+   "length": 2879,
+   "offset": 8963265,
+   "size": 1217
+  },
+  "/apfs/LIVE-can\u0303o\u0301n-apfs-utf-8.txt": {
+   "inode": 394,
+   "length": 2884,
+   "offset": 8967356,
+   "size": 1212
+  },
+  "/apfs/LIVE-email-berlin-apfs-ascii.txt": {
+   "inode": 405,
+   "length": 2861,
+   "offset": 9012435,
+   "size": 1235
+  },
+  "/apfs/LIVE-email-capitol-apfs-ascii.txt": {
+   "inode": 406,
+   "length": 2903,
+   "offset": 9016489,
+   "size": 1193
+  },
+  "/apfs/LIVE-email-iron-apfs-ascii.txt": {
+   "inode": 407,
+   "length": 2868,
+   "offset": 9020620,
+   "size": 1228
+  },
+  "/apfs/LIVE-email-iron-apfs-utf-16-be.txt": {
+   "inode": 408,
+   "length": 1678,
+   "offset": 9025906,
+   "size": 2418
+  },
+  "/apfs/LIVE-email-iron-apfs-utf-16-le.txt": {
+   "inode": 409,
+   "length": 1568,
+   "offset": 9030112,
+   "size": 2528
+  },
+  "/apfs/LIVE-email-iron-apfs-utf-8.txt": {
+   "inode": 410,
+   "length": 2909,
+   "offset": 9032867,
+   "size": 1187
+  },
+  "/apfs/LIVE-email-kgb-apfs-ascii.txt": {
+   "inode": 411,
+   "length": 2867,
+   "offset": 9037005,
+   "size": 1229
+  },
+  "/apfs/LIVE-go-apfs-ascii.txt": {
+   "inode": 420,
+   "length": 2884,
+   "offset": 9073852,
+   "size": 1212
+  },
+  "/apfs/LIVE-goer-apfs-ascii.txt": {
+   "inode": 421,
+   "length": 2899,
+   "offset": 9077933,
+   "size": 1197
+  },
+  "/apfs/LIVE-goes-apfs-ascii.txt": {
+   "inode": 422,
+   "length": 2903,
+   "offset": 9082025,
+   "size": 1193
+  },
+  "/apfs/LIVE-going-apfs-ascii.txt": {
+   "inode": 423,
+   "length": 2880,
+   "offset": 9086144,
+   "size": 1216
+  },
+  "/apfs/LIVE-hadsoaked-apfs-ascii.txt": {
+   "inode": 424,
+   "length": 2885,
+   "offset": 9090235,
+   "size": 1211
+  },
+  "/apfs/LIVE-hat-apfs-ascii.txt": {
+   "inode": 425,
+   "length": 2929,
+   "offset": 9094287,
+   "size": 1167
+  },
+  "/apfs/LIVE-hats-apfs-ascii.txt": {
+   "inode": 426,
+   "length": 2931,
+   "offset": 9098381,
+   "size": 1165
+  },
+  "/apfs/LIVE-morethorns-apfs-ascii.txt": {
+   "inode": 447,
+   "length": 2865,
+   "offset": 9184463,
+   "size": 1231
+  },
+  "/apfs/LIVE-phone-1111-apfs-ascii.txt": {
+   "inode": 472,
+   "length": 2909,
+   "offset": 9290915,
+   "size": 1187
+  },
+  "/apfs/LIVE-phone-1122-apfs-ascii.txt": {
+   "inode": 473,
+   "length": 2888,
+   "offset": 9295032,
+   "size": 1208
+  },
+  "/apfs/LIVE-phone-3270-apfs-ascii.txt": {
+   "inode": 474,
+   "length": 2878,
+   "offset": 9299138,
+   "size": 1218
+  },
+  "/apfs/LIVE-phone-9009-apfs-ascii.txt": {
+   "inode": 475,
+   "length": 2865,
+   "offset": 9303247,
+   "size": 1231
+  },
+  "/apfs/LIVE-phone-9009-apfs-utf-16-be.txt": {
+   "inode": 476,
+   "length": 1676,
+   "offset": 9308532,
+   "size": 2420
+  },
+  "/apfs/LIVE-phone-9009-apfs-utf-16-le.txt": {
+   "inode": 477,
+   "length": 1692,
+   "offset": 9312612,
+   "size": 2404
+  },
+  "/apfs/LIVE-phone-9009-apfs-utf-8.txt": {
+   "inode": 478,
+   "length": 2865,
+   "offset": 9315535,
+   "size": 1231
+  },
+  "/apfs/LIVE-plot-apfs-ascii.txt": {
+   "inode": 479,
+   "length": 2931,
+   "offset": 9319565,
+   "size": 1165
+  },
+  "/apfs/LIVE-plots-apfs-ascii.txt": {
+   "inode": 480,
+   "length": 2883,
+   "offset": 9323709,
+   "size": 1213
+  },
+  "/apfs/LIVE-plotted-apfs-ascii.txt": {
+   "inode": 481,
+   "length": 2885,
+   "offset": 9327803,
+   "size": 1211
+  },
+  "/apfs/LIVE-plotter-apfs-ascii.txt": {
+   "inode": 482,
+   "length": 2928,
+   "offset": 9331856,
+   "size": 1168
+  },
+  "/apfs/LIVE-plotting-apfs-ascii.txt": {
+   "inode": 483,
+   "length": 2880,
+   "offset": 9336000,
+   "size": 1216
+  },
+  "/apfs/LIVE-pomodori-apfs-ascii.txt": {
+   "inode": 484,
+   "length": 2897,
+   "offset": 9340079,
+   "size": 1199
+  },
+  "/apfs/LIVE-pomodoro-apfs-ascii.txt": {
+   "inode": 485,
+   "length": 2896,
+   "offset": 9344176,
+   "size": 1200
+  },
+  "/apfs/LIVE-soak-apfs-ascii.txt": {
+   "inode": 502,
+   "length": 2913,
+   "offset": 9421983,
+   "size": 1183
+  },
+  "/apfs/LIVE-soaked-apfs-ascii.txt": {
+   "inode": 503,
+   "length": 2895,
+   "offset": 9426097,
+   "size": 1201
+  },
+  "/apfs/LIVE-soaker-apfs-ascii.txt": {
+   "inode": 504,
+   "length": 2880,
+   "offset": 9430208,
+   "size": 1216
+  },
+  "/apfs/LIVE-soaking-apfs-ascii.txt": {
+   "inode": 505,
+   "length": 2878,
+   "offset": 9434306,
+   "size": 1218
+  },
+  "/apfs/LIVE-soaking-apfs-utf-16-be.txt": {
+   "inode": 506,
+   "length": 1606,
+   "offset": 9439674,
+   "size": 2490
+  },
+  "/apfs/LIVE-soaking-apfs-utf-16-le.txt": {
+   "inode": 507,
+   "length": 1674,
+   "offset": 9443702,
+   "size": 2422
+  },
+  "/apfs/LIVE-soaking-apfs-utf-8.txt": {
+   "inode": 508,
+   "length": 2906,
+   "offset": 9446566,
+   "size": 1190
+  },
+  "/apfs/LIVE-soaks-apfs-ascii.txt": {
+   "inode": 509,
+   "length": 2905,
+   "offset": 9450663,
+   "size": 1191
+  },
+  "/apfs/LIVE-ss-123-apfs-ascii.txt": {
+   "inode": 510,
+   "length": 2867,
+   "offset": 9454797,
+   "size": 1229
+  },
+  "/apfs/LIVE-ss-987-apfs-ascii.txt": {
+   "inode": 511,
+   "length": 2896,
+   "offset": 9458864,
+   "size": 1200
+  },
+  "/apfs/LIVE-ss-999-apfs-ascii.txt": {
+   "inode": 512,
+   "length": 2899,
+   "offset": 9462957,
+   "size": 1197
+  },
+  "/apfs/LIVE-take-apfs-ascii.txt": {
+   "inode": 522,
+   "length": 2878,
+   "offset": 9503938,
+   "size": 1218
+  },
+  "/apfs/LIVE-takeing-apfs-ascii.txt": {
+   "inode": 523,
+   "length": 2894,
+   "offset": 9508018,
+   "size": 1202
+  },
+  "/apfs/LIVE-taken-apfs-ascii.txt": {
+   "inode": 524,
+   "length": 2897,
+   "offset": 9512111,
+   "size": 1199
+  },
+  "/apfs/LIVE-taker-apfs-ascii.txt": {
+   "inode": 525,
+   "length": 2901,
+   "offset": 9516203,
+   "size": 1195
+  },
+  "/apfs/LIVE-takes-apfs-ascii.txt": {
+   "inode": 526,
+   "length": 2903,
+   "offset": 9520297,
+   "size": 1193
+  },
+  "/apfs/LIVE-thorn-apfs-ascii.txt": {
+   "inode": 527,
+   "length": 2933,
+   "offset": 9524363,
+   "size": 1163
+  },
+  "/apfs/LIVE-thorns-apfs-ascii.txt": {
+   "inode": 528,
+   "length": 2906,
+   "offset": 9528486,
+   "size": 1190
+  },
+  "/apfs/LIVE-thunderbird-apfs-ascii.txt": {
+   "inode": 529,
+   "length": 2848,
+   "offset": 9532640,
+   "size": 1248
+  },
+  "/apfs/LIVE-took-apfs-ascii.txt": {
+   "inode": 533,
+   "length": 2899,
+   "offset": 9548973,
+   "size": 1197
+  },
+  "/apfs/LIVE-town-apfs-ascii.txt": {
+   "inode": 534,
+   "length": 2891,
+   "offset": 9553077,
+   "size": 1205
+  },
+  "/apfs/LIVE-towns-apfs-ascii.txt": {
+   "inode": 535,
+   "length": 2878,
+   "offset": 9557186,
+   "size": 1218
+  },
+  "/apfs/LIVE-towns-apfs-utf-16-be.txt": {
+   "inode": 536,
+   "length": 1616,
+   "offset": 9562544,
+   "size": 2480
+  },
+  "/apfs/LIVE-towns-apfs-utf-16-le.txt": {
+   "inode": 537,
+   "length": 1662,
+   "offset": 9566594,
+   "size": 2434
+  },
+  "/apfs/LIVE-towns-apfs-utf-8.txt": {
+   "inode": 538,
+   "length": 2893,
+   "offset": 9569459,
+   "size": 1203
+  },
+  "/apfs/LIVE-triple-apfs-ascii.txt": {
+   "inode": 539,
+   "length": 2876,
+   "offset": 9573572,
+   "size": 1220
+  },
+  "/apfs/LIVE-went-apfs-ascii.txt": {
+   "inode": 544,
+   "length": 2921,
+   "offset": 9594007,
+   "size": 1175
+  },
+  "/apfs/LIVE-world-apfs-ascii.txt": {
+   "inode": 545,
+   "length": 2918,
+   "offset": 9598106,
+   "size": 1178
+  },
+  "/apfs/LIVE-world-apfs-utf-16-be.txt": {
+   "inode": 546,
+   "length": 1646,
+   "offset": 9603474,
+   "size": 2450
+  },
+  "/apfs/LIVE-world-apfs-utf-16-le.txt": {
+   "inode": 547,
+   "length": 1632,
+   "offset": 9607584,
+   "size": 2464
+  },
+  "/apfs/LIVE-world-apfs-utf-8.txt": {
+   "inode": 548,
+   "length": 2887,
+   "offset": 9610425,
+   "size": 1209
+  }
+ }
+}

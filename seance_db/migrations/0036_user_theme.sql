@@ -1,0 +1,22 @@
+-- A user's chosen skin, remembered across sessions and machines.
+--
+-- Per USER rather than per browser, which is the point of remembering it: an
+-- examiner who sets up their workstation the way they can read it should not
+-- have to do it again on the second machine in the lab, or after clearing site
+-- data. A browser-local copy is still kept as a cache so the first paint does
+-- not flash the default theme while `/auth/me` is in flight, but this column is
+-- the record and the browser is the cache -- the same direction the review
+-- ledger moved in `0031_artifact_reviews.sql`, for a much smaller reason.
+--
+-- Stored as `<skin>:<mode>`, e.g. `nature:light`. NULL means the user has never
+-- chosen, which is distinct from having chosen the default: the first is
+-- "follow whatever this build ships as its default", the second is "I picked
+-- this", and only the first should move if the default ever changes.
+--
+-- The server validates the SHAPE of the value and not the catalogue of skins.
+-- Which skins exist is the frontend's to know -- it holds the palettes -- and a
+-- server that also held the list would have to be redeployed to add one. What
+-- the server will not do is store an unbounded attacker-chosen string in a
+-- column it echoes back to the client: the format is checked and the length is
+-- capped in `set_user_theme`.
+ALTER TABLE users ADD COLUMN theme TEXT;

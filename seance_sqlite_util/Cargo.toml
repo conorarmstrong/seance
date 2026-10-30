@@ -1,0 +1,16 @@
+[package]
+name = "seance_sqlite_util"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+tracing = "0.1.40"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }

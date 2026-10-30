@@ -1,0 +1,19 @@
+-- SEC-002: deactivating a user must kill the sessions that were live at the
+-- time, permanently -- not only for as long as the account stays deactivated.
+--
+-- The middleware already refuses a token for an inactive user on every request,
+-- and refuses any token minted at or before `password_changed_at`. Deactivation
+-- stamped nothing, so a token held from before a deactivation came back to life
+-- the moment an admin reactivated the account. On a forensic workstation that is
+-- a custody gap of the same kind SEC-001 closed: a session nobody re-authenticated
+-- attributing actions to an examiner.
+--
+-- Named for what it means rather than for the event that sets it
+-- (`deactivated_at`), because the meaning is what the middleware acts on and
+-- other administrative revocations belong on the same column: it is the instant
+-- before which this user's tokens are no longer sessions.
+--
+-- Unix seconds; 0 = nothing has invalidated this user's sessions since the
+-- column was added, in which case existing tokens are trusted, exactly as
+-- `password_changed_at` treats 0.
+ALTER TABLE users ADD COLUMN sessions_invalid_before INTEGER NOT NULL DEFAULT 0;

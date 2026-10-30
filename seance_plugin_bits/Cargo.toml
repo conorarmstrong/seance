@@ -1,0 +1,26 @@
+[package]
+name = "seance_plugin_bits"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Background Intelligent Transfer Service (BITS) job queues:
+# %ALLUSERSPROFILE%\Microsoft\Network\Downloader\qmgr0.dat / qmgr1.dat
+# (Windows XP to 8.1, Server 2003 to 2012 R2) and qmgr.db (Windows 10+, ESE).
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+tracing = "0.1"
+# qmgr.db (Windows 10+) is ESE; libesedb is LGPL-3.0-or-later and optional,
+# behind the same `esedb` switch seance_api uses for SRUM, SUM and WebCache.
+seance_ese_util = { path = "../seance_ese_util", optional = true }
+libesedb = { version = "0.2", optional = true }
+
+[features]
+default = ["esedb"]
+esedb = ["dep:seance_ese_util", "dep:libesedb"]
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

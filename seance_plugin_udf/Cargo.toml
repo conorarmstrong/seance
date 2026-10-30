@@ -1,0 +1,22 @@
+[package]
+name = "seance_plugin_udf"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+uuid = { version = "1.11", features = ["v4", "serde"] }
+tracing = "0.1"
+chrono = { version = "0.4", features = ["serde"] }
+
+[dev-dependencies]
+sha2 = "0.10"
+# The committed variant fixtures are gzipped.
+flate2 = "1.0"
+# The env-gated Windows UDF-bridge corpus test runs the real chain:
+# partition detection, then both halves of the bridge.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+seance_plugin_partition = { path = "../seance_plugin_partition" }
+seance_plugin_iso9660 = { path = "../seance_plugin_iso9660" }

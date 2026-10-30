@@ -1,0 +1,76 @@
+.set-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.set-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.set-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.set-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 12.5px;
+}
+
+.set-meta dt {
+  color: var(--text-2);
+}
+
+.set-meta dd {
+  margin: 0;
+  color: var(--text-0);
+}
+
+.set-danger {
+  border-color: var(--danger);
+}
+
+.set-danger .panel-title {
+  color: var(--danger);
+}
+
+.set-danger-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.set-danger-body p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.set-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* The sentence under a panel title that says what the panel is for. Used by
+   Appearance to say, before the picker, that a theme is the examiner's own and
+   not a property of the case. */
+.set-hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--text-1);
+  max-width: 70ch;
+}

@@ -1,0 +1,27 @@
+#![no_main]
+
+use libfuzzer_sys::fuzz_target;
+use seance_core::{
+    artifact::{Artifact, ArtifactType},
+    data_source::ByteSliceDataSource,
+    module::ForensicsModule,
+};
+use std::sync::Arc;
+use uuid::Uuid;
+
+fuzz_target!(|data: &[u8]| {
+    if data.is_empty() {
+        return;
+    }
+
+    let ds = Arc::new(ByteSliceDataSource::new(data.to_vec()));
+    let artifact = Artifact::new(
+        Uuid::new_v4(),
+        ArtifactType::Container,
+        Some(ds),
+        serde_json::json!({"name": "fuzz.vhdx", "subtype": "vhdx"}),
+    );
+
+    let module = seance_container_vdisk::VhdxContainerModule;
+    let _ = module.process(&artifact);
+});

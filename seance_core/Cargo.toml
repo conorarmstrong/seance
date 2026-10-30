@@ -1,0 +1,57 @@
+[package]
+name = "seance_core"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+
+serde = { version = "1.0.210", features = ["derive"] }
+
+serde_json = { workspace = true }
+
+thiserror = "1.0.64"
+
+# Examiner-supplied secrets are zeroed when dropped (HUNT-120).
+zeroize = "1"
+
+tracing = "0.1.40"
+
+crossbeam-channel = "0.5.13"
+lru = "0.18.2"
+
+async-trait = "0.1.80"
+
+anyhow = "1.0.89"
+
+tokio = { version = "1.38.0", features = ["full", "sync"] }
+
+sqlx = { version = "0.8.1", features = ["runtime-tokio-rustls", "sqlite"] }
+
+chrono = "0.4"
+
+# Hashing
+md-5 = "0.10"
+sha1 = "0.10"
+sha2 = "0.10"
+digest = "0.10"
+rayon = "1.10"
+
+# Filesystem decompression (NTFS LZNT1 is hand-rolled; btrfs uses zlib/zstd)
+flate2 = "1.0"
+zstd = "0.14"
+
+[features]
+# Exposes `seance_core::test_support` — the shared DataSource test doubles
+# (TruncatedSource, DribbleSource, StallingSource, UnreadableSource) that prove
+# the short-read contract in `seance_core::io`. Test-only; it is never enabled
+# by a normal dependency edge, so the module cannot reach a release binary.
+test-support = []
+
+[dev-dependencies]
+seance_db = { path = "../seance_db" }
+proptest = "1.4"
+tempfile = "3.8"
+filetime = "0.2"

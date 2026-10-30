@@ -1,0 +1,80 @@
+{
+  "lonewolf-win10-objects-pages.bin": {
+    "source": "lonewolf",
+    "source_size": 23986176,
+    "source_sha256": "c6bd9486f099d97e03b472407735c463a36fc7256166353cba1481c80e523340",
+    "pages": [
+      0,
+      1,
+      112,
+      130,
+      140,
+      143,
+      148,
+      1316,
+      2645
+    ],
+    "fixture_sha256": "6acec079eed0fc4f9e50618669be86a4c457e7ea19c82c6b0a0b6ee06debafa6"
+  },
+  "cfreds-xp-objects-pages.bin": {
+    "source": "cfreds_xp",
+    "source_size": 5464064,
+    "source_sha256": "996679c68956bbfc10b4e5481bbd1f099effbffb969ecdf5aa43dccbc2458685",
+    "pages": [
+      0,
+      9,
+      58,
+      254,
+      328,
+      357
+    ],
+    "fixture_sha256": "4bd7a17fdcec1c06bd683804b12056ac85b8c350aa7022b38f75811fbf9aa74e"
+  },
+  "lonewolf-win10-objects-sparse.bin": {
+    "source": "lonewolf",
+    "source_size": 23986176,
+    "source_sha256": "c6bd9486f099d97e03b472407735c463a36fc7256166353cba1481c80e523340",
+    "pages": [
+      42,
+      43,
+      45,
+      2713
+    ],
+    "fixture_sha256": "a7fbfdbecc7ab9c798956093e92d490febf56c47bdec551b691dd32a1cb76120"
+  },
+  "lonewolf-win10-MAPPING1.MAP": {
+    "source": "lonewolf",
+    "source_file": "MAPPING1.MAP",
+    "source_size": 79044,
+    "source_sha256": "f0d04ae91bf31f0e6fb5a80d20800555a2211b758f505b192b9efce5ac119111",
+    "fixture_sha256": "f0d04ae91bf31f0e6fb5a80d20800555a2211b758f505b192b9efce5ac119111"
+  },
+  "dataleakage-win7-MAPPING1.MAP": {
+    "source": "data_leakage",
+    "source_file": "MAPPING1.MAP",
+    "source_size": 50464,
+    "source_sha256": "0a4949649b67cfe30d3115396e83dd9e447cbfbcd08bb18c3ca1d3387aef2588",
+    "fixture_sha256": "0a4949649b67cfe30d3115396e83dd9e447cbfbcd08bb18c3ca1d3387aef2588"
+  },
+  "dataleakage-win7-MAPPING2.MAP": {
+    "source": "data_leakage",
+    "source_file": "MAPPING2.MAP",
+    "source_size": 50488,
+    "source_sha256": "79b3674dc0e2e629f95aa4a9f4ac42c43e79b674ce4ea32ccbedd13b8dd33971",
+    "fixture_sha256": "79b3674dc0e2e629f95aa4a9f4ac42c43e79b674ce4ea32ccbedd13b8dd33971"
+  },
+  "dataleakage-win7-MAPPING3.MAP": {
+    "source": "data_leakage",
+    "source_file": "MAPPING3.MAP",
+    "source_size": 50488,
+    "source_sha256": "3713ff2510c212cf0b04206070b9676f8dacc9815df32e754fc1c034b817a14d",
+    "fixture_sha256": "3713ff2510c212cf0b04206070b9676f8dacc9815df32e754fc1c034b817a14d"
+  },
+  "cfreds-xp-OBJECTS.MAP": {
+    "source": "cfreds_xp",
+    "source_file": "OBJECTS.MAP",
+    "source_size": 2692,
+    "source_sha256": "61e588e54e8bad96377c4a6ef22f18776fe07a4a441d3b179e517b15f87bfc87",
+    "fixture_sha256": "61e588e54e8bad96377c4a6ef22f18776fe07a4a441d3b179e517b15f87bfc87"
+  }
+}

@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_ext4"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1.40"
+byteorder = "1.5.0"
+base64 = "0.22"
+chrono = { version = "0.4.38", features = ["serde"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+anyhow = "1.0.89"
+
+[dev-dependencies]
+tokio = { version = "1.38.0", features = ["sync"] }
+seance_core = { path = "../seance_core", features = ["test-support"] }
+flate2 = "1.0"
+sha2 = "0.10"

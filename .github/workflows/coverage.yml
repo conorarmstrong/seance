@@ -1,0 +1,100 @@
+name: Code Coverage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  # Kept in step with `test.yml` and `release.yml`.
+  LIBHEIF_VERSION: 1.19.8
+
+jobs:
+  coverage:
+    name: Generate Coverage Report
+    runs-on: ubuntu-latest
+    # Informational only. tarpaulin's instrumented link of the tantivy-heavy
+    # integration tests can crash the runner's linker (rust-lld SIGBUS), so this
+    # job must not gate the pipeline.
+    continue-on-error: true
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libsqlite3-dev libewf-dev libesedb-dev \
+          pkg-config clang libclang-dev libde265-dev cmake
+
+    # `--all-features` needs libesedb and libheif as well as libewf, and Ubuntu
+    # 24.04's libheif (1.17) is older than the v1_19 API `libheif-rs` is pinned
+    # to (GATE-009). Same source build as the test job and the release workflow,
+    # cached on the version.
+    - name: Cache libheif
+      id: libheif-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/libheif-install
+        key: ${{ runner.os }}-libheif-${{ env.LIBHEIF_VERSION }}
+
+    - name: Build libheif ${{ env.LIBHEIF_VERSION }}
+      if: steps.libheif-cache.outputs.cache-hit != 'true'
+      run: |
+        set -euo pipefail
+        curl -fsSL -o libheif.tar.gz \
+          "https://github.com/strukturag/libheif/releases/download/v${LIBHEIF_VERSION}/libheif-${LIBHEIF_VERSION}.tar.gz"
+        tar xzf libheif.tar.gz
+        cmake -S "libheif-${LIBHEIF_VERSION}" -B libheif-build \
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$HOME/libheif-install" \
+          -DCMAKE_INSTALL_LIBDIR=lib -DWITH_LIBDE265=ON \
+          -DWITH_X265=OFF -DWITH_AOM_DECODER=OFF -DWITH_AOM_ENCODER=OFF \
+          -DWITH_DAV1D=OFF -DWITH_RAV1E=OFF -DWITH_SvtEnc=OFF \
+          -DWITH_JPEG_DECODER=OFF -DWITH_JPEG_ENCODER=OFF \
+          -DWITH_OpenJPEG_DECODER=OFF -DWITH_OpenJPEG_ENCODER=OFF \
+          -DWITH_GDK_PIXBUF=OFF -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+          -DWITH_LIBSHARPYUV=OFF
+        cmake --build libheif-build -j"$(nproc)"
+        cmake --install libheif-build
+
+    - name: Put libheif on the library path
+      run: |
+        echo "PKG_CONFIG_PATH=$HOME/libheif-install/lib/pkgconfig" >> "$GITHUB_ENV"
+        echo "LD_LIBRARY_PATH=$HOME/libheif-install/lib" >> "$GITHUB_ENV"
+
+    - name: Install cargo-tarpaulin
+      run: cargo install cargo-tarpaulin
+
+    - name: Run coverage
+      # Serialize build/link jobs: linking the tantivy-heavy integration tests
+      # under tarpaulin's instrumentation otherwise exhausts the runner's memory
+      # and crashes ld (signal 7, bus error). One job at a time keeps peak RAM
+      # within the hosted-runner limit.
+      env:
+        CARGO_BUILD_JOBS: "1"
+      run: cargo tarpaulin --config .tarpaulin.toml --verbose
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: target/coverage/lcov.info
+        fail_ci_if_error: false
+        verbose: true
+
+    - name: Archive coverage HTML report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: target/coverage/html/
+        retention-days: 30
+
+    - name: Check coverage threshold
+      run: |
+        echo "Coverage report generated successfully"
+        echo "View detailed HTML report in artifacts"

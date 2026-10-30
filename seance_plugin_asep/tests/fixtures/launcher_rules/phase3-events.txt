@@ -1,0 +1,9 @@
+22:32:08 parent=C:\Windows\System32\svchost.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\SYSTEM32\cmd.exe /c ""C:\WINDOWS\system32\h249tskbatcmd.BAT""]
+22:32:08 parent=C:\Windows\System32\svchost.exe new=C:\Windows\System32\h249tskexebat.exe cmd=["C:\WINDOWS\system32\h249tskexebat.EXE"]
+22:32:08 parent=C:\Windows\System32\svchost.exe new=C:\Windows\System32\h249tskexevbs.exe cmd=["C:\WINDOWS\system32\h249tskexevbs.EXE"]
+22:33:12 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runpif.pif cmd=["C:\Windows\System32\h249runpif.pif" ]
+22:33:14 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runexebat.exe cmd=["C:\Windows\System32\h249runexebat.exe" ]
+22:33:16 parent=C:\Windows\explorer.exe new=C:\Windows\System32\cmd.exe cmd=[C:\WINDOWS\system32\cmd.exe /c ""C:\Windows\System32\h249runbatcmd.bat" "]
+22:33:17 parent=C:\Windows\explorer.exe new=C:\Windows\System32\h249runexevbs.exe cmd=["C:\Windows\System32\h249runexevbs.exe" ]
+C:\Windows\System32\h249tskbatcmd.bat  
+C:\Windows\System32\h249runbatcmd.bat  

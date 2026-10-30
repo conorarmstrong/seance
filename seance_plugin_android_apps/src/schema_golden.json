@@ -1,0 +1,114 @@
+{
+  "locators": [
+    "NotRecorded(\"PRAGMA user_version is 0, SQLite's unset default, so this store does not carry the version the validated stores carried\")",
+    "Found(5)"
+  ],
+  "markers": [
+    null,
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "ParserStaleWarning",
+        "subtype": "parser_stale",
+        "app": "golden-app",
+        "supported_range": "3..=3",
+        "status": "SchemaOutsideValidated",
+        "seen_schema_version": 4,
+        "message": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+        "detail": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+        "name": "golden-app: schema outside what was validated",
+        "store": "golden.db",
+        "parser_record_type": "GoldenRecord",
+        "validated_against": "golden.db (a test)",
+        "warning_class": "ParserStaleWarning"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "ParserStaleWarning",
+        "subtype": "parser_stale",
+        "app": "golden-app",
+        "supported_range": "3..=3",
+        "status": "SchemaOutsideValidated",
+        "seen_schema_version": 2,
+        "message": "golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records",
+        "detail": "golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records",
+        "name": "golden-app: schema outside what was validated",
+        "store": "golden.db",
+        "parser_record_type": "GoldenRecord",
+        "validated_against": "golden.db (a test)",
+        "warning_class": "ParserStaleWarning"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "ParserStaleWarning",
+        "app": "golden-app",
+        "supported_range": "3..=3",
+        "message": "golden-app: no schema version is recorded in `golden.db` (nowhere); nothing compares this store to the validated range 3..=3 and the parse is unranked, not stale",
+        "subtype": "parser_stale",
+        "status": "SchemaVersionNotRecorded",
+        "store": "golden.db",
+        "parser_record_type": "GoldenRecord",
+        "validated_against": "golden.db (a test)",
+        "detail": "golden-app: no schema version is recorded in `golden.db` (nowhere); nothing compares this store to the validated range 3..=3 and the parse is unranked, not stale",
+        "name": "golden-app: schema outside what was validated",
+        "warning_class": "ParserStaleWarning"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "ParserStaleWarning",
+        "app": "golden-app",
+        "supported_range": "3..=3",
+        "message": "golden-app: the schema version of `golden.db` could not be read (io), so whether this store is inside the validated range 3..=3 is unknown",
+        "content_incomplete": true,
+        "content_incomplete_reason": "unresolved_structure",
+        "subtype": "parser_stale",
+        "status": "SchemaVersionUndetermined",
+        "store": "golden.db",
+        "parser_record_type": "GoldenRecord",
+        "validated_against": "golden.db (a test)",
+        "detail": "golden-app: the schema version of `golden.db` could not be read (io), so whether this store is inside the validated range 3..=3 is unknown",
+        "name": "golden-app: schema outside what was validated",
+        "content_incomplete_detail": "golden-app: the schema version of `golden.db` could not be read (io), so whether this store is inside the validated range 3..=3 is unknown",
+        "warning_class": "ParserStaleWarning"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "ParserStaleWarning",
+        "app": "golden-app",
+        "supported_range": "3..=3",
+        "source_table": "t",
+        "unresolved_fields": [
+          "c"
+        ],
+        "present_columns": [
+          "a",
+          "b_new"
+        ],
+        "records_recovered": 2,
+        "message": "golden-app: no column in `t` of `golden.db` carries `c` — the schema has moved past this parser's column map, so the 2 record(s) recovered lack it and anything keyed on it was not read",
+        "content_incomplete": true,
+        "content_incomplete_reason": "unvalidated",
+        "inventory_incomplete": true,
+        "inventory_incomplete_reason": "unvalidated",
+        "inventory_incomplete_detail": "golden-app: no column in `t` of `golden.db` carries `c` — the schema has moved past this parser's column map, so the 2 record(s) recovered lack it and anything keyed on it was not read",
+        "subtype": "parser_stale",
+        "status": "SchemaFieldsUnresolved",
+        "store": "golden.db",
+        "parser_record_type": "GoldenRecord",
+        "validated_against": "golden.db (a test)",
+        "detail": "golden-app: no column in `t` of `golden.db` carries `c` — the schema has moved past this parser's column map, so the 2 record(s) recovered lack it and anything keyed on it was not read",
+        "name": "golden-app: schema outside what was validated",
+        "content_incomplete_detail": "golden-app: no column in `t` of `golden.db` carries `c` — the schema has moved past this parser's column map, so the 2 record(s) recovered lack it and anything keyed on it was not read",
+        "warning_class": "ParserStaleWarning"
+      }
+    }
+  ]
+}

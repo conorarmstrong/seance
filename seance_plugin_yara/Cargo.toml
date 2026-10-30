@@ -1,0 +1,44 @@
+[package]
+name = "seance_plugin_yara"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { workspace = true }
+# For the `Scanner` the memory tier drives: the chunking, hole semantics and
+# offset rules live there, and a second implementation of them for YARA would
+# drift from the one the pool and regex scans already use.
+seance_memory = { path = "../seance_memory" }
+# yara-x is VirusTotal's pure-Rust YARA engine (BSD-3-Clause) — no C-YARA FFI
+# and no GPL. 1.19 declares `rust-version = "1.91.0"`; the workspace toolchain
+# is 1.97.1, so the constraint that parked this crate is gone.
+#
+# WEIGHT: yara-x lowers rules to WebAssembly and JITs them, so it pulls
+# wasmtime + cranelift + walrus. That is the heaviest dependency tree in the
+# workspace by a wide margin. It is the price of a maintained, pure-Rust YARA;
+# the C library would trade it for FFI and a build-time system dependency.
+yara-x = "1.22"
+serde_json = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+# The registry parser publishes a binary value over 64 bytes as base64; this
+# is how those bytes come back for scanning.
+base64 = "0.22"
+# The §2.1 decode-and-rescan substrate: base64 spans and gzip members lifted
+# out of a scanned region and scanned again, so a rule written for a payload
+# can fire on the payload rather than on its encoding.
+seance_bulk = { path = "../seance_bulk" }
+
+[dev-dependencies]
+tempfile = "3"
+flate2 = "1"
+# The corpus gate (`seance_core::test_support::corpus`), so a real-fixture test
+# that finds no corpus says so rather than passing over nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+# The producers of the surfaces this module scans, so the ADS, registry-value
+# and unallocated fixtures are the records those parsers publish from real
+# evidence rather than shapes written from a reading of their code.
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+seance_plugin_registry = { path = "../seance_plugin_registry" }
+seance_plugin_fat = { path = "../seance_plugin_fat" }

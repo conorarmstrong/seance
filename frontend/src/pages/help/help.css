@@ -1,0 +1,393 @@
+/* Help takes over the whole screen (see HelpPage): a fixed topbar with a
+   Back button and search over a scrolling TOC + content body. */
+.help-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-0);
+}
+
+.help-topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  padding: 12px 20px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-0);
+}
+
+.help-back {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text-0);
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.help-back:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.help-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.help-search {
+  margin-left: auto;
+  width: 280px;
+  max-width: 40vw;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text-0);
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+}
+
+.help-search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.help-layout {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.help-toc {
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  width: 210px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+}
+
+/* Collapsible TOC groups (accordion — one open at a time) + search results. */
+.help-toc-group-btn {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 8px;
+  margin: 2px 0;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.help-toc-group-btn:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+.help-toc-caret {
+  width: 10px;
+  font-size: 9px;
+  color: var(--text-2);
+}
+
+.help-toc-empty,
+.help-noresults {
+  padding: 8px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.help-content {
+  max-width: 860px;
+}
+
+.help-toc h2 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+.help-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.help-toc-item-group + .help-toc-item-group {
+  margin-top: 12px;
+}
+
+.help-toc-group {
+  margin: 0 0 2px;
+  padding: 0 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+.help-toc a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  color: var(--text-1);
+  font-size: 12.5px;
+}
+
+.help-toc a:hover {
+  background: var(--bg-2);
+  color: var(--accent);
+}
+
+/* Scrollspy: the section currently in view (and its group). */
+.help-toc a.help-toc-active {
+  background: var(--bg-2);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.help-toc-group-btn.help-toc-group-active {
+  color: var(--accent);
+}
+
+.help-content {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-1);
+}
+
+.help-content section {
+  margin-bottom: 28px;
+  scroll-margin-top: 12px;
+}
+
+.help-content h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-0);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.help-content h3 {
+  margin: 14px 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.help-content p {
+  margin: 0 0 8px;
+}
+
+.help-content ul {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+.help-content li {
+  margin-bottom: 4px;
+}
+
+.help-content code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: 3px;
+  padding: 0 4px;
+  color: var(--text-0);
+  white-space: nowrap;
+}
+
+.help-kbd {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 5px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  background: var(--bg-3);
+  border: 1px solid var(--border-1);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  color: var(--text-0);
+}
+
+.help-lead {
+  margin: 0 0 20px;
+  font-size: 13.5px;
+  color: var(--text-1);
+  max-width: 62ch;
+}
+
+/* Reference tables (format matrices, shortcut lists) */
+.help-table-wrap {
+  overflow-x: auto;
+  margin: 6px 0 12px;
+}
+
+.help-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12.5px;
+}
+
+.help-table caption {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  padding-bottom: 6px;
+}
+
+.help-table th,
+.help-table td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-0);
+  vertical-align: top;
+}
+
+.help-table th {
+  color: var(--text-0);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.help-table tbody tr:hover {
+  background: var(--bg-1);
+}
+
+.help-table .yes {
+  color: var(--ok);
+}
+
+.help-table .partial {
+  color: var(--warn);
+}
+
+.help-table .no {
+  color: var(--text-2);
+}
+
+/* Callout for load-bearing forensic notes */
+.help-note {
+  margin: 10px 0 12px;
+  padding: 9px 12px;
+  border-left: 3px solid var(--info);
+  background: var(--info-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text-1);
+}
+
+.help-note.warn {
+  border-left-color: var(--warn);
+  /* `color-mix` rather than a literal rgba, so the tint is 10% of THIS theme's
+     amber. It was the 2026 dark palette's, frozen. */
+  background: color-mix(in srgb, var(--warn) 10%, transparent);
+}
+
+.help-note strong {
+  color: var(--text-0);
+}
+
+/* Screenshot placeholders — captured later via browser automation */
+.help-shot {
+  margin: 12px 0 14px;
+}
+
+.help-shot-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  border: 1px dashed var(--border-1);
+  border-radius: var(--radius-lg);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--bg-1),
+    var(--bg-1) 10px,
+    var(--bg-0) 10px,
+    var(--bg-0) 20px
+  );
+  color: var(--text-2);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.help-shot-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+}
+
+.help-shot figcaption {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-2);
+}
+
+/* A drawn schematic (inline SVG) used where a labelled diagram documents an
+   idea better than a screenshot — e.g. the sidebar's information architecture. */
+.help-diagram {
+  margin: 12px 0 14px;
+}
+
+.help-diagram-svg {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  background: var(--bg-0);
+  padding: 6px;
+}
+
+.help-diagram figcaption {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-2);
+  max-width: 46ch;
+}

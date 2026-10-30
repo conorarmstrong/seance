@@ -1,0 +1,15 @@
+[package]
+name = "seance_xml_util"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+quick-xml = "0.31"
+serde_json = { workspace = true }
+base64 = "0.22"
+
+[features]
+# Exposes `abx::fixture::AbxWriter` so other crates can build ABX test
+# documents. Test-only: nothing in the product writes ABX.
+test-support = []

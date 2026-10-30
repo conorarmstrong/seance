@@ -1,0 +1,225 @@
+/*
+ * Seance design tokens — the shipped default palette.
+ *
+ * Direction: examiner's workbench in daylight. Neutral surfaces, one violet
+ * accent, monospace for evidential data. Fonts are bundled (no CDN) so the UI
+ * works on air-gapped workstations.
+ *
+ * # Why these values are a copy
+ *
+ * They are `SKINS.opus.light` from `src/themes/palettes.ts`, token for token,
+ * and `src/themes/defaultPalette.test.ts` fails the build if the two drift.
+ *
+ * The duplication is deliberate and is the only way to have both of the things
+ * this needs. The default has to be in **CSS**, because it is what paints
+ * before any script runs: a default declared only in JavaScript shows this
+ * file's palette for a frame and then swaps, which is the flash an examiner
+ * notices most on every cold load. And it has to be the **same** palette as one
+ * of the skins, because `applyTheme(null)` clears the custom properties rather
+ * than writing values — "I never chose a theme" must land exactly where "I
+ * chose Opus light" does, or clearing a choice would produce a palette nothing
+ * else in the product measures.
+ *
+ * # Why light, and why this light
+ *
+ * The default was the dark candlelight palette for the product's whole life.
+ * It is not gone: it is `SKINS.candle`, whose dark mode is that palette token
+ * for token, with the reasoning behind each of its values carried over with it.
+ *
+ * Of the light palettes this product ships, all of them clear the same 4.62:1
+ * floor by construction — measured, they sit within 0.03 of one another at the
+ * worst pairing — so contrast does not choose between them. Two things do. The
+ * ground is neutral: an examiner judging a photograph, a thumbnail or a chart
+ * colour should not be doing it inside a warm or cool cast, which is what the
+ * paper, teal and blue palettes each impose. And the type is bundled: this one
+ * uses Inter and IBM Plex Mono, which ship with the product, so a workstation
+ * without Segoe renders the same screen as one with it.
+ *
+ * Every value below was tuned the way `palettes.ts` documents at length: slid
+ * along its own lightness axis, hue and saturation held, until it cleared
+ * 4.62:1 against all twenty-four grounds its text can land on — the four bare
+ * surfaces and each of the five 12% tints composited onto each of them. In
+ * light mode a tint DARKENS the surface, so each ink went darker to clear it,
+ * which is the opposite correction to the dark palette's.
+ */
+
+:root {
+  /* Surfaces, lightest to darkest */
+  --bg-0: #ffffff;
+  --bg-1: #f6f7f9;
+  --bg-2: #eceef2;
+  --bg-3: #e2e5ea;
+  --border-0: #d3d8df;
+  --border-1: #bcc3ce;
+
+  /* Text: three tones held apart by ratio, so the hierarchy survives the floor.
+     --text-2 is the constrained one — the quietest, and so the closest to the
+     floor — and it carries 9-11px data-bearing text (chat timestamps, table
+     column heads, the case reference), far below the 18.66px where the 3:1
+     large-text exemption begins. */
+  --text-0: #16181d;
+  --text-1: #454a54;
+  --text-2: #545964;
+
+  /* Accent: violet */
+  --accent: #4e3ed4;
+  --accent-hover: #4436bd;
+  /* A fill and a border, never text, with --text-0 drawn on it (::selection,
+     selected rows). Derived by sliding the accent toward the surface until that
+     pairing cleared the floor: text on it wants it darker, it as a border wants
+     it lighter, and no single value serves both roles. */
+  --accent-dim: #8074e0;
+  --accent-bg: rgba(78, 62, 212, 0.12);
+  /* The ink for text drawn ON an accent fill: the primary button, the version
+     banner, the hovered RAM tag. */
+  --on-accent: #ffffff;
+
+  /* Semantic */
+  --ok: #1a6539;
+  --ok-bg: rgba(26, 101, 57, 0.12);
+  --warn: #7b5008;
+  --warn-bg: rgba(123, 80, 8, 0.12);
+  --danger: #a12d27;
+  --danger-bg: rgba(161, 45, 39, 0.12);
+  /* The ink for text drawn ON a danger fill — the gallery's notable flag. */
+  --on-danger: #ffffff;
+  --info: #1c599d;
+  --info-bg: rgba(28, 89, 157, 0.12);
+
+  /* Type */
+  --font-ui: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+code,
+kbd,
+pre,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-0);
+}
+
+/* Scrollbars tuned for a dense dark UI */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-1) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Global busy indicator (BusyBar component) */
+.busy-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1100;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: busy-slide 1.2s linear infinite;
+}
+
+@keyframes busy-slide {
+  from {
+    background-position: -60% 0;
+  }
+  to {
+    background-position: 160% 0;
+  }
+}
+
+/* Screen-reader-only text: present in the accessibility/DOM text tree but not
+   visually shown. Used to caption icon-only buttons. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A participant's name in a conversation, as a pivot trigger (§5.1).
+   Global rather than per-page: the same component renders in the analysis
+   record viewers and in an artifact's Conversation tab, which load different
+   stylesheets, and a class styled in only one of them is a button that looks
+   like a button on one screen and not the other.
+
+   Unlike `.an-pivot-cell` it inherits colour and weight: it sits inside a chat
+   bubble's own meta line, and recolouring every sender name accent-blue would
+   make a thread read as a list of links rather than a conversation. The
+   affordance is the pointer and the underline on hover/focus. */
+.an-pivot-name {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.an-pivot-name:hover,
+.an-pivot-name:focus-visible {
+  text-decoration: underline;
+}

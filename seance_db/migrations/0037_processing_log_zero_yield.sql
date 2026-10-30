@@ -1,0 +1,16 @@
+-- One row per artifact for the modules that ran over it and produced nothing.
+--
+-- The processing log is the run's provenance: "module X ran over this artifact
+-- and produced nothing" is a statement a report may need, and the difference
+-- between that and "module X never ran" is exactly the silence this project
+-- refuses to let collapse. The row-per-module shape that recorded it cost
+-- 23.4 million rows on a 3.3-million-artifact case — 98.5% of the log — and 86.9
+-- million on a 3.2-million-artifact phone extraction, 27 per artifact
+-- (HUNT-074).
+--
+-- The statement is kept and the rows are not: a module that produced nothing is
+-- folded into one row per artifact whose `zero_yield_modules` is a JSON array of
+-- {module_id, duration_ms}, and the read paths expand it with json_each so the
+-- per-artifact history and the case summary see exactly what they saw before.
+-- Rows written by earlier builds keep their old shape and still read.
+ALTER TABLE processing_log ADD COLUMN zero_yield_modules TEXT;

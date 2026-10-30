@@ -1,0 +1,24 @@
+{
+  "source_image": "NIST CFReDS Data Leakage PC, cfreds_2015_data_leakage_pc.E01",
+  "partition_offset_sectors": 206848,
+  "path": "/ProgramData/Microsoft/Network/Downloader/",
+  "cut_bytes": 8192,
+  "files": [
+    {
+      "source": "qmgr0.dat",
+      "mft_entry": 15553,
+      "source_bytes": 4194304,
+      "source_sha256": "c078c4e6eca7947b84fc136b89ee0bc30fdf0415b004646024433c83433e9d5a",
+      "fixture": "data_leakage_qmgr0.dat.head8k",
+      "fixture_sha256": "5268002088f9c17003cdd9bbd037487f317a5be02072c3750a155a473bbbfdf6"
+    },
+    {
+      "source": "qmgr1.dat",
+      "mft_entry": 15554,
+      "source_bytes": 4194304,
+      "source_sha256": "197c0c1446b4993488054b32b21e05a2544a1d4f02505f7f2af91fba0010509b",
+      "fixture": "data_leakage_qmgr1.dat.head8k",
+      "fixture_sha256": "c30c7e78ad251938635f18fd04f3a8c7b69e95fb6bf2597f21fbccae6ff2e7e3"
+    }
+  ]
+}

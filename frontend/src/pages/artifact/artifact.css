@@ -1,0 +1,1472 @@
+/* Artifact viewer page (.av- prefix) */
+
+.av-breadcrumb {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.av-breadcrumb-sep {
+  margin: 0 5px;
+  color: var(--text-2);
+}
+
+.av-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.av-title-row .page-title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.av-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.av-verify {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.av-verify-row {
+  font-size: 12px;
+}
+
+.av-verify-row .av-label {
+  display: block;
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Origin / provenance panel: a stacked column rather than the wrapped row the
+   integrity panel uses, since these are longer labelled paths. */
+.av-provenance {
+  flex-direction: column;
+  gap: 8px;
+}
+.av-provenance-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.av-provenance-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-1);
+}
+.av-provenance .av-verify-row,
+.av-provenance .av-note {
+  width: 100%;
+}
+.av-provenance .av-verify-row .mono {
+  word-break: break-all;
+}
+
+/* ---- Tabs ---- */
+
+.av-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--border-1);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.av-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-1);
+  padding: 7px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.av-tab:hover {
+  color: var(--text-0);
+}
+
+.av-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---- Overview cards ---- */
+
+.av-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.av-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+
+.av-card .av-label {
+  display: block;
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.av-card .av-value {
+  overflow-wrap: anywhere;
+}
+
+/* ---- Properties / raw JSON ---- */
+
+.av-kv td:first-child {
+  width: 220px;
+  color: var(--text-1);
+}
+
+.av-json {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--text-0);
+}
+
+/* ---- Hex / text ---- */
+
+.av-hex-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.av-hex-offset {
+  color: var(--text-2);
+}
+
+.av-jump {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: auto;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.av-jump .input {
+  width: 120px;
+}
+
+.av-note {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+
+.av-diskmap {
+  padding-top: 4px;
+}
+
+.av-text {
+  margin: 0;
+  padding: 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* ---- Text / code viewer ---- */
+
+.av-text-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.av-text-toolbar .btn[aria-pressed='true'] {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+.av-text-search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.av-text-search label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.av-text-search .input {
+  width: 160px;
+}
+
+.av-text-match-nav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--text-2);
+}
+
+.av-text-readout {
+  overflow-wrap: anywhere;
+}
+
+.av-text-code {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.av-text-code.av-text-nowrap {
+  overflow-x: auto;
+}
+
+.av-text-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.av-text-line:hover {
+  background: var(--bg-2);
+}
+
+.av-text-lineno {
+  flex: 0 0 auto;
+  min-width: 3.5ch;
+  text-align: right;
+  color: var(--text-2);
+  user-select: none;
+}
+
+.av-text-linebody {
+  flex: 1 1 auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--text-0);
+}
+
+.av-text-nowrap .av-text-linebody {
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+.av-text-match {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 2px;
+}
+
+.av-text-match.active {
+  background: var(--accent);
+  color: var(--bg-0);
+}
+
+/* ---- Verify progress ---- */
+
+.av-verify-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.av-verify-progress .av-note {
+  margin: 0;
+}
+
+.av-progress {
+  position: relative;
+  overflow: hidden;
+  height: 4px;
+  width: 220px;
+  background: var(--bg-2);
+  border-radius: 2px;
+}
+
+.av-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 40%;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: av-progress-slide 1.2s linear infinite;
+}
+
+@keyframes av-progress-slide {
+  to {
+    left: 100%;
+  }
+}
+
+/* ---- Preview ---- */
+
+.av-preview-img {
+  max-width: 100%;
+  max-height: 70vh;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.av-preview-video {
+  max-width: 100%;
+  max-height: 70vh;
+  background: #000;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.av-load-more {
+  margin-top: 8px;
+}
+
+/* ---- Overview copy buttons ---- */
+
+.av-copy {
+  background: none;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  font-size: 10.5px;
+  padding: 1px 6px;
+  margin-left: 8px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.av-copy:hover {
+  color: var(--text-0);
+  border-color: var(--accent-dim);
+}
+
+/* ---- Hex byte cells / data inspector ---- */
+
+.av-hex-byte {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--text-0);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.av-hex-byte:hover {
+  color: var(--accent);
+}
+
+.av-hex-byte.hex-zero {
+  color: var(--text-2);
+}
+
+.av-hex-byte.selected {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.av-inspector {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.av-inspector-title {
+  width: 100%;
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.av-inspector-field .av-label {
+  display: block;
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+/* ---- Registry explorer ---- */
+
+.av-reg {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2fr;
+  gap: 12px;
+  align-items: start;
+}
+
+/* Transaction-log replay provenance banner (ROADMAP 1.12). Spans both
+   columns above the key tree; three tones for recovered / dirty / clean. */
+.av-reg-prov {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  border: 1px solid var(--border-1);
+  background: var(--bg-2);
+}
+
+.av-reg-prov-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.av-reg-prov-ok {
+  /* 8% of the theme's green. `.av-reg-prov-warn` below already used a token;
+     this one was the default palette's value written out. */
+  background: color-mix(in srgb, var(--ok) 8%, transparent);
+  border-color: var(--ok);
+}
+
+.av-reg-prov-warn {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+.av-reg-prov-neutral {
+  background: var(--bg-2);
+  border-color: var(--border-1);
+}
+
+.av-reg-changed summary {
+  cursor: pointer;
+  color: var(--text-2);
+}
+
+.av-reg-changed ul {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+.av-reg-changed li {
+  padding: 2px 0;
+}
+
+.av-reg-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.av-reg-crumbs {
+  font-size: 12px;
+}
+
+.av-reg-crumbs .av-breadcrumb-sep {
+  margin: 0 3px;
+}
+
+.av-reg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.av-reg-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 4px;
+  border-radius: var(--radius);
+}
+
+.av-reg-list li:hover {
+  background: var(--bg-2);
+}
+
+.av-reg-count {
+  color: var(--text-2);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.av-reg-values tbody tr {
+  cursor: pointer;
+}
+
+.av-reg-data {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* ---- Conversation viewer ---- */
+
+.av-conv {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 3fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.av-threads {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.av-thread {
+  background: none;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--text-1);
+  text-align: left;
+  padding: 6px 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.av-thread:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+.av-thread.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.av-thread-count {
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.av-msgs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.av-msg {
+  max-width: 70%;
+  align-self: flex-start;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 6px 10px;
+}
+
+.av-msg-out {
+  align-self: flex-end;
+  background: var(--accent-bg);
+  border-color: var(--accent-dim);
+}
+
+.av-msg-meta {
+  color: var(--text-2);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.av-msg-body {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.av-load-earlier {
+  margin-bottom: 10px;
+}
+
+/* ---- Timestamp analysis (MACB + timestomp) ---- */
+
+.av-ts,
+.av-exif {
+  margin-top: 18px;
+}
+
+.av-ts-title {
+  font-size: 13px;
+  color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.av-ts-warning {
+  border: 1px solid var(--danger);
+  border-left-width: 4px;
+  background: var(--danger-bg);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.av-ts-warning-head {
+  display: block;
+  color: var(--danger);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.av-ts-warning-sub {
+  display: block;
+  color: var(--text-0);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* An observation, not a verdict (HUNT-051): the ordinary-activity indicators
+   sit in a quiet note, not in the danger box beside them. Same list styling,
+   deliberately different weight — a reader must be able to tell at a glance
+   which of the two they are looking at. */
+.av-ts-note {
+  border: 1px solid var(--border-1);
+  border-left: 4px solid var(--text-2);
+  background: var(--bg-2);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.av-ts-note-head {
+  display: block;
+  color: var(--text-1);
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.av-ts-note-foot {
+  display: block;
+  color: var(--text-2);
+  font-size: 11.5px;
+  margin-top: 6px;
+}
+
+.av-ts-reasons {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--text-0);
+  font-size: 12.5px;
+}
+
+.av-ts-ok {
+  color: var(--ok);
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+.av-ts-table th,
+.av-ts-table td {
+  font-size: 12px;
+}
+
+.av-ts-table td:first-child {
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+/* ---- EXIF / GPS map ---- */
+
+.av-exif-gps {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.av-exif-gps-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.av-exif-alt {
+  margin: 0;
+}
+
+.av-map {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.av-map-frame {
+  fill: var(--bg-2);
+  stroke: var(--border-1);
+  stroke-width: 1;
+}
+
+.av-map-grid {
+  stroke: var(--border-0);
+  stroke-width: 0.5;
+}
+
+.av-map-axis {
+  stroke: var(--border-1);
+  stroke-width: 0.75;
+}
+
+.av-map-cross {
+  stroke: var(--accent-dim);
+  stroke-width: 0.75;
+  stroke-dasharray: 3 3;
+}
+
+.av-map-dot {
+  fill: var(--accent);
+  stroke: var(--bg-0);
+  stroke-width: 1;
+}
+
+/* ---- SQLite forensic summary ---- */
+
+.av-sqlite {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.av-sqlite-counts {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.av-sqlite-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.av-sqlite-stat .av-label {
+  color: var(--text-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.av-sqlite-stat .av-value {
+  font-size: 18px;
+}
+
+.av-danger {
+  color: var(--danger);
+}
+
+/* ---- Run module ---- */
+
+.av-run-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.av-run-form label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--text-1);
+  font-size: 12.5px;
+}
+
+/* --- Fragmentation (Layout tab) + Entropy tab visuals. --- */
+.av-frag-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.av-frag-run {
+  fill: var(--viz-part-fill, #222836);
+}
+.av-frag-run-alt {
+  fill: var(--viz-part-fill-hover, #2a3140);
+}
+.av-frag-sparse {
+  fill: var(--viz-unalloc-base, #12141a);
+  stroke: var(--viz-hatch, #2c3340);
+  stroke-dasharray: 2 2;
+}
+.av-frag-run:hover,
+.av-frag-run-alt:hover,
+.av-frag-sparse:hover {
+  fill: var(--accent-bg);
+}
+
+.av-entropy-threshold {
+  stroke: var(--danger);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  opacity: 0.7;
+}
+
+/* ---- Workspace: center viewer + persistent Inspector ---- */
+
+.av-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--insp-w, 340px);
+  gap: 16px;
+  align-items: start;
+}
+
+.av-workspace[data-collapsed='true'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.av-main {
+  min-width: 0;
+}
+
+/* Reopen affordance shown in the tab strip when the inspector is hidden. */
+.av-insp-show {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-2);
+}
+.av-insp-show:hover {
+  color: var(--accent);
+}
+
+.av-view-empty {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Inspector column: sticky so metadata stays put while the viewer scrolls.
+   Positioned so the resize handle can anchor to its left edge. */
+.av-insp-col {
+  position: sticky;
+  top: 12px;
+  align-self: start;
+}
+
+.av-insp-resize {
+  position: absolute;
+  left: -12px;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  cursor: col-resize;
+  touch-action: none;
+}
+.av-insp-resize::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-1);
+}
+.av-insp-resize:hover::after,
+.av-insp-resize:active::after {
+  background: var(--accent);
+}
+
+.av-inspector-pane {
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+}
+
+.av-insp-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-0);
+}
+.av-insp-head h2 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+.av-insp-sec {
+  padding: 12px;
+}
+.av-insp-sec:empty {
+  display: none;
+}
+.av-insp-sec + .av-insp-sec {
+  border-top: 1px solid var(--border-0);
+}
+
+/* One card column and denser tables inside the narrow inspector. */
+.av-inspector-pane .av-cards {
+  grid-template-columns: 1fr;
+}
+.av-inspector-pane .data-table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 11.5px;
+}
+.av-inspector-pane .av-kv td:first-child {
+  width: 40%;
+}
+.av-inspector-pane .av-kv td {
+  overflow-wrap: anywhere;
+}
+
+.av-insp-props-toggle {
+  width: 100%;
+  text-align: left;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  color: var(--text-1);
+  padding: 7px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.av-insp-props-toggle:hover {
+  color: var(--text-0);
+  border-color: var(--border-1);
+}
+.av-insp-props .data-table {
+  margin-top: 10px;
+}
+
+/* Laptop widths: stack the inspector under the viewer, drop the drag handle. */
+@media (max-width: 1100px) {
+  .av-workspace,
+  .av-workspace[data-collapsed='true'] {
+    grid-template-columns: 1fr;
+  }
+  .av-insp-col {
+    position: static;
+    top: auto;
+  }
+  .av-insp-resize {
+    display: none;
+  }
+  .av-inspector-pane {
+    max-height: none;
+  }
+}
+
+/* ---- Physical location (device-absolute provenance) ---- */
+.av-phys h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.av-phys-muted {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.av-phys-device {
+  font-size: 12px;
+  color: var(--text-1);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.av-phys-badge {
+  font-size: 10px;
+  font-family: var(--mono, monospace);
+  color: var(--text-2);
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: 3px;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+.av-phys-note {
+  font-size: 11.5px;
+  line-height: 1.45;
+  padding: 7px 9px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-0);
+  color: var(--text-1);
+  margin: 0 0 10px;
+}
+
+.av-phys-note.av-phys-compressed,
+.av-phys-note.av-phys-encrypted {
+  background: var(--accent-bg);
+  border-color: var(--accent-dim);
+}
+
+.av-phys-note.av-phys-synthetic {
+  background: var(--bg-2);
+}
+
+.av-phys-extents {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  margin-bottom: 8px;
+}
+
+.av-phys-extents th {
+  text-align: left;
+  color: var(--text-2);
+  font-weight: 500;
+  padding: 2px 6px;
+  border-bottom: 1px solid var(--border-0);
+}
+
+.av-phys-extents td {
+  padding: 3px 6px;
+  border-bottom: 1px solid var(--border-0);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.av-phys-extents tr.av-phys-gap td {
+  color: var(--text-2);
+}
+
+.av-phys-summary {
+  font-size: 11px;
+  color: var(--text-2);
+  margin: 0 0 8px;
+}
+
+.av-phys-chain summary {
+  font-size: 11.5px;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.av-phys-chain ol {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border-left: 2px solid var(--border-1);
+}
+
+.av-phys-chain li {
+  position: relative;
+  padding: 4px 0 4px 12px;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.av-phys-chain-name {
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+  white-space: nowrap;
+}
+
+.av-phys-chain-type {
+  color: var(--text-2);
+  font-size: 10px;
+}
+
+.av-phys-chain-off {
+  font-family: var(--mono, monospace);
+  color: var(--accent);
+  font-size: 10.5px;
+}
+
+.av-phys-frag {
+  font-size: 10px;
+  color: var(--warn);
+}
+
+/* ---- Content preview: structured format toggle + CSV grid ---- */
+.av-fmt-toggle {
+  display: inline-flex;
+  margin-left: 12px;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.av-fmt-btn {
+  border: none;
+  background: var(--bg-1);
+  color: var(--text-2);
+  font-size: 11px;
+  padding: 2px 9px;
+  cursor: pointer;
+}
+
+.av-fmt-btn.selected {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.av-fmt-btn + .av-fmt-btn {
+  border-left: 1px solid var(--border-0);
+}
+
+.av-csv-scroll {
+  overflow-x: auto;
+  max-height: 70vh;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.av-csv {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.av-csv th,
+.av-csv td {
+  border: 1px solid var(--border-0);
+  padding: 3px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.av-csv th {
+  background: var(--bg-1);
+  color: var(--text-1);
+  position: sticky;
+  top: 0;
+}
+
+/* PDF preview: browser-native viewer via <object>. */
+.av-pdf {
+  width: 100%;
+  height: 75vh;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+}
+
+/* ---- Hex byte-pattern search ---- */
+.av-bytematches {
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.av-bytematches-count {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.av-bytematches-incomplete {
+  font-size: 12px;
+  color: var(--warn);
+}
+
+.av-bytematches-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+.av-bytematch {
+  border: 1px solid var(--border-0);
+  background: var(--bg-1);
+  color: var(--accent);
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.av-bytematch:hover {
+  border-color: var(--accent-dim);
+  background: var(--accent-bg);
+}
+
+/* Note shown when the overview falls back to the source file's properties. */
+.av-inherited-note {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* Passphrase prompt for an encrypted artifact. */
+.av-unlock {
+  margin: 8px 0 12px;
+  padding: 12px 14px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  max-width: 520px;
+}
+
+.av-unlock h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.av-unlock-hint {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.av-unlock-row {
+  display: flex;
+  gap: 8px;
+}
+
+.av-unlock-row .input {
+  flex: 1;
+}
+
+.av-unlock-note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.av-unlock-ok {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ok, #6c6);
+}
+
+.av-unlock-bad {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--danger, #d66);
+}
+
+/* Full EXIF tag dump (collapsible) on the artifact page. */
+.av-exif-all {
+  margin-top: 12px;
+}
+
+.av-exif-all summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-1);
+  padding: 4px 0;
+}
+
+.av-exif-all summary:hover {
+  color: var(--accent);
+}
+
+.av-exif-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.av-exif-table td {
+  padding: 3px 8px 3px 0;
+  vertical-align: top;
+  border-top: 1px solid var(--border-0);
+  word-break: break-word;
+}
+
+.av-exif-table td:first-child {
+  color: var(--text-2);
+  white-space: nowrap;
+  width: 40%;
+}
+
+.av-exif-table td:last-child {
+  color: var(--text-0);
+}
+
+/* Tamper alert: decoded pixel dimensions disagree with EXIF-declared size. */
+.av-tamper {
+  margin: 8px 0 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--danger, #e5534b);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--danger, #e5534b) 12%, transparent);
+  /* --text-0, spelled out. This was `var(--text, inherit)`: --text is not a
+     token this palette defines, so it fell through to `inherit` and the notice
+     was drawn in whatever colour the panel above it happened to set. That made
+     it the one element in the product whose contrast the guard could not
+     measure at all — on the notice that tells an examiner an image's decoded
+     pixel dimensions contradict its EXIF, which is a sentence that gets
+     quoted. --text-0 is what the rules either side of this one use, and what
+     the `inherit` was in fact resolving to. */
+  color: var(--text-0);
+  line-height: 1.4;
+}
+.av-tamper strong {
+  color: var(--danger, #e5534b);
+}
+
+/* Memory tab: the door from a capture's file into the Memory section.
+   Styled here rather than reusing `.mem-kv` because memory.css is imported by
+   MemoryLayout alone and is code-split away from this page, so those rules are
+   not loaded when this tab renders. */
+.av-mem-kv {
+  margin: 0 0 14px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 6px 12px;
+  align-items: baseline;
+}
+
+.av-mem-kv dt {
+  color: var(--text-2);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.av-mem-kv dd {
+  margin: 0;
+  color: var(--text-0);
+}
+
+.av-mem-note {
+  margin: 0 0 12px;
+  color: var(--text-1);
+  line-height: 1.45;
+}
+
+.av-mem-notice {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--warn, #d9a441);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--warn, #d9a441) 12%, transparent);
+  line-height: 1.45;
+}
+
+/* ---- Owner and permissions ($Secure:$SDS join, HUNT-178) ---- */
+.av-own h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.av-own p {
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+
+.av-own-row {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+
+.av-own-acl {
+  margin: 6px 0;
+}
+
+.av-own-aces {
+  margin: 0 0 4px;
+  padding-left: 18px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.av-own-ace {
+  margin-bottom: 3px;
+}
+
+.av-own-effect {
+  font-weight: 600;
+}
+
+.av-own-deny {
+  color: var(--danger, #c0392b);
+}
+
+.av-own-source {
+  color: var(--text-2);
+}

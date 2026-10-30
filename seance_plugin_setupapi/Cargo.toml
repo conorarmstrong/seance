@@ -1,0 +1,17 @@
+[package]
+name = "seance_plugin_setupapi"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "Read-only parser for Windows setupapi device-install logs"
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+tracing = "0.1"
+
+[dev-dependencies]
+# `seance_core::test_support::corpus` — the gate that skips when a corpus
+# variable is unset and PANICS when it is set to a path that is not there.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+uuid = { version = "1.0", features = ["v4"] }

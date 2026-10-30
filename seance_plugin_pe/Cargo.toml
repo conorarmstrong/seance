@@ -1,0 +1,28 @@
+[package]
+name = "seance_plugin_pe"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# A SigCheck-style analyser for Windows PE executables: Authenticode signature
+# (signer, validity, integrity), version resource, imphash, and section entropy.
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+goblin = "0.8"
+cms = "0.2"
+x509-cert = "0.2"
+der = { version = "0.7", features = ["oid"] }
+const-oid = "0.9"
+sha1 = "0.10"
+sha2 = "0.10"
+md-5 = "0.10"
+
+[dev-dependencies]
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

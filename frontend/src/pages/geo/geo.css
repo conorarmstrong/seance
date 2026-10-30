@@ -1,0 +1,317 @@
+/* Aggregate GPS map. Class prefix `geo-` to avoid collisions. */
+
+.geo-summary {
+  color: var(--text-2);
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+
+.geo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.geo-map-wrap {
+  position: relative;
+}
+
+.geo-panel {
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.geo-panel-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  margin: 0 0 8px;
+}
+
+.geo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.geo-row {
+  display: grid;
+  /* time · coordinates · source, so the three read as columns down the list
+     rather than drifting with each row's own text length (UI-029). */
+  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: var(--radius);
+  background: none;
+  border: none;
+  color: var(--text-1);
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.geo-row:hover {
+  background: var(--bg-2);
+}
+
+.geo-row.selected {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.geo-row-coords {
+  color: var(--text-2);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.geo-type-head {
+  font-size: 11px;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 10px 0 4px;
+}
+
+.geo-detail {
+  margin-top: 14px;
+  border-top: 1px solid var(--border-0);
+  padding-top: 12px;
+}
+
+.geo-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.geo-detail-table td {
+  padding: 3px 6px;
+  vertical-align: top;
+  word-break: break-all;
+}
+
+.geo-detail-table td:first-child {
+  color: var(--text-2);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.geo-copy {
+  background: none;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  font-size: 10.5px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.geo-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+.geo-detail-actions {
+  margin-top: 10px;
+}
+
+@media (max-width: 720px) {
+  .geo-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Movement track scrubber + path. --- */
+.geo-track-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.geo-track-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.geo-scrubber {
+  flex: 1;
+  min-width: 160px;
+  max-width: 380px;
+  accent-color: var(--accent);
+}
+
+.geo-track-when {
+  color: var(--text-1);
+}
+
+.geo-track-line {
+  stroke: var(--accent);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.geo-track-head {
+  fill: var(--accent-hover);
+  stroke: var(--bg-0);
+  stroke-width: 0.5;
+}
+
+/* --- Map page header with KML/GeoJSON export controls. --- */
+.geo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.geo-export {
+  display: flex;
+  gap: 8px;
+}
+
+/* Live (Leaflet/OpenStreetMap) map container. Height matches the offline map's
+   ~2:1 aspect so switching modes doesn't jump the layout. */
+.geo-leaflet {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+  /* Contain Leaflet's internal panes (z-index up to ~700) in their own
+     stacking context, so the hover preview — a later sibling — sits above the
+     map instead of behind its marker/tile panes. */
+  isolation: isolate;
+}
+
+/* Confirmation dialog before reaching out to OpenStreetMap tiles. */
+.geo-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.geo-modal {
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  max-width: 440px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.geo-modal h3 {
+  margin: 0 0 10px;
+  color: var(--text-0);
+}
+
+.geo-modal p {
+  margin: 0 0 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.geo-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Hover preview: thumbnail + name + coords, near the pointer inside the map
+   wrapper. It is interactive (a photo point links to its artifact), so it takes
+   pointer events and stays put while hovered. Sits above the Leaflet panes. */
+.geo-map-wrap {
+  position: relative;
+}
+
+.geo-hover {
+  position: absolute;
+  z-index: 900;
+  pointer-events: auto;
+  display: block;
+  max-width: 200px;
+  padding: 6px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  color: inherit;
+  text-decoration: none;
+}
+
+/* A photo card is a link; make that discoverable. */
+a.geo-hover {
+  cursor: pointer;
+}
+
+a.geo-hover:hover {
+  border-color: var(--accent);
+}
+
+.geo-hover-img {
+  display: block;
+  width: 160px;
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  background: var(--bg-0);
+}
+
+/* Sits under a preview the server did not decode from the file's own bytes. */
+.geo-hover-derived {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  white-space: normal;
+}
+
+.geo-hover-name {
+  font-size: 12px;
+  color: var(--text-0);
+  word-break: break-all;
+}
+
+.geo-hover-coords {
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+/* The time a fix was taken leads its row: a location list is read to answer
+   "where was this, and when", and the row used to open with eight characters of
+   an artifact id (UI-029). */
+.geo-row-when {
+  color: var(--text-1);
+  font-size: 11.5px;
+}
+.geo-row-source {
+  color: var(--text-2);
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

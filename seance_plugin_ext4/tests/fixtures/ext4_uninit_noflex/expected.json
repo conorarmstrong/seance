@@ -1,0 +1,143 @@
+{
+  "block_size": 1024,
+  "e2fsck_clean": true,
+  "files": {
+    "a.txt": {
+      "sha256": "cb3a357156261b3636a5a4520394bf244475f82b4647e69f1065727478566676",
+      "size": 3000
+    }
+  },
+  "grades": "the parser against debugfs/dumpe2fs on a volume mke2fs wrote; never a real-world claim",
+  "groups": [
+    {
+      "first": 1,
+      "flags": [
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          790,
+          8192
+        ]
+      ],
+      "group": 0,
+      "last": 8192
+    },
+    {
+      "first": 8193,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          8965,
+          16384
+        ]
+      ],
+      "group": 1,
+      "last": 16384
+    },
+    {
+      "first": 16385,
+      "flags": [
+        "INODE_UNINIT",
+        "BLOCK_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          16899,
+          24576
+        ]
+      ],
+      "group": 2,
+      "last": 24576
+    },
+    {
+      "first": 24577,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          25349,
+          32768
+        ]
+      ],
+      "group": 3,
+      "last": 32768
+    },
+    {
+      "first": 32769,
+      "flags": [
+        "INODE_UNINIT",
+        "BLOCK_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          33283,
+          40960
+        ]
+      ],
+      "group": 4,
+      "last": 40960
+    },
+    {
+      "first": 40961,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          41733,
+          49152
+        ]
+      ],
+      "group": 5,
+      "last": 49152
+    },
+    {
+      "first": 49153,
+      "flags": [
+        "INODE_UNINIT",
+        "BLOCK_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          49667,
+          57344
+        ]
+      ],
+      "group": 6,
+      "last": 57344
+    },
+    {
+      "first": 57345,
+      "flags": [
+        "INODE_UNINIT",
+        "ITABLE_ZEROED"
+      ],
+      "free": [
+        [
+          58117,
+          65535
+        ]
+      ],
+      "group": 7,
+      "last": 65535
+    }
+  ],
+  "image": "ext4_uninit_noflex.img",
+  "image_sha256": "2b92583f3224e8b3ea8d84fa2bb367b3841613713ea904ef9d4603b368e6ec18",
+  "synthetic": true,
+  "uninit_groups": [
+    2,
+    4,
+    6
+  ]
+}

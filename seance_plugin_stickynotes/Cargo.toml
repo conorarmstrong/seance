@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_stickynotes"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "Read-only parser for Windows Sticky Notes (StickyNotes.snt and plum.sqlite)"
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+# The forensic SQLite parser's WAL-frame and b-tree cell decoders, for
+# recovering hard-deleted notes from superseded WAL frames (HUNT-128).
+seance_plugin_sqlite = { path = "../seance_plugin_sqlite" }
+serde_json = { workspace = true }
+cfb = "0.10"
+rusqlite = { version = "0.32", features = ["bundled"] }
+tracing = "0.1"
+
+[dev-dependencies]
+# The corpus gate (seance_core::test_support::corpus) for the real-file test.
+seance_core = { path = "../seance_core", features = ["test-support"] }

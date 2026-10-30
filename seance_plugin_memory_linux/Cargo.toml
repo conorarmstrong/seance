@@ -1,0 +1,26 @@
+[package]
+name = "seance_plugin_memory_linux"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_memory = { path = "../seance_memory" }
+seance_symbols = { path = "../seance_symbols" }
+# The bash-history stage recovers a Unix timestamp from each history entry's
+# `#<epoch>` marker. Rendering it as a date is the whole point of the column, and
+# the workspace already standardises on chrono for that.
+chrono = "0.4"
+serde_json = { workspace = true }
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+# Encodes the synthetic AVML capture the hole-tolerant sweep test reads.
+snap = "1.1"
+seance_memory = { path = "../seance_memory", features = ["test-support"] }
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

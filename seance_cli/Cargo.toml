@@ -1,0 +1,67 @@
+[package]
+name = "seance_cli"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+default-run = "seance"
+
+[[bin]]
+name = "seance"
+path = "src/main.rs"
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_search = { path = "../seance_search" }
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["registry"] }
+libc = "0.2"
+tracing-appender = "0.2"
+clap = { version = "4.5.17", features = ["derive", "env"] }
+anyhow = "1.0.89"
+tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread", "signal"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+seance_api = { path = "../seance_api", default-features = false }
+seance_reporting = { path = "../seance_reporting" }
+seance_crack = { path = "../seance_crack" }
+seance_bulk = { path = "../seance_bulk" }
+seance_container_raid = { path = "../seance_container_raid" }
+seance_container_zip = { path = "../seance_container_zip" }
+seance_plugin_luks = { path = "../seance_plugin_luks" }
+seance_plugin_bitlocker = { path = "../seance_plugin_bitlocker" }
+seance_db = { path = "../seance_db" }
+seance_repl = { path = "../seance_repl" }
+# `fetch-symbols`: obtaining a symbol file, reading back the ISF it wrote, and
+# staging the PDB somewhere that is cleaned up whether the conversion works.
+seance_symbol_fetch = { path = "../seance_symbol_fetch" }
+seance_symbols = { path = "../seance_symbols" }
+tempfile = "3"
+chrono = "0.4"
+axum = "0.7.9"
+tower-http = { version = "0.5", features = ["fs"] }
+# Faster multithreaded allocator for the ingest data plane, which allocates
+# heavily per record/block across many worker threads.
+mimalloc = "0.1"
+
+[features]
+# Native-C-backed features, optional so targets whose C libs don't build can
+# opt out; all on by default. Each propagates to seance_api's matching feature.
+#   e01   -> libewf (E01/EWF images); no libewf on Windows/ARM64.
+#   esedb -> libesedb (ESE/SRUM); libesedb-sys doesn't build under MSYS2 gcc,
+#            so Windows builds disable it (Windows x64 keeps e01, drops esedb).
+#   heic  -> libheif (+libde265); iPhone HEIC photos are HEVC-coded.
+#   video-thumbs -> vendored OpenH264 + pure-Rust MP4 demuxer (no system deps).
+# heic and video-thumbs are listed explicitly because seance_repl no longer
+# takes seance_api's defaults; without them the default CLI build would quietly
+# lose HEIC and video thumbnails. Each feature must propagate to *every* path
+# that reaches seance_api, or unification hands the opt-out back.
+default = ["e01", "esedb", "heic", "video-thumbs"]
+e01 = ["seance_api/e01", "seance_repl/e01"]
+esedb = ["seance_api/esedb", "seance_repl/esedb"]
+heic = ["seance_api/heic", "seance_repl/heic"]
+video-thumbs = ["seance_api/video-thumbs", "seance_repl/video-thumbs"]
+
+# Windows-only: real process-liveness check for the workspace pidfile so a stale
+# lock left by a crashed run can be reclaimed (Unix uses libc::kill).
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Threading"] }

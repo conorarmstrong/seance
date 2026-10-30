@@ -1,0 +1,7 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Seance Test//Truncated//EN
+BEGIN:VEVENT
+UID:trunc-001@example.com
+SUMMARY:This event never closes
+DTSTART:20210901T

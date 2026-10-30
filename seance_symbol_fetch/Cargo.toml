@@ -1,0 +1,24 @@
+[package]
+name = "seance_symbol_fetch"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+anyhow = "1"
+pdb = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+thiserror = "2"
+tracing = "0.1"
+# ureq rather than the reqwest the API and REPL clients use. This crate is
+# called from a synchronous CLI command and wants no runtime: pulling in tokio
+# to fetch one file would make a symbol download the heaviest thing in the
+# binary. Both resolve to the same rustls stack, and `cargo deny` accepts the
+# duplication (`multiple-versions = "warn"`).
+ureq = { version = "2.10", default-features = false, features = ["tls", "gzip"] }
+
+[dev-dependencies]
+seance_symbols = { path = "../seance_symbols" }
+tempfile = "3"

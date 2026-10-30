@@ -1,0 +1,189 @@
+root\subscription	ActiveScriptEventConsumer	SeanceXpConsumer
+root\subscription	NTEventLogEventConsumer	MCA0
+root\subscription	NTEventLogEventConsumer	MCA1
+root\subscription	NTEventLogEventConsumer	MCA10
+root\subscription	NTEventLogEventConsumer	MCA11
+root\subscription	NTEventLogEventConsumer	MCA12
+root\subscription	NTEventLogEventConsumer	MCA13
+root\subscription	NTEventLogEventConsumer	MCA14
+root\subscription	NTEventLogEventConsumer	MCA15
+root\subscription	NTEventLogEventConsumer	MCA16
+root\subscription	NTEventLogEventConsumer	MCA17
+root\subscription	NTEventLogEventConsumer	MCA18
+root\subscription	NTEventLogEventConsumer	MCA19
+root\subscription	NTEventLogEventConsumer	MCA2
+root\subscription	NTEventLogEventConsumer	MCA20
+root\subscription	NTEventLogEventConsumer	MCA21
+root\subscription	NTEventLogEventConsumer	MCA22
+root\subscription	NTEventLogEventConsumer	MCA23
+root\subscription	NTEventLogEventConsumer	MCA24
+root\subscription	NTEventLogEventConsumer	MCA25
+root\subscription	NTEventLogEventConsumer	MCA26
+root\subscription	NTEventLogEventConsumer	MCA27
+root\subscription	NTEventLogEventConsumer	MCA28
+root\subscription	NTEventLogEventConsumer	MCA29
+root\subscription	NTEventLogEventConsumer	MCA3
+root\subscription	NTEventLogEventConsumer	MCA30
+root\subscription	NTEventLogEventConsumer	MCA31
+root\subscription	NTEventLogEventConsumer	MCA32
+root\subscription	NTEventLogEventConsumer	MCA33
+root\subscription	NTEventLogEventConsumer	MCA34
+root\subscription	NTEventLogEventConsumer	MCA35
+root\subscription	NTEventLogEventConsumer	MCA36
+root\subscription	NTEventLogEventConsumer	MCA37
+root\subscription	NTEventLogEventConsumer	MCA38
+root\subscription	NTEventLogEventConsumer	MCA39
+root\subscription	NTEventLogEventConsumer	MCA4
+root\subscription	NTEventLogEventConsumer	MCA40
+root\subscription	NTEventLogEventConsumer	MCA41
+root\subscription	NTEventLogEventConsumer	MCA42
+root\subscription	NTEventLogEventConsumer	MCA43
+root\subscription	NTEventLogEventConsumer	MCA44
+root\subscription	NTEventLogEventConsumer	MCA45
+root\subscription	NTEventLogEventConsumer	MCA46
+root\subscription	NTEventLogEventConsumer	MCA47
+root\subscription	NTEventLogEventConsumer	MCA48
+root\subscription	NTEventLogEventConsumer	MCA49
+root\subscription	NTEventLogEventConsumer	MCA5
+root\subscription	NTEventLogEventConsumer	MCA50
+root\subscription	NTEventLogEventConsumer	MCA51
+root\subscription	NTEventLogEventConsumer	MCA52
+root\subscription	NTEventLogEventConsumer	MCA53
+root\subscription	NTEventLogEventConsumer	MCA54
+root\subscription	NTEventLogEventConsumer	MCA55
+root\subscription	NTEventLogEventConsumer	MCA56
+root\subscription	NTEventLogEventConsumer	MCA57
+root\subscription	NTEventLogEventConsumer	MCA58
+root\subscription	NTEventLogEventConsumer	MCA59
+root\subscription	NTEventLogEventConsumer	MCA6
+root\subscription	NTEventLogEventConsumer	MCA60
+root\subscription	NTEventLogEventConsumer	MCA7
+root\subscription	NTEventLogEventConsumer	MCA8
+root\subscription	NTEventLogEventConsumer	MCA9
+root\subscription	NTEventLogEventConsumer	SCM Event Log Consumer
+root\subscription	__EventFilter	MCA0
+root\subscription	__EventFilter	MCA1
+root\subscription	__EventFilter	MCA10
+root\subscription	__EventFilter	MCA11
+root\subscription	__EventFilter	MCA12
+root\subscription	__EventFilter	MCA13
+root\subscription	__EventFilter	MCA14
+root\subscription	__EventFilter	MCA15
+root\subscription	__EventFilter	MCA16
+root\subscription	__EventFilter	MCA17
+root\subscription	__EventFilter	MCA18
+root\subscription	__EventFilter	MCA19
+root\subscription	__EventFilter	MCA2
+root\subscription	__EventFilter	MCA20
+root\subscription	__EventFilter	MCA21
+root\subscription	__EventFilter	MCA22
+root\subscription	__EventFilter	MCA23
+root\subscription	__EventFilter	MCA24
+root\subscription	__EventFilter	MCA25
+root\subscription	__EventFilter	MCA26
+root\subscription	__EventFilter	MCA27
+root\subscription	__EventFilter	MCA28
+root\subscription	__EventFilter	MCA29
+root\subscription	__EventFilter	MCA3
+root\subscription	__EventFilter	MCA30
+root\subscription	__EventFilter	MCA31
+root\subscription	__EventFilter	MCA32
+root\subscription	__EventFilter	MCA33
+root\subscription	__EventFilter	MCA34
+root\subscription	__EventFilter	MCA35
+root\subscription	__EventFilter	MCA36
+root\subscription	__EventFilter	MCA37
+root\subscription	__EventFilter	MCA38
+root\subscription	__EventFilter	MCA39
+root\subscription	__EventFilter	MCA4
+root\subscription	__EventFilter	MCA40
+root\subscription	__EventFilter	MCA41
+root\subscription	__EventFilter	MCA42
+root\subscription	__EventFilter	MCA43
+root\subscription	__EventFilter	MCA44
+root\subscription	__EventFilter	MCA45
+root\subscription	__EventFilter	MCA46
+root\subscription	__EventFilter	MCA47
+root\subscription	__EventFilter	MCA48
+root\subscription	__EventFilter	MCA49
+root\subscription	__EventFilter	MCA5
+root\subscription	__EventFilter	MCA50
+root\subscription	__EventFilter	MCA51
+root\subscription	__EventFilter	MCA52
+root\subscription	__EventFilter	MCA53
+root\subscription	__EventFilter	MCA54
+root\subscription	__EventFilter	MCA55
+root\subscription	__EventFilter	MCA56
+root\subscription	__EventFilter	MCA57
+root\subscription	__EventFilter	MCA58
+root\subscription	__EventFilter	MCA59
+root\subscription	__EventFilter	MCA6
+root\subscription	__EventFilter	MCA60
+root\subscription	__EventFilter	MCA7
+root\subscription	__EventFilter	MCA8
+root\subscription	__EventFilter	MCA9
+root\subscription	__EventFilter	SCM Event Log Filter
+root\subscription	__EventFilter	SeanceXpFilter
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA0" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA0"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA1" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA1"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA10" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA10"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA11" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA11"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA12" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA12"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA13" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA13"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA14" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA14"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA15" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA15"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA16" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA16"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA17" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA17"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA18" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA18"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA19" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA19"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA2" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA2"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA20" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA20"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA21" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA21"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA22" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA22"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA23" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA23"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA24" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA24"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA25" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA25"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA26" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA26"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA27" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA27"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA28" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA28"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA29" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA29"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA3" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA3"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA30" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA30"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA31" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA31"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA32" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA32"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA33" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA33"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA34" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA34"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA35" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA35"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA36" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA36"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA37" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA37"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA38" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA38"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA39" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA39"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA4" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA4"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA40" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA40"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA41" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA41"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA42" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA42"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA43" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA43"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA44" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA44"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA45" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA45"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA46" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA46"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA47" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA47"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA48" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA48"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA49" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA49"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA5" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA5"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA50" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA50"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA51" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA51"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA52" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA52"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA53" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA53"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA54" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA54"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA55" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA55"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA56" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA56"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA57" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA57"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA58" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA58"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA59" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA59"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA6" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA6"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA60" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA60"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA7" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA7"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA8" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA8"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="MCA9" -> \\.\root\subscription:NTEventLogEventConsumer.Name="MCA9"
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="SeanceXpFilter" -> \\.\root\subscription:ActiveScriptEventConsumer.Name="SeanceXpConsumer"
+root\subscription	__FilterToConsumerBinding	__EventFilter.Name="SCM Event Log Filter" -> NTEventLogEventConsumer.Name="SCM Event Log Consumer"

@@ -1,0 +1,23 @@
+[package]
+name = "seance_container_raid"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Reconstructs a single logical block device from a set of RAID/JBOD member
+# images (or LVM logical volumes over a PV), presenting it as one DataSource so
+# every downstream filesystem, carver and parser works unchanged. Geometry can be
+# auto-detected from Linux md superblocks and LVM2 metadata, or specified by the
+# examiner for a foreign/proprietary array.
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+tracing = "0.1"
+
+[features]
+# Exposes `md::build_superblock`, a checksum-valid v1 superblock builder, for the
+# test suites of this and dependent crates. Off by default; enabled only as a
+# dev-dependency feature so it never ships in production builds.
+test-support = []
+
+[dev-dependencies]

@@ -1,0 +1,18 @@
+[package]
+name = "seance_plugin_xfs"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+base64 = "0.22"
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+uuid = { version = "1.11", features = ["v4", "serde"] }
+tracing = "0.1"
+byteorder = "1.5"
+anyhow = "1.0"
+chrono = "0.4"
+
+[dev-dependencies]
+flate2 = "1.0"

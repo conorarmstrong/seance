@@ -1,0 +1,72 @@
+# cargo-audit configuration for Seance.
+#
+# The workspace runs `cargo audit` as a CI gate. Every advisory below has been
+# individually triaged against Seance's threat model. Cleanly-fixable advisories
+# are fixed by bumping the offending crate (see Cargo.lock history), NOT ignored.
+# The entries here are advisories that are either (a) unfixable transitively
+# without a breaking upstream release, (b) have no fixed version at all, or
+# (c) are "unmaintained"/"yanked" informational warnings rather than exploitable
+# vulnerabilities. Each carries a justification. Re-review on every dependency
+# bump; remove an entry the moment its upstream fix lands in our tree.
+
+[advisories]
+ignore = [
+    # --- Transitive, fix pending upstream, bounded impact ---
+
+    # lopdf stack overflow when PARSING deeply nested PDF objects.
+    #
+    # NOT REACHABLE, on the same grounds deny.toml records. Two lopdf versions
+    # are in the tree and neither is fed an evidence PDF: 0.31.0 arrives under
+    # printpdf 0.7, which Seance uses only to GENERATE report PDFs, and 0.34.0 is
+    # seance_reporting's own, used at exactly one site --- pdf_signing, which
+    # calls Document::load_mem on a PDF Seance has just rendered, in order to sign
+    # it. Evidence PDFs are matched by %PDF magic in the carver and never parsed
+    # as object graphs, so the deeply-nested input this advisory needs has no
+    # route in.
+    #
+    # An earlier version of this note justified the suppression by claiming the
+    # signing path was on "lopdf 0.42 (patched)". That was simply false --- no
+    # 0.42 has ever been in this lock --- and it mattered, because it offered a
+    # reason that could be checked and would not have held. The reachability
+    # argument above is the real one and is the only one this entry rests on.
+    "RUSTSEC-2026-0187",
+
+    # quick-xml < 0.41 unbounded namespace-declaration allocation (memory DoS).
+    # Pulled transitively by the `evtx` crate (0.8.5) when parsing Windows Event
+    # Log evidence. Impact is a bounded per-file slowdown/allocation during
+    # operator-initiated ingestion (not a network service); each evidence file is
+    # processed in an isolated orchestrator task. Fix requires an `evtx`-crate
+    # release on quick-xml >= 0.41; tracked as a dependency-bump follow-up.
+    "RUSTSEC-2026-0195",
+
+    # quick-xml < 0.41 quadratic run time checking a start tag for duplicate
+    # attribute names. Same evtx-crate transitive path and same bounded,
+    # operator-controlled ingestion impact as RUSTSEC-2026-0195.
+    "RUSTSEC-2026-0194",
+
+    # rand unsound only when combined with a custom global logger via
+    # `rand::rng()`. Transitive; Seance installs no such logger and does not use
+    # this pattern. Non-exploitable in our configuration.
+    "RUSTSEC-2026-0097",
+
+    # --- No fixed version available ---
+
+    # rsa Marvin Attack: potential key recovery via timing side channels.
+    # No fixed upgrade exists. Transitive (TLS/JWT stack); Seance exposes no
+    # attacker-driven RSA decryption/signing oracle over an observable channel.
+    "RUSTSEC-2023-0071",
+
+    # --- Unmaintained / yanked (informational, not exploitable vulnerabilities) ---
+
+    # `encoding` unmaintained. Transitive; no known vulnerability.
+    "RUSTSEC-2021-0153",
+    # `instant` unmaintained. Transitive (wasm timer shim); no known vulnerability.
+    "RUSTSEC-2024-0384",
+    # `ttf-parser` unmaintained. Transitive (font metrics for PDF generation);
+    # fonts are bundled/trusted, not attacker-supplied.
+    "RUSTSEC-2026-0192",
+    # `bincode` unmaintained. Transitive through yara-x, which uses it for its
+    # own compiled-rule serialisation; no evidence byte is decoded by it.
+    "RUSTSEC-2025-0141",
+
+]

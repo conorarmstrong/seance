@@ -1,0 +1,33 @@
+[package]
+name = "seance_benchmarks"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+seance_plugin_ext4 = { path = "../seance_plugin_ext4" }
+seance_container_e01 = { path = "../seance_container_e01", optional = true }
+criterion = { version = "0.5", features = ["html_reports"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+serde_json = { workspace = true }
+
+[[bench]]
+name = "mft_parsing"
+harness = false
+
+[[bench]]
+name = "ext4_parsing"
+harness = false
+
+[features]
+# Off by default so the crate builds without libewf; the e01 bench is skipped
+# unless enabled (see required-features below).
+default = []
+e01 = ["dep:seance_container_e01"]
+
+[[bench]]
+name = "e01_parsing"
+harness = false
+required-features = ["e01"]

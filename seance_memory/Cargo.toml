@@ -1,0 +1,30 @@
+[package]
+name = "seance_memory"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_symbols = { path = "../seance_symbols" }
+aho-corasick = "1.1"
+lru = "0.18.2"
+memchr = "2.7"
+regex = "1.12"
+serde_json = { workspace = true }
+# AVML frame bodies are raw-Snappy; the layer needs per-frame random access, so
+# only `snap::raw` applies. The framing and its masked CRC-32C are ours.
+snap = "1.1"
+thiserror = "1.0.64"
+tracing = "0.1.40"
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+serde_json = { workspace = true }
+flate2 = "1.0"
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }
+
+[features]
+# Blob assembly for tests in other crates. Not compiled into a release build.
+test-support = []

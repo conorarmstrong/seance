@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_thumbcache"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Parser for Windows Thumbcache (thumbcache_*.db) files: emits one
+# ThumbcacheEntry record per cached thumbnail (entry hash, identifier, size,
+# and detected image format).
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }
+
+[dev-dependencies]
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of reporting a pass having compared nothing.
+seance_core = { path = "../seance_core", features = ["test-support"] }

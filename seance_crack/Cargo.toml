@@ -1,0 +1,17 @@
+[package]
+name = "seance_crack"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# A deliberately narrow password-recovery engine. It generates candidate
+# passwords (dictionary, mask, rule mutations) and runs them through a pluggable
+# Verifier — which is an existing decryptor's "does this secret produce a valid
+# header" check, so no new cryptography lives here. It is OFF BY DEFAULT behind an
+# explicit profile, and reports every attempt so the caller can write it to the
+# audit chain. GPU acceleration and locked-mobile-device bypass are out of scope.
+
+[dependencies]
+
+[dev-dependencies]
+sha2 = "0.10"

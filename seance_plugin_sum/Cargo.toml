@@ -1,0 +1,15 @@
+[package]
+name = "seance_plugin_sum"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_ese_util = { path = "../seance_ese_util" }
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+libesedb = "0.2"
+serde_json = { workspace = true }
+tracing = "0.1"
+uuid = { version = "1.10.0", features = ["v4", "serde"] }

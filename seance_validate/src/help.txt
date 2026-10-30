@@ -1,0 +1,32 @@
+seance-validate — reproducible known-answer validation runner
+
+Runs the documented DFTT/known-answer cases against a local corpus and writes a
+provenance-stamped, tamper-evident report.
+
+USAGE:
+    seance-validate [--corpus <dir>] [--out <basepath>]
+
+OPTIONS:
+    --corpus <dir>   Corpus root: one directory per image set (dftt/,
+                     alihadi_ntfs/, oberon_linux_swap/, win11_bitlocker/).
+                     Default: current directory.
+    --out <base>     Output base path; writes <base>.json and <base>.md.
+                     Default: validation-report
+    -h, --help       Show this help.
+
+ENVIRONMENT:
+    SEANCE_VALIDATION_HMAC_KEY   If set, writes an HMAC-SHA256 of the report to
+                                 <base>.hmac for tamper-evidence.
+
+EXIT STATUS:
+    0   At least one case ran and none failed (skips do not fail the run).
+    1   At least one case FAILED.
+    2   Nothing was evaluated: every case was Skipped (image absent). The
+        report's headline says NO COVERAGE. A run that examined no evidence
+        is not a pass, and this is what stops it being quoted as one.
+
+Each case is classified Pass / Fail / Skipped (image absent). A skip is never
+counted as a pass. The report records the tool version, the git commit (embedded
+at build time; the report says if it had to fall back to asking git at run
+time, or could not say at all), and the SHA-256 of every image examined, plus a
+results_digest that is stable across runs on the same corpus and code.

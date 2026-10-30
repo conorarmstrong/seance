@@ -1,0 +1,210 @@
+10 Test Image ext-07
+DFR-07.    Recover one overwritten file.
+
+Partition Table Layout
+Disk /dev/sdd: 1073 MB, 1073742336 bytes
+34 heads, 61 sectors/track, 1011 cylinders, total 2097153 sectors
+ Device Boot Start        End Blocks Id System
+/dev/sdd1         61 651235 325587+ 83 Linux
+/dev/sdd2       651236 1302471 325618 83 Linux
+/dev/sdd3       1302472 1953707 325618 83 Linux
+
+15 files deleted
+              Deleted files (15)
+Name               Size               F-Hd   F-Bks
+Bellatrix.txt      4096 (8+0)         1      7
+Canopus.txt        4096 (8+0)         1      7
+Denebola.TXT       4096 (8+0)         1      7
+FumAlSamakah.txt 8192 (16+0)          1      15
+Giauzar.txt        3072 (6+0)         1      5
+Bunda.txt          4096 (8+0)         1      7
+Castor.txt         4096 (8+0)         1      7
+Duhr.TXT           4096 (8+0)         1      7
+Furud.txt          8192 (16+0)        1      15
+Grumium.txt        3072 (6+0)         1      5
+Botein.txt         4096 (8+0)         1      7
+Chort.txt          4096 (8+0)         1      7
+Diadem.TXT         4096 (8+0)         1      7
+Gomeisa.txt        4096 (8+0)         1      7
+fornax.txt         8192 (16+0)        1      15
+
+
+MAC times just before file deletion
+ File: `Bellatrix.txt'
+Access: 2011-10-09 14:56:54.000000000 -0400
+Modify: 2011-10-09 14:56:33.000000000 -0400
+Change: 2011-10-09 14:56:33.000000000 -0400
+ File: `Canopus.txt'
+Access: 2011-10-09 14:56:55.000000000 -0400
+Modify: 2011-10-09 14:56:33.000000000 -0400
+Change: 2011-10-09 14:56:33.000000000 -0400
+ File: `Denebola.TXT'
+Access: 2011-10-09 14:56:55.000000000 -0400
+Modify: 2011-10-09 14:56:33.000000000 -0400
+Change: 2011-10-09 14:56:33.000000000 -0400
+ File: `FumAlSamakah.txt'
+Access: 2011-10-09 15:02:13.000000000 -0400
+Modify: 2011-10-09 15:02:13.000000000 -0400
+Change: 2011-10-09 15:02:13.000000000 -0400
+ File: `Giauzar.txt'
+Access: 2011-10-09 15:02:13.000000000 -0400
+Modify: 2011-10-09 15:02:13.000000000 -0400
+Change: 2011-10-09 15:02:13.000000000 -0400
+  ...
+20 omitted
+ File: `Botein.txt'
+
+
+
+Last save 7/10/2012 12:49:00 PM                      Page 28 of 290                  Test Images layout.docx
+Access: 2011-10-09 14:57:40.290599401 -0400
+Modify: 2011-10-09 14:57:28.290599401 -0400
+Change: 2011-10-09 14:57:28.292574600 -0400
+ File: `Chort.txt'
+Access: 2011-10-09 14:57:40.004314207 -0400
+Modify: 2011-10-09 14:57:28.000000000 -0400
+Change: 2011-10-09 14:57:28.381113174 -0400
+ File: `Diadem.TXT'
+Access: 2011-10-09 14:57:40.001318409 -0400
+Modify: 2011-10-09 14:57:28.000000000 -0400
+Change: 2011-10-09 14:57:28.346121242 -0400
+ File: `Gomeisa.txt'
+Access: 2011-10-09 15:02:14.871069201 -0400
+Modify: 2011-10-09 15:02:14.871069201 -0400
+Change: 2011-10-09 15:02:14.872068400 -0400
+ File: `fornax.txt'
+Access: 2011-10-09 15:02:14.000000000 -0400
+Modify: 2011-10-09 15:02:14.000000000 -0400
+Change: 2011-10-09 15:02:14.395109947 -0400
+
+File delete times:
+Times: /Volumes/CFTT/dfr/dfr-setup/ntfs-delete-times.txt Case ext-07
+===== Run step 2 =====
+ACTION (delete): Bellatrix.txt Canopus.txt Denebola.TXT
+ACTION (delete time): Sun Oct 9 15:00:33 EDT 2011
+ACTION (delete): Bunda.txt Castor.txt Duhr.TXT
+ACTION (delete time): Sun Oct 9 15:00:33 EDT 2011
+ACTION (delete): Botein.txt Chort.txt Diadem.TXT
+ACTION (delete time): Sun Oct 9 15:00:34 EDT 2011
+ACTION (delete): FumAlSamakah.txt Giauzar.txt
+ACTION (delete time): Sun Oct 9 15:03:57 EDT 2011
+ACTION (delete): Furud.txt Grumium.txt
+ACTION (delete time): Sun Oct 9 15:03:58 EDT 2011
+ACTION (delete): fornax.txt Gomeisa.txt
+ACTION (delete time): Sun Oct 9 15:03:59 EDT 2011
+
+                       Steps to Create Image ext-07
+Step   Action   Files in Partition EXT2
+1      create   Algol.txt Bellatrix.txt Canopus.txt Denebola.TXT Electra.TXT
+2      delete   Bellatrix.txt Canopus.txt Denebola.TXT
+3      create   FumAlSamakah.txt Giauzar.txt
+4      delete   FumAlSamakah.txt Giauzar.txt
+Step   Action   Files in Partition EXT3
+1      create   Arcturus.txt Bunda.txt Castor.txt Duhr.TXT Eltanin.txt
+2      delete   Bunda.txt Castor.txt Duhr.TXT
+3      create   Furud.txt Grumium.txt
+4      delete   Furud.txt Grumium.txt
+Step   Action   Files in Partition EXT4
+1      create   Antares.txt Botein.txt Chort.txt Diadem.TXT Edasich.txt
+2      delete   Botein.txt Chort.txt Diadem.TXT
+3      create   fornax.txt Gomeisa.txt
+4      delete   fornax.txt Gomeisa.txt
+
+
+9 overwrites
+Bellatrix.txt x FumAlSamakah.txt: overlap - 10305 - 10310
+Botein.txt x fornax.txt: overlap - 1319386 - 1319393
+Bunda.txt x Grumium.txt: overlap - 658408 - 658413
+Canopus.txt x FumAlSamakah.txt: overlap - 11327 - 11334
+Castor.txt x Furud.txt: overlap - 659430 - 659437
+Chort.txt x fornax.txt: overlap - 1319394 - 1319401
+Denebola.TXT x FumAlSamakah.txt: overlap - 12351 - 12352
+Denebola.TXT x Giauzar.txt: overlap - 12353 - 12358
+Duhr.TXT x Furud.txt: overlap - 660454 - 660461
+
+
+File: FumAlSamakah.txt 16 16
+File: Bellatrix.txt 8 0
+
+
+
+Last save 7/10/2012 12:49:00 PM                    Page 29 of 290              Test Images layout.docx
+File: Diadem.TXT 8 6
+File: Chort.txt 8 0
+File: Botein.txt 8 0
+File: Bunda.txt 8 0
+File: Castor.txt 8 0
+File: Canopus.txt 8 0
+File: Denebola.TXT 8 0
+File: Grumium.txt 6 6
+File: Duhr.TXT 8 0
+File: Furud.txt 16 16
+File: Giauzar.txt 6 6
+File: Gomeisa.txt 8 8
+File: fornax.txt 16 16
+Summary: 15 6 1 8
+
+
+Metadata available
+ext-07 Metadata found 9 files, not found 6, total 15 deleted files
+Deleted files without metadata (cannot be found)
+Bellatrix.txt         Botein.txt Bunda.txt Canopus.txt
+Castor.txt Chort.txt
+
+Layout History
+
+               Layout for Steps 1 through 3
+Sectors             Step 1       Step 2     Step 3
+9279 - 9286         Algol        Algol      Algol
+10303 - 10304       Bellatrix    Bellatrix  metadata
+10305 - 10310       Bellatrix    Bellatrix  FumAlSamakah
+11327 - 11334       Canopus      Canopus    FumAlSamakah
+12351 - 12352       Denebola Denebola FumAlSamakah
+12353 - 12358       Denebola Denebola Giauzar
+13375 - 13382       Electra      Electra    Electra
+657382 - 657389     Arcturus     Arcturus   Arcturus
+658406 - 658407     Bunda        Bunda      metadata
+658408 - 658413     Bunda        Bunda      Grumium
+659430 - 659437     Castor       Castor     Furud
+660454 - 660461     Duhr         Duhr       Furud
+661478 - 661485     Eltanin      Eltanin    Eltanin
+1319378 - 1319385 Antares        Antares    Antares
+1319386 - 1319393 Botein         Botein     fornax
+1319394 - 1319401 Chort          Chort      fornax
+1319402 - 1319403 Diadem         Diadem     metadata
+1319404 - 1319409 Diadem         Diadem     Diadem
+1319410 - 1319417 Edasich        Edasich    Edasich
+1388138 - 1388145 empty          empty      Gomeisa
+
+
+                               Sector List
+Algol.txt                9279 - 9286
+Antares.txt              1319378 - 1319385
+Arcturus.txt             657382 - 657389
+Bellatrix.txt            10303 - 10310
+Botein.txt               1319386 - 1319393
+Bunda.txt                658406 - 658413
+Canopus.txt              11327 - 11334
+Castor.txt               659430 - 659437
+Chort.txt                1319394 - 1319401
+  ...
+3 omitted
+Edasich.txt              1319410 - 1319417
+Electra.TXT              13375 - 13382
+Eltanin.txt              661478 - 661485
+FumAlSamakah.txt         10305 - 10310, 11327 - 11334, 12351 - 12352
+Furud.txt                659430 - 659437, 660454 - 660461
+Giauzar.txt              12353 - 12358
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                        Page 30 of 290   Test Images layout.docx
+                           Sector List
+Gomeisa.txt           1388138 - 1388145
+Grumium.txt           658408 - 658413
+fornax.txt            1319386 - 1319401
+
+
+
+

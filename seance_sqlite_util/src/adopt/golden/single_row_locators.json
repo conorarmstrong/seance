@@ -1,0 +1,6 @@
+[
+  "NotRecorded(\"there is no `schema` table, which is where the validated stores carried it\")",
+  "NotRecorded(\"`schema` has no rows\")",
+  "Found(7)",
+  "Undetermined(\"`schema`.`version` would not read: Invalid column type Text at index: 0, name: version\")"
+]

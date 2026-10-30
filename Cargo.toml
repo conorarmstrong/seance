@@ -1,0 +1,243 @@
+[workspace]
+members = [
+    "seance_core",
+    "seance_cli", "seance_plugin_utmp", "seance_plugin_secure_sds", "seance_plugin_asep", "seance_memory", "seance_symbols", "seance_plugin_memory_windows", "seance_plugin_memory_linux",
+    "seance_plugin_mft", "seance_tests", "seance_db", "seance_api", "seance_repl", "seance_plugin_partition", "seance_plugin_logfile", "seance_plugin_i30", "seance_plugin_usnjrnl", "seance_plugin_badclus", "seance_plugin_shellbags", "seance_plugin_lnk", "seance_plugin_vss", "seance_plugin_jumplists", "seance_plugin_srum", "seance_plugin_browser_history", "seance_container_zip", "seance_plugin_sqlite", "seance_plugin_plist", "seance_container_e01", "seance_container_aff4", "seance_plugin_ios_backup", "seance_plugin_ext4", "seance_reporting", "seance_benchmarks", "seance_plugin_fat", "seance_plugin_xfs", "seance_plugin_btrfs", "seance_plugin_hfsplus", "seance_plugin_iso9660", "seance_plugin_udf",
+    "seance_carving",
+    "seance_plugin_pe",
+    "seance_plugin_sdb",
+    "seance_plugin_setupapi",
+    "seance_plugin_stickynotes",
+    "seance_plugin_pcap",
+    "seance_plugin_wlan",
+    "seance_plugin_ios_artifacts",
+    "seance_plugin_win_timeline",
+    "seance_plugin_desktop_artifacts",
+    "seance_plugin_thumbcache",
+    "seance_plugin_fsevents",
+    "seance_plugin_dsstore",
+    "seance_plugin_findings",
+    "seance_plugin_carver",
+    "seance_plugin_clipboard",
+    "seance_plugin_amcache",
+    "seance_plugin_shimcache",
+    "seance_plugin_recyclebin",
+    "seance_plugin_file_analysis",
+    "seance_container_archive",
+    "seance_plugin_email",
+    "seance_container_vdisk",
+    "seance_container_sparseimage",
+    "seance_plugin_macos_artifacts",
+    "seance_plugin_imessage",
+    "seance_plugin_installed_apps",
+    "seance_plugin_android_apps",
+    "seance_plugin_host_identity",
+    "seance_plugin_mobile_device",
+    "seance_plugin_directory",
+    "seance_plugin_media",
+    "seance_plugin_whatsapp",
+    "seance_plugin_apfs",
+    "seance_plugin_hash",
+    "seance_plugin_exif",
+    "seance_plugin_ical",
+    "seance_plugin_android_sms",
+    "seance_plugin_android_backup",
+    "seance_plugin_luks",
+    "seance_plugin_bitlocker",
+    "seance_plugin_call_history",
+    "seance_plugin_contacts",
+    "seance_plugin_f2fs",
+    "seance_plugin_ocr",
+    "seance_plugin_signal",
+    "seance_plugin_instagram",
+    "seance_plugin_snapchat",
+    "seance_plugin_twitter",
+    "seance_plugin_office",
+    "seance_plugin_viber",
+    "seance_plugin_kik",
+    "seance_plugin_skype",
+    "seance_plugin_chrome_cache",
+    "seance_plugin_leveldb",
+    "seance_plugin_webcache",
+    "seance_plugin_wechat",
+    "seance_plugin_line",
+    "seance_plugin_fbmessenger",
+    "seance_plugin_telegram",
+    "seance_sqlcipher",
+    "seance_sqlite_util",
+    "seance_xml_util",
+    "seance_ese_util",
+    "seance_plugin_sum",
+    "seance_plugin_bits",
+    "seance_plugin_rdp_cache",
+    "seance_plugin_winsearch_edb",
+    # seance_plugin_yara is back in the build as of 2026-07-31. The dependency
+    # diamond that kept it out is gone:
+    #
+    #   yara-x 1.19 -> annotate-snippets 0.12.16 -> unicode-width ^0.2.2
+    #   ratatui 0.29 (via seance_repl)           -> unicode-width  =0.2.0   <- was exact
+    #   ratatui 0.30 (via ratatui-core 0.1.2)    -> unicode-width >=0.2.0   <- now a range
+    #
+    # The ratatui 0.30 upgrade this depended on turned out to need no source
+    # changes at all: seance_repl uses only Terminal, Frame, Layout, Style,
+    # Line/Span and Paragraph, none of which changed. Its 20 tests pass
+    # untouched, so the shipped interactive tool was not destabilised.
+    #
+    # Note yara-x brings wasmtime/cranelift, since rules are lowered to WASM and
+    # JITted. That makes it the heaviest dependency in the workspace and it is
+    # the reason to keep an eye on build times, not a reason to park the crate.
+    "seance_plugin_yara",
+
+    # seance_plugin_memory_macos is a workspace member so that it COMPILES and
+    # its tests RUN. It is registered by no binary, which is the separate thing:
+    # membership means CI type-checks it and validates what can be validated
+    # without a capture; registration would mean an examiner receives its
+    # results. Only the second is gated on evidence.
+    #
+    # Keeping it out of the workspace entirely -- the previous state -- meant no
+    # build ever touched it, so it could rot against changes to seance_symbols
+    # or seance_memory and nobody would know until the day a capture arrived.
+    "seance_plugin_memory_macos",
+    "seance_validate",
+    "seance_vics",
+    "seance_bulk",
+    "seance_crack",
+    "seance_container_raid",
+    "seance_plugin_bulk",
+    "seance_plugin_squashfs",
+    "seance_plugin_perceptual",
+    # Listed explicitly so the manifest and `cargo metadata` agree; these were
+    # previously pulled in only as path dependencies of other members.
+    "seance_hive",
+    "seance_hive_util",
+    "seance_shell_item",
+    "seance_plugin_evtx",
+    "seance_plugin_prefetch",
+    "seance_plugin_registry",
+    "seance_search",
+    "seance_symbol_fetch",
+    # The utmp session-pairing rules, shared by the wtmp and ASL readers.
+    "seance_login_sessions",
+]
+resolver = "2"
+
+# Shared package metadata. A crate inherits it with `license.workspace = true`
+# so the licence is declared once rather than in ~90 manifests.
+#
+# MIT, matching the LICENSE file at the repository root. The project was
+# AGPL-3.0-or-later until 2026-09-13; the owner relicensed it so that a lab, a
+# vendor or another tool can take any part of this without the obligation the
+# Affero clause imposed. Anything published before that date stays available
+# under the AGPL, because a relicence is not retroactive.
+#
+# Every crate inherits it. There is no exception: the last one, the vendored
+# GPL-2.0-or-later `nt-hive`, was replaced by `seance_hive` on 2026-09-13.
+[workspace.package]
+license = "MIT"
+# The single product version. Every member inherits it with
+# `version.workspace = true`, so the court-facing `tool_version` (seance_api and
+# seance_cli read CARGO_PKG_VERSION) and every module's reported version move
+# together, and `scripts/check-version.sh` can hold a release tag to it.
+version = "1.0.0-rc"
+
+# Shared dependency versions. Plugins reference these with
+# `dep = { workspace = true }` so a version bump happens once here instead of
+# being copy-pasted across ~60 crate manifests (audit §9).
+[workspace.dependencies]
+# This project's own registry-hive reader, written from the published format
+# specification so that the product can be MIT rather than GPL. See
+# seance_hive/docs/SPEC_CROSSCHECK.md.
+seance_hive = { path = "seance_hive" }
+anyhow = "1.0.89"
+tracing = "0.1.40"
+serde = { version = "1.0.210", features = ["derive"] }
+# `preserve_order` is declared here rather than inherited, and that is a
+# correctness decision, not a preference.
+#
+# With it on, `serde_json::Map` is an `IndexMap` and **insertion order reaches
+# the serialised bytes**; with it off, `Map` is a `BTreeMap` and the output is
+# sorted whatever order it was built in. Séance hashes serialised JSON and
+# cites the digest as a document's identity — `seance_memory::btf_isf` generates
+# an ISF from a capture that has no file path, so its SHA-256 is the only thing
+# a defence expert can reproduce it by.
+#
+# `evtx` and `yara-x` both ask for `preserve_order`, and Cargo unifies features
+# across the graph, so it was ALREADY on in every build that includes them —
+# which is every shipped binary. It was off in a package-scoped `cargo test -p`,
+# so a test could pass against a document whose ordering the product did not
+# have.
+#
+# Declaring it here is only half of making the two builds agree, and the first
+# version of this note claimed the whole. A workspace dependency reaches a crate
+# only where that crate writes `serde_json = { workspace = true }`; at the time
+# 103 of 105 manifests wrote their own `serde_json = "1.0"` instead, and the two
+# that hash serialised JSON for a court-facing identity — `seance_memory` and
+# `seance_validate` — were among them, still on `BTreeMap` in their own package
+# builds. Every manifest inherits it now, so a package build and a shipped build
+# order their bytes the same way, and a future dependency bump cannot silently
+# flip the ordering of every hashed document in the tree.
+serde_json = { version = "1.0.128", features = ["preserve_order"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+seance_core = { path = "seance_core" }
+seance_sqlite_util = { path = "seance_sqlite_util" }
+seance_xml_util = { path = "seance_xml_util" }
+seance_ese_util = { path = "seance_ese_util" }
+
+# Enable integer-overflow checks in release builds. This platform parses
+# untrusted evidence with extensive arithmetic on attacker-controlled header
+# fields; without these checks an overflow silently produces a WRONG value (a
+# wrong byte offset -> wrong/corrupted extracted evidence), which for a forensic
+# tool is worse than a panic. With checks on, an overflow panics loudly and is
+# caught safely (catch_unwind at ingest, CatchPanicLayer at the API). The small
+# CPU cost is an acceptable trade for evidence integrity.
+[profile.release]
+overflow-checks = true
+# Whole-program optimization for the data plane (parsers, carving, hashing all
+# run millions of tight iterations). Thin LTO gets most of fat-LTO's cross-crate
+# inlining at a fraction of the build cost; codegen-units=1 lets the optimizer
+# see each crate whole. Both trade build time for runtime throughput.
+lto = "thin"
+codegen-units = 1
+
+# Test builds only. `cargo build --release` reads `[profile.release]` above and
+# never these, so nothing here can reach a shipped binary — the release profile
+# already emits no debuginfo and CI strips on top of that.
+[profile.test]
+# Line tables rather than full DWARF. Panic backtraces still name the file and
+# line, which is all a failing test needs, but the workspace's ~180 test binaries
+# stop each carrying complete debug information that nothing reads. Generating
+# and linking it dominated a full-suite run.
+debug = 1
+
+[profile.dev]
+# More codegen units means more of each crate can be code-generated in parallel.
+# rustc's front end is single-threaded per crate on stable — the parallel front
+# end is still `-Z threads`, nightly only — so this is the only intra-crate
+# parallelism available. Costs some runtime speed in dev builds, which do not
+# need it.
+codegen-units = 256
+
+# The key-schedule recognisers scan hundreds of megabytes and the Twofish key recovery is a search of about
+# 134 million table lookups: unoptimised they take ten seconds a key and the unit tests of the stage that
+# uses them thirty or more. This crate alone is built optimised in dev and test builds (it changes no shipped
+# binary: release builds are optimised anyway).
+[profile.dev.package.seance_bulk]
+opt-level = 3
+
+# A faster linker is the other large lever, because those ~180 test binaries each
+# link the whole graph and the link steps are serial. It is deliberately NOT set
+# here: `rustflags` in `.cargo/config.toml` or a profile applies to EVERY profile
+# including release, and changing the linker changes a shipped binary's layout
+# and hash for reasons unrelated to the source — which matters for a tool whose
+# builds may have to be defended. Pass it per-command instead:
+#
+#   RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo test --workspace
+
+# Parsers this product cannot trust on hostile evidence, carried locally with
+# the smallest source patches that make them fail closed. Each patch is marked
+# `SEANCE PATCH` in the source and recorded in `vendor/README.md`; the version
+# is the crates.io release it was copied from, so an upstream fix can replace
+# the copy by deleting this entry.
+[patch.crates-io]
+evtx = { path = "vendor/evtx-0.8.5" }

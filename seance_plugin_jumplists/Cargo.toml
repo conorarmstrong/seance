@@ -1,0 +1,20 @@
+[package]
+name = "seance_plugin_jumplists"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde_json = { workspace = true }
+# OLE compound-file reader (MIT), the one seance_plugin_stickynotes already uses.
+cfb = "0.10"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }
+uuid = { version = "1.10.0", features = ["v4"] }
+# The round trip: a stream read from the directory is a shortcut the LNK reader accepts.
+seance_plugin_lnk = { path = "../seance_plugin_lnk" }

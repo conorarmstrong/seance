@@ -1,0 +1,19 @@
+[package]
+name = "seance_plugin_prefetch"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+anyhow = "1.0"
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = "1.0"
+# Pure-Rust, panic-free, bounds-checked Xpress-Huffman (MS-XCA) decompressor for
+# MAM-compressed Windows 10/11 (.pf v30/31) prefetch files. Zero runtime deps.
+xpress-huffman = "0.1"
+
+[dev-dependencies]
+# Shared DataSource short-read doubles (seance_core::test_support).
+seance_core = { path = "../seance_core", features = ["test-support"] }

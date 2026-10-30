@@ -1,0 +1,91 @@
+.sv {
+  position: relative;
+  display: inline-block;
+}
+.sv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+.sv-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 40;
+  width: 250px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: 8px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  padding: 6px;
+}
+.sv-head {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 4px 8px 6px;
+}
+.sv-empty {
+  color: var(--text-2);
+  font-size: 12.5px;
+  padding: 4px 8px 8px;
+}
+.sv-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sv-apply {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-1);
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sv-apply:hover {
+  background: var(--bg-2);
+  color: var(--accent);
+}
+.sv-del {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  border-radius: 5px;
+  flex: none;
+}
+.sv-del:hover {
+  color: var(--danger);
+  background: var(--bg-2);
+}
+.sv-save {
+  display: flex;
+  gap: 6px;
+  padding: 8px 6px 4px;
+  margin-top: 4px;
+  border-top: 1px solid var(--border-0);
+}
+.sv-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  padding: 5px 8px;
+}
+.sv-save-btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  flex: none;
+}

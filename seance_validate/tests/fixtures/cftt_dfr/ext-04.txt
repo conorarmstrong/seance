@@ -1,0 +1,456 @@
+5    Test Image ext-04
+DFR-04. Recover several non-fragmented files with non-ASCII file names.
+
+Partition Table Layout
+Disk /dev/sdd: 1073 MB, 1073742336 bytes
+34 heads, 61 sectors/track, 1011 cylinders, total 2097153 sectors
+ Device Boot Start        End Blocks Id System
+/dev/sdd1         61 651235 325587+ 83 Linux
+/dev/sdd2       651236 1302471 325618 83 Linux
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                     Page 10 of 290                    Test Images layout.docx
+/dev/sdd3          1302472   1953707   325618 83 Linux
+
+36 files deleted
+                     Deleted files (36)
+Name                              Size          F-Hd     F-Bks
+/tmp/dfr-04-3/BeiJing.txt3        4096 (8+0)    1        7
+/tmp/dfr-04-3/Hummus.txt3         4096 (8+0)    1        7
+/tmp/dfr-04-3/Mitsubishi-h.txt3 4096 (8+0)      1        7
+/tmp/dfr-04-3/Mitsubishi-k.txt3 4096 (8+0)      1        7
+/tmp/dfr-04-3/Naan.txt3           4096 (8+0)    1        7
+/tmp/dfr-04-3/Pakora.txt3         4096 (8+0)    1        7
+/tmp/dfr-04-3/Seoul.txt3          4096 (8+0)    1        7
+/tmp/dfr-04-3/Tagine.txt3         4096 (8+0)    1        7
+/tmp/dfr-04-3/Tea.txt3            4096 (8+0)    1        7
+/tmp/dfr-04-3/Tokyo.txt3          4096 (8+0)    1        7
+/tmp/dfr-04-3/Vessel.txt3         4096 (8+0)    1        7
+/tmp/dfr-04-3/Walnut.txt3         4096 (8+0)    1        7
+/tmp/dfr-04-4/BeiJing.txt4        4096 (8+0)    1        7
+/tmp/dfr-04-4/Hummus.txt4         4096 (8+0)    1        7
+/tmp/dfr-04-4/Mitsubishi-h.txt4 4096 (8+0)      1        7
+/tmp/dfr-04-4/Mitsubishi-k.txt4 4096 (8+0)      1        7
+/tmp/dfr-04-4/Naan.txt4           4096 (8+0)    1        7
+/tmp/dfr-04-4/Pakora.txt4         4096 (8+0)    1        7
+/tmp/dfr-04-4/Seoul.txt4          4096 (8+0)    1        7
+/tmp/dfr-04-4/Tagine.txt4         4096 (8+0)    1        7
+/tmp/dfr-04-4/Tea.txt4            4096 (8+0)    1        7
+/tmp/dfr-04-4/Tokyo.txt4          4096 (8+0)    1        7
+/tmp/dfr-04-4/Vessel.txt4         4096 (8+0)    1        7
+/tmp/dfr-04-4/Walnut.txt4         4096 (8+0)    1        7
+/tmp/dfr-04-5/BeiJing.txt5        4096 (8+0)    1        7
+/tmp/dfr-04-5/Hummus.txt5         4096 (8+0)    1        7
+/tmp/dfr-04-5/Mitsubishi-h.txt5 4096 (8+0)      1        7
+/tmp/dfr-04-5/Mitsubishi-k.txt5 4096 (8+0)      1        7
+/tmp/dfr-04-5/Naan.txt5           4096 (8+0)    1        7
+/tmp/dfr-04-5/Pakora.txt5         4096 (8+0)    1        7
+/tmp/dfr-04-5/Seoul.txt5          4096 (8+0)    1        7
+/tmp/dfr-04-5/Tagine.txt5         4096 (8+0)    1        7
+/tmp/dfr-04-5/Tea.txt5            4096 (8+0)    1        7
+/tmp/dfr-04-5/Tokyo.txt5          4096 (8+0)    1        7
+/tmp/dfr-04-5/Vessel.txt5         4096 (8+0)    1        7
+/tmp/dfr-04-5/Walnut.txt5         4096 (8+0)    1        7
+
+
+MAC times just before file deletion
+
+File delete times:
+Times: /Volumes/CFTT/dfr/dfr-setup/ntfs-delete-times.txt Case ext-04
+===== Run step 3 =====
+ACTION (delete): नान.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ‫پکوڑا‬.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): 서울.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ‫گردو‬.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ‫חומוס‬.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ‫طاجني‬.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): чай.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ミツビシ.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): みつびし.txt3
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                  Page 11 of 290        Test Images layout.docx
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): Gefäß.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): 北京.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): 東京.txt3
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): नान.txt4
+ACTION (delete time): Tue Mar 13 20:26:14 EDT 2012
+ACTION (delete): ‫پکوڑا‬.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): 서울.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫گردو‬.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫חומוס‬.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫طاجني‬.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): чай.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ミツビシ.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): みつびし.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): Gefäß.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): 北京.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): 東京.txt4
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): नान.txt5
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫پکوڑا‬.txt5
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): 서울.txt5
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫گردو‬.txt5
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫חומוס‬.txt5
+ACTION (delete time): Tue Mar 13 20:26:15 EDT 2012
+ACTION (delete): ‫طاجني‬.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): чай.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): ミツビシ.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): みつびし.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): Gefäß.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): 北京.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+ACTION (delete): 東京.txt5
+ACTION (delete time): Tue Mar 13 20:26:16 EDT 2012
+
+                 Steps to Create Image ext-04
+Step   Action         Files in Partition EXT-2
+1      create         /tmp/Naan.txt3 => नान.txt3)
+1      create         /tmp/Chapati.txt3 => चपाती.txt3)
+1      create         /tmp/Pakora.txt3 => ‫پکوڑا‬.txt3)
+1      create         /tmp/Gulab_jamun.txt3 => ‫گالب_جامن‬.txt3)
+1      create         /tmp/Seoul.txt3 => 서울.txt3)
+1      create         /tmp/Korea.txt3 => 한국.txt3)
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                 Page 12 of 290   Test Images layout.docx
+                  Steps to Create Image ext-04
+1      create          /tmp/Kabob.txt3 => ‫چلوکباب‬.txt3)
+1      create          /tmp/Walnut.txt3 => ‫گردو‬.txt3)
+1      create          /tmp/Falafel.txt3 => ‫פלפל‬.txt3)
+1      create          /tmp/Hummus.txt3 => ‫חומוס‬.txt3)
+1      create          /tmp/Couscous.txt3 => ‫كسكس‬.txt3)
+1      create          /tmp/Tagine.txt3 => ‫طاجني‬.txt3)
+1      create          /tmp/Tea.txt3 => чай.txt3)
+1      create          /tmp/Cheese.txt3 => сыр.txt3)
+1      create          /tmp/Mitsubishi-k.txt3 => ミツビシ.txt3)
+1      create          /tmp/Mitsubishi-h.txt3 => みつびし.txt3)
+1      create          /tmp/Sweets.txt3 => Süßigkeiten.txt3)
+1      create          /tmp/Vessel.txt3 => Gefäß.txt3)
+1      create          /tmp/BeiJing.txt3 => 北京.txt3)
+1      create          /tmp/China.txt3 => 中國.txt3)
+1      create          /tmp/Japan.txt3 => 日本.txt3)
+1      create          /tmp/Tokyo.txt3 => 東京.txt3)
+1      create          /tmp/Subaru-k.txt3 => スバル.txt3)
+1      create          /tmp/Subaru-h.txt3 => すばる.txt3)
+2      set date/time   चपाती.txt3 नान.txt3
+2      set date/time   ‫گالب_جامن‬.txt3 ‫پکوڑا‬.txt3
+2      set date/time   한국.txt3 서울.txt3
+2      set date/time   ‫چلوکباب‬.txt3 ‫گردو‬.txt3
+2      set date/time   ‫פלפל‬.txt3 ‫חומוס‬.txt3
+2      set date/time   ‫كسكس‬.txt3 ‫طاجني‬.txt3
+2      set date/time   сыр.txt3 чай.txt3
+2      set date/time   スバル.txt3 ミツビシ.txt3
+2      set date/time   すばる.txt3 みつびし.txt3
+2      set date/time   Süßigkeiten.txt3 Gefäß.txt3
+2      set date/time   中國.txt3 北京.txt3
+2      set date/time   日本.txt3 東京.txt3
+3      delete          नान.txt3
+3      delete          ‫پکوڑا‬.txt3
+3      delete          서울.txt3
+3      delete          ‫گردو‬.txt3
+3      delete          ‫חומוס‬.txt3
+3      delete          ‫طاجني‬.txt3
+3      delete          чай.txt3
+3      delete          ミツビシ.txt3
+3      delete          みつびし.txt3
+3      delete          Gefäß.txt3
+3      delete          北京.txt3
+3      delete          東京.txt3
+Step   Action          Files in Partition EXT-3
+1      create          /tmp/Naan.txt4 => नान.txt4)
+1      create          /tmp/Chapati.txt4 => चपाती.txt4)
+1      create          /tmp/Pakora.txt4 => ‫پکوڑا‬.txt4)
+1      create          /tmp/Gulab_jamun.txt4 => ‫گالب_جامن‬.txt4)
+1      create          /tmp/Seoul.txt4 => 서울.txt4)
+1      create          /tmp/Korea.txt4 => 한국.txt4)
+1      create          /tmp/Kabob.txt4 => ‫چلوکباب‬.txt4)
+1      create          /tmp/Walnut.txt4 => ‫گردو‬.txt4)
+1      create          /tmp/Falafel.txt4 => ‫פלפל‬.txt4)
+1      create          /tmp/Hummus.txt4 => ‫חומוס‬.txt4)
+1      create          /tmp/Couscous.txt4 => ‫كسكس‬.txt4)
+1      create          /tmp/Tagine.txt4 => ‫طاجني‬.txt4)
+1      create          /tmp/Tea.txt4 => чай.txt4)
+1      create          /tmp/Cheese.txt4 => сыр.txt4)
+1      create          /tmp/Mitsubishi-k.txt4 => ミツビシ.txt4)
+1      create          /tmp/Mitsubishi-h.txt4 => みつびし.txt4)
+
+
+
+Last save 7/10/2012 12:49:00 PM                      Page 13 of 290   Test Images layout.docx
+                  Steps to Create Image ext-04
+1      create          /tmp/Sweets.txt4 => Süßigkeiten.txt4)
+1      create          /tmp/Vessel.txt4 => Gefäß.txt4)
+1      create          /tmp/BeiJing.txt4 => 北京.txt4)
+1      create          /tmp/China.txt4 => 中國.txt4)
+1      create          /tmp/Japan.txt4 => 日本.txt4)
+1      create          /tmp/Tokyo.txt4 => 東京.txt4)
+1      create          /tmp/Subaru-k.txt4 => スバル.txt4)
+1      create          /tmp/Subaru-h.txt4 => すばる.txt4)
+2      set date/time   चपाती.txt4 नान.txt4
+2      set date/time   ‫گالب_جامن‬.txt4 ‫پکوڑا‬.txt4
+2      set date/time   한국.txt4 서울.txt4
+2      set date/time   ‫چلوکباب‬.txt4 ‫گردو‬.txt4
+2      set date/time   ‫פלפל‬.txt4 ‫חומוס‬.txt4
+2      set date/time   ‫كسكس‬.txt4 ‫طاجني‬.txt4
+2      set date/time   сыр.txt4 чай.txt4
+2      set date/time   スバル.txt4 ミツビシ.txt4
+2      set date/time   すばる.txt4 みつびし.txt4
+2      set date/time   Süßigkeiten.txt4 Gefäß.txt4
+2      set date/time   中國.txt4 北京.txt4
+2      set date/time   日本.txt4 東京.txt4
+3      delete          नान.txt4
+3      delete          ‫پکوڑا‬.txt4
+3      delete          서울.txt4
+3      delete          ‫گردو‬.txt4
+3      delete          ‫חומוס‬.txt4
+3      delete          ‫طاجني‬.txt4
+3      delete          чай.txt4
+3      delete          ミツビシ.txt4
+3      delete          みつびし.txt4
+3      delete          Gefäß.txt4
+3      delete          北京.txt4
+3      delete          東京.txt4
+Step   Action          Files in Partition EXT-4
+1      create          /tmp/Naan.txt5 => नान.txt5)
+1      create          /tmp/Chapati.txt5 => चपाती.txt5)
+1      create          /tmp/Pakora.txt5 => ‫پکوڑا‬.txt5)
+1      create          /tmp/Gulab_jamun.txt5 => ‫گالب_جامن‬.txt5)
+1      create          /tmp/Seoul.txt5 => 서울.txt5)
+1      create          /tmp/Korea.txt5 => 한국.txt5)
+1      create          /tmp/Kabob.txt5 => ‫چلوکباب‬.txt5)
+1      create          /tmp/Walnut.txt5 => ‫گردو‬.txt5)
+1      create          /tmp/Falafel.txt5 => ‫פלפל‬.txt5)
+1      create          /tmp/Hummus.txt5 => ‫חומוס‬.txt5)
+1      create          /tmp/Couscous.txt5 => ‫كسكس‬.txt5)
+1      create          /tmp/Tagine.txt5 => ‫طاجني‬.txt5)
+1      create          /tmp/Tea.txt5 => чай.txt5)
+1      create          /tmp/Cheese.txt5 => сыр.txt5)
+1      create          /tmp/Mitsubishi-k.txt5 => ミツビシ.txt5)
+1      create          /tmp/Mitsubishi-h.txt5 => みつびし.txt5)
+1      create          /tmp/Sweets.txt5 => Süßigkeiten.txt5)
+1      create          /tmp/Vessel.txt5 => Gefäß.txt5)
+1      create          /tmp/BeiJing.txt5 => 北京.txt5)
+1      create          /tmp/China.txt5 => 中國.txt5)
+1      create          /tmp/Japan.txt5 => 日本.txt5)
+1      create          /tmp/Tokyo.txt5 => 東京.txt5)
+1      create          /tmp/Subaru-k.txt5 => スバル.txt5)
+1      create          /tmp/Subaru-h.txt5 => すばる.txt5)
+2      set date/time   चपाती.txt5 नान.txt5
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                      Page 14 of 290   Test Images layout.docx
+                     Steps to Create Image ext-04
+2         set date/time   ‫گالب_جامن‬.txt5 ‫پکوڑا‬.txt5
+2         set date/time   한국.txt5 서울.txt5
+2         set date/time   ‫چلوکباب‬.txt5 ‫گردو‬.txt5
+2         set date/time   ‫פלפל‬.txt5 ‫חומוס‬.txt5
+2         set date/time   ‫كسكس‬.txt5 ‫طاجني‬.txt5
+2         set date/time   сыр.txt5 чай.txt5
+2         set date/time   スバル.txt5 ミツビシ.txt5
+2         set date/time   すばる.txt5 みつびし.txt5
+2         set date/time   Süßigkeiten.txt5 Gefäß.txt5
+2         set date/time   中國.txt5 北京.txt5
+2         set date/time   日本.txt5 東京.txt5
+3         delete          नान.txt5
+3         delete          ‫پکوڑا‬.txt5
+3         delete          서울.txt5
+3         delete          ‫گردو‬.txt5
+3         delete          ‫חומוס‬.txt5
+3         delete          ‫طاجني‬.txt5
+3         delete          чай.txt5
+3         delete          ミツビシ.txt5
+3         delete          みつびし.txt5
+3         delete          Gefäß.txt5
+3         delete          北京.txt5
+3         delete          東京.txt5
+
+
+No overwrites
+
+
+File: Tea.txt3 8 8
+File: Tea.txt4 8 8
+File: Tea.txt5 8 8
+File: Seoul.txt4 8 8
+File: Seoul.txt5 8 8
+File: Seoul.txt3 8 8
+File: Mitsubishi-h.txt3 8 8
+File: Mitsubishi-h.txt5 8 8
+File: Mitsubishi-h.txt4 8 8
+File: Mitsubishi-k.txt4 8 8
+File: Mitsubishi-k.txt5 8 8
+File: Pakora.txt3 8 8
+ ...
+File: Tokyo.txt4 8 8
+File: Tokyo.txt5 8 8
+File: Walnut.txt4 8 8
+File: Walnut.txt5 8 8
+File: Walnut.txt3 8 8
+File: BeiJing.txt3 8 8
+File: BeiJing.txt4 8 8
+File: BeiJing.txt5 8 8
+File: Hummus.txt3 8 8
+File: Hummus.txt4 8 8
+File: Hummus.txt5 8 8
+Summary: 36 36 0 0
+
+
+Metadata available
+ext-04 Metadata found 0 files, not found 36, total 36 deleted files
+Metadata available for all deleted files
+
+
+Layout History
+
+              Layout for Steps 1 through 2
+Sectors                 Step 1          Step 2
+
+
+
+Last save 7/10/2012 12:49:00 PM                         Page 15 of 290   Test Images layout.docx
+           Layout for Steps 1 through 2
+1125 - 1132          Gulab_jamun3 Gulab_jamun3
+1133 - 1140          Tagine3         Tagine3
+1141 - 1148          China3          China3
+3135 - 3142          Seoul3          Seoul3
+3143 - 3150          Tea3            Tea3
+3151 - 3158          Japan3          Japan3
+5183 - 5190          Korea3          Korea3
+5191 - 5198          Cheese3         Cheese3
+6207 - 6214          Tokyo3          Tokyo3
+7231 - 7238          Kabob3          Kabob3
+7239 - 7246          Mitsubishi-k3   Mitsubishi-k3
+8255 - 8262          Subaru-k3       Subaru-k3
+9279 - 9286          Walnut3         Walnut3
+9287 - 9294          Mitsubishi-h3 Mitsubishi-h3
+10303 - 10310        Subaru-h3       Subaru-h3
+11327 - 11334        Naan3           Naan3
+11335 - 11342        Falafel3        Falafel3
+11343 - 11350        Sweets3         Sweets3
+13375 - 13382        Chapati3        Chapati3
+13383 - 13390        Hummus3         Hummus3
+13391 - 13398        Vessel3         Vessel3
+15423 - 15430        Pakora3         Pakora3
+15431 - 15438        Couscous3       Couscous3
+15439 - 15446        BeiJing3        BeiJing3
+652300 - 652307      Seoul4          Seoul4
+652308 - 652315      Tea4            Tea4
+652316 - 652323      Japan4          Japan4
+653286 - 653293      Korea4          Korea4
+653294 - 653301      Cheese4         Cheese4
+653302 - 653309      Tokyo4          Tokyo4
+655334 - 655341      Kabob4          Kabob4
+655342 - 655349      Mitsubishi-k4   Mitsubishi-k4
+655350 - 655357      Subaru-k4       Subaru-k4
+657382 - 657389      Walnut4         Walnut4
+657390 - 657397      Mitsubishi-h4 Mitsubishi-h4
+657398 - 657405      Subaru-h4       Subaru-h4
+659430 - 659437      Naan4           Naan4
+659438 - 659445      Falafel4        Falafel4
+659446 - 659453      Sweets4         Sweets4
+661478 - 661485      Chapati4        Chapati4
+661486 - 661493      Hummus4         Hummus4
+661494 - 661501      Vessel4         Vessel4
+663526 - 663533      Pakora4         Pakora4
+663534 - 663541      Couscous4       Couscous4
+663542 - 663549      BeiJing4        BeiJing4
+665574 - 665581      Gulab_jamun4 Gulab_jamun4
+665582 - 665589      Tagine4         Tagine4
+665590 - 665597      China4          China4
+1319378 - 1319385 Naan5              Naan5
+1319386 - 1319393 Chapati5           Chapati5
+1319394 - 1319401 Pakora5            Pakora5
+1319402 - 1319409 Gulab_jamun5 Gulab_jamun5
+1319410 - 1319417 Seoul5             Seoul5
+1319418 - 1319425 Korea5             Korea5
+1319426 - 1319433 Kabob5             Kabob5
+1319434 - 1319441 Walnut5            Walnut5
+1319442 - 1319449 Falafel5           Falafel5
+1319450 - 1319457 Hummus5            Hummus5
+1319458 - 1319465 Couscous5          Couscous5
+1319466 - 1319473 Tagine5            Tagine5
+1319474 - 1319481 Tea5               Tea5
+1319482 - 1319489 Cheese5            Cheese5
+1319490 - 1319497 Mitsubishi-k5      Mitsubishi-k5
+1319498 - 1319505 Mitsubishi-h5 Mitsubishi-h5
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                Page 16 of 290   Test Images layout.docx
+           Layout for Steps 1 through 2
+1319506 - 1319513 Sweets5            Sweets5
+1319514 - 1319521 Vessel5            Vessel5
+1319522 - 1319529 BeiJing5           BeiJing5
+1319530 - 1319537 China5             China5
+1319538 - 1319545 Japan5             Japan5
+1319546 - 1319553 Tokyo5             Tokyo5
+1319554 - 1319561 Subaru-k5          Subaru-k5
+1319562 - 1319569 Subaru-h5          Subaru-h5
+
+
+                Sector List
+BeiJing.txt3       15439 - 15446
+BeiJing.txt4       663542 - 663549
+BeiJing.txt5       1319522 - 1319529
+Chapati.txt3       13375 - 13382
+Chapati.txt4       661478 - 661485
+Chapati.txt5       1319386 - 1319393
+Cheese.txt3        5191 - 5198
+Cheese.txt4        653294 - 653301
+Cheese.txt5        1319482 - 1319489
+  ...
+54 omitted
+Tokyo.txt3         6207 - 6214
+Tokyo.txt4         653302 - 653309
+Tokyo.txt5         1319546 - 1319553
+Vessel.txt3        13391 - 13398
+Vessel.txt4        661494 - 661501
+Vessel.txt5        1319514 - 1319521
+Walnut.txt3        9279 - 9286
+Walnut.txt4        657382 - 657389
+Walnut.txt5        1319434 - 1319441
+
+
+
+

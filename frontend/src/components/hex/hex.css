@@ -1,0 +1,44 @@
+.hex-view {
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.hex-row {
+  display: flex;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+/* These are the byte offsets an examiner reads off this view to quote, at the
+   12px this whole view is set in, so they answer to the 4.5:1 small-text floor
+   with no large-text exemption available to them. --accent-dim was 3.49:1 here
+   against the --bg-0 the view paints, and it could not be lightened to clear
+   the floor without breaking the four selected-row fills that pair --text-0
+   over it. It is a fill and border token; --accent is the text tone of the same
+   amber family, and measures 8.61:1 on this ground. */
+.hex-offset {
+  color: var(--accent);
+}
+
+.hex-bytes {
+  display: inline-flex;
+  gap: 5px;
+  min-width: 340px;
+}
+
+.hex-byte {
+  color: var(--text-0);
+}
+
+.hex-zero {
+  color: var(--text-2);
+}
+
+.hex-ascii {
+  color: var(--info);
+}

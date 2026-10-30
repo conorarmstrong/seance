@@ -1,0 +1,45 @@
+# Tarpaulin configuration for code coverage
+# Run with: cargo tarpaulin --config .tarpaulin.toml
+
+[core]
+# Exclude test files and generated code from coverage
+exclude-files = [
+    "*/tests/*",
+    "*/benches/*",
+    "*_test.rs",
+    "*/target/*",
+]
+
+# Focus on core forensics logic
+packages = [
+    "seance_core",
+    "seance_db",
+    "seance_api",
+    "seance_plugin_mft",
+    "seance_plugin_ext4",
+    "seance_plugin_usnjrnl",
+    "seance_plugin_i30",
+    "seance_plugin_logfile",
+    "seance_plugin_badclus",
+    "seance_container_e01",
+]
+
+# Output formats
+out = ["Html", "Lcov"]
+output-dir = "target/coverage"
+
+# Coverage thresholds
+fail-under = 60  # Overall target
+ignore-panics = true
+count = true
+all-features = false
+no-fail-fast = false
+
+# Run tests with release profile for faster execution
+release = false
+
+# Timeout for individual tests (in seconds with 's' suffix)
+timeout = "600s"
+
+# Jobs for parallel execution
+jobs = 4

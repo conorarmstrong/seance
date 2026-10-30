@@ -1,0 +1,26 @@
+[package]
+name = "seance_db"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+sqlx = { version = "0.8.1", features = ["runtime-tokio", "sqlite", "macros", "time", "uuid", "json"] }
+tokio = { version = "1.38.0", features = ["rt-multi-thread", "sync", "time"] }
+futures = "0.3"
+chrono = { version = "0.4.38", features = ["serde"] }
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { workspace = true }
+anyhow = "1.0.89"
+tracing = "0.1.40"
+async-trait = "0.1.80"
+# v5: timeline rows projected from a file's MAC times derive their event id
+# from the artifact id, so the same artifact table always yields the same
+# timeline ids (see file_entry_timeline_rows).
+uuid = { version = "1.10.0", features = ["v4", "v5", "serde"] }
+sha2 = "0.10"
+hmac = "0.12"
+
+[dev-dependencies]
+tempfile = "3"

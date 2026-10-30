@@ -1,0 +1,13 @@
+[package]
+name = "seance_plugin_sdb"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "Read-only parser for Windows application-compatibility shim databases (.sdb)"
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+flate2 = "1"
+tracing = "0.1"
+uuid = { version = "1", features = ["v4"] }

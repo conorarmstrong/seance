@@ -1,0 +1,78 @@
+[package]
+name = "seance_tests"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[features]
+# Off by default so `cargo test --workspace` needs no system C libraries;
+# `--all-features` turns them on to exercise the native-backed paths.
+default = []
+e01 = ["seance_api/e01", "dep:seance_container_e01"]
+esedb = ["seance_api/esedb"]
+heic = ["seance_api/heic"]
+video-thumbs = ["seance_api/video-thumbs"]
+
+[dependencies]
+
+# Hashing an E01's decoded stream against the digests its acquisition log
+# published — the one check that Séance read an image rather than understood it.
+md-5 = "0.10"
+sha1 = "0.10"
+
+# `test-support` brings in the corpus gate, so a test whose evidence corpus is
+# named but absent fails instead of printing `ok`.
+seance_core = { path = "../seance_core", features = ["test-support"] }
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+seance_plugin_bitlocker = { path = "../seance_plugin_bitlocker" }
+seance_plugin_evtx = { path = "../seance_plugin_evtx" }
+seance_plugin_hfsplus = { path = "../seance_plugin_hfsplus" }
+seance_plugin_prefetch = { path = "../seance_plugin_prefetch" }
+seance_plugin_xfs = { path = "../seance_plugin_xfs" }
+seance_plugin_apfs = { path = "../seance_plugin_apfs" }
+seance_container_sparseimage = { path = "../seance_container_sparseimage" }
+seance_plugin_btrfs = { path = "../seance_plugin_btrfs" }
+seance_container_vdisk = { path = "../seance_container_vdisk" }
+seance_search = { path = "../seance_search" }
+seance_plugin_logfile = { path = "../seance_plugin_logfile" }
+seance_plugin_i30 = { path = "../seance_plugin_i30" }
+seance_plugin_usnjrnl = { path = "../seance_plugin_usnjrnl" }
+seance_plugin_badclus = { path = "../seance_plugin_badclus" }
+seance_plugin_lnk = { path = "../seance_plugin_lnk" }
+seance_plugin_jumplists = { path = "../seance_plugin_jumplists" }
+seance_plugin_shellbags = { path = "../seance_plugin_shellbags" }
+seance_plugin_browser_history = { path = "../seance_plugin_browser_history" }
+seance_plugin_registry = { path = "../seance_plugin_registry" }
+seance_plugin_vss = { path = "../seance_plugin_vss" }
+seance_plugin_srum = { path = "../seance_plugin_srum" }
+seance_plugin_sqlite = { path = "../seance_plugin_sqlite" }
+seance_plugin_plist = { path = "../seance_plugin_plist" }
+seance_container_zip = { path = "../seance_container_zip" }
+seance_plugin_viber = { path = "../seance_plugin_viber" }
+zip = { version = "9", default-features = false, features = ["aes-crypto", "bzip2", "deflate", "time", "zstd"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+# Optional: a hard edge here builds libewf-dependent code even under
+# --no-default-features, since no feature flag can reach a plain dependency.
+seance_container_e01 = { path = "../seance_container_e01", optional = true }
+seance_container_aff4 = { path = "../seance_container_aff4" }
+seance_plugin_ios_backup = { path = "../seance_plugin_ios_backup" }
+seance_plugin_partition = { path = "../seance_plugin_partition" }
+seance_plugin_ext4 = { path = "../seance_plugin_ext4" }
+seance_plugin_iso9660 = { path = "../seance_plugin_iso9660" }
+seance_plugin_fat = { path = "../seance_plugin_fat" }
+seance_plugin_carver = { path = "../seance_plugin_carver" }
+walkdir = "2.5.0"
+tokio = { version = "1.48.0", features = ["macros", "rt-multi-thread", "sync", "time"] }
+reqwest = { version = "0.12.5", default-features = false, features = ["json", "rustls-tls"] }
+serde_json = { workspace = true }
+uuid = { version = "1.18.1", features = ["v4", "serde"] } # For UUIDs in test artifacts and API calls
+anyhow = "1.0.100" # For simplified error handling in tests
+axum = "0.7.9"
+# default-features = false for the same reason as seance_repl: a defaults edge
+# here re-enables the native-C features graph-wide. Use --all-features (or the
+# named features below) to exercise the e01/esedb/heic paths.
+seance_api = { path = "../seance_api", default-features = false }
+seance_db = { path = "../seance_db" }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
+sqlx = { version = "0.8.1", features = [ "sqlite", "runtime-tokio" ] }

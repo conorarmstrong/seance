@@ -1,0 +1,18 @@
+[package]
+name = "seance_plugin_rdp_cache"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# The RDP client's persistent bitmap cache:
+# %LOCALAPPDATA%\Microsoft\Terminal Server Client\Cache\Cache####.bin (and the
+# legacy bcache*.bmc, recognised but not decoded).
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+png = "0.18"
+tracing = "0.1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

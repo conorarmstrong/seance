@@ -1,0 +1,20 @@
+[package]
+name = "seance_plugin_mobile_device"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_sqlite_util = { path = "../seance_sqlite_util" }
+seance_xml_util = { path = "../seance_xml_util" }
+anyhow = "1.0"
+chrono = "0.4"
+quick-xml = "0.31"
+rusqlite = { version = "0.32", features = ["bundled"] }
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

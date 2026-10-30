@@ -1,0 +1,6 @@
+root\subscription	__FilterToConsumerBinding	\\.\root\subscription:__EventFilter.Name="Microsoft WMI Updating Consumer Scenario Control" -> \\.\root\subscription:MSFT_UCScenarioControl.Name="Microsoft WMI Updating Consumer Scenario Control"
+root\subscription	__FilterToConsumerBinding	__EventFilter.Name="SCM Event Log Filter" -> NTEventLogEventConsumer.Name="SCM Event Log Consumer"
+root\subscription	__EventFilter	SCM Event Log Filter
+root\subscription	__EventFilter	Microsoft WMI Updating Consumer Scenario Control
+root\subscription	MSFT_UCScenarioControl	Microsoft WMI Updating Consumer Scenario Control
+root\subscription	NTEventLogEventConsumer	SCM Event Log Consumer

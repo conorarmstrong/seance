@@ -1,0 +1,37 @@
+m57_jean_administrator_outlook.pst
+  Version 14 (ANSI, permutative encryption) Outlook 2000 store, 98,304 bytes, one message
+  ("Welcome to Microsoft Outlook 2000!"). Extracted unmodified from
+  /Documents and Settings/Administrator/Local Settings/Application Data/Microsoft/Outlook/outlook.pst
+  of nps-2008-jean.E01 (NPS M57-Jean scenario, Digital Corpora:
+  https://digitalcorpora.s3.amazonaws.com/corpora/drives/nps-2008-m57-jean/). A simulated
+  workstation image, public for research and teaching. Ground truth for its live content
+  was read with libpff (pypff 20260926).
+
+outlook_pst_crate_empty_v23.pst
+  Version 23 (Unicode) store with no messages: examples/Empty.pst of the `outlook-pst` 1.1.0
+  crate (MIT licence, https://crates.io/crates/outlook-pst). Used to pin the Unicode header,
+  page and entry layout only; no Unicode message has been read from real evidence.
+
+nromanoff_v23_libpff_oracle.tsv (store NOT committed)
+  Version 23 (Unicode, 64-bit, compressible encryption) store, 59,442,176 bytes, 543 mail and
+  contact items, SHA-256 bab64f3589f8ce758df9e595b89a5e4b9be159929e49100397152fdcc7bd6013.
+  Public test data of plaso (Apache-2.0), test_data/nromanoff@stark-research-labs.com.pst in
+  https://github.com/log2timeline/plaso, held locally at
+  ~/forensic_corpora/plaso_pst/nromanoff_stark_research_labs.pst (SOURCE.md there). A
+  fictional scenario (Natasha Romanoff, Stark Research Labs). Too large to commit; the tests read it
+  from the directory named by SEANCE_PST23_CORPUS and skip without it. The oracle was read with
+  pffexport 20231205 (libpff), `pffexport -q -d -l log.txt -m items`: nid is the item identifier it
+  logs, attachments the "Saving attachment" lines, subject the Subject line, folder the export path.
+  pffexport skips one item, the free/busy message 0x200044 in "Freebusy Data", so it is not listed.
+  libpff cannot recover deleted items from this file (`-m recovered` fails at offset 356864), so
+  what Seance recovers from it is not libpff-graded.
+m57_jean_synthetic_8bit_folder.pst
+  SYNTHETIC, never real evidence. m57_jean_administrator_outlook.pst with the second byte of the
+  "Sent Items" folder name ("e") replaced by 0xE9, at the three places the name is stored (the
+  folder's own property context and its parent's hierarchy table), made by encrypting the byte
+  with the permutative table, and the CRC of each touched block recomputed (zero-seeded
+  reflected 0xEDB88320, see src/ost4k/crc.rs). SHA-256
+  3b47acfc18eb0f8d65770206d604401f60b733f5d3a7235fef6c4b030d0ff3e3. It grades the mechanics of
+  the 8-bit folder-name decoding on the live version 14 path (HUNT-281) and says nothing about
+  any real mailbox. The store's one message has no recipient table and the linked reader
+  refuses it, so this fixture carries no live message text.

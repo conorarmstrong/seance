@@ -1,0 +1,654 @@
+69 Test Image osx-01
+DFR-01.    Recover one non-fragmented file.
+
+Partition Table Layout
+
+4 files deleted
+                  Deleted files (4)
+Name               Size               F-Hd   F-Bks
+Beid.txt           4296 (8+200)       1      7
+Bellatrix.TXT      4296 (8+200)       1      7
+Betelgeuse.txt     4296 (8+200)       1      7
+xBellatrix.txt     4296 (8+200)       1      7
+
+
+MAC times just before file deletion
+ File: "Beid.txt"
+Access: Sat Jan 2 03:04:00 1999
+Modify: Tue Feb 29 13:14:00 2000
+Change: Tue Apr 19 21:29:31 2011
+ File: "Bellatrix.TXT"
+Access: Sat Jan 2 03:02:00 1999
+Modify: Tue Feb 29 13:12:00 2000
+Change: Tue Apr 19 21:29:29 2011
+ File: "Betelgeuse.txt"
+Access: Sat Jan 2 03:03:00 1999
+Modify: Tue Feb 29 13:13:00 2000
+Change: Tue Apr 19 21:29:30 2011
+ File: "xBellatrix.txt"
+Access: Sat Jan 2 03:05:00 1999
+Modify: Tue Feb 29 13:15:00 2000
+Change: Tue Apr 19 21:29:33 2011
+
+File delete times:
+Times: /Volumes/CFTT/dfr/dfr-setup/ntfs-delete-times.txt Case osx-01
+===== Run step 3 =====
+ACTION (delete): Bellatrix.TXT
+ACTION (delete time): Tue Apr 19 21:35:42 EDT 2011
+ACTION (delete): Betelgeuse.txt
+ACTION (delete time): Tue Apr 19 21:35:43 EDT 2011
+ACTION (delete): Beid.txt
+ACTION (delete time): Tue Apr 19 21:35:45 EDT 2011
+ACTION (delete): xBellatrix.txt
+ACTION (delete time): Tue Apr 19 21:35:46 EDT 2011
+
+               Steps to Create Image osx-01
+Step    Action          Files in Partition OSXJ
+1       create           Alcor.TXT Bellatrix.TXT Capella.TXT
+2       set date/time    Alcor.TXT Bellatrix.TXT Capella.TXT
+3       delete           Bellatrix.TXT
+Step    Action          Files in Partition OSX
+1       create           Algol.txt Betelgeuse.txt Canopus.txt
+2       set date/time    Algol.txt Betelgeuse.txt Canopus.txt
+3       delete           Betelgeuse.txt
+Step    Action          Files in Partition OSXCJ
+1       create           Algol.txt Beid.txt Capella.txt
+2       set date/time    Algol.txt Beid.txt Capella.txt
+3       delete           Beid.txt
+
+
+
+Last save 7/10/2012 12:49:00 PM                      Page 235 of 290          Test Images layout.docx
+              Steps to Create Image osx-01
+Step   Action          Files in Partition OSXC
+1      create           Altair.txt xBellatrix.txt Canopus.txt
+2      set date/time    Altair.txt xBellatrix.txt Canopus.txt
+3      delete           xBellatrix.txt
+
+
+No overwrites
+
+
+
+
+Metadata available
+osx-01 Metadata found 2 files, not found 2, total 4 deleted files
+Deleted files without metadata (cannot be found)
+Bellatrix.TXT         xBellatrix.txt
+
+Layout History
+
+             Layout for Steps 1 through 2
+Sectors             Step 1             Step 2
+116232 - 116239     Alcor              Alcor
+116240 - 116247     Bellatrix          Bellatrix
+116248 - 116248     TAIL/Bellatrix     TAIL/Bellatrix
+116256 - 116263     Capella            Capella
+657120 - 657127     Algol              Algol
+657128 - 657135     Betelgeuse         Betelgeuse
+657136 - 657136     TAIL/Betelgeuse TAIL/Betelgeuse
+657144 - 657151     Canopus            Canopus
+1181208 - 1181215 Algol                Algol
+1181216 - 1181223 Beid                 Beid
+1181224 - 1181224 TAIL/Beid            TAIL/Beid
+1181232 - 1181239 Capella              Capella
+1688832 - 1688839 Altair               Altair
+1688840 - 1688847 xBellatrix           xBellatrix
+1688848 - 1688848 TAIL/xBellatrix      TAIL/xBellatrix
+1688856 - 1688863 Canopus              Canopus
+
+
+                       Sector List
+Alcor.TXT          116232 - 116239
+Algol.txt          657120 - 657127, 1181208 - 1181215
+Altair.txt         1688832 - 1688839
+Beid.txt           1181216 - 1181223
+Bellatrix.TXT      116240 - 116247
+Betelgeuse.txt     657128 - 657135
+Canopus.txt        657144 - 657151, 1688856 - 1688863
+Capella.TXT        116256 - 116263
+Capella.txt        1181232 - 1181239
+xBellatrix.txt     1688840 - 1688847
+
+
+
+
+70 Test Image osx-04
+DFR-04.    Recover several non-fragmented files with non-ASCII file names.
+
+Partition Table Layout
+
+48 files deleted
+                    Deleted files (48)
+Name                           Size              F-Hd     F-Bks
+/tmp/dfr-04/BeiJing.txt        4096 (8+0)        1        7
+/tmp/dfr-04/Hummus.txt         4096 (8+0)        1        7
+/tmp/dfr-04/Mitsubishi-h.txt 4096 (8+0)          1        7
+/tmp/dfr-04/Mitsubishi-k.txt 4096 (8+0)          1        7
+
+
+
+Last save 7/10/2012 12:49:00 PM                       Page 236 of 290        Test Images layout.docx
+                    Deleted files (48)
+/tmp/dfr-04/Naan.txt           4096 (8+0)   1       7
+/tmp/dfr-04/Pakora.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Seoul.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Tagine.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Tea.txt            4096 (8+0)   1       7
+/tmp/dfr-04/Tokyo.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Vessel.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Walnut.txt         4096 (8+0)   1       7
+/tmp/dfr-04/BeiJing.txt        4096 (8+0)   1       7
+/tmp/dfr-04/Hummus.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Mitsubishi-h.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Mitsubishi-k.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Naan.txt           4096 (8+0)   1       7
+/tmp/dfr-04/Pakora.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Seoul.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Tagine.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Tea.txt            4096 (8+0)   1       7
+/tmp/dfr-04/Tokyo.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Vessel.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Walnut.txt         4096 (8+0)   1       7
+/tmp/dfr-04/BeiJing.txt        4096 (8+0)   1       7
+/tmp/dfr-04/Hummus.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Mitsubishi-h.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Mitsubishi-k.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Naan.txt           4096 (8+0)   1       7
+/tmp/dfr-04/Pakora.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Seoul.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Tagine.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Tea.txt            4096 (8+0)   1       7
+/tmp/dfr-04/Tokyo.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Vessel.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Walnut.txt         4096 (8+0)   1       7
+/tmp/dfr-04/BeiJing.txt        4096 (8+0)   1       7
+/tmp/dfr-04/Hummus.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Mitsubishi-h.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Mitsubishi-k.txt 4096 (8+0)     1       7
+/tmp/dfr-04/Naan.txt           4096 (8+0)   1       7
+/tmp/dfr-04/Pakora.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Seoul.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Tagine.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Tea.txt            4096 (8+0)   1       7
+/tmp/dfr-04/Tokyo.txt          4096 (8+0)   1       7
+/tmp/dfr-04/Vessel.txt         4096 (8+0)   1       7
+/tmp/dfr-04/Walnut.txt         4096 (8+0)   1       7
+
+
+MAC times just before file deletion
+
+File delete times:
+Times: /Volumes/CFTT/dfr/dfr-setup/ntfs-delete-times.txt Case osx-04
+===== Run step 3 =====
+ACTION (delete): नान.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): ‫پکوڑا‬.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): 서울.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): ‫گردو‬.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): ‫חומוס‬.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): ‫طاجني‬.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): чай.txt
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                 Page 237 of 290        Test Images layout.docx
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): ミツビシ.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): みつびし.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): Gefäß.txt
+ACTION (delete time): Tue Apr 19 22:58:12 EDT 2011
+ACTION (delete): 北京.txt
+ACTION (delete time): Tue Apr 19 22:58:13 EDT 2011
+ACTION (delete): 東京.txt
+ACTION (delete time): Tue Apr 19 22:58:13 EDT 2011
+ACTION (delete): नान.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): ‫پکوڑا‬.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): 서울.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): ‫گردو‬.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): ‫חומוס‬.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): ‫طاجني‬.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): чай.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): ミツビシ.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): みつびし.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): Gefäß.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): 北京.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): 東京.txt
+ACTION (delete time): Tue Apr 19 22:58:14 EDT 2011
+ACTION (delete): नान.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): ‫پکوڑا‬.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): 서울.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): ‫گردو‬.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): ‫חומוס‬.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): ‫طاجني‬.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): чай.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): ミツビシ.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): みつびし.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): Gefäß.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): 北京.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): 東京.txt
+ACTION (delete time): Tue Apr 19 22:58:15 EDT 2011
+ACTION (delete): नान.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): ‫پکوڑا‬.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): 서울.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+
+
+
+Last save 7/10/2012 12:49:00 PM                Page 238 of 290   Test Images layout.docx
+ACTION (delete): ‫گردو‬.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): ‫חומוס‬.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): ‫طاجني‬.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): чай.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): ミツビシ.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): みつびし.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): Gefäß.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): 北京.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+ACTION (delete): 東京.txt
+ACTION (delete time): Tue Apr 19 22:58:17 EDT 2011
+
+                Steps to Create Image osx-04
+Step   Action          Files in Partition OSXJ
+1      create          /tmp/Naan.txt => नान.txt)
+1      create          /tmp/Chapati.txt => चपाती.txt)
+1      create          /tmp/Pakora.txt => ‫پکوڑا‬.txt)
+1      create          /tmp/Gulab_jamun.txt => ‫گالب_جامن‬.txt)
+1      create          /tmp/Seoul.txt => 서울.txt)
+1      create          /tmp/Korea.txt => 한국.txt)
+1      create          /tmp/Kabob.txt => ‫چلوکباب‬.txt)
+1      create          /tmp/Walnut.txt => ‫گردو‬.txt)
+1      create          /tmp/Falafel.txt => ‫פלפל‬.txt)
+1      create          /tmp/Hummus.txt => ‫חומוס‬.txt)
+1      create          /tmp/Couscous.txt => ‫كسكس‬.txt)
+1      create          /tmp/Tagine.txt => ‫طاجني‬.txt)
+1      create          /tmp/Tea.txt => чай.txt)
+1      create          /tmp/Cheese.txt => сыр.txt)
+1      create          /tmp/Mitsubishi-k.txt => ミツビシ.txt)
+1      create          /tmp/Mitsubishi-h.txt => みつびし.txt)
+1      create          /tmp/Sweets.txt => Süßigkeiten.txt)
+1      create          /tmp/Vessel.txt => Gefäß.txt)
+1      create          /tmp/BeiJing.txt => 北京.txt)
+1      create          /tmp/China.txt => 中國.txt)
+1      create          /tmp/Japan.txt => 日本.txt)
+1      create          /tmp/Tokyo.txt => 東京.txt)
+1      create          /tmp/Subaru-k.txt => スバル.txt)
+1      create          /tmp/Subaru-h.txt => すばる.txt)
+2      set date/time   चपाती.txt नान.txt
+2      set date/time   ‫گالب_جامن‬.txt ‫پکوڑا‬.txt
+2      set date/time   한국.txt 서울.txt
+2      set date/time   ‫چلوکباب‬.txt ‫گردو‬.txt
+2      set date/time   ‫פלפל‬.txt ‫חומוס‬.txt
+2      set date/time   ‫كسكس‬.txt ‫طاجني‬.txt
+2      set date/time   сыр.txt чай.txt
+2      set date/time   スバル.txt ミツビシ.txt
+2      set date/time   すばる.txt みつびし.txt
+2      set date/time   Süßigkeiten.txt Gefäß.txt
+2      set date/time   中國.txt 北京.txt
+2      set date/time   日本.txt 東京.txt
+3      delete          नान.txt
+3      delete          ‫پکوڑا‬.txt
+3      delete          서울.txt
+3      delete          ‫گردو‬.txt
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                    Page 239 of 290   Test Images layout.docx
+                Steps to Create Image osx-04
+3      delete          ‫חומוס‬.txt
+3      delete          ‫طاجني‬.txt
+3      delete          чай.txt
+3      delete          ミツビシ.txt
+3      delete          みつびし.txt
+3      delete          Gefäß.txt
+3      delete          北京.txt
+3      delete          東京.txt
+Step   Action          Files in Partition OSX
+1      create          /tmp/Naan.txt => नान.txt)
+1      create          /tmp/Chapati.txt => चपाती.txt)
+1      create          /tmp/Pakora.txt => ‫پکوڑا‬.txt)
+1      create          /tmp/Gulab_jamun.txt => ‫گالب_جامن‬.txt)
+1      create          /tmp/Seoul.txt => 서울.txt)
+1      create          /tmp/Korea.txt => 한국.txt)
+1      create          /tmp/Kabob.txt => ‫چلوکباب‬.txt)
+1      create          /tmp/Walnut.txt => ‫گردو‬.txt)
+1      create          /tmp/Falafel.txt => ‫פלפל‬.txt)
+1      create          /tmp/Hummus.txt => ‫חומוס‬.txt)
+1      create          /tmp/Couscous.txt => ‫كسكس‬.txt)
+1      create          /tmp/Tagine.txt => ‫طاجني‬.txt)
+1      create          /tmp/Tea.txt => чай.txt)
+1      create          /tmp/Cheese.txt => сыр.txt)
+1      create          /tmp/Mitsubishi-k.txt => ミツビシ.txt)
+1      create          /tmp/Mitsubishi-h.txt => みつびし.txt)
+1      create          /tmp/Sweets.txt => Süßigkeiten.txt)
+1      create          /tmp/Vessel.txt => Gefäß.txt)
+1      create          /tmp/BeiJing.txt => 北京.txt)
+1      create          /tmp/China.txt => 中國.txt)
+1      create          /tmp/Japan.txt => 日本.txt)
+1      create          /tmp/Tokyo.txt => 東京.txt)
+1      create          /tmp/Subaru-k.txt => スバル.txt)
+1      create          /tmp/Subaru-h.txt => すばる.txt)
+2      set date/time   चपाती.txt नान.txt
+2      set date/time   ‫گالب_جامن‬.txt ‫پکوڑا‬.txt
+2      set date/time   한국.txt 서울.txt
+2      set date/time   ‫چلوکباب‬.txt ‫گردو‬.txt
+2      set date/time   ‫פלפל‬.txt ‫חומוס‬.txt
+2      set date/time   ‫كسكس‬.txt ‫طاجني‬.txt
+2      set date/time   сыр.txt чай.txt
+2      set date/time   スバル.txt ミツビシ.txt
+2      set date/time   すばる.txt みつびし.txt
+2      set date/time   Süßigkeiten.txt Gefäß.txt
+2      set date/time   中國.txt 北京.txt
+2      set date/time   日本.txt 東京.txt
+3      delete          नान.txt
+3      delete          ‫پکوڑا‬.txt
+3      delete          서울.txt
+3      delete          ‫گردو‬.txt
+3      delete          ‫חומוס‬.txt
+3      delete          ‫طاجني‬.txt
+3      delete          чай.txt
+3      delete          ミツビシ.txt
+3      delete          みつびし.txt
+3      delete          Gefäß.txt
+3      delete          北京.txt
+3      delete          東京.txt
+Step   Action          Files in Partition OSXCJ
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                    Page 240 of 290   Test Images layout.docx
+                Steps to Create Image osx-04
+1      create          /tmp/Naan.txt => नान.txt)
+1      create          /tmp/Chapati.txt => चपाती.txt)
+1      create          /tmp/Pakora.txt => ‫پکوڑا‬.txt)
+1      create          /tmp/Gulab_jamun.txt => ‫گالب_جامن‬.txt)
+1      create          /tmp/Seoul.txt => 서울.txt)
+1      create          /tmp/Korea.txt => 한국.txt)
+1      create          /tmp/Kabob.txt => ‫چلوکباب‬.txt)
+1      create          /tmp/Walnut.txt => ‫گردو‬.txt)
+1      create          /tmp/Falafel.txt => ‫פלפל‬.txt)
+1      create          /tmp/Hummus.txt => ‫חומוס‬.txt)
+1      create          /tmp/Couscous.txt => ‫كسكس‬.txt)
+1      create          /tmp/Tagine.txt => ‫طاجني‬.txt)
+1      create          /tmp/Tea.txt => чай.txt)
+1      create          /tmp/Cheese.txt => сыр.txt)
+1      create          /tmp/Mitsubishi-k.txt => ミツビシ.txt)
+1      create          /tmp/Mitsubishi-h.txt => みつびし.txt)
+1      create          /tmp/Sweets.txt => Süßigkeiten.txt)
+1      create          /tmp/Vessel.txt => Gefäß.txt)
+1      create          /tmp/BeiJing.txt => 北京.txt)
+1      create          /tmp/China.txt => 中國.txt)
+1      create          /tmp/Japan.txt => 日本.txt)
+1      create          /tmp/Tokyo.txt => 東京.txt)
+1      create          /tmp/Subaru-k.txt => スバル.txt)
+1      create          /tmp/Subaru-h.txt => すばる.txt)
+2      set date/time   चपाती.txt नान.txt
+2      set date/time   ‫گالب_جامن‬.txt ‫پکوڑا‬.txt
+2      set date/time   한국.txt 서울.txt
+2      set date/time   ‫چلوکباب‬.txt ‫گردو‬.txt
+2      set date/time   ‫פלפל‬.txt ‫חומוס‬.txt
+2      set date/time   ‫كسكس‬.txt ‫طاجني‬.txt
+2      set date/time   сыр.txt чай.txt
+2      set date/time   スバル.txt ミツビシ.txt
+2      set date/time   すばる.txt みつびし.txt
+2      set date/time   Süßigkeiten.txt Gefäß.txt
+2      set date/time   中國.txt 北京.txt
+2      set date/time   日本.txt 東京.txt
+3      delete          नान.txt
+3      delete          ‫پکوڑا‬.txt
+3      delete          서울.txt
+3      delete          ‫گردو‬.txt
+3      delete          ‫חומוס‬.txt
+3      delete          ‫طاجني‬.txt
+3      delete          чай.txt
+3      delete          ミツビシ.txt
+3      delete          みつびし.txt
+3      delete          Gefäß.txt
+3      delete          北京.txt
+3      delete          東京.txt
+Step   Action          Files in Partition OSXC
+1      create          /tmp/Naan.txt => नान.txt)
+1      create          /tmp/Chapati.txt => चपाती.txt)
+1      create          /tmp/Pakora.txt => ‫پکوڑا‬.txt)
+1      create          /tmp/Gulab_jamun.txt => ‫گالب_جامن‬.txt)
+1      create          /tmp/Seoul.txt => 서울.txt)
+1      create          /tmp/Korea.txt => 한국.txt)
+1      create          /tmp/Kabob.txt => ‫چلوکباب‬.txt)
+1      create          /tmp/Walnut.txt => ‫گردو‬.txt)
+1      create          /tmp/Falafel.txt => ‫פלפל‬.txt)
+
+
+
+Last save 7/10/2012 12:49:00 PM                    Page 241 of 290   Test Images layout.docx
+                 Steps to Create Image osx-04
+1      create           /tmp/Hummus.txt => ‫חומוס‬.txt)
+1      create           /tmp/Couscous.txt => ‫كسكس‬.txt)
+1      create           /tmp/Tagine.txt => ‫طاجني‬.txt)
+1      create           /tmp/Tea.txt => чай.txt)
+1      create           /tmp/Cheese.txt => сыр.txt)
+1      create           /tmp/Mitsubishi-k.txt => ミツビシ.txt)
+1      create           /tmp/Mitsubishi-h.txt => みつびし.txt)
+1      create           /tmp/Sweets.txt => Süßigkeiten.txt)
+1      create           /tmp/Vessel.txt => Gefäß.txt)
+1      create           /tmp/BeiJing.txt => 北京.txt)
+1      create           /tmp/China.txt => 中國.txt)
+1      create           /tmp/Japan.txt => 日本.txt)
+1      create           /tmp/Tokyo.txt => 東京.txt)
+1      create           /tmp/Subaru-k.txt => スバル.txt)
+1      create           /tmp/Subaru-h.txt => すばる.txt)
+2      set date/time चपाती.txt नान.txt
+2      set date/time     ‫گالب_جامن‬.txt ‫پکوڑا‬.txt
+2      set date/time     한국.txt 서울.txt
+2      set date/time     ‫چلوکباب‬.txt ‫گردو‬.txt
+2      set date/time     ‫פלפל‬.txt ‫חומוס‬.txt
+2      set date/time     ‫كسكس‬.txt ‫طاجني‬.txt
+2      set date/time     сыр.txt чай.txt
+2      set date/time     スバル.txt ミツビシ.txt
+2      set date/time     すばる.txt みつびし.txt
+2      set date/time     Süßigkeiten.txt Gefäß.txt
+2      set date/time     中國.txt 北京.txt
+2      set date/time     日本.txt 東京.txt
+3      delete            नान.txt
+3      delete            ‫پکوڑا‬.txt
+3      delete            서울.txt
+3      delete            ‫گردو‬.txt
+3      delete            ‫חומוס‬.txt
+3      delete            ‫طاجني‬.txt
+3      delete            чай.txt
+3      delete            ミツビシ.txt
+3      delete            みつびし.txt
+3      delete            Gefäß.txt
+3      delete            北京.txt
+3      delete            東京.txt
+
+
+No overwrites
+
+
+
+
+Metadata available
+osx-04 Metadata found 0 files, not found 48, total 48 deleted files
+Metadata available for all deleted files
+
+
+Layout History
+
+          Layout for Steps 1 through 2
+Sectors              Step 1         Step 2
+116368 - 116375      Naan           Naan
+116376 - 116383      Chapati        Chapati
+116384 - 116391      Pakora         Pakora
+116392 - 116399      Gulab_jamun Gulab_jamun
+116400 - 116407      Seoul          Seoul
+116408 - 116415      Korea          Korea
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                      Page 242 of 290   Test Images layout.docx
+          Layout for Steps 1 through 2
+116416 - 116423      Kabob          Kabob
+116424 - 116431      Walnut         Walnut
+116432 - 116439      Falafel        Falafel
+116440 - 116447      Hummus         Hummus
+116448 - 116455      Couscous       Couscous
+116456 - 116463      Tagine         Tagine
+116464 - 116471      Tea            Tea
+116472 - 116479      Cheese         Cheese
+116480 - 116487      Mitsubishi-k   Mitsubishi-k
+116488 - 116495      Mitsubishi-h Mitsubishi-h
+116496 - 116503      Sweets         Sweets
+116504 - 116511      Vessel         Vessel
+116512 - 116519      BeiJing        BeiJing
+116520 - 116527      China          China
+116528 - 116535      Japan          Japan
+116536 - 116543      Tokyo          Tokyo
+116544 - 116551      Subaru-k       Subaru-k
+116552 - 116559      Subaru-h       Subaru-h
+657048 - 657055      Naan           Naan
+657056 - 657063      Chapati        Chapati
+657064 - 657071      Pakora         Pakora
+657072 - 657079      Gulab_jamun Gulab_jamun
+657080 - 657087      Seoul          Seoul
+657088 - 657095      Korea          Korea
+657096 - 657103      Kabob          Kabob
+657104 - 657111      Walnut         Walnut
+657112 - 657119      Falafel        Falafel
+657120 - 657127      Hummus         Hummus
+657128 - 657135      Couscous       Couscous
+657136 - 657143      Tagine         Tagine
+657144 - 657151      Tea            Tea
+657152 - 657159      Cheese         Cheese
+657160 - 657167      Mitsubishi-k   Mitsubishi-k
+657168 - 657175      Mitsubishi-h Mitsubishi-h
+657176 - 657183      Sweets         Sweets
+657184 - 657191      Vessel         Vessel
+657192 - 657199      BeiJing        BeiJing
+657200 - 657207      China          China
+657208 - 657215      Japan          Japan
+657216 - 657223      Tokyo          Tokyo
+657224 - 657231      Subaru-k       Subaru-k
+657232 - 657239      Subaru-h       Subaru-h
+1181336 - 1181343 Naan              Naan
+1181344 - 1181351 Chapati           Chapati
+1181352 - 1181359 Pakora            Pakora
+1181360 - 1181367 Gulab_jamun Gulab_jamun
+1181368 - 1181375 Seoul             Seoul
+1181376 - 1181383 Korea             Korea
+1181384 - 1181391 Kabob             Kabob
+1181392 - 1181399 Walnut            Walnut
+1181400 - 1181407 Falafel           Falafel
+1181408 - 1181415 Hummus            Hummus
+1181416 - 1181423 Couscous          Couscous
+1181424 - 1181431 Tagine            Tagine
+1181432 - 1181439 Tea               Tea
+1181440 - 1181447 Cheese            Cheese
+1181448 - 1181455 Mitsubishi-k      Mitsubishi-k
+1181456 - 1181463 Mitsubishi-h Mitsubishi-h
+1181464 - 1181471 Sweets            Sweets
+1181472 - 1181479 Vessel            Vessel
+1181480 - 1181487 BeiJing           BeiJing
+1181488 - 1181495 China             China
+1181496 - 1181503 Japan             Japan
+1181504 - 1181511 Tokyo             Tokyo
+
+
+
+
+Last save 7/10/2012 12:49:00 PM                Page 243 of 290   Test Images layout.docx
+          Layout for Steps 1 through 2
+1181512 - 1181519 Subaru-k          Subaru-k
+1181520 - 1181527 Subaru-h          Subaru-h
+1688960 - 1688967 Naan              Naan
+1688968 - 1688975 Chapati           Chapati
+1688976 - 1688983 Pakora            Pakora
+1688984 - 1688991 Gulab_jamun Gulab_jamun
+1688992 - 1688999 Seoul             Seoul
+1689000 - 1689007 Korea             Korea
+1689008 - 1689015 Kabob             Kabob
+1689016 - 1689023 Walnut            Walnut
+1689024 - 1689031 Falafel           Falafel
+1689032 - 1689039 Hummus            Hummus
+1689040 - 1689047 Couscous          Couscous
+1689048 - 1689055 Tagine            Tagine
+1689056 - 1689063 Tea               Tea
+1689064 - 1689071 Cheese            Cheese
+1689072 - 1689079 Mitsubishi-k      Mitsubishi-k
+1689080 - 1689087 Mitsubishi-h Mitsubishi-h
+1689088 - 1689095 Sweets            Sweets
+1689096 - 1689103 Vessel            Vessel
+1689104 - 1689111 BeiJing           BeiJing
+1689112 - 1689119 China             China
+1689120 - 1689127 Japan             Japan
+1689128 - 1689135 Tokyo             Tokyo
+1689136 - 1689143 Subaru-k          Subaru-k
+1689144 - 1689151 Subaru-h          Subaru-h
+
+
+                                     Sector List
+BeiJing.txt        116512 - 116519, 657192 - 657199, 1181480 - 1181487, 1689104 -
+1689111
+Chapati.txt        116376 - 116383, 657056 - 657063, 1181344 - 1181351, 1688968 -
+1688975
+Cheese.txt         116472 - 116479, 657152 - 657159, 1181440 - 1181447, 1689064 -
+1689071
+China.txt          116520 - 116527, 657200 - 657207, 1181488 - 1181495, 1689112 -
+1689119
+Couscous.txt       116448 - 116455, 657128 - 657135, 1181416 - 1181423, 1689040
+  ...
+30 omitted
+1689055
+Tea.txt            116464 - 116471, 657144 - 657151, 1181432 - 1181439, 1689056 -
+1689063
+Tokyo.txt          116536 - 116543, 657216 - 657223, 1181504 - 1181511, 1689128 -
+1689135
+Vessel.txt         116504 - 116511, 657184 - 657191, 1181472 - 1181479, 1689096 -
+1689103
+Walnut.txt         116424 - 116431, 657104 - 657111, 1181392 - 1181399, 1689016 -
+1689023
+
+
+
+

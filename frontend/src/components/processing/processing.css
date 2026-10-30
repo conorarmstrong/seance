@@ -1,0 +1,292 @@
+.processing-panel {
+  margin: 10px 12px;
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius);
+  font-size: 12px;
+}
+
+.processing-title {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.processing-title-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Dismisses a finished run's panel.
+ *
+ * It was `color: inherit` at `opacity: 0.55`. The inherit picks up
+ * `.processing-title`'s --accent, and 55% of that over this panel's --bg-2
+ * draws at 3.20:1 — the same tone measures 7.55 opaque. Neither guard could
+ * see it: the stylesheet pass reads token-valued `color` declarations and
+ * `inherit` is not one, and the fade lives in a different declaration from the
+ * colour it fades. app/contrast.test.ts renders this panel now, and this is
+ * the rule that pass found.
+ *
+ * The quiet-until-hovered intent survives without the alpha, and survives
+ * better: --text-2 is the palette's quiet tier and clears the floor here at
+ * 5.39:1, and the hover moves to the accent it used to merely un-fade, at
+ * 7.55:1. That is the same resting-grey/hover-amber shape the other icon-only
+ * controls in this product use. */
+.processing-close {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  margin: -2px -2px -2px 0;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.processing-close:hover {
+  color: var(--accent);
+}
+
+.processing-close:focus-visible {
+  outline: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.processing-conn {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--warn);
+  /* No `opacity` here, and deliberately not. This is the badge that says the
+     live connection to the server has dropped — the one label on the panel that
+     must not be quiet — and it was drawn at 0.8, which is the same fade that
+     hid `.an-db-col-hide` at 2.66:1. On a dark surface --warn survives the fade;
+     on a light one it does not, and the only ways to keep the fade were to
+     darken every skin's amber into a brown or to accept 3.3:1 on a connection
+     warning. The border and the colour already make it quiet enough. */
+  border: 1px solid var(--warn);
+  border-radius: var(--radius);
+  padding: 0 6px;
+  white-space: nowrap;
+}
+
+.processing-count {
+  color: var(--text-1);
+}
+
+.processing-active {
+  margin-top: 3px;
+  color: var(--accent);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.processing-eta {
+  margin-top: 2px;
+  color: var(--text-2);
+  font-size: 11px;
+}
+
+.processing-bar {
+  height: 4px;
+  margin-top: 3px;
+  background: var(--bg-3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.processing-bar-fill {
+  height: 100%;
+  background: var(--warn);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.processing-bar-fill.indeterminate {
+  width: 35%;
+  animation: processing-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes processing-shimmer {
+  0% {
+    margin-left: -35%;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+
+.processing-tasks {
+  margin-top: 6px;
+  color: var(--text-1);
+}
+
+.processing-hash-line {
+  margin-top: 4px;
+  color: var(--text-1);
+}
+
+.processing-hash-label {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.processing-hash-set {
+  display: block;
+  font-size: 11px;
+  color: var(--accent);
+  margin: 1px 0 2px;
+}
+
+.processing-modules {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* A module that has not reported for a minute, on its way to being dropped at
+ * two.
+ *
+ * This said so with `opacity: 0.35`, which drew the module's NAME at 2.06:1
+ * and its progress count at 1.79:1 on this panel's --bg-2. That is not a dim
+ * line, it is an unreadable one, and it is unreadable on the S1 triage
+ * surface: the whole use of this lane is to see WHICH module has gone quiet
+ * while an ingest runs against an interview clock. The fade was invisible to
+ * the stylesheet pass twice over — it sets no colour at all, and the tones it
+ * fades are declared on the children.
+ *
+ * Alpha cannot express this above the floor, and that is arithmetic rather
+ * than preference: --text-2 on --bg-2 is 5.39:1 opaque and crosses 4.5:1 at
+ * 0.882 opacity, so the entire legible fade budget is 12%, which no reader
+ * would perceive as a state change. Moving the fade to the progress bar
+ * instead would trade a text failure for a non-text one — --warn at 0.35 on
+ * --bg-2 is 2.01:1, under the 3:1 that WCAG 1.4.11 asks of a meaningful
+ * graphic.
+ *
+ * So staleness steps the tone down a tier instead, which is the distinction
+ * this product already uses for a quieter claim (a present value is --text-0
+ * and an absent one --text-2 in the system-info page, for the same reason).
+ * The name goes --text-1 to --text-2, 7.49:1 to 5.39:1; the count is already
+ * --text-2 and stays there, because there is no tier below it that clears the
+ * floor. The transition moves to `color`, and onto the element that declares
+ * one: a `transition` on the line would never fire, because the line's own
+ * `color` is not what changes — the name's is. */
+.processing-module-name {
+  color: var(--text-1);
+  transition: color 1s ease;
+}
+
+.processing-module-line.stale .processing-module-name {
+  color: var(--text-2);
+}
+
+.processing-module-count {
+  color: var(--text-2);
+  float: right;
+  font-size: 11px;
+}
+
+.processing-cancel {
+  margin-top: 8px;
+}
+
+.processing-confirm {
+  color: var(--text-1);
+}
+
+.processing-confirm-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.processing-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.processing-errors {
+  margin-top: 6px;
+  color: var(--danger);
+}
+
+.processing-errors ul {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* The panel's admission that what it is showing is not confirmed by anything
+   live. Warn-toned rather than error-toned: nothing has failed, but nothing
+   below it is being backed by the event stream either. */
+.processing-unconfirmed {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--warn);
+  border-left: 2px solid var(--warn);
+  padding: 2px 0 2px 6px;
+  margin-bottom: 6px;
+}
+
+.processing-errors-note {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* The heading is the disclosure control, so the whole title line is the hit
+ * target rather than a caret an examiner has to aim at. It is a button and must
+ * not look like one: the panel's heading is what it was before this control
+ * existed, and re-styling it as a control would make the panel read as an
+ * action bar. Only the caret and the pointer say it is pressable. */
+.processing-disclose {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  /* Takes the row so the close button stays hard right, where it was. */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.processing-disclose:focus-visible {
+  outline: 1px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+/* Sized and coloured like the caret it is, not like the heading it sits in:
+ * --text-2 is the palette's quiet tier, which is where a disclosure marker
+ * belongs beside a title carrying --accent. */
+.processing-caret {
+  color: var(--text-2);
+  font-size: 10px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.processing-disclose:hover .processing-caret {
+  color: var(--accent);
+}

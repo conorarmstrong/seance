@@ -1,0 +1,14 @@
+[package]
+name = "seance_shell_item"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# One reader for the Windows shell item (PIDL), which four parsers meet:
+# shellbags, jump lists, LNK shortcuts and the registry MRUs. Before this
+# existed each read what it needed out of the bytes in its own way, and the
+# MRUs read a name by scanning for delimiters rather than by walking the
+# format. ROADMAP §5.16.
+
+[dependencies]
+chrono = "0.4"

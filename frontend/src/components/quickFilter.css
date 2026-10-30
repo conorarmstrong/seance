@@ -1,0 +1,36 @@
+/* The quick type-ahead filter every grid gets (ROADMAP §1.1).
+ *
+ * The count sentence is a paragraph and not a badge on purpose: a filtered grid
+ * is read, quoted and screenshotted, and none of those carry a hover. Do not
+ * clamp it, truncate it or move it behind a tooltip. */
+.qf {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.qf-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--text-0);
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+
+.qf-input:focus {
+  outline: none;
+  border-color: var(--accent-dim);
+}
+
+.qf-count {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-2);
+}

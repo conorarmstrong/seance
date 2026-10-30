@@ -1,0 +1,19 @@
+[package]
+name = "seance_vics"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Pure data-model and algorithm crate: the VICS/Project VIC JSON round-trip and
+# the open perceptual hash (PDQ). No dependency on seance_core, so it can be
+# tested in isolation and reused by any consumer. It ships the *format* and the
+# *maths*; it never ships or embeds a real VIC/CAID hash set (law-enforcement
+# restricted) nor a licensed PhotoDNA implementation.
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = "1.0"
+hex = "0.4"
+
+[dev-dependencies]

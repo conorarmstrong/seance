@@ -1,0 +1,19 @@
+[package]
+name = "seance_plugin_badclus"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+tracing = "0.1"
+serde_json = { workspace = true }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+byteorder = "1.5"
+tracing-subscriber = "0.3"
+
+[dev-dependencies]
+# Graded through the producer: the MFT parser reads a real volume and emits
+# `$BadClus:$Bad`, and this module reads what it emitted.
+seance_plugin_mft = { path = "../seance_plugin_mft" }
+flate2 = "1.0"

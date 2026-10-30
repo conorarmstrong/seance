@@ -1,0 +1,82 @@
+[
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "imessage",
+      "supported_range": "9005..=15009",
+      "message": "imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "detail": "imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "name": "ParserStaleWarning: imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "validated_against": "plaso test_data/imessage_chat.db (_ClientVersion 9005); Magnet 2021 macOS CTF chat.db (14005); Magnet 2022 CTF iPhone 8 sms.db (15009)"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionNotRecorded",
+      "app": "imessage",
+      "supported_range": "9005..=15009",
+      "message": "imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "detail": "imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "name": "ParserStaleWarning: imessage: no schema version is recorded (the store has no `_SqliteDatabaseProperties` `_ClientVersion` row, which is where every validated store carried it), so nothing compares this store to the validated range 9005..=15009 — the parse is unranked, not stale",
+      "validated_against": "plaso test_data/imessage_chat.db (_ClientVersion 9005); Magnet 2021 macOS CTF chat.db (14005); Magnet 2022 CTF iPhone 8 sms.db (15009)"
+    }
+  },
+  null,
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "app": "imessage",
+      "supported_range": "9005..=15009",
+      "status": "SchemaOutsideValidated",
+      "seen_schema_version": 16000,
+      "message": "imessage: schema version 16000 is NEWER than the supported range 9005..=15009 — records may be incompletely parsed; this parser predates this app version",
+      "detail": "imessage: schema version 16000 is NEWER than the supported range 9005..=15009 — records may be incompletely parsed; this parser predates this app version",
+      "name": "ParserStaleWarning: imessage: schema version 16000 is NEWER than the supported range 9005..=15009 — records may be incompletely parsed; this parser predates this app version",
+      "validated_against": "plaso test_data/imessage_chat.db (_ClientVersion 9005); Magnet 2021 macOS CTF chat.db (14005); Magnet 2022 CTF iPhone 8 sms.db (15009)"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "app": "imessage",
+      "supported_range": "9005..=15009",
+      "status": "SchemaOutsideValidated",
+      "seen_schema_version": 8000,
+      "message": "imessage: schema version 8000 is OLDER than the supported range 9005..=15009 — this parser targets newer layouts and may miss records",
+      "detail": "imessage: schema version 8000 is OLDER than the supported range 9005..=15009 — this parser targets newer layouts and may miss records",
+      "name": "ParserStaleWarning: imessage: schema version 8000 is OLDER than the supported range 9005..=15009 — this parser targets newer layouts and may miss records",
+      "validated_against": "plaso test_data/imessage_chat.db (_ClientVersion 9005); Magnet 2021 macOS CTF chat.db (14005); Magnet 2022 CTF iPhone 8 sms.db (15009)"
+    }
+  },
+  {
+    "subtype": "parser_stale",
+    "metadata": {
+      "type": "ParserStaleWarning",
+      "subtype": "parser_stale",
+      "warning_class": "ParserStaleWarning",
+      "status": "SchemaVersionUndetermined",
+      "app": "imessage",
+      "supported_range": "9005..=15009",
+      "content_incomplete": true,
+      "content_incomplete_reason": "unresolved_structure",
+      "content_incomplete_detail": "imessage: the schema version could not be read (`_ClientVersion` is `nine`, not a number), so whether this store is one the parser was validated against is undetermined rather than answered",
+      "detail": "imessage: the schema version could not be read (`_ClientVersion` is `nine`, not a number), so whether this store is one the parser was validated against is undetermined rather than answered",
+      "name": "ParserStaleWarning: imessage: the schema version could not be read (`_ClientVersion` is `nine`, not a number), so whether this store is one the parser was validated against is undetermined rather than answered",
+      "validated_against": "plaso test_data/imessage_chat.db (_ClientVersion 9005); Magnet 2021 macOS CTF chat.db (14005); Magnet 2022 CTF iPhone 8 sms.db (15009)"
+    }
+  }
+]

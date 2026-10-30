@@ -1,0 +1,21 @@
+[package]
+name = "seance_plugin_f2fs"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { workspace = true }
+tracing = "0.1.40"
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+anyhow = "1.0.89"
+# base64 (resident/inline data encoding) and chrono (RFC3339 timestamps) are
+# pure-Rust, no native deps; both match the sibling filesystem plugins' contract.
+base64 = "0.22"
+chrono = { version = "0.4.38", features = ["serde"] }
+
+[dev-dependencies]
+# Inflates the committed real-image fixture (tests/fixtures/sload_f2fs.img.gz).
+flate2 = "1.0"

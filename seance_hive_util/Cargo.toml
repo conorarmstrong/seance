@@ -1,0 +1,11 @@
+[package]
+name = "seance_hive_util"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_hive = { workspace = true }
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4"] }

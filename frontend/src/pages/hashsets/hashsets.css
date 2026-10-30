@@ -1,0 +1,104 @@
+.hs-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hs-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.hs-desc {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-1);
+}
+
+.hs-count {
+  text-align: right;
+}
+
+.hs-actions {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.hs-formats {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.hs-formats h4 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+}
+
+.hs-formats ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.hs-formats li {
+  margin-bottom: 4px;
+}
+
+.hs-formats li:last-child {
+  margin-bottom: 0;
+}
+
+.hs-hits-panel {
+  margin-top: 16px;
+}
+
+.hs-hits-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hs-hits-head .panel-title {
+  margin: 0;
+}
+
+.hs-path {
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hs-hash {
+  white-space: nowrap;
+}
+
+.hs-progress {
+  margin-top: 12px;
+  height: 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-0);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hs-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.15s ease;
+}

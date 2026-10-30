@@ -1,0 +1,12 @@
+[package]
+name = "seance_plugin_hash"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+uuid = { version = "1.10.0", features = ["v4"] }

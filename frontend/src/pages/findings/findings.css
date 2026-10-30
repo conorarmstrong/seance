@@ -1,0 +1,245 @@
+/* The triage screen (ROADMAP §2.2).
+ *
+ * The layout carries a forensic obligation, so two rules here are not styling
+ * preferences and must not be "tidied":
+ *
+ *  1. The observation, the inference and the qualification are three visually
+ *     distinct blocks. A finding whose inference reads as its observation is
+ *     the failure the `Finding` type exists to prevent, and a card that ran
+ *     them together as one paragraph would undo it in CSS.
+ *  2. The qualification is never hidden. No `display: none`, no accordion, no
+ *     line clamp — what a finding does not establish is part of the finding.
+ */
+
+.fnd {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 4px 2px;
+}
+.fnd-head h1 {
+  margin: 0 0 4px;
+}
+.fnd-sub {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.fnd-grade {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-1);
+  background: var(--info-bg);
+  border-left: 3px solid var(--info);
+  border-radius: var(--radius);
+}
+
+/* What this build looks for at all. */
+.fnd-detections-toggle,
+.fnd-evidence-toggle {
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+.fnd-detections-toggle:hover,
+.fnd-evidence-toggle:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+.fnd-detections-list,
+.fnd-detection {
+  margin: 0;
+}
+.fnd-detections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 10px;
+  font-size: 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+.fnd-detection dt {
+  color: var(--text-0);
+  font-size: 12px;
+}
+.fnd-detection dd {
+  margin: 2px 0 0;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+/* No opacity fade: `--text-2` is already the quietest token that holds WCAG AA
+   on every ground in every skin, and fading it drops below it. */
+.fnd-detection-module {
+  color: var(--text-2);
+}
+
+/* The confidence filter. */
+.fnd-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fnd-chip {
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-1);
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.fnd-chip:hover:not(:disabled) {
+  border-color: var(--accent-dim);
+}
+.fnd-chip-on {
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.fnd-chip:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.fnd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fnd-card {
+  padding: 12px 14px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+.fnd-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+.fnd-title {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.fnd-kind {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.fnd-conf {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.fnd-conf-strong {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+.fnd-conf-notable {
+  color: var(--warn);
+  background: var(--warn-bg);
+}
+.fnd-conf-weak {
+  color: var(--text-2);
+  background: var(--bg-1);
+}
+
+/* Rule 1: three distinct blocks. The observation is the checkable half and
+   reads as body text; the other two are set apart and labelled. */
+.fnd-observation {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-0);
+}
+.fnd-inference {
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-1);
+  background: var(--bg-1);
+  border-left: 3px solid var(--accent-dim);
+  border-radius: var(--radius);
+}
+.fnd-qualification {
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-1);
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+}
+.fnd-label {
+  font-weight: 600;
+  color: var(--text-0);
+}
+.fnd-not-persisted {
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.fnd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.fnd-offset {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.fnd-evidence {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 10px 0 0;
+  padding: 10px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-0);
+  border-radius: var(--radius);
+}
+.fnd-evidence-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 30%) 1fr;
+  gap: 10px;
+  font-size: 12px;
+}
+.fnd-evidence-row dt {
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+.fnd-evidence-row dd {
+  margin: 0;
+  color: var(--text-0);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .fnd-evidence-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

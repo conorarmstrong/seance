@@ -1,0 +1,22 @@
+[package]
+name = "seance_bulk"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Pure feature-extraction algorithms, in the spirit of bulk_extractor (which is
+# Public Domain / MIT — patterns adapted, no code copied). This crate sweeps raw
+# byte streams — allocated, slack, unallocated, and decoded layers — for things
+# Séance's file-oriented parsers cannot reach on their own: AES keys in RAM,
+# network packets in memory, feature selectors anywhere, and password-wordlist
+# candidates. No dependency on seance_core, so it is testable in isolation; the
+# ForensicsModule wrappers live in the consuming plugin.
+
+[dependencies]
+memchr = "2"
+regex = "1"
+flate2 = "1"
+base64 = "0.22"
+
+[dev-dependencies]
+serde_json = "1"

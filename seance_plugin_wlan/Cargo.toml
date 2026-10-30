@@ -1,0 +1,18 @@
+[package]
+name = "seance_plugin_wlan"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+# Windows wireless profiles: the XML under
+# %ProgramData%\Microsoft\Wlansvc\Profiles\Interfaces\{interface}\{profile}.xml
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_xml_util = { path = "../seance_xml_util" }
+quick-xml = "0.31"
+serde_json = { workspace = true }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
+tracing = "0.1"
+
+[dev-dependencies]
+seance_core = { path = "../seance_core", features = ["test-support"] }

@@ -1,0 +1,256 @@
+[
+  [],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaOutsideValidated",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 4,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+        "name": "GoldenIncomplete: SchemaOutsideValidated — golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaOutsideValidated",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 2,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records",
+        "name": "GoldenIncomplete: SchemaOutsideValidated — golden-app: schema version 2 is OLDER than the supported range 3..=3 — this parser targets newer layouts and may miss records"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaVersionNotRecorded",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_not_recorded": true,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: no schema version is recorded where this parser looks (PRAGMA user_version), so the store was not compared against the validated range 3..=3",
+        "name": "GoldenIncomplete: SchemaVersionNotRecorded — golden-app: no schema version is recorded where this parser looks (PRAGMA user_version), so the store was not compared against the validated range 3..=3"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaVersionUndetermined",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_undetermined": "io",
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: the schema version could not be read (io), so the store was compared against nothing; this is not a statement that it is in range",
+        "name": "GoldenIncomplete: SchemaVersionUndetermined — golden-app: the schema version could not be read (io), so the store was compared against nothing; this is not a statement that it is in range"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaOptionalFieldsUnresolved",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 3,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "schema_unresolved_fields": [
+          "extra"
+        ],
+        "records_recovered": 7,
+        "detail": "golden-app: no column in `message` carries the field(s) extra; the records emitted omit them rather than guess, and the parser may predate this schema",
+        "name": "GoldenIncomplete: SchemaOptionalFieldsUnresolved — golden-app: no column in `message` carries the field(s) extra; the records emitted omit them rather than guess, and the parser may predate this schema"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaOutsideValidated",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 4,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version",
+        "name": "GoldenIncomplete: SchemaOutsideValidated — golden-app: schema version 4 is NEWER than the supported range 3..=3 — records may be incompletely parsed; this parser predates this app version"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaFieldsUnresolved",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 4,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "schema_unresolved_fields": [
+          "text",
+          "extra"
+        ],
+        "records_recovered": 7,
+        "detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "name": "GoldenIncomplete: SchemaFieldsUnresolved — golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "content_incomplete": true,
+        "content_incomplete_reason": "unvalidated",
+        "content_incomplete_detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "inventory_incomplete": true,
+        "inventory_incomplete_reason": "unvalidated",
+        "inventory_incomplete_detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaTableAbsent",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 3,
+        "schema_version_supported": "3..=3",
+        "schema_version_evidence": "golden.db",
+        "records_recovered": 7,
+        "detail": "golden-app: the `message` table this parser reads is not in `golden.db`, although the catalogue read; either the app's schema has moved past this parser or this is not its message store, and its content was not examined",
+        "name": "GoldenIncomplete: SchemaTableAbsent — golden-app: the `message` table this parser reads is not in `golden.db`, although the catalogue read; either the app's schema has moved past this parser or this is not its message store, and its content was not examined",
+        "content_incomplete": true,
+        "content_incomplete_reason": "unvalidated",
+        "content_incomplete_detail": "golden-app: the `message` table this parser reads is not in `golden.db`, although the catalogue read; either the app's schema has moved past this parser or this is not its message store, and its content was not examined",
+        "inventory_incomplete": true,
+        "inventory_incomplete_reason": "unvalidated",
+        "inventory_incomplete_detail": "golden-app: the `message` table this parser reads is not in `golden.db`, although the catalogue read; either the app's schema has moved past this parser or this is not its message store, and its content was not examined"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaNotRanged",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_seen": 9,
+        "schema_unranged_reason": "no store held",
+        "records_recovered": 7,
+        "detail": "golden-app: this parser declares no validated schema range — no store held; schema version seen: 9, compared against nothing",
+        "name": "GoldenIncomplete: SchemaNotRanged — golden-app: this parser declares no validated schema range — no store held; schema version seen: 9, compared against nothing"
+      }
+    }
+  ],
+  [
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaNotRanged",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_not_recorded": true,
+        "schema_unranged_reason": "no store held",
+        "records_recovered": 7,
+        "detail": "golden-app: this parser declares no validated schema range — no store held; no schema version is recorded at PRAGMA user_version, compared against nothing",
+        "name": "GoldenIncomplete: SchemaNotRanged — golden-app: this parser declares no validated schema range — no store held; no schema version is recorded at PRAGMA user_version, compared against nothing"
+      }
+    },
+    {
+      "subtype": "parser_stale",
+      "metadata": {
+        "type": "GoldenIncomplete",
+        "subtype": "parser_stale",
+        "warning_class": "ParserStaleWarning",
+        "status": "SchemaFieldsUnresolved",
+        "app": "golden-app",
+        "store": "golden.db",
+        "table": "message",
+        "schema_version_locator": "PRAGMA user_version",
+        "schema_version_not_recorded": true,
+        "schema_unranged_reason": "no store held",
+        "schema_unresolved_fields": [
+          "text",
+          "extra"
+        ],
+        "records_recovered": 7,
+        "detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "name": "GoldenIncomplete: SchemaFieldsUnresolved — golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "content_incomplete": true,
+        "content_incomplete_reason": "unvalidated",
+        "content_incomplete_detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against",
+        "inventory_incomplete": true,
+        "inventory_incomplete_reason": "unvalidated",
+        "inventory_incomplete_detail": "golden-app: no column in `message` carries the required field(s) text; the records emitted lack them, and the parser is running on a schema it was not validated against"
+      }
+    }
+  ]
+]

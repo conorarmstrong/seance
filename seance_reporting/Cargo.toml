@@ -1,0 +1,56 @@
+[package]
+name = "seance_reporting"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+
+[dependencies]
+seance_core = { path = "../seance_core" }
+seance_db = { path = "../seance_db" }
+
+# PDF generation
+printpdf = "0.7"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { workspace = true }
+
+# Date/Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# PDF signing
+openssl = "0.10"
+lopdf = "0.34"
+hex = "0.4"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+
+# UUID
+uuid = { version = "1.0", features = ["serde", "v4"] }
+
+# XLSX (Excel) generation — pure Rust, no C deps
+rust_xlsxwriter = { version = "0.101", default-features = false }
+
+# DOCX generation: a DOCX is a ZIP of OOXML parts, written by hand in
+# `docx.rs`. Same version and features rust_xlsxwriter already builds `zip`
+# with, so this adds no new crate to the tree.
+zip = { version = "9", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+tempfile = "3"
+# Test-only: verify render_xml's output with a real parser rather than
+# string-matching it. Not a production dependency of this crate -- render_xml
+# is a hand-rolled writer -- but already in the workspace (seance_xml_util and
+# several plugins depend on it), so this adds no new crate to the tree.
+quick-xml = "0.31"
+
+# ARM64 Windows has no system OpenSSL and no vcpkg/MSYS2 libewf story; build
+# OpenSSL from vendored source there so PDF signing still links. Every other
+# target keeps using the system OpenSSL it already finds.
+[target.'cfg(all(target_os = "windows", target_arch = "aarch64"))'.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
