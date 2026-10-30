@@ -138,7 +138,7 @@ license = "MIT"
 # `version.workspace = true`, so the court-facing `tool_version` (seance_api and
 # seance_cli read CARGO_PKG_VERSION) and every module's reported version move
 # together, and `scripts/check-version.sh` can hold a release tag to it.
-version = "1.0.0-rc"
+version = "1.0.1"
 
 # Shared dependency versions. Plugins reference these with
 # `dep = { workspace = true }` so a version bump happens once here instead of

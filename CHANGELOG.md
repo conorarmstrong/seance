@@ -6,6 +6,19 @@ Open defects are in [BUGS.md](BUGS.md) and planned work is in [ROADMAP.md](ROADM
 
 ## [Unreleased]
 
+## [1.0.1]
+
+Fixes found by the first hosted CI runs on the public repository. No product behaviour changes.
+
+- **Build.** `seance_container_e01` builds against newer libewf headers and newer glibc.
+- **Dependencies.** `wasmtime` is 48.0.8, which clears RUSTSEC-2026-0422 to 0424.
+- **Tests.** Acquisition source paths compare after canonicalisation, so macOS passes. The
+  non-UTF-8 filename test is skipped on macOS, where APFS refuses such names.
+- **CI.** The plaso test stores are pinned to a commit. Coverage frees runner disk first.
+  The workspace test step lists every failure.
+- **Repository.** The website and the Magnet iOS fixtures are no longer tracked.
+  [NOTICE.md](NOTICE.md) credits third-party material.
+
 ## [1.0.0-rc]
 
 The first edition. It is a release candidate: the workspace, the web UI and the release
@@ -48,5 +61,6 @@ this tree. Hosted CI has not run on it.
 The open defects are in [BUGS.md](BUGS.md). Work that is planned or waiting on evidence is
 in [ROADMAP.md](ROADMAP.md).
 
-[Unreleased]: https://github.com/conorarmstrong/seance/compare/v1.0.0-rc...HEAD
+[Unreleased]: https://github.com/conorarmstrong/seance/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/conorarmstrong/seance/compare/v1.0.0-rc...v1.0.1
 [1.0.0-rc]: https://github.com/conorarmstrong/seance/releases/tag/v1.0.0-rc

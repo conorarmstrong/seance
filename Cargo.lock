@@ -5686,7 +5686,7 @@ dependencies = [
 
 [[package]]
 name = "seance_api"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "async-stream",
@@ -5838,7 +5838,7 @@ dependencies = [
 
 [[package]]
 name = "seance_benchmarks"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "criterion",
  "seance_container_e01",
@@ -5851,7 +5851,7 @@ dependencies = [
 
 [[package]]
 name = "seance_bulk"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "flate2",
@@ -5862,7 +5862,7 @@ dependencies = [
 
 [[package]]
 name = "seance_carving"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "memchr",
@@ -5874,7 +5874,7 @@ dependencies = [
 
 [[package]]
 name = "seance_cli"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "axum 0.7.9",
@@ -5909,7 +5909,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_aff4"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "flate2",
@@ -5924,7 +5924,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_archive"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "bzip2 0.5.2",
@@ -5944,7 +5944,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_e01"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "bindgen",
@@ -5960,7 +5960,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_raid"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "tracing",
@@ -5968,7 +5968,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_sparseimage"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "serde_json",
@@ -5978,7 +5978,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_vdisk"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "byteorder",
  "seance_core",
@@ -5989,7 +5989,7 @@ dependencies = [
 
 [[package]]
 name = "seance_container_zip"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6003,7 +6003,7 @@ dependencies = [
 
 [[package]]
 name = "seance_core"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -6033,14 +6033,14 @@ dependencies = [
 
 [[package]]
 name = "seance_crack"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "sha2 0.10.9",
 ]
 
 [[package]]
 name = "seance_db"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -6060,7 +6060,7 @@ dependencies = [
 
 [[package]]
 name = "seance_ese_util"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "hex",
@@ -6070,11 +6070,11 @@ dependencies = [
 
 [[package]]
 name = "seance_hive"
-version = "1.0.0-rc"
+version = "1.0.1"
 
 [[package]]
 name = "seance_hive_util"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "seance_hive",
@@ -6084,11 +6084,11 @@ dependencies = [
 
 [[package]]
 name = "seance_login_sessions"
-version = "1.0.0-rc"
+version = "1.0.1"
 
 [[package]]
 name = "seance_memory"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aho-corasick",
  "flate2",
@@ -6106,7 +6106,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_amcache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "seance_core",
@@ -6120,7 +6120,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_android_apps"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6135,7 +6135,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_android_backup"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "flate2",
@@ -6148,7 +6148,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_android_sms"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6163,7 +6163,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_apfs"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "byteorder",
@@ -6177,7 +6177,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_asep"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "crc32fast",
@@ -6192,7 +6192,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_badclus"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "byteorder",
  "flate2",
@@ -6206,7 +6206,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_bitlocker"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "ccm",
@@ -6224,7 +6224,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_bits"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "libesedb",
@@ -6237,7 +6237,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_browser_history"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "lz4_flex 0.11.6",
@@ -6252,7 +6252,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_btrfs"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -6268,7 +6268,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_bulk"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "hex",
@@ -6282,7 +6282,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_call_history"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6297,7 +6297,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_carver"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_carving",
  "seance_core",
@@ -6309,7 +6309,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_chrome_cache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -6322,7 +6322,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_clipboard"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "chrono",
@@ -6334,7 +6334,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_contacts"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6348,7 +6348,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_desktop_artifacts"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -6360,7 +6360,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_directory"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6373,7 +6373,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_dsstore"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -6385,7 +6385,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_email"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -6405,7 +6405,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_evtx"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6422,7 +6422,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_exif"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "image",
  "kamadak-exif",
@@ -6434,7 +6434,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_ext4"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -6451,7 +6451,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_f2fs"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -6466,7 +6466,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_fat"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -6483,7 +6483,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_fbmessenger"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6497,7 +6497,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_file_analysis"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "seance_core",
@@ -6508,7 +6508,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_findings"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6521,7 +6521,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_fsevents"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "flate2",
@@ -6534,7 +6534,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_hash"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "serde_json",
@@ -6543,7 +6543,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_hfsplus"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -6556,7 +6556,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_host_identity"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "plist",
  "seance_core",
@@ -6567,7 +6567,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_i30"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -6583,7 +6583,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_ical"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "ical",
  "seance_core",
@@ -6594,7 +6594,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_imessage"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6608,7 +6608,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_instagram"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6622,7 +6622,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_installed_apps"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6640,7 +6640,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_ios_artifacts"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6657,7 +6657,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_ios_backup"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "aes-kw",
@@ -6684,7 +6684,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_iso9660"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -6698,7 +6698,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_jumplists"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "cfb",
@@ -6711,7 +6711,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_kik"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6725,7 +6725,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_leveldb"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -6738,7 +6738,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_line"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -6752,7 +6752,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_lnk"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -6767,7 +6767,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_logfile"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -6781,7 +6781,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_luks"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "argon2",
@@ -6804,7 +6804,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_macos_artifacts"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "cbc 0.1.2",
@@ -6830,7 +6830,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_media"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6842,7 +6842,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_memory_linux"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "seance_core",
@@ -6857,7 +6857,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_memory_macos"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "seance_memory",
@@ -6870,7 +6870,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_memory_windows"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "aho-corasick",
@@ -6898,7 +6898,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_mft"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "byteorder",
@@ -6917,7 +6917,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_mobile_device"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6933,7 +6933,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_ocr"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "image",
@@ -6948,7 +6948,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_office"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "quick-xml 0.31.0",
@@ -6963,7 +6963,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_partition"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "async-trait",
  "gpt",
@@ -6978,7 +6978,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_pcap"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "md-5 0.10.6",
@@ -6991,7 +6991,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_pe"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "cms",
@@ -7011,7 +7011,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_perceptual"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "image",
  "seance_core",
@@ -7023,7 +7023,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_plist"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "hex",
@@ -7037,7 +7037,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_prefetch"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -7049,7 +7049,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_rdp_cache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "png",
  "seance_core",
@@ -7060,7 +7060,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_recyclebin"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "byteorder",
  "chrono",
@@ -7072,7 +7072,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_registry"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -7089,7 +7089,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_sdb"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "seance_core",
@@ -7100,7 +7100,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_secure_sds"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "seance_core",
@@ -7113,7 +7113,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_setupapi"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "serde_json",
@@ -7123,7 +7123,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_shellbags"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -7140,7 +7140,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_shimcache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "byteorder",
  "chrono",
@@ -7155,7 +7155,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_signal"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "anyhow",
@@ -7177,7 +7177,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_skype"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7191,7 +7191,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_snapchat"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7205,7 +7205,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_sqlite"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -7219,7 +7219,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_squashfs"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "lru",
@@ -7232,7 +7232,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_srum"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "byteorder",
@@ -7249,7 +7249,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_stickynotes"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "cfb",
  "rusqlite",
@@ -7262,7 +7262,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_sum"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -7276,7 +7276,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_telegram"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7290,7 +7290,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_thumbcache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "seance_core",
@@ -7302,7 +7302,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_twitter"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7316,7 +7316,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_udf"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "flate2",
@@ -7331,7 +7331,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_usnjrnl"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "byteorder",
  "chrono",
@@ -7344,7 +7344,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_utmp"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "seance_core",
  "seance_login_sessions",
@@ -7356,7 +7356,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_viber"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7370,7 +7370,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_vss"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -7387,7 +7387,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_webcache"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -7402,7 +7402,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_wechat"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "rusqlite",
@@ -7417,7 +7417,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_whatsapp"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "anyhow",
@@ -7436,7 +7436,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_win_timeline"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -7452,7 +7452,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_winsearch_edb"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "libesedb",
@@ -7465,7 +7465,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_wlan"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "quick-xml 0.31.0",
  "seance_core",
@@ -7477,7 +7477,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_xfs"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -7492,7 +7492,7 @@ dependencies = [
 
 [[package]]
 name = "seance_plugin_yara"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "flate2",
@@ -7511,7 +7511,7 @@ dependencies = [
 
 [[package]]
 name = "seance_repl"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -7531,7 +7531,7 @@ dependencies = [
 
 [[package]]
 name = "seance_reporting"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -7554,7 +7554,7 @@ dependencies = [
 
 [[package]]
 name = "seance_search"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aho-corasick",
  "anyhow",
@@ -7576,14 +7576,14 @@ dependencies = [
 
 [[package]]
 name = "seance_shell_item"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "chrono",
 ]
 
 [[package]]
 name = "seance_sqlcipher"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "aes 0.8.4",
  "cbc 0.1.2",
@@ -7602,7 +7602,7 @@ dependencies = [
 
 [[package]]
 name = "seance_sqlite_util"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "rusqlite",
  "seance_core",
@@ -7613,7 +7613,7 @@ dependencies = [
 
 [[package]]
 name = "seance_symbol_fetch"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "pdb",
@@ -7629,7 +7629,7 @@ dependencies = [
 
 [[package]]
 name = "seance_symbols"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "flate2",
  "serde",
@@ -7642,7 +7642,7 @@ dependencies = [
 
 [[package]]
 name = "seance_tests"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "axum 0.7.9",
@@ -7699,7 +7699,7 @@ dependencies = [
 
 [[package]]
 name = "seance_validate"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -7727,7 +7727,7 @@ dependencies = [
 
 [[package]]
 name = "seance_vics"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "hex",
  "serde",
@@ -7737,7 +7737,7 @@ dependencies = [
 
 [[package]]
 name = "seance_xml_util"
-version = "1.0.0-rc"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "quick-xml 0.31.0",

@@ -3,11 +3,10 @@
 
 Seance is a modern forensic analysis tool designed for speed, scalability, and flexibility. It features a zero-copy architecture, a centralized orchestrator with work-stealing parallelism, and a plug-in system for artifact parsing.
 
-## Current Release: v1.0.0-rc
+## Current Release: v1.0.1
 
-v1.0.0-rc is the first edition of Séance. No release has been published from
-this repository yet. The manifests read 1.0.0-rc. [CHANGELOG.md](CHANGELOG.md)
-holds the release notes. What comes next, in priority order with an estimate on
+v1.0.1 follows the first edition, v1.0.0-rc. The manifests read 1.0.1.
+[CHANGELOG.md](CHANGELOG.md) holds the release notes. What comes next, in priority order with an estimate on
 every item, is [ROADMAP.md](ROADMAP.md).
 
 ## Screenshots
