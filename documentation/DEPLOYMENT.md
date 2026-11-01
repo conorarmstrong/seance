@@ -64,7 +64,7 @@ build host cannot answer the question — it has libheif and libde265 installed 
 build inputs, so `ldd` there resolves them from the system even when the asset
 would fail in the loader on a clean machine.
 
-The version is 1.0.1. The workflow checks that every version source agrees
+The version is 1.0.2. The workflow checks that every version source agrees
 with the tag, builds the five matrix targets and the x86_64 Windows job, packages
 the web UI and attaches the validation report when the tagged tree carries one.
 

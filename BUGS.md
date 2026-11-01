@@ -39,8 +39,8 @@ An entry states its current status once, at the top.
 
 ## Open
 
-Twenty entries: `HUNT-195`, `MEM-043`, `MEM-044`, `MEM-020`, `MEM-059`, `HUNT-278`,
-`HUNT-280`, `HUNT-111` and `HUNT-283` to `HUNT-294`. `ROADMAP.md` carries the estimate on
+Eighteen entries: `HUNT-195`, `MEM-043`, `MEM-044`, `MEM-020`, `MEM-059`, `HUNT-278`,
+`HUNT-280`, `HUNT-111`, `HUNT-284` to `HUNT-292` and `HUNT-294`. `ROADMAP.md` carries the estimate on
 each open item that has one.
 
 ### HUNT-195 - What the WMI subscription scan does not establish  *(LOW)*
@@ -361,20 +361,6 @@ encryption of anything. chainbreaker prints it as empty. Pinned by
 **What would close it:** a macOS 12 or later keychain volume with its SystemKey or a known
 password.
 
-### HUNT-283 - VICS export places a SHA-256 digest in the MD5 field  *(HIGH)*
-
-**Status: OPEN.**
-
-`export_vics_hash_set` in `seance_api/src/lib.rs` rebuilds a minimal media record for a set
-that has no preserved attribute bundle. It starts from `VicsMedia::from_md5`, then moves
-the digest to `sha1` only when the value is 40 hex characters. A 64-hex SHA-256 digest
-falls through and is exported in the `md5` field. A partner tool matches on the wrong key.
-VICS has no SHA-256 field.
-
-**What would close it:** a test that builds a SHA-256 hash set with no attribute bundle, exports it, and asserts
-the digest is not in `md5` or `sha1`. The export must either omit the entry and count it,
-or refuse the set, and say which.
-
 ### HUNT-284 - PUT virtual column reports success for an unknown id  *(MEDIUM)*
 
 **Status: OPEN.**
@@ -486,25 +472,6 @@ attaches it to the finding as a location on the backing device.
 **What would close it:** emit `physical_address` and `image_format` for memory and `swap_area_index` and
 `swap_offset` for swap, keep `device_offset` for disk, and test through findings that a
 memory hit carries no device offset.
-
-### HUNT-293 - Spotlight header names a macOS CoreSpotlight store as iOS  *(HIGH)*
-
-**Status: OPEN.**
-
-`read_header` in `seance_plugin_macos_artifacts/src/spotlight.rs` sets `ios_store` to
-true when the first chain head is zero, which is the store with no property block. The
-flag is published as `ios_store` in the header record and appends ` (iOS)` to the record
-name. A per-user CoreSpotlight or helpd index on macOS has no property block either. The
-two such stores in the Magnet 2021 macOS image
-(`Users/eliflatt/Library/Metadata/CoreSpotlight/index.spotlightV3/store.db`, flags
-`0x10801`, all five block numbers 0) satisfy the test and are named iOS. The test
-`a_store_with_no_property_block_is_reported_as_the_ios_shape` pins the inference.
-
-**What would close it:** replace the boolean with a `store_flavour`: `spotlight_volume`
-when the property chain is present, and `corespotlight_index` when flags and chains match
-the `0x10801` shape, with a statement that the header does not say which operating system
-the file came from. Drop the suffix from the name. Test: the two Magnet 2021 CoreSpotlight
-stores give `corespotlight_index` and the 1.4 MB Data-volume store gives `spotlight_volume`.
 
 ### HUNT-294 - Duplicate packages.xml attributes are not surfaced and resolve inconsistently  *(LOW)*
 

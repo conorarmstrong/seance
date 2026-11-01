@@ -1688,7 +1688,14 @@ fn store_artifact(
     meta.insert("page_size".into(), json!(header.page_size));
     meta.insert("block_size".into(), json!(header.block_size));
     meta.insert("block0_size".into(), json!(header.block0_size));
-    meta.insert("ios_store".into(), json!(header.ios_store));
+    meta.insert("store_flavour".into(), json!(header.flavour.as_str()));
+    meta.insert(
+        "store_flavour_note".into(),
+        json!(
+            "Read from the header's flags and property chain. The header does not say \
+             which operating system the file came from."
+        ),
+    );
     meta.insert("chain_heads".into(), json!(header.chain_heads));
     meta.insert("declared_size".into(), json!(staged.declared));
     meta.insert("bytes_staged".into(), json!(staged.got));
@@ -2113,9 +2120,8 @@ fn store_artifact(
     meta.insert(
         "name".into(),
         json!(format!(
-            "Spotlight store: {} indexed item(s), {content_types} content type(s){}",
+            "Spotlight store: {} indexed item(s), {content_types} content type(s)",
             census.items.len(),
-            if header.ios_store { " (iOS)" } else { "" }
         )),
     );
     meta.insert(
@@ -2355,9 +2361,33 @@ struct Header {
     page_size: u32,
     block0_size: u32,
     block_size: u32,
-    ios_store: bool,
+    flavour: StoreFlavour,
     chain_heads: Vec<u32>,
 }
+
+/// The shape of a store, as its header states it.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum StoreFlavour {
+    /// A property chain is present: a volume or user store.
+    SpotlightVolume,
+    /// No property chain and the flags of a per-user CoreSpotlight or helpd index.
+    CoreSpotlightIndex,
+    /// No property chain and flags not matched to a known shape.
+    NoPropertyBlock,
+}
+
+impl StoreFlavour {
+    fn as_str(self) -> &'static str {
+        match self {
+            StoreFlavour::SpotlightVolume => "spotlight_volume",
+            StoreFlavour::CoreSpotlightIndex => "corespotlight_index",
+            StoreFlavour::NoPropertyBlock => "no_property_block",
+        }
+    }
+}
+
+/// Header flags seen on the CoreSpotlight `index.spotlightV3` stores.
+const CORESPOTLIGHT_FLAGS: u32 = 0x10801;
 
 fn read_header(data: &[u8]) -> Option<Header> {
     if data.len() < CHAIN_HEADS_AT + 4 * CHAIN_HEADS || data.get(0..4) != Some(&STORE_MAGIC[..]) {
@@ -2366,14 +2396,21 @@ fn read_header(data: &[u8]) -> Option<Header> {
     let chain_heads: Vec<u32> = (0..CHAIN_HEADS)
         .filter_map(|i| le_u32(data, CHAIN_HEADS_AT + 4 * i))
         .collect();
+    let flags = le_u32(data, 4)?;
+    let flavour = if chain_heads.first().copied().unwrap_or(0) != 0 {
+        StoreFlavour::SpotlightVolume
+    } else if flags == CORESPOTLIGHT_FLAGS {
+        StoreFlavour::CoreSpotlightIndex
+    } else {
+        StoreFlavour::NoPropertyBlock
+    };
     Some(Header {
-        flags: le_u32(data, 4)?,
+        flags,
         page_size: le_u32(data, 0x24)?,
         block0_size: le_u32(data, 0x28)?,
         block_size: le_u32(data, 0x2c)?,
-        // The first chain head is the property table's page. A store with no
-        // property block is the iOS shape.
-        ios_store: chain_heads.first().copied().unwrap_or(0) == 0,
+        // The first chain head is the property table's page.
+        flavour,
         chain_heads,
     })
 }
@@ -3011,7 +3048,7 @@ mod tests {
         // quoted off the screen.
         assert_eq!(n(store, "page_size"), Some(PAGE as i64));
         assert_eq!(n(store, "block_size"), Some(BLOCK as i64));
-        assert_eq!(store["ios_store"], json!(false));
+        assert_eq!(store["store_flavour"], json!("spotlight_volume"));
         assert_eq!(n(store, "blocks"), Some(6));
         assert_eq!(store["blocks_by_kind"]["property_table"], json!(1));
         assert_eq!(store["blocks_by_kind"]["category_table"], json!(1));
@@ -3026,11 +3063,26 @@ mod tests {
     }
 
     #[test]
-    fn a_store_with_no_property_block_is_reported_as_the_ios_shape() {
+    fn a_store_with_no_property_block_is_not_named_for_an_operating_system() {
         let mut b = StoreBuilder::new();
         let c = b.block(BLOCK_CATEGORIES, &category_entry(1, "public.item"), 0);
         let out = run(b.finish([0, c, 0, 0, 0]), "store.db");
-        assert_eq!(store_of(&out)["ios_store"], json!(true));
+        let store = store_of(&out);
+        assert_eq!(store["store_flavour"], json!("no_property_block"));
+        assert!(!store["name"].as_str().unwrap().contains("iOS"));
+    }
+
+    #[test]
+    fn the_corespotlight_header_flags_name_a_corespotlight_index() {
+        let mut b = StoreBuilder::new();
+        let c = b.block(BLOCK_CATEGORIES, &category_entry(1, "public.item"), 0);
+        let mut bytes = b.finish([0, c, 0, 0, 0]);
+        bytes[4..8].copy_from_slice(&CORESPOTLIGHT_FLAGS.to_le_bytes());
+        let out = run(bytes, "store.db");
+        assert_eq!(
+            store_of(&out)["store_flavour"],
+            json!("corespotlight_index")
+        );
     }
 
     // --- the property table ---------------------------------------------------
@@ -3753,7 +3805,7 @@ mod tests {
         let store = store_of(&out);
         assert_eq!(n(store, "page_size"), Some(4096));
         assert_eq!(n(store, "block_size"), Some(16384));
-        assert_eq!(store["ios_store"], json!(false));
+        assert_eq!(store["store_flavour"], json!("spotlight_volume"));
         assert_eq!(n(store, "blocks"), Some(86));
         assert_eq!(store["blocks_by_kind"]["property_table"], json!(1));
         assert_eq!(store["blocks_by_kind"]["category_table"], json!(7));

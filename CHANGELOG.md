@@ -6,6 +6,24 @@ Open defects are in [BUGS.md](BUGS.md) and planned work is in [ROADMAP.md](ROADM
 
 ## [Unreleased]
 
+## [1.0.2]
+
+- **VICS export (`HUNT-283`, high).** A hash set with no preserved attribute bundle and a
+  digest of neither 32 nor 40 hex characters, a SHA-256 for example, was exported in the
+  `MD5` field, so a partner tool matched on the wrong key. Such entries are now left out
+  and counted in the document as `seance.entries_omitted`, with a reason. Pinned by
+  `test_vics_export_omits_sha256_digests_and_counts_them`.
+- **Spotlight store header (`HUNT-293`, high).** A store with no property block was named
+  an iOS store, and its record name gained an `(iOS)` suffix. A per-user CoreSpotlight
+  index on macOS has the same shape. The `ios_store` flag is replaced by `store_flavour`,
+  one of `spotlight_volume`, `corespotlight_index` or `no_property_block`, and the record
+  states that the header does not say which operating system the file came from. Pinned by
+  `the_corespotlight_header_flags_name_a_corespotlight_index` and
+  `a_store_with_no_property_block_is_not_named_for_an_operating_system`. The two Magnet
+  2021 stores named in the original entry were not available to re-run.
+- **CI.** The nightly fuzz workflow pins `nightly-2026-10-29`. The 2026-10-31 nightly
+  fails to compile `sqlx-core` with a rustc query cycle.
+
 ## [1.0.1]
 
 Fixes found by the first hosted CI runs on the public repository. No product behaviour changes.
@@ -61,6 +79,7 @@ this tree. Hosted CI has not run on it.
 The open defects are in [BUGS.md](BUGS.md). Work that is planned or waiting on evidence is
 in [ROADMAP.md](ROADMAP.md).
 
-[Unreleased]: https://github.com/conorarmstrong/seance/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/conorarmstrong/seance/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/conorarmstrong/seance/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/conorarmstrong/seance/compare/v1.0.0-rc...v1.0.1
 [1.0.0-rc]: https://github.com/conorarmstrong/seance/releases/tag/v1.0.0-rc

@@ -19003,29 +19003,37 @@ pub async fn export_vics_hash_set(
     // the digest pair.
     let mut media = Vec::with_capacity(rows.len());
     let mut seen: std::collections::HashSet<String> = std::collections::HashSet::new();
+    // Entries with no preserved bundle and a digest VICS has no field for.
+    let mut omitted: usize = 0;
     for (hash, category, attrs) in rows {
         // Prefer the preserved attribute bundle; fall back to a minimal record
         // from the hash and category so a non-VICS set still exports cleanly.
-        let m: seance_vics::VicsMedia = attrs
-            .as_deref()
-            .and_then(|a| serde_json::from_str(a).ok())
-            .unwrap_or_else(|| {
-                let mut m = seance_vics::VicsMedia::from_md5(
-                    hash.clone(),
-                    seance_vics::Category(category.unwrap_or(0)),
-                );
-                if category.is_none() {
-                    m.category = None;
-                }
-                // Place the digest in the field its length implies: a 40-hex
-                // value is a SHA-1, not an MD5. Emitting a SHA-1 in the MD5 field
-                // produces a VICS document a partner tool would match on the
-                // wrong key. (32-hex stays MD5; VICS has no SHA-256 field.)
-                if hash.len() == 40 {
-                    m.sha1 = m.md5.take();
-                }
-                m
-            });
+        let preserved: Option<seance_vics::VicsMedia> =
+            attrs.as_deref().and_then(|a| serde_json::from_str(a).ok());
+        // VICS has MD5 and SHA-1 fields only. A bare digest of any other length
+        // (a SHA-256, say) has no field to sit in, and placing it in MD5 would
+        // make a partner tool match on the wrong key. Omit it and count it.
+        if preserved.is_none() && hash.len() != 32 && hash.len() != 40 {
+            omitted += 1;
+            continue;
+        }
+        let m: seance_vics::VicsMedia = preserved.unwrap_or_else(|| {
+            let mut m = seance_vics::VicsMedia::from_md5(
+                hash.clone(),
+                seance_vics::Category(category.unwrap_or(0)),
+            );
+            if category.is_none() {
+                m.category = None;
+            }
+            // Place the digest in the field its length implies: a 40-hex
+            // value is a SHA-1, not an MD5. Emitting a SHA-1 in the MD5 field
+            // produces a VICS document a partner tool would match on the
+            // wrong key. (32-hex stays MD5; other lengths are omitted and counted.)
+            if hash.len() == 40 {
+                m.sha1 = m.md5.take();
+            }
+            m
+        });
         let key = m.media_id.clone().unwrap_or_else(|| {
             format!(
                 "{}|{}",
@@ -19037,9 +19045,22 @@ pub async fn export_vics_hash_set(
             media.push(m);
         }
     }
+    let mut envelope = std::collections::BTreeMap::new();
+    if omitted > 0 {
+        envelope.insert(
+            "seance.entries_omitted".to_string(),
+            serde_json::json!(omitted),
+        );
+        envelope.insert(
+            "seance.entries_omitted_reason".to_string(),
+            serde_json::json!(
+                "VICS has MD5 and SHA-1 fields only. Entries held as another digest length were left out."
+            ),
+        );
+    }
     let file = seance_vics::VicsFile {
         value: media,
-        envelope: Default::default(),
+        envelope,
     };
     let json = serde_json::to_value(&file)
         .map_err(|e| ApiError::InternalServerError(format!("Failed to serialise VICS: {e}")))?;

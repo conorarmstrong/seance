@@ -1275,6 +1275,72 @@ async fn test_vics_export_labels_sha1_digests_as_sha1_not_md5() {
 }
 
 #[tokio::test]
+async fn test_vics_export_omits_sha256_digests_and_counts_them() {
+    let (app, case_id, _db) = setup_test_app().await;
+    let create = app
+        .clone()
+        .oneshot(
+            Request::builder()
+                .method("POST")
+                .uri(format!("/api/v1/cases/{}/hash_sets", case_id))
+                .header("content-type", "application/json")
+                .body(Body::from(
+                    json!({ "name": "SHA256 set", "hash_algorithm": "sha256" }).to_string(),
+                ))
+                .unwrap(),
+        )
+        .await
+        .unwrap();
+    let hash_set_id = body_json(create).await["id"].as_str().unwrap().to_string();
+
+    let sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+    let boundary = "----VicsExportBoundary";
+    let body = format!(
+        "--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"h.csv\"\r\nContent-Type: text/csv\r\n\r\n{sha256},known\r\n--{boundary}--\r\n"
+    );
+    let imp = app
+        .clone()
+        .oneshot(
+            Request::builder()
+                .method("POST")
+                .uri(format!(
+                    "/api/v1/cases/{}/hash_sets/{}/import",
+                    case_id, hash_set_id
+                ))
+                .header(
+                    "content-type",
+                    format!("multipart/form-data; boundary={boundary}"),
+                )
+                .body(Body::from(body))
+                .unwrap(),
+        )
+        .await
+        .unwrap();
+    assert_eq!(imp.status(), StatusCode::OK);
+
+    let export = app
+        .oneshot(
+            Request::builder()
+                .uri(format!(
+                    "/api/v1/cases/{}/hash_sets/{}/vics_export",
+                    case_id, hash_set_id
+                ))
+                .body(Body::empty())
+                .unwrap(),
+        )
+        .await
+        .unwrap();
+    assert_eq!(export.status(), StatusCode::OK);
+    let doc = body_json(export).await;
+    assert!(
+        doc["value"].as_array().unwrap().is_empty(),
+        "a SHA-256 must not be exported in the MD5 or SHA1 field: {doc}"
+    );
+    assert_eq!(doc["seance.entries_omitted"], 1);
+    assert!(doc["seance.entries_omitted_reason"].is_string());
+}
+
+#[tokio::test]
 async fn test_hash_set_import_csv() {
     let (app, case_id, _db) = setup_test_app().await;
 

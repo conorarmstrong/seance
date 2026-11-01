@@ -3,9 +3,9 @@
 
 Seance is a modern forensic analysis tool designed for speed, scalability, and flexibility. It features a zero-copy architecture, a centralized orchestrator with work-stealing parallelism, and a plug-in system for artifact parsing.
 
-## Current Release: v1.0.1
+## Current Release: v1.0.2
 
-v1.0.1 follows the first edition, v1.0.0-rc. The manifests read 1.0.1.
+v1.0.2 follows the first edition, v1.0.0-rc. The manifests read 1.0.2.
 [CHANGELOG.md](CHANGELOG.md) holds the release notes. What comes next, in priority order with an estimate on
 every item, is [ROADMAP.md](ROADMAP.md).
 

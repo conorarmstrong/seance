@@ -53,13 +53,13 @@ Part III, so that a tier stays a list of things somebody could begin today.
 
 | Tier | What qualifies | Total |
 |---|---|---:|
-| **P0. Open defects** | A result is wrong, unverifiable or unsafe on a surface someone relies on | 10.75 d |
+| **P0. Open defects** | A result is wrong, unverifiable or unsafe on a surface someone relies on | 9.75 d |
 | **P2. Measured against public keys** | Depth that a published answer key or test method says is missing, on evidence already graded | 26.25 d |
 | **P3. Parity with the tool left open** | The reason an examiner still runs a second tool beside this one | 152.85 d |
 | **P5. Substrate and debt** | Blocks nothing today and compounds | 33.7 d |
 | **P6. Parked** | Needs a customer, a partner, a licence or a decision before it is worth a day | 448.0 d and more |
 
-P0, P2, P3 and P5 sum to 223.55 d. P6 is the sum of its stated sizes, and rows
+P0, P2, P3 and P5 sum to 222.55 d. P6 is the sum of its stated sizes, and rows
 marked with a plus are open-ended.
 
 ## P0. Open defects
@@ -75,9 +75,7 @@ current one.
 | `HUNT-278` (LOW) | FAT recovery. Left: macOS, other cameras and real phone drivers | 0.5 d |
 | `HUNT-195`, `HUNT-280`, `HUNT-111`, `MEM-059` (LOW) | Left: a real subscription record no index names, which needs a rebuilt Server 2003 guest (`HUNT-195`). A Unicode PST libpff can recover from (`HUNT-280`). A Monterey or later volume that holds a `System.keychain` (`HUNT-111`). An XP x64 capture (`MEM-059`) | 0.5 d each, 2 d |
 | `MEM-020` (MEDIUM) | Kernel-side tamper signals. Real malware captures are used and graded. Synthesising a kernel driver to make a signal fire stays rejected. The user-mode groups have planted true positives. Rustock-23, Rustock.C, BlackEnergy 2.1 and ZeroAccess ran on a network-less Server 2003 R2 SP2 guest and none fires, because none ran code outside a module. Left: a capture of a sample that runs code from unbacked memory, such as Rustock.B or TDL3 and TDL4, to grade `timers` and `unloadedmodules` as signals. The Art of Memory Forensics images carry timer answers and are available on request only. A Skeleton Key patch in `lsass` to grade `skeleton_key_check`, which is an antivirus risk and whose `CSystems` route runs on no build. The ETW check's firing rate on a genuine compromise is unmeasured. On XP the ETW and Skeleton Key checks cannot assess a process and orphan threads stay an observation. No such capture is held | 1 d |
-| `HUNT-293` (HIGH) | Spotlight header platform claim. `ios_store` is inferred from an empty property chain head, so a per-user CoreSpotlight or helpd index on macOS is named iOS and the record name gains an iOS suffix. Replace the boolean with a store flavour and say nothing about the operating system the file came from | 0.5 d |
 | `HUNT-294` (LOW) | A `packages.xml` element that carries the same attribute twice is not surfaced. Most attributes resolve last wins and `userId` and `sharedUserId` resolve first wins. Pick one rule, apply it to every attribute, and publish `duplicate_attributes` per record with a count on the summary | 0.25 d |
-| `HUNT-283` (HIGH) | VICS export places a SHA-256 digest in the `md5` field when a set has no attribute bundle, so a partner tool matches on the wrong key. VICS has no SHA-256 field. Omit the entry and count it, or refuse the set, and say which. Test: a SHA-256 set exported with no bundle leaves the digest in neither `md5` nor `sha1` | 0.5 d |
 | `HUNT-284` (MEDIUM) | `PUT` virtual column returns 200 and writes a `virtual_column_updated` audit row for an unknown id, another case's id or a built-in id, because the handler discards the `Ok(false)` result. Return 404 and write no row | 0.25 d |
 | `HUNT-285` (MEDIUM) | The timeline activity heatmap drops events at or before the epoch and reports `total` with no excluded count. `count_timeline_activity_excluded` exists and no handler calls it. Return the count and show it on the heatmap | 0.5 d |
 | `HUNT-286` (MEDIUM) | Editing a timeline tag note writes no audit row, where create and delete do. Take the authenticated user and write `timeline_tag_updated`. Test: one row naming the examiner and the event | 0.25 d |
@@ -88,7 +86,7 @@ current one.
 
 `HUNT-291` and `HUNT-292` are sized in §3.8 and counted in P3, not here.
 
-**P0 total: 3 + 1 + 0.5 + 2 + 1 + 0.5 + 0.25 + 0.5 + 0.25 + 0.5 + 0.25 + 0.25 + 0.25 + 0.25 + 0.25 = 10.75 d.**
+**P0 total: 3 + 1 + 0.5 + 2 + 1 + 0.25 + 0.25 + 0.5 + 0.25 + 0.25 + 0.25 + 0.25 + 0.25 = 9.75 d.**
 
 **The register is the authority.** `BUGS.md` holds the last status of every entry above.
 
@@ -1186,33 +1184,33 @@ numbers.
 
 | Sprint | Goal | Carries | Days | Cumulative |
 |---|---|---|---:|---:|
-| **S1** | Open defects | P0 | 10.75 | 10.75 |
-| **S2** | Windows system information, measured | §2.6 | 9.0 | 19.75 |
-| **S3** | Validated by someone else's method | §5.2, §1.4a | 9.0 | 28.75 |
-| **S4** | Oracle runs, the unified log, Android provenance and owed documents | §5.15, §1.6, §1.4, §1.5, §5.33 | 9.6 | 38.35 |
-| **S5** | Apple Mail, the schema registry and fuzzing | §3.10, §5.26, §5.27 | 8.6 | 46.95 |
-| **S6** | CI, fixtures, the upgrade test and the run context | §5.28, §5.32, §5.9, §5.54, §5.30 | 10.0 | 56.95 |
-| **S7** | Persistence and registry replay | §5.17, §5.42 | 10.75 | 67.7 |
-| **S8** | Login accounting, registry screens and CSV profiles | §5.43, §5.50, §2.13, §2.14 | 9.25 | 76.95 |
-| **S9** | Ownership, execution screens, the file grid and profiles | §5.44, §5.25, §5.52, §5.55, §5.51 | 9.5 | 86.45 |
-| **S10** | Windows memory plugins and their screens | §5.3, §5.21 | 10.35 | 96.8 |
-| **S11** | Memory sweeps, disk correlation and LA57 | §3.8, §5.19, §5.47 | 9.75 | 106.55 |
-| **S12** | Memory carving, `$LogFile` and search | §5.46, §5.22, §5.24, §5.35 | 10.5 | 117.05 |
-| **S13** | Memory report and timeline | §5.20, §5.45 | 11.0 | 128.05 |
-| **S14** | Linux memory, process depth | §5.18 process depth, VMA scans and kernel stack walk | 9.5 | 137.55 |
-| **S15** | Linux memory, state and page cache | §5.18 network and kernel state, page cache | 10.0 | 147.55 |
-| **S16** | Linux memory, detectors | §5.18 rootkit and hook detectors | 10.0 | 157.55 |
-| **S17** | Network | §4.9, §4.10, §4.11 | 11.0 | 168.55 |
-| **S18** | Documents, browser cache and carving selection | §5.62, §5.63, §5.65 | 7.0 | 175.55 |
-| **S19** | Allocation maps | §5.23 | 8.0 | 183.55 |
-| **S20** | Symbols and categories | §5.48, §5.34 | 9.0 | 192.55 |
-| **S21** | API document and the viewer gap | §5.29, §5.53 | 8.0 | 200.55 |
-| **S22** | Lint hygiene | §5.31 | 5.0 | 205.55 |
-| **S23** | Related artifacts | §5.67 | 10.0 | 215.55 |
-| **S24** | The findings dashboard and server-side aggregates | §5.68, §5.69 | 8.0 | 223.55 |
+| **S1** | Open defects | P0 | 9.75 | 9.75 |
+| **S2** | Windows system information, measured | §2.6 | 9.0 | 18.75 |
+| **S3** | Validated by someone else's method | §5.2, §1.4a | 9.0 | 27.75 |
+| **S4** | Oracle runs, the unified log, Android provenance and owed documents | §5.15, §1.6, §1.4, §1.5, §5.33 | 9.6 | 37.35 |
+| **S5** | Apple Mail, the schema registry and fuzzing | §3.10, §5.26, §5.27 | 8.6 | 45.95 |
+| **S6** | CI, fixtures, the upgrade test and the run context | §5.28, §5.32, §5.9, §5.54, §5.30 | 10.0 | 55.95 |
+| **S7** | Persistence and registry replay | §5.17, §5.42 | 10.75 | 66.7 |
+| **S8** | Login accounting, registry screens and CSV profiles | §5.43, §5.50, §2.13, §2.14 | 9.25 | 75.95 |
+| **S9** | Ownership, execution screens, the file grid and profiles | §5.44, §5.25, §5.52, §5.55, §5.51 | 9.5 | 85.45 |
+| **S10** | Windows memory plugins and their screens | §5.3, §5.21 | 10.35 | 95.8 |
+| **S11** | Memory sweeps, disk correlation and LA57 | §3.8, §5.19, §5.47 | 9.75 | 105.55 |
+| **S12** | Memory carving, `$LogFile` and search | §5.46, §5.22, §5.24, §5.35 | 10.5 | 116.05 |
+| **S13** | Memory report and timeline | §5.20, §5.45 | 11.0 | 127.05 |
+| **S14** | Linux memory, process depth | §5.18 process depth, VMA scans and kernel stack walk | 9.5 | 136.55 |
+| **S15** | Linux memory, state and page cache | §5.18 network and kernel state, page cache | 10.0 | 146.55 |
+| **S16** | Linux memory, detectors | §5.18 rootkit and hook detectors | 10.0 | 156.55 |
+| **S17** | Network | §4.9, §4.10, §4.11 | 11.0 | 167.55 |
+| **S18** | Documents, browser cache and carving selection | §5.62, §5.63, §5.65 | 7.0 | 174.55 |
+| **S19** | Allocation maps | §5.23 | 8.0 | 182.55 |
+| **S20** | Symbols and categories | §5.48, §5.34 | 9.0 | 191.55 |
+| **S21** | API document and the viewer gap | §5.29, §5.53 | 8.0 | 199.55 |
+| **S22** | Lint hygiene | §5.31 | 5.0 | 204.55 |
+| **S23** | Related artifacts | §5.67 | 10.0 | 214.55 |
+| **S24** | The findings dashboard and server-side aggregates | §5.68, §5.69 | 8.0 | 222.55 |
 
-**223.55 developer-days** in the sprint table for one engineer, before P6. This
-equals P0 10.75 + P2 26.25 + P3 152.85 + P5 33.7. Every item of Part I appears in
+**222.55 developer-days** in the sprint table for one engineer, before P6. This
+equals P0 9.75 + P2 26.25 + P3 152.85 + P5 33.7. Every item of Part I appears in
 exactly one sprint, except §5.18, which is split across S14 to S16 by its bullets.
 The order front-loads the defects and the public-key measurements. Parity and
 reach work follows. Debt is last because none of it changes an answer.
@@ -1220,7 +1218,7 @@ reach work follows. Debt is last because none of it changes an answer.
 ### Exit criteria
 
 - **S1.** Each P0 entry is closed in `BUGS.md` or its remaining dimension is named
-  there with the evidence it needs. `HUNT-283` to `HUNT-290`, `HUNT-293` and
+  there with the evidence it needs. `HUNT-284` to `HUNT-290` and
   `HUNT-294` are closed with a test each.
 - **S2.** The Data Leakage key answers 55 of 60 from a screen, and every new
   record type has a viewer.
